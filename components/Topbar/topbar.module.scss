@@ -7,10 +7,26 @@
   display: flex;
   align-content: center;
 
-  button {
+  button, a {
+    font-size: 0.75rem;
     padding: 0.5rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .logo {
+    padding: 0;
+    display: block;
+    width: 80px;
+    position: relative;
+    margin: 1rem auto;
   }
 }
+
+
 
 
 
