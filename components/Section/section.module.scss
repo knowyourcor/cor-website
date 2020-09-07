@@ -1,0 +1,48 @@
+@import "../../styles/_variables.scss";
+
+.section {
+  max-width: 100%;
+  overflow: hidden;
+  
+  padding: 6rem 0 5rem;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+
+  @media (min-width: $md) {
+    padding: 10rem 0;
+  }
+  
+  &.noPadding {
+    padding: 0;
+  }
+
+  &.fullScreen {
+    min-height: 80vh;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+  &.align-top {
+    align-items: flex-start;
+  }
+  &.align-bottom {
+    align-items: flex-end;
+  }
+}
+
+.backgroundWhite {
+  color: var(--font-primary);
+  background-color: var(--color-white);
+}
+
+.backgroundGray {
+  color: var(--font-primary);
+  background-color: var(--color-gray);
+}
+
+.backgroundTransparent {
+  color: var(--font-primary);
+  background-color: transparent;
+}
