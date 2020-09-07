@@ -1,0 +1,33 @@
+
+@font-face {
+  font-family: 'FutworaPro-Regular';
+  font-style: normal;
+  font-weight: normal;
+  font-display: fallback;
+  src: local(Futwora Pro Regular), local(FutworaPro-Regular),
+    url('/fonts/FutworaPro/FutworaPro-Regular.eot') format('eot'),
+    url('/fonts/FutworaPro/FutworaPro-Regular.woff2') format('woff2'),
+    url('/fonts/FutworaPro/FutworaPro-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'RegolaPro-Book';
+  font-style: normal;
+  font-weight: normal;
+  font-display: fallback;
+  src: local(Regola Pro Book), local(RegolaPro-Book),
+    url('/fonts/Regola/Book/RegolaPro-Book.eot') format('eot'),
+    url('/fonts/Regola/Book/RegolaPro-Book.woff2') format('woff2'),
+    url('/fonts/Regola/Book/RegolaPro-Book.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'RegolaPro-Bold';
+  font-style: normal;
+  font-weight: normal;
+  font-display: fallback;
+  src: local(Regola Pro Bold), local(RegolaPro-Bold),
+    url('/fonts/Regola/Bold/RegolaPro-Bold.eot') format('eot'),
+    url('/fonts/Regola/Bold/RegolaPro-Bold.woff2') format('woff2'),
+    url('/fonts/Regola/Bold/RegolaPro-Bold.woff') format('woff');
+}
