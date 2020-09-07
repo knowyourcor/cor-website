@@ -2,12 +2,15 @@
 
 .topbar {
   width: 100%;
-  position: absolute;
+  z-index: 1000;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   display: flex;
   align-content: center;
+  background-color: #fff;
+
 
   button, a {
     font-size: 0.75rem;
