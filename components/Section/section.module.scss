@@ -18,7 +18,7 @@
   }
 
   &.fullScreen {
-    min-height: 80vh;
+    min-height: 100vh;
   }
 
   &.align-center {
@@ -45,4 +45,9 @@
 .backgroundTransparent {
   color: var(--font-primary);
   background-color: transparent;
+}
+
+.backgroundTeal {
+  color: var(--font-primary);
+  background-color: var(--color-teal);
 }

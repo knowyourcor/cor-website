@@ -4,7 +4,7 @@ import styles from "./image.module.scss";
 
 const Image = ({ content }) => {
   return (
-    <Section>
+    <Section fullScreen align="center">
       <Container>
         <Row align="center" textAlign={{ xs: "center" }}>
           <Column columns={{ xs: 14, sm: 11 }} offsets={{ sm: 1 }}>
