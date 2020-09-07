@@ -20,7 +20,8 @@ export const homepage = [
   {
     id: 3,
     type: "image",
-    content: "<p>Image module placeholder</p>",
+    content: "<h2>Your blood is data</h2>",
+    image: "/images/fpo/blood-is-data.jpg",
   },
   {
     id: 4,
@@ -55,8 +56,8 @@ export const homepage = [
   {
     id: 9,
     type: "image",
-    content: "<p>Image module placeholder</p>",
-    background: "gray",
+    content: "<h2>Be the expert in your own self-health</h2>",
+    image: "/images/fpo/product-unboxed.jpg",
   },
 ];
 
