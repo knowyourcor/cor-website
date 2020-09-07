@@ -1,26 +1,36 @@
 import Head from "../components/Head";
+
+import Section from "../components/Section";
+import { Container, Row, Column } from "../components/Grid";
+import Topbar from "../components/Topbar";
+
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Head title="Welcome" />
+      <div className={styles.container}>
+        <main className={styles.main}>
+          <Topbar />
+          <Section align="center">
+            <Container>
+              <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
+                <Column
+                  columns={{ xs: 14, sm: 11, md: 10 }}
+                  offsets={{ sm: 1, md: 1 }}
+                >
+                  <h1>There’s more to health than steps & weight</h1>
+                </Column>
+              </Row>
+            </Container>
+          </Section>
+        </main>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          <img src="/images/cor.svg" alt="COR Logo" className={styles.logo} />
-        </h1>
-
-        <p className={styles.description}>
-          Initial website structure and setup.
-        </p>
-
-        <div className={styles.grid}></div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a href="#"></a>
-      </footer>
-    </div>
+        <footer className={styles.footer}>
+          <a href="#"></a>
+        </footer>
+      </div>
+    </>
   );
 }
