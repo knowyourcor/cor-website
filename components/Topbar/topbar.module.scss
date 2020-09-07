@@ -1,3 +1,5 @@
+@import "../../styles/_variables.scss";
+
 .topbar {
   width: 100%;
   position: absolute;
@@ -10,11 +12,14 @@
   button, a {
     font-size: 0.75rem;
     padding: 0.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    &.active {
+      color: rgba(0,0,0,0.45);
+    }
   }
 
   .logo {
@@ -23,6 +28,20 @@
     width: 80px;
     position: relative;
     margin: 1rem auto;
+  }
+}
+
+
+.container {
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: $xxl;
+  padding: 0 1rem;
+
+  @media (min-width: $md) {
+    padding: 0 3rem;
   }
 }
 
