@@ -1,0 +1,75 @@
+@import "../../styles/_variables.scss";
+
+.form {
+  display: block;
+  padding-bottom: 10rem;
+}
+
+.inputContainer {
+  width: 100%;
+  display: flex;
+}
+
+.inputEmail {
+  border: 1.5px solid var(--font-primary);
+  border: 0;
+  border-radius: 50px 0 0 50px;
+  padding: 1rem 0;
+  color: var(--font-primary);
+  background-color: #fff;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+
+  display: block;
+  width: 100%;
+  text-align: center;
+
+
+  &:focus {
+    border: 0;
+    outline: none;
+  }
+  &::placeholder {
+    color: rgba(0,0,0,.45);
+  }
+}
+
+.buttonSubmit {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  color: var(--font-inverted);
+  background-color: var(--color-teal-dark);
+  font-weight: 600;
+  font-size: 0.8rem;
+  // letter-spacing: 0.200rem;
+  border-radius: 0 50px 50px 0;
+  padding: 1rem 2.25rem 1rem 2rem;
+  margin: 1rem 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 250ms ease-out;
+  &:hover, &:focus, &:active {
+    border: none;
+    outline: none;
+    background-color: lighten(#034561, 10);
+  }
+}
+
+.messages {
+  padding: 1rem 0;
+  min-height: 51px;
+  margin-top: -1rem;
+}
+
+.messageSending {
+  color: rgba(0,0,0,.45);
+}
+
+.messageError {
+  color: rgba(0,0,0,.45);
+}
+
+.messageSuccess {
+  color:rgba(0,0,0,.45);
+}

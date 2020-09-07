@@ -1,0 +1,473 @@
+@import "../../styles/_variables.scss";
+
+// Define breakpoints variables
+$breakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+  xxl: $xxl
+);
+
+// Container
+.Container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: $xxl;
+  padding: 0 1rem;
+
+  @media (min-width: $md) {
+    padding: 0 3rem;
+  }
+
+  &.offsetBackground .Row::before {
+    content: "";
+    position: absolute;
+    top: 13%;
+    right: 0%;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    z-index: 0;
+    border-radius: 9px;
+
+    @media (min-width: $sm) {
+      top: 24%;
+    }
+    @media (min-width: $md) {
+      top: 0;
+      right: 25%;
+    }
+    @media (min-width: $lg) {
+      top: 0;
+      right: 25%;
+    }
+    @media (min-width: $xl) {
+      top: 0;
+      right: 25%;
+    }
+  }
+  &.offsetBackground .Column {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+
+// Row
+.Row {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  position: relative;
+  z-index: 1;
+
+  // Gutter offset from Column padding
+  margin-right:  -0.5rem;
+  margin-left: -0.5rem;
+
+  @media (min-width: $lg) {
+    margin-right:  -1rem;
+    margin-left: -1rem;
+  }
+
+  justify-content: flex-start;
+  text-align:left;
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.justify-left {
+    justify-content: left;
+  }
+
+  &.justify-right {
+    justify-content: right;
+  }
+
+  &.text-center\@xs {
+    text-align: center;
+  }
+
+  &.text-left\@xs {
+    text-align: left;
+  }
+
+  &.text-right\@xs {
+    text-align: right;
+  }
+
+  &.flex-direction-row\@xs {
+    flex-direction: row;
+  }
+
+  &.flex-direction-row-reverse\@xs {
+    flex-direction: row-reverse;
+  }
+
+  &.flex-direction-column\@xs {
+    flex-direction: column;
+  }
+
+  &.flex-direction-column-reverse\@xs {
+    flex-direction: column-reverse;
+  }
+
+  @each $breakpoint, $sizes in $breakpoints {
+    @media (min-width: $sizes) {
+      &.text-center\@#{$breakpoint} {
+        text-align: center;
+      }
+
+      &.text-left\@#{$breakpoint} {
+        text-align: left;
+      }
+
+      &.text-right\@#{$breakpoint} {
+        text-align: center;
+      }
+
+      &.flex-direction-row\@#{$breakpoint} {
+        flex-direction: row;
+      }
+
+      &.flex-direction-row-reverse\@#{$breakpoint} {
+        flex-direction: row-reverse;
+      }
+
+      &.flex-direction-column\@#{$breakpoint} {
+        flex-direction: column;
+      }
+
+      &.flex-direction-column-reverse\@#{$breakpoint} {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+}
+
+// Columns
+.Column {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+
+  @media (min-width: $lg) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  &.backgroundWhite {
+    background-color: #fff;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  // Base columns
+  &.column-1\@xs {
+    flex-basis: 7.142857143%;
+    max-width: 7.142857143%;
+  }
+  
+  &.column-2\@xs {
+    flex-basis: 14.285714286%;
+    max-width: 14.285714286%;
+  }
+  
+  &.column-3\@xs {
+    flex-basis: 21.428571429%;
+    max-width: 21.428571429%;
+  }
+  
+  &.column-4\@xs {
+    flex-basis: 28.571428571%;
+    max-width: 28.571428571%;
+  }
+  
+  &.column-5\@xs {
+    flex-basis: 35.714285714%;
+    max-width: 35.714285714%;
+  }
+  
+  &.column-6\@xs {
+    flex-basis: 42.857142857%;
+    max-width: 42.857142857%;
+  }
+  
+  &.column-7\@xs {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  
+  &.column-8\@xs {
+    flex-basis: 57.142857143%;
+    max-width: 57.142857143%;
+  }
+  
+  &.column-9\@xs {
+    flex-basis: 64.285714286%;
+    max-width: 64.285714286%;
+  }
+  
+  &.column-10\@xs {
+    flex-basis: 71.428571429%;
+    max-width: 71.428571429%;
+  }
+  
+  &.column-11\@xs {
+    flex-basis: 78.571428571%;
+    max-width: 78.571428571%;
+  }
+  
+  &.column-12\@xs {
+    flex-basis: 85.714285714%;
+    max-width: 85.714285714%;
+  }
+
+  &.column-13\@xs {
+    flex-basis: 92.857142857%;
+    max-width: 92.857142857%;
+  }
+
+  &.column-14\@xs {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+
+
+  // Base column offsets
+  &.column-offset-0\@xs {
+    margin-left: 0;
+  }
+
+  &.column-offset-1\@xs {
+    margin-left: 7.142857143%;
+  }
+
+  &.column-offset-2\@xs {
+    margin-left: 14.285714286%;
+  }
+
+  &.column-offset-3\@xs {
+    margin-left: 21.428571429%;
+  }
+
+  &.column-offset-4\@xs {
+    margin-left: 28.571428571%;
+  }
+
+  &.column-offset-5\@xs {
+    margin-left: 35.714285714%;
+  }
+
+  &.column-offset-6\@xs {
+    margin-left: 42.857142857%;
+  }
+
+  &.column-offset-7\@xs {
+    margin-left: 50%;
+  }
+
+  &.column-offset-8\@xs {
+    margin-left: 57.142857143%;
+  }
+
+  &.column-offset-9\@xs {
+    margin-left: 64.285714286%;
+  }
+
+  &.column-offset-10\@xs {
+    margin-left: 71.428571429%;
+  }
+
+  &.column-offset-11\@xs {
+    margin-left: 78.571428571%;
+  }
+
+  &.column-offset-12\@xs {
+    margin-left: 85.714285714%;
+  }
+
+  &.column-offset-13\@xs {
+    margin-left: 92.857142857%;
+  }
+
+  &.align-self-center\@xs {
+    align-self: center;
+  }
+  
+  &.align-self-left\@xs {
+    align-self: flex-start;
+  }
+
+  &.align-self-right\@xs {
+    align-self: flex-end;
+  }
+
+  // Columns for each additional breakpoint
+  //  $breakpoint: key
+  //  $sizes: value
+  @each $breakpoint, $sizes in $breakpoints {
+    @media (min-width: $sizes) {
+      &.column-offset-0\@#{$breakpoint} {
+        margin-left: 0;
+      }
+
+      &.column-1\@#{$breakpoint} {
+        flex-basis: 7.142857143%;
+        max-width: 7.142857143%;
+      }
+
+      &.column-offset-1\@#{$breakpoint} {
+        margin-left: 7.142857143%;
+      }
+      
+      &.column-2\@#{$breakpoint} {
+        flex-basis: 14.285714286%;
+        max-width: 14.285714286%;
+      }
+
+      &.column-offset-2\@#{$breakpoint} {
+        margin-left: 14.285714286%;
+      }
+      
+      &.column-3\@#{$breakpoint} {
+        flex-basis: 21.428571429%;
+        max-width: 21.428571429%;
+      }
+
+      &.column-offset-3\@#{$breakpoint} {
+        margin-left: 21.428571429%;
+      }
+      
+      &.column-4\@#{$breakpoint} {
+        flex-basis: 28.571428571%;
+        max-width: 28.571428571%;
+      }
+      
+      &.column-offset-4\@#{$breakpoint} {
+        margin-left: 28.571428571%;
+      }
+    
+      &.column-5\@#{$breakpoint} {
+        flex-basis: 35.714285714%;
+        max-width: 35.714285714%;
+      }
+
+      &.column-offset-5\@#{$breakpoint} {
+        margin-left: 35.714285714%;
+      }
+      
+      &.column-6\@#{$breakpoint} {
+        flex-basis: 42.857142857%;
+        max-width: 42.857142857%;
+      }
+      
+      &.column-offset-6\@#{$breakpoint} {
+        margin-left: 42.857142857%;
+      }
+    
+      &.column-7\@#{$breakpoint} {
+        flex-basis: 50%;
+        max-width: 50%;
+      }
+
+      &.column-offset-7\@#{$breakpoint} {
+        margin-left: 50%;
+      }
+      
+      &.column-8\@#{$breakpoint} {
+        flex-basis: 57.142857143%;
+        max-width: 57.142857143%;
+      }
+
+      &.column-offset-8\@#{$breakpoint} {
+        margin-left: 57.142857143%;
+      }
+      
+      &.column-9\@#{$breakpoint} {
+        flex-basis: 64.285714286%;
+        max-width: 64.285714286%;
+      }
+
+      &.column-offset-9\@#{$breakpoint} {
+        margin-left: 64.285714286%;
+      }
+      
+      &.column-10\@#{$breakpoint} {
+        flex-basis: 71.428571429%;
+        max-width: 71.428571429%;
+      }
+      
+      &.column-offset-10\@#{$breakpoint} {
+        margin-left: 71.428571429%;
+      }
+    
+      &.column-11\@#{$breakpoint} {
+        flex-basis: 78.571428571%;
+        max-width: 78.571428571%;
+      }
+
+      &.column-offset-11\@#{$breakpoint} {
+        margin-left: 78.571428571%;
+      }
+      
+      
+      &.column-12\@#{$breakpoint} {
+        flex-basis: 85.714285714%;
+        max-width: 85.714285714%;
+      }
+
+      &.column-offset-12\@#{$breakpoint} {
+        margin-left: 85.714285714%;
+      }
+
+      &.column-13\@#{$breakpoint} {
+        flex-basis: 92.857142857%;
+        max-width: 92.857142857%;
+      }
+
+      &.column-offset-13\@#{$breakpoint} {
+        margin-left: 92.857142857%;
+      }
+
+      &.column-14\@#{$breakpoint} {
+        flex-basis: 100%;
+        max-width: 100%;
+      }
+
+      &.align-self-center\@#{$breakpoint} {
+        align-self: center;
+      }
+      
+      &.align-self-left\@#{$breakpoint} {
+        align-self: flex-start;
+      }
+    
+      &.align-self-right\@#{$breakpoint} {
+        align-self: flex-end;
+      }
+
+      // Breakpoint alignments
+      // .justify-center\@#{$breakpoint} {
+      //   justify-content: center;
+      //   text-align: center;
+      // }
+
+
+    }
+  }
+
+
+}
