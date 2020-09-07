@@ -4,22 +4,20 @@ import { Container, Row, Column } from "../components/Grid";
 import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";
 
-import styles from "../styles/Home.module.scss";
+// import styles from "../styles/Contact.module.scss";
 
-export default function Home() {
+export default function Contact() {
   return (
     <>
-      <Head title="Welcome" />
+      <Head title="Contact" />
       <main>
         <Topbar />
-        <Section align="center">
+        <Section>
           <Container>
             <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
-              <Column
-                columns={{ xs: 14, sm: 11, md: 10 }}
-                offsets={{ sm: 1, md: 1 }}
-              >
-                <h1>There’s more to health than steps & weight</h1>
+              <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
+                <h1>Contact</h1>
+                <p>Placeholder for Contact.</p>
               </Column>
             </Row>
           </Container>
