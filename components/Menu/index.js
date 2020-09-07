@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../Link";
 import styles from "./menu.module.scss";
 
 const Menu = ({ active, toggle }) => {
@@ -28,22 +28,22 @@ const Menu = ({ active, toggle }) => {
       </button>
       <ul>
         <li>
-          <Link href="/shop">
+          <Link activeClassName={styles.active} href="/shop">
             <a>Shop</a>
           </Link>
         </li>
         <li>
-          <Link href="/contact">
+          <Link activeClassName={styles.active} href="/contact">
             <a>Contact</a>
           </Link>
         </li>
         <li>
-          <Link href="/support">
+          <Link activeClassName={styles.active} href="/support">
             <a>Support</a>
           </Link>
         </li>
         <li>
-          <Link href="/track-order">
+          <Link activeClassName={styles.active} href="/track-order">
             <a>Track Order</a>
           </Link>
         </li>
