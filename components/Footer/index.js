@@ -32,23 +32,23 @@ const Footer = () => {
             <Column columns={{ xs: 14, md: 3 }}>
               <ul>
                 <li>
-                  <Link href="#">
-                    <a>About Us</a>
+                  <Link href="/about">
+                    <a>About</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
-                    <a>Contact Us</a>
+                  <Link href="/contact">
+                    <a>Contact</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
+                  <Link href="/shipping-info">
                     <a>Shipping Info</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
-                    <a>Track Your Order</a>
+                  <Link href="/track-order">
+                    <a>Track Order</a>
                   </Link>
                 </li>
               </ul>
@@ -57,22 +57,22 @@ const Footer = () => {
             <Column columns={{ xs: 14, md: 3 }}>
               <ul>
                 <li>
-                  <Link href="#">
+                  <Link href="/financing-info">
                     <a>Financing Info</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
+                  <Link href="/warranty">
                     <a>Warranty</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
+                  <Link href="/support">
                     <a>Support</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="#">
+                  <Link href="/faq">
                     <a>FAQ</a>
                   </Link>
                 </li>
@@ -109,17 +109,17 @@ const Footer = () => {
               <p>©2020 COR LLC</p>
             </Column>
             <Column columns={{ xs: 1 }}>
-              <Link href="#">
+              <Link href="/legal">
                 <a>Legal</a>
               </Link>
             </Column>
             <Column columns={{ xs: 1 }}>
-              <Link href="#">
+              <Link href="/privacy">
                 <a>Privacy</a>
               </Link>
             </Column>
             <Column columns={{ xs: 1 }}>
-              <Link href="#">
+              <Link href="/cookies">
                 <a>Cookies</a>
               </Link>
             </Column>
