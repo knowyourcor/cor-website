@@ -1,5 +1,5 @@
-import { Container, Row, Column } from "../Grid";
 import { useState } from "react";
+import Link from "next/link";
 import Logo from "../Logo";
 import Menu from "../Menu";
 
@@ -16,9 +16,17 @@ const Topbar = () => {
     <>
       <div className={styles.topbar}>
         <button onClick={() => toggleMenu()}>Menu</button>
-        <Logo />
-        <button>Account</button>
-        <button>Cart</button>
+        <Link href="/">
+          <a className={styles.logo}>
+            <Logo />
+          </a>
+        </Link>
+        <Link href="/account">
+          <a>Account</a>
+        </Link>
+        <Link href="/cart">
+          <a>Cart</a>
+        </Link>
       </div>
       <Menu active={isOpen} toggle={() => toggleMenu()} />
     </>
