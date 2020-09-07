@@ -1,0 +1,70 @@
+.menu {
+  width: 33%;
+  height: 100vh;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 2rem;
+  color: var(--font-inverted);
+  font-family: var(--font-sans-headline);
+  font-size: 2rem;
+  background-color: var(--color-green);
+  transform: translateX(-100%);
+  transition: transform 350ms ease-out;
+  &--active {
+    transform: translateX(0%);
+  }
+  ul {
+    padding: 8rem 0 0;
+    list-style-type: none;
+    li {
+      margin: 1rem 0;
+    }
+  }
+  p {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  a {
+    cursor: pointer;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    &:link,
+    &:visited {
+      text-decoration: none;
+    }
+    &:hover,
+    &:active {
+  
+    }
+  }
+  .close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    color: var(--font-inverted);
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    &:link,
+    &:visited {
+      text-decoration: none;
+    }
+    &:hover,
+    &:active {
+  
+    }
+  }
+  .mark {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+
+    svg {
+      
+        fill: #fff;
+      
+    }
+  }
+}
