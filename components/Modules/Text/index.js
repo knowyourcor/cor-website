@@ -1,14 +1,16 @@
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
-import styles from "./homepageHero.module.scss";
+import { RichText } from "prismic-reactjs";
 
-const HomepageHero = ({ content, background }) => {
+import styles from "./text.module.scss";
+
+const Text = ({ primary, background }) => {
   return (
     <Section fullScreen backgroundColor={background} align="center">
       <Container>
         <Row align="center" textAlign={{ xs: "center" }}>
           <Column columns={{ xs: 14, sm: 11 }} offsets={{ sm: 1 }}>
-            <div dangerouslySetInnerHTML={{ __html: content }} />
+            <RichText render={primary.text} />
           </Column>
         </Row>
       </Container>
@@ -16,4 +18,4 @@ const HomepageHero = ({ content, background }) => {
   );
 };
 
-export default HomepageHero;
+export default Text;

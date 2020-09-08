@@ -1,55 +1,52 @@
-// export { default as Accordion } from "./Accordion";
-// export { default as Carousel } from "./Carousel";
-// export { default as Content } from "./Content";
-// export { default as HomepageHero } from "./HomepageHero";
-// export { default as Image } from "./Image";
-// export { default as Profile } from "./Profile";
-// export { default as Quote } from "./Quote";
-// export { default as Shop } from "./Shop";
-// export { default as Tabs } from "./Tabs";
-
 import Accordion from "./Accordion";
 import Carousel from "./Carousel";
-import Content from "./Content";
-import HomepageHero from "./HomepageHero";
+import Text from "./Text";
+import TextImage from "./TextImage";
+import CarouselHero from "./CarouselHero";
 import Image from "./Image";
-import Profile from "./Profile";
+import Profiles from "./Profiles";
 import Quote from "./Quote";
 import Shop from "./Shop";
 import Tabs from "./Tabs";
 
-const Modules = ({ data }) => {
+const Modules = ({ pageData }) => {
+  console.log("pageData: ", pageData);
   return (
     <>
       {(() => {
-        return data.map((module) => {
+        return pageData.body.map((module, index) => {
           switch (module.type) {
             case "accordion":
-              return <Accordion key={module.id} {...module} />;
+              return <Accordion key={`${index}_${module.type}`} {...module} />;
               break;
             case "carousel":
-              return <Carousel key={module.id} {...module} />;
+              return <Carousel key={`${index}_${module.type}`} {...module} />;
               break;
-            case "content":
-              return <Content key={module.id} {...module} />;
-              break;
-            case "homepageHero":
-              return <HomepageHero key={module.id} {...module} />;
+            case "hero_carousel":
+              return (
+                <CarouselHero key={`${index}_${module.type}`} {...module} />
+              );
               break;
             case "image":
-              return <Image key={module.id} {...module} />;
+              return <Image key={`${index}_${module.type}`} {...module} />;
               break;
-            case "profile":
-              return <Profile key={module.id} {...module} />;
+            case "profiles":
+              return <Profiles key={`${index}_${module.type}`} {...module} />;
               break;
             case "quote":
-              return <Quote key={module.id} {...module} />;
+              return <Quote key={`${index}_${module.type}`} {...module} />;
               break;
             case "shop":
-              return <Shop key={module.id} {...module} />;
+              return <Shop key={`${index}_${module.type}`} {...module} />;
               break;
             case "tabs":
-              return <Tabs key={module.id} {...module} />;
+              return <Tabs key={`${index}_${module.type}`} {...module} />;
+              break;
+            case "text":
+              return <Text key={`${index}_${module.type}`} {...module} />;
+              break;
+            case "text_image":
+              return <TextImage key={`${index}_${module.type}`} {...module} />;
               break;
           }
         });
