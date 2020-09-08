@@ -122,6 +122,7 @@
 
 .breakpoint::after {
   position: fixed;
+  z-index: 10000;
   top: 0;
   left: 10px;
   font-weight: bold;
