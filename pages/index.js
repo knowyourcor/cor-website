@@ -9,14 +9,14 @@ import { getHomepageData } from "../lib/api";
 
 import styles from "../styles/Home.module.scss";
 
-export default function Index({ preview, data }) {
+export default function Index({ preview, pageData }) {
   return (
     <>
-      <Head title={data.meta_title} />
+      <Head title={pageData.meta_title} />
       <Alert preview={preview} />
       <main>
         <Topbar />
-        <Modules data={homepage} />
+        <Modules pageData={pageData} />
       </main>
       <Footer />
     </>
@@ -24,9 +24,9 @@ export default function Index({ preview, data }) {
 }
 
 export async function getStaticProps({ preview = false, previewData }) {
-  const data = await getHomepageData(previewData);
+  const pageData = await getHomepageData(previewData);
   return {
-    props: { preview, data },
+    props: { preview, pageData },
     revalidate: 1, // In seconds
   };
 }
