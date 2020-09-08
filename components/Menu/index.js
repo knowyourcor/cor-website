@@ -4,7 +4,10 @@ import styles from "./menu.module.scss";
 const Menu = ({ active, toggle }) => {
   const isActive = active ? styles["menu--active"] : "";
   return (
-    <div className={[styles.menu, isActive].join(" ")}>
+    <div
+      className={[styles.menu, isActive].join(" ")}
+      style={{ transform: "translateX(-100%)" }}
+    >
       <Link href="/">
         <a className={styles.mark}>
           <svg
