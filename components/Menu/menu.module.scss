@@ -13,7 +13,7 @@
   transform: translateX(-100%);
   transition: transform 350ms ease-out;
   &--active {
-    transform: translateX(0%);
+    transform: translateX(0%) !important;
   }
   ul {
     padding: 8rem 0 0;
