@@ -9,7 +9,7 @@ const Section = (props) => {
         styles[
           `background${
             props.backgroundColor.charAt(0).toUpperCase() +
-            props.backgroundColor.slice(1)
+            props.backgroundColor.slice(1).replace(/\s/, "")
           }`
         ]
       )
