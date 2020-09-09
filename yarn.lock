@@ -2914,6 +2914,11 @@ json5@^2.1.0, json5@^2.1.2:
   dependencies:
     minimist "^1.2.5"
 
+keen-slider@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/keen-slider/-/keen-slider-5.2.3.tgz#cefbe8b93949f67a7e32914bb43275b9a301690d"
+  integrity sha512-aV41QXnzsdHmD1qWF/F7kTxcLwTdFHXLSSv7x3FLS7Y+yxoOKsHsFBmRz1a9TSZ8jTmLPerqJpsvsPL4NGUVmQ==
+
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
