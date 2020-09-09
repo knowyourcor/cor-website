@@ -33,13 +33,9 @@ const Tabs = ({ primary, fields }) => {
           </Column>
         </Row>
 
-        <Row align="center" textAlign={{ xs: "center" }}>
-          <Column columns={{ xs: 14 }}>
-            {fields.map((field, index) => {
-              return <Tab {...field} key={`tab_${index}`} />;
-            })}
-          </Column>
-        </Row>
+        {fields.map((field, index) => {
+          return <Tab {...field} key={`tab_${index}`} />;
+        })}
       </Container>
     </Section>
   );
