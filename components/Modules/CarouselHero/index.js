@@ -18,16 +18,18 @@ import styles from "./carouselHero.module.scss";
 const Slide = ({ image, headline, number, video_source }) => {
   return (
     <div className={styles.slide}>
-      <Row align="center" textAlign={{ xs: "center" }}>
-        <Column columns={{ xs: 14, sm: 7 }}>
-          {image && <img src={image.xxl.url} alt={image.alt} />}
-        </Column>
-        <Column columns={{ xs: 14, sm: 7 }}>
-          {headline && <RichText render={headline} />}
-          {number && number}
-          {video_source && video_source}
-        </Column>
-      </Row>
+      <div className={styles.slideLeft}>
+        {image && <img src={image.xxl.url} alt={image.alt} />}
+      </div>
+      <div className={styles.slideRight}>
+        {headline && (
+          <div className={styles.headline}>
+            <RichText render={headline} />
+          </div>
+        )}
+        {number && number}
+        {video_source && video_source}
+      </div>
     </div>
   );
 };
@@ -38,12 +40,11 @@ const CarouselHero = ({ primary, fields }) => {
       fullScreen
       backgroundColor={primary.background_color}
       align="center"
+      noPadding
     >
-      <Container>
-        {fields.map((field, index) => {
-          return <Slide {...field} key={`slide_${index}`} />;
-        })}
-      </Container>
+      {fields.map((field, index) => {
+        return <Slide {...field} key={`slide_${index}`} />;
+      })}
     </Section>
   );
 };
