@@ -16,7 +16,11 @@ const TextImage = ({ primary }) => {
   // primary.overlap_text_and_image
   // primary.alignment
   return (
-    <Section fullScreen backgroundColor={primary.background} align="center">
+    <Section
+      fullScreen
+      backgroundColor={primary.background_color}
+      align="center"
+    >
       <Container>
         <Row align="center" textAlign={{ xs: "center" }}>
           <Column columns={{ xs: 14 }}>
