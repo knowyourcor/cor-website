@@ -303,6 +303,43 @@ $breakpoints: (
     margin-left: 92.857142857%;
   }
 
+
+  // Base column overlaps
+  &.overlap-0\@xs {
+    z-index: 1;
+    margin-right: -0;
+  }
+
+  &.overlap-1\@xs {
+    z-index: 1;
+    margin-right: -7.142857143%;
+  }
+
+  &.overlap-2\@xs {
+    z-index: 1;
+    margin-right: -14.285714286%;
+  }
+
+  &.overlap-3\@xs {
+    z-index: 1;
+    margin-right: -21.428571429%;
+  }
+
+  &.overlap-4\@xs {
+    z-index: 1;
+    margin-right: -28.571428571%;
+  }
+
+  &.overlap-5\@xs {
+    z-index: 1;
+    margin-right: -35.714285714%;
+  }
+
+  &.overlap-6\@xs {
+    z-index: 1;
+    margin-right: -42.857142857%;
+  }
+
   &.align-self-center\@xs {
     align-self: center;
   }
@@ -324,6 +361,11 @@ $breakpoints: (
         margin-left: 0;
       }
 
+      &.overlap-0\@#{$breakpoint} {
+        z-index: 1;
+        margin-right: 0;
+      }
+
       &.column-1\@#{$breakpoint} {
         flex-basis: 7.142857143%;
         max-width: 7.142857143%;
@@ -331,6 +373,11 @@ $breakpoints: (
 
       &.column-offset-1\@#{$breakpoint} {
         margin-left: 7.142857143%;
+      }
+
+      &.overlap-1\@#{$breakpoint} {
+        z-index: 1;
+        margin-right: -7.142857143%;
       }
       
       &.column-2\@#{$breakpoint} {
@@ -341,6 +388,11 @@ $breakpoints: (
       &.column-offset-2\@#{$breakpoint} {
         margin-left: 14.285714286%;
       }
+
+      &.overlap-2\@#{$breakpoint} {
+        z-index: 1;
+        margin-right: -14.285714286%;
+      }
       
       &.column-3\@#{$breakpoint} {
         flex-basis: 21.428571429%;
@@ -349,6 +401,11 @@ $breakpoints: (
 
       &.column-offset-3\@#{$breakpoint} {
         margin-left: 21.428571429%;
+      }
+
+      &.overlap-3\@#{$breakpoint} {
+        z-index: 1;
+        margin-right: -21.428571429%;
       }
       
       &.column-4\@#{$breakpoint} {
@@ -359,6 +416,11 @@ $breakpoints: (
       &.column-offset-4\@#{$breakpoint} {
         margin-left: 28.571428571%;
       }
+
+      &.overlap-4\@#{$breakpoint} {
+        z-index: 1;
+        margin-right: -28.571428571%;
+      }
     
       &.column-5\@#{$breakpoint} {
         flex-basis: 35.714285714%;
@@ -368,6 +430,11 @@ $breakpoints: (
       &.column-offset-5\@#{$breakpoint} {
         margin-left: 35.714285714%;
       }
+
+      &.overlap-5\@#{$breakpoint} {
+        z-index: 1;
+        margin-right: -35.714285714%;
+      }
       
       &.column-6\@#{$breakpoint} {
         flex-basis: 42.857142857%;
@@ -376,6 +443,11 @@ $breakpoints: (
       
       &.column-offset-6\@#{$breakpoint} {
         margin-left: 42.857142857%;
+      }
+
+      &.overlap-6\@#{$breakpoint} {
+        z-index: 1;
+        margin-right: -42.857142857%;
       }
     
       &.column-7\@#{$breakpoint} {
