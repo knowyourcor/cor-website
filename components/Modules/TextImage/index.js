@@ -13,7 +13,6 @@ import styles from "./textImage.module.scss";
 // }
 
 const TextImage = ({ primary }) => {
-  // primary.overlap_text_and_image
   // primary.alignment
   return (
     <Section
@@ -23,15 +22,26 @@ const TextImage = ({ primary }) => {
     >
       <Container>
         <Row align="center" textAlign={{ xs: "center" }}>
-          <Column columns={{ xs: 14 }}>
+          <Column columns={{ xs: 14, md: 10 }} offsets={{ md: 2 }}>
             <RichText render={primary.headline} />
           </Column>
         </Row>
-        <Row align="center" textAlign={{ xs: "center" }}>
-          <Column columns={{ xs: 14, sm: 7 }}>
+        <Row align="center" textAlign={{ xs: "left" }}>
+          <Column
+            columns={{ xs: 14, md: 6 }}
+            offsets={{ md: 1 }}
+            overlaps={primary.overlap_text_and_image ? { md: 2 } : ""}
+            justify="center"
+          >
             <RichText render={primary.text} />
           </Column>
-          <Column columns={{ xs: 14, sm: 7 }}>
+          <Column
+            columns={
+              primary.overlap_text_and_image
+                ? { xs: 14, md: 9 }
+                : { xs: 14, md: 6 }
+            }
+          >
             <img
               src={primary.image.xxl.url}
               alt={primary.image.alt}

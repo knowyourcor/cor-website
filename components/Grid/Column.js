@@ -32,6 +32,14 @@ const Column = (props) => {
     }
   };
 
+  // Handle overlaps
+  // @param {Object} offsets prop
+  const handleOverlaps = (overlaps) => {
+    for (let [breakpoint, value] of Object.entries(overlaps)) {
+      classes.push(styles[`overlap-${value}@${breakpoint}`]);
+    }
+  };
+
   // Check props for either columns or offsets
   for (let [label, obj] of Object.entries(props)) {
     if (label === "columns") {
@@ -40,6 +48,8 @@ const Column = (props) => {
       handleOffsets(obj);
     } else if (label === "alignSelf") {
       handleAlignSelf(obj);
+    } else if (label === "overlaps") {
+      handleOverlaps(obj);
     }
   }
 
