@@ -1,9 +1,46 @@
 .quote {
+  font-family: var(--font-sans-headline);
+  font-size:5rem;
+  line-height: 5.5rem;
   
+  q {
+    quotes: "“" "”";
+  }
+
+  q::before {
+    content: open-quote;
+  }
+
+  q::after {
+    content: close-quote;
+  }
+
+  footer {
+    font-family: var(--font-sans-sans);
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+  }
 }
 
+
+
 .authorPortrait{
+  position: relative;
+ img {
   width: 100%;
   height: auto;
   display: block;
+ }
+ svg {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   path {
+     fill: var(--color-white);
+   }
+ }
 }
