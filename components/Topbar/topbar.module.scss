@@ -19,9 +19,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     &.active {
       color: rgba(0,0,0,0.45);
+    }
+
+    &:focus {
+      border: none;
+      background: transparent;
+      outline: none;
+      appearance: none;
     }
   }
 
