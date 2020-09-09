@@ -16,18 +16,22 @@ const Topbar = () => {
     <>
       <div className={styles.topbar}>
         <div className={styles.container}>
-          <button onClick={() => toggleMenu()}>Menu</button>
+          <button onClick={() => toggleMenu()} className={styles.menuToggle}>
+            Menu
+          </button>
           <Link href="/">
             <a className={styles.logo}>
               <Logo />
             </a>
           </Link>
-          <Link activeClassName={styles.active} href="/account">
-            <a>Account</a>
-          </Link>
-          <Link activeClassName={styles.active} href="/cart">
-            <a>Cart</a>
-          </Link>
+          <div className={styles.utility}>
+            <Link activeClassName={styles.active} href="/account">
+              <a>Account</a>
+            </Link>
+            <Link activeClassName={styles.active} href="/cart">
+              <a>Cart</a>
+            </Link>
+          </div>
         </div>
       </div>
       <Menu active={isOpen} toggle={() => toggleMenu()} />
