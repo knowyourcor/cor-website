@@ -11,7 +11,7 @@ import Shop from "./Shop";
 import Tabs from "./Tabs";
 
 const Modules = ({ pageData }) => {
-  console.log("pageData: ", pageData);
+  // console.log("pageData: ", pageData);
   return (
     <>
       {(() => {
