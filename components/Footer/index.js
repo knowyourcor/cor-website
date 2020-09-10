@@ -32,12 +32,12 @@ const Footer = () => {
             <Column columns={{ xs: 14, md: 3 }}>
               <ul>
                 <li>
-                  <Link href="/about">
+                  <Link href="/[slug]" as="/about">
                     <a>About</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact">
+                  <Link href="/[slug]" as="/contact">
                     <a>Contact</a>
                   </Link>
                 </li>
