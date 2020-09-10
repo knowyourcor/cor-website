@@ -18,20 +18,18 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
   }
 
   // All Link.web links to array
-  const externalLinks = footerMenuData.menu_links.filter(
+  const externalLinks = footerMenuData?.menu_links.filter(
     (item) => item.link._linkType === "Link.web"
   );
 
   // All Link.document links to array
-  const internalLinks = footerMenuData.menu_links.filter(
+  const internalLinks = footerMenuData?.menu_links.filter(
     (item) => item.link._linkType === "Link.document"
   );
 
   // Divide internalLinks array into two even arrays
-  const internalLinksToColumn = chunk(
-    internalLinks,
-    Math.ceil(internalLinks.length / 2)
-  );
+  const internalLinksToColumn =
+    internalLinks && chunk(internalLinks, Math.ceil(internalLinks?.length / 2));
 
   const WebLink = (link, index) => {
     return (
@@ -86,26 +84,32 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                 </a>
               </Link>
             </Column>
+            {footerMenuData && (
+              <>
+                {internalLinksToColumn.map((set, index) => {
+                  return (
+                    <Column
+                      columns={{ xs: 14, md: 3 }}
+                      key={`menu-set-${index}`}
+                    >
+                      <ul>
+                        {set.map((link, index) => {
+                          return PageLink(link, index);
+                        })}
+                      </ul>
+                    </Column>
+                  );
+                })}
 
-            {internalLinksToColumn.map((set, index) => {
-              return (
-                <Column columns={{ xs: 14, md: 3 }} key={`menu-set-${index}`}>
+                <Column columns={{ xs: 14, md: 3 }}>
                   <ul>
-                    {set.map((link, index) => {
-                      return PageLink(link, index);
+                    {externalLinks.map((link, index) => {
+                      return WebLink(link, index);
                     })}
                   </ul>
                 </Column>
-              );
-            })}
-
-            <Column columns={{ xs: 14, md: 3 }}>
-              <ul>
-                {externalLinks.map((link, index) => {
-                  return WebLink(link, index);
-                })}
-              </ul>
-            </Column>
+              </>
+            )}
 
             <Column columns={{ xs: 14, md: 3 }}>Email signup</Column>
           </Row>
@@ -118,19 +122,23 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
             </Column>
             <Column columns={{ xs: 5 }}>
               <ul>
-                {tertiaryMenuData.menu_links.map((link, index) => {
-                  return (
-                    <li key={`${link.link?._meta?.uid}_${index}`}>
-                      <Link
-                        activeClassName={styles.active}
-                        href="/[slug]"
-                        as={`/${link.link?._meta?.uid}`}
-                      >
-                        <a>{link.label[0].text}</a>
-                      </Link>
-                    </li>
-                  );
-                })}
+                {tertiaryMenuData && (
+                  <>
+                    {tertiaryMenuData?.menu_links.map((link, index) => {
+                      return (
+                        <li key={`${link.link?._meta?.uid}_${index}`}>
+                          <Link
+                            activeClassName={styles.active}
+                            href="/[slug]"
+                            as={`/${link.link?._meta?.uid}`}
+                          >
+                            <a>{link.label[0].text}</a>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </>
+                )}
               </ul>
             </Column>
           </Row>
