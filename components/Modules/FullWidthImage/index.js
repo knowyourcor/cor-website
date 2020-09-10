@@ -1,7 +1,7 @@
 import { Container, Row, Column } from "../../Grid";
-import styles from "./image.module.scss";
+import styles from "./fullWidthImage.module.scss";
 
-const Image = ({ primary }) => {
+const FullWidthImage = ({ primary }) => {
   return (
     <section
       className={styles.section}
@@ -20,4 +20,4 @@ const Image = ({ primary }) => {
   );
 };
 
-export default Image;
+export default FullWidthImage;

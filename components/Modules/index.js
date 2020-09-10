@@ -3,7 +3,7 @@ import Carousel from "./Carousel";
 import Text from "./Text";
 import TextImage from "./TextImage";
 import CarouselHero from "./CarouselHero";
-import Image from "./Image";
+import FullWidthImage from "./FullWidthImage";
 import Profiles from "./Profiles";
 import Quote from "./Quote";
 import Shop from "./Shop";
@@ -27,8 +27,10 @@ const Modules = ({ pageData }) => {
                 <CarouselHero key={`${index}_${module.type}`} {...module} />
               );
               break;
-            case "image":
-              return <Image key={`${index}_${module.type}`} {...module} />;
+            case "full_width_image":
+              return (
+                <FullWidthImage key={`${index}_${module.type}`} {...module} />
+              );
               break;
             case "profiles":
               return <Profiles key={`${index}_${module.type}`} {...module} />;
