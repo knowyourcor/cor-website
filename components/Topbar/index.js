@@ -5,7 +5,7 @@ import Menu from "../Menu";
 
 import styles from "./topbar.module.scss";
 
-const Topbar = () => {
+const Topbar = ({ mainMenuData }) => {
   const [isOpen, toggleOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -62,7 +62,11 @@ const Topbar = () => {
           </div>
         </div>
       </div>
-      <Menu active={isOpen} toggle={() => toggleMenu()} />
+      <Menu
+        mainMenuData={mainMenuData}
+        active={isOpen}
+        toggle={() => toggleMenu()}
+      />
     </>
   );
 };

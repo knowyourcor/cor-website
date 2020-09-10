@@ -2,7 +2,65 @@ import Link from "next/link";
 import { Container, Row, Column } from "../Grid";
 
 import styles from "./footer.module.scss";
-const Footer = () => {
+
+const Footer = ({ footerMenuData, tertiaryMenuData }) => {
+  // Divide array into chunks
+  // @param {array} array to divide
+  // @param {number} size to divide by
+  function chunk(array, size) {
+    const chunked_arr = [];
+    let copied = [...array]; // ES6 destructuring
+    const numOfChild = Math.ceil(copied.length / size); // Round up to the nearest integer
+    for (let i = 0; i < numOfChild; i++) {
+      chunked_arr.push(copied.splice(0, size));
+    }
+    return chunked_arr;
+  }
+
+  // All Link.web links to array
+  const externalLinks = footerMenuData.menu_links.filter(
+    (item) => item.link._linkType === "Link.web"
+  );
+
+  // All Link.document links to array
+  const internalLinks = footerMenuData.menu_links.filter(
+    (item) => item.link._linkType === "Link.document"
+  );
+
+  // Divide internalLinks array into two even arrays
+  const internalLinksToColumn = chunk(
+    internalLinks,
+    Math.ceil(internalLinks.length / 2)
+  );
+
+  const WebLink = (link, index) => {
+    return (
+      <li key={`weblink-${index}`}>
+        <a
+          href={link.link?.url}
+          title={link.label[0].text}
+          target={link.link?.target}
+          rel="noopener noreferrer"
+        >
+          {link.label[0].text}
+        </a>
+      </li>
+    );
+  };
+
+  const PageLink = (link, index) => {
+    return (
+      <li key={`${link.link?._meta?.uid}_${index}`}>
+        <Link
+          activeClassName={styles.active}
+          href="/[slug]"
+          as={`/${link.link?._meta?.uid}`}
+        >
+          <a>{link.label[0].text}</a>
+        </Link>
+      </li>
+    );
+  };
   return (
     <footer className={styles.footer}>
       <Container>
@@ -29,85 +87,23 @@ const Footer = () => {
               </Link>
             </Column>
 
-            <Column columns={{ xs: 14, md: 3 }}>
-              <ul>
-                <li>
-                  <Link href="/[slug]" as="/about">
-                    <a>About</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/[slug]" as="/contact">
-                    <a>Contact</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/[slug]" as="/shipping-info">
-                    <a>Shipping Info</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/[slug]" as="/track-order">
-                    <a>Track Order</a>
-                  </Link>
-                </li>
-              </ul>
-            </Column>
+            {internalLinksToColumn.map((set, index) => {
+              return (
+                <Column columns={{ xs: 14, md: 3 }} key={`menu-set-${index}`}>
+                  <ul>
+                    {set.map((link, index) => {
+                      return PageLink(link, index);
+                    })}
+                  </ul>
+                </Column>
+              );
+            })}
 
             <Column columns={{ xs: 14, md: 3 }}>
               <ul>
-                <li>
-                  <Link href="/[slug]" as="/financing-info">
-                    <a>Financing Info</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/[slug]" as="/warranty">
-                    <a>Warranty</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/[slug]" as="/support">
-                    <a>Support</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/[slug]" as="/faq">
-                    <a>FAQ</a>
-                  </Link>
-                </li>
-              </ul>
-            </Column>
-
-            <Column columns={{ xs: 14, md: 3 }}>
-              <ul>
-                <li>
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Facebook
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Instagram
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Twitter
-                  </a>
-                </li>
+                {externalLinks.map((link, index) => {
+                  return WebLink(link, index);
+                })}
               </ul>
             </Column>
 
@@ -116,24 +112,26 @@ const Footer = () => {
         </div>
 
         <div className={styles.tertiary}>
-          <Row>
+          <Row align="center">
             <Column columns={{ xs: 2 }}>
-              <p>©2020 COR LLC</p>
+              <p>©{new Date().getFullYear()} COR LLC</p>
             </Column>
-            <Column columns={{ xs: 1 }}>
-              <Link href="/[slug]" as="/legal">
-                <a>Legal</a>
-              </Link>
-            </Column>
-            <Column columns={{ xs: 1 }}>
-              <Link href="/[slug]" as="/privacy">
-                <a>Privacy</a>
-              </Link>
-            </Column>
-            <Column columns={{ xs: 1 }}>
-              <Link href="/[slug]" as="/cookies">
-                <a>Cookies</a>
-              </Link>
+            <Column columns={{ xs: 5 }}>
+              <ul>
+                {tertiaryMenuData.menu_links.map((link, index) => {
+                  return (
+                    <li key={`${link.link?._meta?.uid}_${index}`}>
+                      <Link
+                        activeClassName={styles.active}
+                        href="/[slug]"
+                        as={`/${link.link?._meta?.uid}`}
+                      >
+                        <a>{link.label[0].text}</a>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
             </Column>
           </Row>
         </div>

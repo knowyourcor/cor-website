@@ -8,11 +8,17 @@ import { Container, Row, Column } from "../components/Grid";
 import Modules from "../components/Modules";
 import Alert from "../components/Alert";
 
-import { getPageData, getAllPagesWithSlug } from "../lib/api";
+import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
 
 // import styles from "../styles/Page.module.scss";
 
-export default function Page({ preview, pageData }) {
+export default function Page({
+  preview,
+  pageData,
+  mainMenuData,
+  footerMenuData,
+  tertiaryMenuData,
+}) {
   const router = useRouter();
   if (!router.isFallback && !pageData?._meta?.uid) {
     return <ErrorPage statusCode={404} />;
@@ -24,7 +30,7 @@ export default function Page({ preview, pageData }) {
         <>
           <Head title="Loading..." />
           <main>
-            <Topbar />
+            <Topbar mainMenuData={mainMenuData} />
             <Section>
               <Container>
                 <Row>
@@ -38,14 +44,17 @@ export default function Page({ preview, pageData }) {
               </Container>
             </Section>
           </main>
-          <Footer />
+          <Footer
+            footerMenuData={footerMenuData}
+            tertiaryMenuData={tertiaryMenuData}
+          />
         </>
       ) : (
         <>
           <Head title={pageData?.meta_title} />
           <Alert preview={preview} />
           <main>
-            <Topbar />
+            <Topbar mainMenuData={mainMenuData} />
             <Section>
               <Container>
                 <Row>
@@ -59,7 +68,10 @@ export default function Page({ preview, pageData }) {
               </Container>
             </Section>
           </main>
-          <Footer />
+          <Footer
+            footerMenuData={footerMenuData}
+            tertiaryMenuData={tertiaryMenuData}
+          />
         </>
       )}
     </>
@@ -79,16 +91,28 @@ export default function Page({ preview, pageData }) {
 
 export async function getStaticPaths() {
   const allPages = await getAllPagesWithSlug();
+  const allPaths = allPages?.map(({ node }) => `/${node._meta.uid}`);
   return {
-    paths: allPages?.map(({ node }) => `/${node._meta.uid}`) || [],
-    fallback: true,
+    paths: allPaths || [],
+    fallback: false,
   };
 }
 
 export async function getStaticProps({ preview = false, previewData, params }) {
   const pageData = await getPageData(params.slug, previewData);
+  const mainMenuData = await getMenuData("main-menu");
+  const footerMenuData = await getMenuData("footer-menu");
+  const tertiaryMenuData = await getMenuData("tertiary-menu");
+  console.log("pageData: ", pageData);
+  console.log("mainMenuData: ", mainMenuData);
   return {
-    props: { preview, pageData: pageData ?? null },
+    props: {
+      preview,
+      pageData: pageData ?? null,
+      mainMenuData: mainMenuData ?? null,
+      footerMenuData: footerMenuData ?? null,
+      tertiaryMenuData: tertiaryMenuData ?? null,
+    },
     revalidate: 5,
   };
 }
