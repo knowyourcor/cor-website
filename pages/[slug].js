@@ -11,6 +11,11 @@ import { getPageData, getAllPagesWithSlug } from "../lib/api";
 
 // import styles from "../styles/Page.module.scss";
 
+/*
+TODO
+- Hook up slices data to Modules
+- Check if page exists, throw 404
+*/
 export default function Page({ preview, pageData }) {
   return (
     <>
@@ -25,7 +30,7 @@ export default function Page({ preview, pageData }) {
                 <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
                   <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
                     <RichText render={pageData.page_title} />
-                    {/* TODO hook this up to Module */}
+
                     <RichText render={pageData.body[0].primary.text} />
                   </Column>
                 </Row>
