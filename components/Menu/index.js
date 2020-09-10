@@ -1,7 +1,7 @@
 import Link from "../Link";
 import styles from "./menu.module.scss";
 
-const Menu = ({ active, toggle }) => {
+const Menu = ({ active, toggle, mainMenuData }) => {
   const isActive = active ? styles["menu--active"] : "";
   return (
     <div
@@ -30,30 +30,28 @@ const Menu = ({ active, toggle }) => {
         Close
       </button>
       <ul>
-        <li>
-          <Link activeClassName={styles.active} href="/shop">
-            <a>Shop</a>
-          </Link>
-        </li>
-        <li>
-          <Link activeClassName={styles.active} href="/[slug]" as="/contact">
-            <a>Contact</a>
-          </Link>
-        </li>
-        <li>
-          <Link activeClassName={styles.active} href="/[slug]" as="/support">
-            <a>Support</a>
-          </Link>
-        </li>
-        <li>
-          <Link
-            activeClassName={styles.active}
-            href="/[slug]"
-            as="/track-order"
-          >
-            <a>Track Order</a>
-          </Link>
-        </li>
+        {mainMenuData?.menu_links.map((link, index) => {
+          return (
+            <li key={`${link.link._meta.uid}_${index}`}>
+              {link.link._meta.type === "page" ? (
+                <Link
+                  activeClassName={styles.active}
+                  href="/[slug]"
+                  as={`/${link.link._meta.uid}`}
+                >
+                  <a>{link.label[0].text}</a>
+                </Link>
+              ) : (
+                <Link
+                  activeClassName={styles.active}
+                  href={`/${link.link._meta.uid}`}
+                >
+                  <a>{link.label[0].text}</a>
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
