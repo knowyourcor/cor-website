@@ -1,4 +1,5 @@
-import { RichText } from "prismic-reactjs";
+import { useRouter } from "next/router";
+import ErrorPage from "next/error";
 import Head from "../components/Head";
 import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";
@@ -11,15 +12,17 @@ import { getPageData, getAllPagesWithSlug } from "../lib/api";
 
 // import styles from "../styles/Page.module.scss";
 
-/*
-TODO
-- Hook up slices data to Modules
-- Check if page exists, throw 404
-*/
 export default function Page({ preview, pageData }) {
+  const router = useRouter();
+  if (!router.isFallback && !pageData?._meta?.uid) {
+    return <ErrorPage statusCode={404} />;
+  }
+
   return (
     <>
-      {pageData && (
+      {router.isFallback ? (
+        <h2>Loading…</h2>
+      ) : (
         <>
           <Head title={pageData?.meta_title} />
           <Alert preview={preview} />
@@ -27,11 +30,12 @@ export default function Page({ preview, pageData }) {
             <Topbar />
             <Section>
               <Container>
-                <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
-                  <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
-                    <RichText render={pageData.page_title} />
-
-                    <RichText render={pageData.body[0].primary.text} />
+                <Row>
+                  <Column
+                    columns={{ xs: 14, sm: 12, md: 10 }}
+                    offsets={{ sm: 1, md: 2 }}
+                  >
+                    <Modules pageData={pageData} />
                   </Column>
                 </Row>
               </Container>
@@ -44,13 +48,21 @@ export default function Page({ preview, pageData }) {
   );
 }
 
+// export async function getStaticPaths() {
+//   const allPages = await getAllPagesWithSlug();
+//   return {
+//     paths:
+//       allPages?.map(({ node }) => {
+//         return { params: { slug: `${node._meta.uid}` } };
+//       }) || [],
+//     fallback: true,
+//   };
+// }
+
 export async function getStaticPaths() {
   const allPages = await getAllPagesWithSlug();
   return {
-    paths:
-      allPages?.map(({ node }) => {
-        return { params: { slug: `${node._meta.uid}` } };
-      }) || [],
+    paths: allPages?.map(({ node }) => `/${node._meta.uid}`) || [],
     fallback: true,
   };
 }
@@ -58,7 +70,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ preview = false, previewData, params }) {
   const pageData = await getPageData(params.slug, previewData);
   return {
-    props: { preview, pageData },
-    revalidate: 1,
+    props: { preview, pageData: pageData ?? null },
+    revalidate: 5,
   };
 }

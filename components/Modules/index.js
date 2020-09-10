@@ -1,6 +1,7 @@
 import Accordion from "./Accordion";
 import Carousel from "./Carousel";
 import Text from "./Text";
+import Image from "./Image";
 import TextImage from "./TextImage";
 import CarouselHero from "./CarouselHero";
 import FullWidthImage from "./FullWidthImage";
@@ -18,6 +19,12 @@ const Modules = ({ pageData }) => {
           switch (module.type) {
             case "accordion":
               return <Accordion key={`${index}_${module.type}`} {...module} />;
+              break;
+            case "body_text":
+              return <Text key={`${index}_${module.type}`} {...module} />;
+              break;
+            case "body_image":
+              return <Image key={`${index}_${module.type}`} {...module} />;
               break;
             case "carousel":
               return <Carousel key={`${index}_${module.type}`} {...module} />;
@@ -43,9 +50,6 @@ const Modules = ({ pageData }) => {
               break;
             case "tabs":
               return <Tabs key={`${index}_${module.type}`} {...module} />;
-              break;
-            case "text":
-              return <Text key={`${index}_${module.type}`} {...module} />;
               break;
             case "text_image":
               return <TextImage key={`${index}_${module.type}`} {...module} />;

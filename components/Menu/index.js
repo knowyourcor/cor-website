@@ -36,7 +36,7 @@ const Menu = ({ active, toggle }) => {
           </Link>
         </li>
         <li>
-          <Link activeClassName={styles.active} href="/contact">
+          <Link activeClassName={styles.active} href="/[slug]" as="/contact">
             <a>Contact</a>
           </Link>
         </li>

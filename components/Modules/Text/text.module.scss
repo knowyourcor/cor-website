@@ -1,0 +1,14 @@
+.text {
+  a {
+    cursor: pointer;
+    &:link,
+    &:visited {
+      text-decoration: underline;
+      color: var(--color-green)
+    }
+    &:hover,
+    &:active {
+  
+    }
+  }
+}
