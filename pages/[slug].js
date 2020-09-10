@@ -14,23 +14,27 @@ import { getPageData, getAllPagesWithSlug } from "../lib/api";
 export default function Page({ preview, pageData }) {
   return (
     <>
-      <Head title={pageData.meta_title} />
-      <Alert preview={preview} />
-      <main>
-        <Topbar />
-        <Section>
-          <Container>
-            <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
-              <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
-                <RichText render={pageData.page_title} />
-                {/* TODO hook this up to Module */}
-                <RichText render={pageData.body[0].primary.text} />
-              </Column>
-            </Row>
-          </Container>
-        </Section>
-      </main>
-      <Footer />
+      {pageData && (
+        <>
+          <Head title={pageData?.meta_title} />
+          <Alert preview={preview} />
+          <main>
+            <Topbar />
+            <Section>
+              <Container>
+                <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
+                  <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
+                    <RichText render={pageData.page_title} />
+                    {/* TODO hook this up to Module */}
+                    <RichText render={pageData.body[0].primary.text} />
+                  </Column>
+                </Row>
+              </Container>
+            </Section>
+          </main>
+          <Footer />
+        </>
+      )}
     </>
   );
 }
