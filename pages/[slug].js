@@ -21,7 +21,25 @@ export default function Page({ preview, pageData }) {
   return (
     <>
       {router.isFallback ? (
-        <h2>Loading…</h2>
+        <>
+          <Head title="Loading..." />
+          <main>
+            <Topbar />
+            <Section>
+              <Container>
+                <Row>
+                  <Column
+                    columns={{ xs: 14, sm: 12, md: 10 }}
+                    offsets={{ sm: 1, md: 2 }}
+                  >
+                    <h2>Loading…</h2>
+                  </Column>
+                </Row>
+              </Container>
+            </Section>
+          </main>
+          <Footer />
+        </>
       ) : (
         <>
           <Head title={pageData?.meta_title} />
