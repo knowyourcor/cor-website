@@ -41,12 +41,16 @@ const Menu = ({ active, toggle }) => {
           </Link>
         </li>
         <li>
-          <Link activeClassName={styles.active} href="/support">
+          <Link activeClassName={styles.active} href="/[slug]" as="/support">
             <a>Support</a>
           </Link>
         </li>
         <li>
-          <Link activeClassName={styles.active} href="/track-order">
+          <Link
+            activeClassName={styles.active}
+            href="/[slug]"
+            as="/track-order"
+          >
             <a>Track Order</a>
           </Link>
         </li>

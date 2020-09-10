@@ -42,12 +42,12 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/shipping-info">
+                  <Link href="/[slug]" as="/shipping-info">
                     <a>Shipping Info</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/track-order">
+                  <Link href="/[slug]" as="/track-order">
                     <a>Track Order</a>
                   </Link>
                 </li>
@@ -57,22 +57,22 @@ const Footer = () => {
             <Column columns={{ xs: 14, md: 3 }}>
               <ul>
                 <li>
-                  <Link href="/financing-info">
+                  <Link href="/[slug]" as="/financing-info">
                     <a>Financing Info</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/warranty">
+                  <Link href="/[slug]" as="/warranty">
                     <a>Warranty</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/support">
+                  <Link href="/[slug]" as="/support">
                     <a>Support</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq">
+                  <Link href="/[slug]" as="/faq">
                     <a>FAQ</a>
                   </Link>
                 </li>
@@ -82,17 +82,29 @@ const Footer = () => {
             <Column columns={{ xs: 14, md: 3 }}>
               <ul>
                 <li>
-                  <a href="#" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Facebook
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Instagram
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Twitter
                   </a>
                 </li>
@@ -109,17 +121,17 @@ const Footer = () => {
               <p>©2020 COR LLC</p>
             </Column>
             <Column columns={{ xs: 1 }}>
-              <Link href="/legal">
+              <Link href="/[slug]" as="/legal">
                 <a>Legal</a>
               </Link>
             </Column>
             <Column columns={{ xs: 1 }}>
-              <Link href="/privacy">
+              <Link href="/[slug]" as="/privacy">
                 <a>Privacy</a>
               </Link>
             </Column>
             <Column columns={{ xs: 1 }}>
-              <Link href="/cookies">
+              <Link href="/[slug]" as="/cookies">
                 <a>Cookies</a>
               </Link>
             </Column>
