@@ -103,8 +103,6 @@ export async function getStaticProps({ preview = false, previewData, params }) {
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
-  console.log("pageData: ", pageData);
-  console.log("mainMenuData: ", mainMenuData);
   return {
     props: {
       preview,
