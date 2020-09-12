@@ -1,25 +1,15 @@
-import { RichText } from "prismic-reactjs";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
+import Item from "./Item";
+import Content from "./Content";
+
 import styles from "./tabs.module.scss";
 
-const Tab = ({ tab_name, text, image }) => {
-  return (
-    <div className={styles.tab}>
-      <Row align="center" textAlign={{ xs: "center" }}>
-        <Column columns={{ xs: 14, sm: 7 }}>
-          <RichText render={tab_name} />
-          <RichText render={text} />
-        </Column>
-        <Column columns={{ xs: 14, sm: 7 }}>
-          <img src={image.xxl.url} alt={image.alt} className={styles.image} />
-        </Column>
-      </Row>
-    </div>
-  );
-};
+export default function Tabs({ primary, fields }) {
+  const [isOpen, setIsOpen] = useState("tab-0");
 
-const Tabs = ({ primary, fields }) => {
   return (
     <Section
       fullScreen
@@ -27,18 +17,31 @@ const Tabs = ({ primary, fields }) => {
       align="center"
     >
       <Container>
-        <Row align="center" textAlign={{ xs: "center" }}>
-          <Column columns={{ xs: 14 }}>
-            {primary.headline && <RichText render={primary.headline} />}
-          </Column>
-        </Row>
+        <div className={styles.tabs}>
+          <Row align="center">
+            <Column columns={{ xs: 14 }}>
+              <motion.ul layout className={styles.labels}>
+                {fields.map((item, index) => (
+                  <Item
+                    key={`tab-${index}`}
+                    isOpen={`tab-${index}` === isOpen}
+                    label={item.tab_name[0].text}
+                    openTab={() => setIsOpen(`tab-${index}`)}
+                  />
+                ))}
+              </motion.ul>
+            </Column>
+          </Row>
 
-        {fields.map((field, index) => {
-          return <Tab {...field} key={`tab_${index}`} />;
-        })}
+          <div className={styles.tabContent}>
+            {fields.map((item, index) => (
+              <AnimatePresence exitBeforeEnter key={`tab-${index}`}>
+                {`tab-${index}` === isOpen && <Content {...item} />}
+              </AnimatePresence>
+            ))}
+          </div>
+        </div>
       </Container>
     </Section>
   );
-};
-
-export default Tabs;
+}

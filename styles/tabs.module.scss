@@ -1,26 +1,24 @@
 .tabs {
   padding: 2rem 0;
+  width: 450px;
 }
 
 .labels {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   padding: 0;
-
-}
-
-.tab {
-  display: inline;
-  margin: 0 1rem;
-  cursor: pointer;
-  opacity: 0.2;
+  li {
+    display: inline;
+    margin: 0 1rem;
+    cursor: pointer;
+  }
 }
 
 .activeTab {
-  opacity: 1;
-  text-decoration: underline;
+  color: red;
 }
 
 .tabContent {
