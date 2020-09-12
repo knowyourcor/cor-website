@@ -7,3 +7,43 @@
   height: auto;
   display: block;
 }
+
+.tabs {
+  padding: 2rem 0;
+}
+
+.labels {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0;
+
+}
+
+.tab {
+  display: inline;
+  margin: 0 1rem;
+  cursor: pointer;
+  opacity: 0.2;
+}
+
+.activeTab {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.tabContent {
+  position: relative;
+  padding: 1rem;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  padding: 1rem;
+}
