@@ -8,7 +8,7 @@ import Item from "./Item";
 import styles from "./accordion.module.scss";
 
 export default function Accordion({ primary, fields }) {
-  const [expanded, setExpanded] = useState(0);
+  const [expanded, setExpanded] = useState("item-0");
 
   return (
     <Section
@@ -29,9 +29,9 @@ export default function Accordion({ primary, fields }) {
               <motion.div className={styles.items}>
                 {fields.map((data, index) => (
                   <Item
-                    key={index}
-                    isExpanded={index === expanded}
-                    expandItem={() => setExpanded(index)}
+                    key={`item-${index}`}
+                    isExpanded={`item-${index}` === expanded}
+                    expandItem={() => setExpanded(`item-${index}`)}
                     data={data}
                   />
                 ))}
