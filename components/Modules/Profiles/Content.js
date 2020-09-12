@@ -5,11 +5,11 @@ import { Container, Row, Column } from "../../Grid";
 import styles from "./profiles.module.scss";
 
 export default function Content({
-  tab_name,
   profile_name,
   profile_description,
   profile_text,
   profile_type,
+  profile_score,
   image,
 }) {
   const contentVariant = {
@@ -29,6 +29,11 @@ export default function Content({
     },
   };
 
+  // Check if the profile score is - or +. CMS only returns a "-" for negative numbers.
+  // Add a "+" for positive numbers.
+  const profileScoreSign =
+    Math.sign(profile_score) < 0 ? profile_score : `+${profile_score}`;
+
   return (
     <motion.div
       layout
@@ -40,14 +45,33 @@ export default function Content({
     >
       <div className={styles.container}>
         <Row align="center">
-          <Column columns={{ xs: 14, sm: 7 }}>
-            <RichText render={profile_name} />
-            <RichText render={profile_description} />
-            <RichText render={profile_text} />
-            <RichText render={profile_type} />
+          <Column columns={{ xs: 14, sm: 7 }} overlaps={{ md: 1 }} zIndex={0}>
+            <div className={styles.profileImageContainer}>
+              <div className={styles.profileType}>
+                <p>{profile_type[0].text}</p>
+              </div>
+              <div className={styles.profileScore}>
+                <p>{profileScoreSign}</p>
+              </div>
+              <img
+                src={image.xxl.url}
+                alt={image.alt}
+                className={styles.profileImage}
+              />
+            </div>
           </Column>
-          <Column columns={{ xs: 14, sm: 7 }}>
-            <img src={image.xxl.url} alt={image.alt} className={styles.image} />
+          <Column
+            columns={{ xs: 14, sm: 6 }}
+            zIndex={10}
+            alignSelf={{ sm: "center" }}
+          >
+            <div className={styles.profileContentContainer}>
+              <h3>{profile_name[0].text}</h3>
+              <p>
+                <small>{profile_description[0].text}</small>
+              </p>
+              <RichText render={profile_text} />
+            </div>
           </Column>
         </Row>
       </div>

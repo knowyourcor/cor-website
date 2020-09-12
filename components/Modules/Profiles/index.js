@@ -71,29 +71,25 @@ export default function Profiles({ primary, fields }) {
       align="center"
     >
       <Container>
-        <Row align="center" textAlign={{ xs: "center" }}>
-          <Column columns={{ xs: 14 }}>
-            {primary.headline && <RichText render={primary.headline} />}
-          </Column>
-        </Row>
-
-        <div className={styles.tabs}>
-          <Row align="center">
+        {primary.headline && (
+          <Row align="center" textAlign={{ xs: "center" }}>
             <Column columns={{ xs: 14 }}>
-              <motion.ul layout className={styles.labels}>
-                {fields.map((item, index) => (
-                  <Item
-                    key={`tab-${index}`}
-                    isOpen={`tab-${index}` === isOpen}
-                    label={item.tab_name[0].text}
-                    openTab={() => setIsOpen(`tab-${index}`)}
-                  />
-                ))}
-              </motion.ul>
+              <RichText render={primary.headline} />
             </Column>
           </Row>
-
+        )}
+        <div className={styles.tabs}>
           <div className={styles.tabContent}>
+            <ul className={styles.labels}>
+              {fields.map((item, index) => (
+                <Item
+                  key={`tab-${index}`}
+                  isOpen={`tab-${index}` === isOpen}
+                  label={item.tab_name[0].text}
+                  openTab={() => setIsOpen(`tab-${index}`)}
+                />
+              ))}
+            </ul>
             {fields.map((item, index) => (
               <AnimatePresence exitBeforeEnter key={`tab-${index}`}>
                 {`tab-${index}` === isOpen && <Content {...item} />}

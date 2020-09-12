@@ -1,3 +1,5 @@
+@import "../../../styles/_variables.scss";
+
 .profile {
   
 }
@@ -15,10 +17,25 @@
 .labels {
   display: flex;
   align-items: center;
-  cursor: pointer;
-  font-size: 1.25rem;
-  padding: 0;
 
+  z-index: 20;
+  padding: 0;
+  margin: 0;
+  @media (min-width: $md) {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateY(-50%);
+    flex-basis: 35.714285714%;
+    max-width: 35.714285714%;
+  }
+
+  li {
+    cursor: pointer;
+    font-size: 1.25rem;
+    padding: 0 1rem;
+    margin: 0 0.5rem;
+  }
 }
 
 .tab {
@@ -34,8 +51,10 @@
 }
 
 .tabContent {
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
   position: relative;
-  padding: 1rem;
 }
 
 .content {
@@ -46,4 +65,72 @@
 
 .container {
   padding: 1rem;
+}
+
+// Profile
+.profileImageContainer {
+  position: relative;
+}
+
+.profileImageContent {
+
+}
+
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 0;
+}
+
+.profileScore {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 1;
+  p {
+    word-break: break-all;
+    word-spacing: 100vw;
+    color: var(--font-inverted);
+    font-family: var(--font-sans-headline);
+    font-size: 2.1875rem;
+    line-height: 2.734375rem;
+  }
+}
+
+.profileType {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 1;
+  p {
+    word-break: break-all;
+    word-spacing: 100vw;
+    color: var(--font-inverted);
+    font-family: var(--font-sans-headline);
+    font-size: 2.1875rem;
+    line-height: 2.734375rem;
+  }
+}
+
+.profileContentContainer {
+  background: #fff;
+  padding: 2rem;
+  transform: translateY(20%);
+
+  h3 {
+    margin-bottom: 0;
+  }
+  p {
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
+  }
+  p small {
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
+    color: #A8A8A8;
+    font-family: var(--font-sans-bold);
+  }
 }
