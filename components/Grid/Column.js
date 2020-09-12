@@ -67,6 +67,7 @@ const Column = (props) => {
 
   // Handle justify
   props.justify ? classes.push(styles[`justify-${props.justify}`]) : "";
+  props.zIndex ? classes.push(styles[`zIndex-${props.zIndex}`]) : "";
 
   return <div className={classes.join(" ")}>{props.children}</div>;
 };
