@@ -1,22 +1,15 @@
+import { useState } from "react";
 import { RichText } from "prismic-reactjs";
+import { motion, AnimatePresence } from "framer-motion";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
+import Item from "./Item";
+
 import styles from "./accordion.module.scss";
 
-const Item = ({ title, text }) => {
-  return (
-    <div className={styles.item}>
-      <Row align="center" textAlign={{ xs: "center" }}>
-        <Column columns={{ xs: 14 }}>
-          <RichText render={title} />
-          <RichText render={text} />
-        </Column>
-      </Row>
-    </div>
-  );
-};
+export default function Accordion({ primary, fields }) {
+  const [expanded, setExpanded] = useState(0);
 
-const Accordion = ({ primary, fields }) => {
   return (
     <Section
       fullScreen
@@ -24,18 +17,29 @@ const Accordion = ({ primary, fields }) => {
       align="center"
     >
       <Container>
-        <Row align="center" textAlign={{ xs: "center" }}>
-          <Column columns={{ xs: 14, sm: 11 }} offsets={{ sm: 1 }}>
+        <Row align="center">
+          <Column columns={{ xs: 14, sm: 8, md: 7 }} offsets={{ sm: 1 }}>
             <RichText render={primary.headline} />
           </Column>
         </Row>
 
-        {fields.map((field, index) => {
-          return <Item {...field} key={`item_${index}`} />;
-        })}
+        <Row align="center">
+          <Column columns={{ xs: 14, sm: 8, md: 7 }} offsets={{ sm: 1 }}>
+            <div className={styles.accordion}>
+              <motion.div className={styles.items}>
+                {fields.map((data, index) => (
+                  <Item
+                    key={index}
+                    isExpanded={index === expanded}
+                    expandItem={() => setExpanded(index)}
+                    data={data}
+                  />
+                ))}
+              </motion.div>
+            </div>
+          </Column>
+        </Row>
       </Container>
     </Section>
   );
-};
-
-export default Accordion;
+}
