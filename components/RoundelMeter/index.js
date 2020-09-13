@@ -4,13 +4,7 @@ import styles from "./roundelmeter.module.scss";
 const Roundel = ({ score }) => {
   return (
     <div className={styles.container}>
-      <motion.svg
-        viewBox="0 0 148 148"
-        animate={{ opacity: [0, 1] }}
-        opacity={0}
-        transition={{ ease: "anticipate", duration: 0.25 }}
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <motion.svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(24 24)" fill="none" fillRule="evenodd">
           {/* Gray */}
           <circle stroke="#E5E0DF" strokeWidth="2" cx="50" cy="50" r="41.75" />

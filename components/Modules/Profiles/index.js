@@ -79,8 +79,8 @@ export default function Profiles({ primary, fields }) {
           </Row>
         )}
         <div className={styles.tabs}>
-          <div className={styles.tabContent}>
-            <ul className={styles.labels}>
+          <div className={styles.tabsContainer}>
+            <ul className={styles.tabLabels}>
               {fields.map((item, index) => (
                 <Item
                   key={`tab-${index}`}
@@ -91,7 +91,7 @@ export default function Profiles({ primary, fields }) {
               ))}
             </ul>
             {fields.map((item, index) => (
-              <AnimatePresence exitBeforeEnter key={`tab-${index}`}>
+              <AnimatePresence key={`tab-${index}`}>
                 {`tab-${index}` === isOpen && <Content {...item} />}
               </AnimatePresence>
             ))}
