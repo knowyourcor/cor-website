@@ -32,7 +32,6 @@ export default function Tabs({ primary, fields }) {
               </motion.ul>
             </Column>
           </Row>
-
           <div className={styles.tabsContainer}>
             {fields.map((item, index) => (
               <AnimatePresence exitBeforeEnter key={`tab-${index}`}>

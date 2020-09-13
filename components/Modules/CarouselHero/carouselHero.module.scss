@@ -17,10 +17,16 @@
   .slideLeft {
     height: 100vh;
     width: 50%;
+    overflow: hidden;
   }
 
   .slideRight {
     width: 50%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
   }
 
   .headline {
@@ -33,5 +39,56 @@
     height: 100%;
     display: block;
     object-fit: cover;
+  }
+}
+
+.buttons {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+}
+
+.score {
+  font-size: 14.0625rem;
+  line-height: 1;
+  color: var(--font-inverted);
+  font-family: var(--font-sans-headline);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  width: 405px;
+  span {
+    display: block;
+  }
+}
+
+.corMark {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 14px;
+  right: -100px;
+  svg {
+    display: block;
+    path {
+      fill: #fff;
+    }
+  }
+}
+
+.videoBackground {
+  position: relative;
+  width:100%;
+  height: 100%;
+  video {
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
