@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import { Container, Row, Column } from "../../Grid";
+import RoundelMeter from "../../RoundelMeter";
 
 import styles from "./profiles.module.scss";
 
@@ -51,7 +52,7 @@ export default function Content({
                 <p>{profile_type[0].text}</p>
               </div>
               <div className={styles.profileScore}>
-                <p>{profileScoreSign}</p>
+                <RoundelMeter score={profileScoreSign} />
               </div>
               <img
                 src={image.xxl.url}
