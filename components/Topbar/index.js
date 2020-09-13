@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 import Link from "../Link";
 import Logo from "../Logo";
 import Menu from "../Menu";
@@ -12,9 +13,24 @@ const Topbar = ({ mainMenuData }) => {
     toggleOpen(!isOpen);
   };
 
+  const { scrollY } = useViewportScroll();
+  const background = useTransform(
+    scrollY,
+    [50, 250],
+    ["rgba(242, 242, 242, 0)", "rgba(242, 242, 242, 1)"]
+  );
+
+  const opacity = useTransform(scrollY, [50, 250], ["0", "1"]);
+
   return (
     <>
-      <div className={styles.topbar}>
+      <motion.div
+        className={styles.topbar}
+        style={{
+          background,
+        }}
+      >
+        <motion.div className={styles.boxShadow} style={{ opacity }} />
         <div className={styles.container}>
           <button onClick={() => toggleMenu()} className={styles.menuToggle}>
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16">
@@ -61,7 +77,7 @@ const Topbar = ({ mainMenuData }) => {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
       <Menu
         mainMenuData={mainMenuData}
         active={isOpen}
