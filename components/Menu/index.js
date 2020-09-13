@@ -1,6 +1,9 @@
 import Link from "../Link";
 import styles from "./menu.module.scss";
 
+// TODO
+// Add body scroll lock
+
 const Menu = ({ active, toggle, mainMenuData }) => {
   const isActive = active ? styles["menu--active"] : "";
   return (
