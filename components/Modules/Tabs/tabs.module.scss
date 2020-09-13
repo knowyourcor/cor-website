@@ -23,9 +23,9 @@
   text-decoration: underline;
 }
 
-.tabContent {
+.tabsContainer {
   position: relative;
-  padding: 1rem;
+  margin-top: 2rem;
 }
 
 .content {
@@ -36,4 +36,10 @@
 
 .container {
   padding: 1rem;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
 }
