@@ -33,7 +33,7 @@ export default function Tabs({ primary, fields }) {
             </Column>
           </Row>
 
-          <div className={styles.tabContent}>
+          <div className={styles.tabsContainer}>
             {fields.map((item, index) => (
               <AnimatePresence exitBeforeEnter key={`tab-${index}`}>
                 {`tab-${index}` === isOpen && <Content {...item} />}
