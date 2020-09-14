@@ -36,12 +36,12 @@ const Roundel = ({ score }) => {
             cy="50"
             r="50.242"
             style={{
-              strokeDasharray: 316,
+              strokeDasharray: 360,
               strokeWidth: 19,
             }}
             animate={{
-              rotate: [180, 275],
-              strokeDashoffset: [200, 200],
+              rotate: [180, 250],
+              strokeDashoffset: [270, 270],
             }}
             transition={{
               duration: 3,
@@ -58,12 +58,12 @@ const Roundel = ({ score }) => {
             cy="50"
             r="50.242"
             style={{
-              strokeDasharray: 316,
+              strokeDasharray: 360,
               strokeWidth: 19,
             }}
             animate={{
-              rotate: [-52, 33],
-              strokeDashoffset: [260, 220],
+              rotate: [180, 35],
+              strokeDashoffset: [270, 270],
             }}
             transition={{
               duration: 3,
@@ -80,12 +80,12 @@ const Roundel = ({ score }) => {
             cy="50"
             r="55"
             style={{
-              strokeDasharray: 316,
+              strokeDasharray: 360,
               strokeWidth: 29,
             }}
             animate={{
-              rotate: [95, -5],
-              strokeDashoffset: [240, 240],
+              rotate: [45, -40],
+              strokeDashoffset: [270, 270],
             }}
             transition={{
               duration: 3,
@@ -102,12 +102,12 @@ const Roundel = ({ score }) => {
             cy="50"
             r="55"
             style={{
-              strokeDasharray: 316,
+              strokeDasharray: 360,
               strokeWidth: 29,
             }}
             animate={{
-              rotate: [90, 185],
-              strokeDashoffset: [220, 220],
+              rotate: [90, 180],
+              strokeDashoffset: [270, 270],
             }}
             transition={{
               duration: 3,
