@@ -15,17 +15,15 @@ import styles from "./textImage.module.scss";
 const TextImage = ({ primary }) => {
   // primary.alignment
   return (
-    <Section
-      fullScreen
-      backgroundColor={primary.background_color}
-      align="center"
-    >
+    <Section backgroundColor={primary.background_color} align="center">
       <Container>
-        <Row align="center" textAlign={{ xs: "center" }}>
-          <Column columns={{ xs: 14, md: 10 }} offsets={{ md: 2 }}>
-            <RichText render={primary.headline} />
-          </Column>
-        </Row>
+        {primary.headline[0].text && (
+          <Row align="center" textAlign={{ xs: "center" }}>
+            <Column columns={{ xs: 14, md: 10 }} offsets={{ md: 2 }}>
+              <RichText render={primary.headline} />
+            </Column>
+          </Row>
+        )}
         <Row align="center" textAlign={{ xs: "left" }}>
           <Column
             columns={{ xs: 14, md: 6 }}
