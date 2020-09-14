@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import { Container, Row, Column } from "../../Grid";
 import RoundelMeter from "../../RoundelMeter";
 
 import styles from "./profiles.module.scss";
 
-export default function Content({
+export default function Panel({
   profile_name,
   profile_description,
   profile_text,
@@ -13,20 +13,15 @@ export default function Content({
   profile_score,
   image,
 }) {
-  const tabVariant = {
+  const panelVariant = {
     visible: {
       opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.15,
-      },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
     hidden: { opacity: 0 },
     exit: {
       opacity: 0,
-      transition: {
-        when: "afterChildrenChildren",
-      },
+      transition: { duration: 0.25, ease: "easeOut" },
     },
   };
 
@@ -36,8 +31,8 @@ export default function Content({
       transition: {
         when: "beforeChildren",
         staggerChildren: 0.15,
+        duration: 0.5,
         ease: "easeOut",
-        delay: 0.25,
       },
     },
     hidden: { opacity: 0 },
@@ -45,6 +40,7 @@ export default function Content({
       opacity: 0,
       transition: {
         when: "afterChildrenChildren",
+        duration: 0.25,
         ease: "easeOut",
       },
     },
@@ -53,7 +49,7 @@ export default function Content({
   const imageItemVariant = {
     visible: {
       opacity: 1,
-      transition: { duration: 1, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
     hidden: { opacity: 0 },
     exit: {
@@ -68,8 +64,8 @@ export default function Content({
       transition: {
         when: "beforeChildren",
         staggerChildren: 0.15,
+        duration: 0.5,
         ease: "easeOut",
-        delay: 0.25,
       },
     },
     hidden: { opacity: 0 },
@@ -77,6 +73,7 @@ export default function Content({
       opacity: 0,
       transition: {
         when: "afterChildrenChildren",
+        duration: 0.25,
         ease: "easeOut",
       },
     },
@@ -100,33 +97,25 @@ export default function Content({
     Math.sign(profile_score) < 0 ? profile_score : `+${profile_score}`;
 
   return (
-    <motion.div
-      layout
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      variants={tabVariant}
-      className={styles.tabContainer}
-    >
-      <div className={styles.tabContent}>
+    <AnimatePresence exitBeforeEnter>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        variants={panelVariant}
+      >
         <Row align="center">
           <Column columns={{ xs: 14, sm: 7 }} overlaps={{ md: 1 }} zIndex={0}>
             <motion.div
               variants={imageVariant}
               className={styles.imageContainer}
             >
-              <motion.div
-                variants={imageItemVariant}
-                className={styles.profileType}
-              >
+              <div className={styles.profileType}>
                 <p>{profile_type[0].text}</p>
-              </motion.div>
-              <motion.div
-                variants={imageItemVariant}
-                className={styles.profileScore}
-              >
+              </div>
+              <div className={styles.profileScore}>
                 <RoundelMeter score={profileScoreSign} />
-              </motion.div>
+              </div>
               <img
                 src={image.xxl.url}
                 alt={image.alt}
@@ -155,7 +144,7 @@ export default function Content({
             </motion.div>
           </Column>
         </Row>
-      </div>
-    </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
