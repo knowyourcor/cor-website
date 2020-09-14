@@ -57,12 +57,12 @@ import { RichText } from "prismic-reactjs";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Item from "./Item";
-import Content from "./Content";
+import Panel from "./Panel";
 
 import styles from "./profiles.module.scss";
 
 export default function Profiles({ primary, fields }) {
-  const [isOpen, setIsOpen] = useState("tab-0");
+  const [isOpen, setIsOpen] = useState("panel-0");
   return (
     <Section backgroundColor={primary.background_color} align="center">
       <Container>
@@ -74,23 +74,22 @@ export default function Profiles({ primary, fields }) {
           </Row>
         )}
         <div className={styles.tabs}>
-          <div className={styles.tabsContainer}>
-            <ul className={styles.tabLabels}>
-              {fields.map((item, index) => (
-                <Item
-                  key={`tab-${index}`}
-                  isOpen={`tab-${index}` === isOpen}
-                  label={item.tab_name[0].text}
-                  openTab={() => setIsOpen(`tab-${index}`)}
-                />
-              ))}
-            </ul>
+          <ul className={styles.tabLabels}>
             {fields.map((item, index) => (
-              <AnimatePresence key={`tab-${index}`}>
-                {`tab-${index}` === isOpen && <Content {...item} />}
-              </AnimatePresence>
+              <Item
+                key={`panel-${index}`}
+                isOpen={`panel-${index}` === isOpen}
+                label={item.tab_name[0].text}
+                openTab={() => setIsOpen(`panel-${index}`)}
+              />
             ))}
-          </div>
+          </ul>
+          {fields.map(
+            (item, index) =>
+              `panel-${index}` === isOpen && (
+                <Panel key={`panel-${index}`} {...item} />
+              )
+          )}
         </div>
       </Container>
     </Section>
