@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Item from "./Item";
-import Content from "./Content";
+import Panel from "./Panel";
 
 import styles from "./tabs.module.scss";
 
@@ -11,16 +11,12 @@ export default function Tabs({ primary, fields }) {
   const [isOpen, setIsOpen] = useState("tab-0");
 
   return (
-    <Section
-      fullScreen
-      backgroundColor={primary.background_color}
-      align="center"
-    >
+    <Section backgroundColor={primary.background_color} align="center">
       <Container>
         <div className={styles.tabs}>
           <Row align="center">
             <Column columns={{ xs: 14 }}>
-              <motion.ul layout className={styles.labels}>
+              <motion.ul layout className={styles.tabLabels}>
                 {fields.map((item, index) => (
                   <Item
                     key={`tab-${index}`}
@@ -32,13 +28,13 @@ export default function Tabs({ primary, fields }) {
               </motion.ul>
             </Column>
           </Row>
-          <div className={styles.tabsContainer}>
-            {fields.map((item, index) => (
-              <AnimatePresence exitBeforeEnter key={`tab-${index}`}>
-                {`tab-${index}` === isOpen && <Content {...item} />}
-              </AnimatePresence>
-            ))}
-          </div>
+          {fields.map((item, index) => (
+            <>
+              {`tab-${index}` === isOpen && (
+                <Panel key={`tab-${index}`} {...item} />
+              )}
+            </>
+          ))}
         </div>
       </Container>
     </Section>
