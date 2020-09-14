@@ -28,13 +28,12 @@ export default function Tabs({ primary, fields }) {
               </motion.ul>
             </Column>
           </Row>
-          {fields.map((item, index) => (
-            <>
-              {`tab-${index}` === isOpen && (
+          {fields.map(
+            (item, index) =>
+              `tab-${index}` === isOpen && (
                 <Panel key={`tab-${index}`} {...item} />
-              )}
-            </>
-          ))}
+              )
+          )}
         </div>
       </Container>
     </Section>
