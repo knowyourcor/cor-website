@@ -1,17 +1,13 @@
-.tabs {
-  padding: 2rem 0;
-}
-
-.labels {
+.tabLabels {
   display: flex;
   align-items: center;
   cursor: pointer;
   font-size: 1.25rem;
-  padding: 0;
-
+  padding: 0 0 2rem;
+  margin-left: -1rem;
 }
 
-.tab {
+.tabLabel {
   display: inline;
   margin: 0 1rem;
   cursor: pointer;
@@ -21,21 +17,6 @@
 .activeTab {
   opacity: 1;
   text-decoration: underline;
-}
-
-.tabsContainer {
-  position: relative;
-  margin-top: 2rem;
-}
-
-.content {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.container {
-  padding: 1rem;
 }
 
 .image {
