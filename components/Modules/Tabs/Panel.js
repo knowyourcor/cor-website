@@ -8,17 +8,12 @@ export default function Panel({ text, image }) {
   const panelVariant = {
     visible: {
       opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.15,
-      },
+      transition: { duration: 1, ease: "easeOut" },
     },
     hidden: { opacity: 0 },
     exit: {
       opacity: 0,
-      transition: {
-        when: "afterChildrenChildren",
-      },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
