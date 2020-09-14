@@ -11,11 +11,7 @@ export default function Accordion({ primary, fields }) {
   const [expanded, setExpanded] = useState("item-0");
 
   return (
-    <Section
-      fullScreen
-      backgroundColor={primary.background_color}
-      align="center"
-    >
+    <Section backgroundColor={primary.background_color} align="center">
       <Container>
         <Row align="center">
           <Column columns={{ xs: 14, sm: 8, md: 7 }} offsets={{ sm: 1 }}>
