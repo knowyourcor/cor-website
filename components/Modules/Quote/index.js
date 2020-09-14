@@ -5,11 +5,7 @@ import styles from "./quote.module.scss";
 
 const Quote = ({ primary }) => {
   return (
-    <Section
-      fullScreen
-      backgroundColor={primary.background_color}
-      align="center"
-    >
+    <Section backgroundColor={primary.background_color} align="center">
       <Container>
         <Row align="center" textAlign={{ xs: "center", md: "left" }}>
           <Column

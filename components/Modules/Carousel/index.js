@@ -41,16 +41,12 @@ const Carousel = ({ primary, fields }) => {
   });
 
   return (
-    <Section
-      fullScreen
-      backgroundColor={primary.background_color}
-      align="center"
-    >
+    <Section backgroundColor={primary.background_color} align="center">
       <Container>
         <Row align="center" textAlign={{ xs: "left" }}>
           <Column columns={{ xs: 14, md: 6 }} offsets={{ md: 1 }}>
-            {primary.headline && <RichText render={primary.headline} />}
-            {primary.text && <RichText render={primary.text} />}
+            {primary.headline[0].text && <RichText render={primary.headline} />}
+            {primary.text[0].text && <RichText render={primary.text} />}
           </Column>
         </Row>
       </Container>

@@ -63,15 +63,10 @@ import styles from "./profiles.module.scss";
 
 export default function Profiles({ primary, fields }) {
   const [isOpen, setIsOpen] = useState("tab-0");
-
   return (
-    <Section
-      fullScreen
-      backgroundColor={primary.background_color}
-      align="center"
-    >
+    <Section backgroundColor={primary.background_color} align="center">
       <Container>
-        {primary.headline && (
+        {primary.headline[0].text && (
           <Row align="center" textAlign={{ xs: "center" }}>
             <Column columns={{ xs: 14 }}>
               <RichText render={primary.headline} />
