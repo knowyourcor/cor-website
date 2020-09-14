@@ -40,6 +40,14 @@ const Column = (props) => {
     }
   };
 
+  // Handle order
+  // @param {Object} order prop
+  const handleOrders = (orders) => {
+    for (let [breakpoint, value] of Object.entries(orders)) {
+      classes.push(styles[`order-${value}@${breakpoint}`]);
+    }
+  };
+
   // Check props for either columns or offsets
   for (let [label, obj] of Object.entries(props)) {
     if (label === "columns") {
@@ -50,6 +58,8 @@ const Column = (props) => {
       handleAlignSelf(obj);
     } else if (label === "overlaps") {
       handleOverlaps(obj);
+    } else if (label === "orders") {
+      handleOrders(obj);
     }
   }
 
