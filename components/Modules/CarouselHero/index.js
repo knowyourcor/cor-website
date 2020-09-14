@@ -1,4 +1,5 @@
 import { useState, useEffect, useSpring, useMotionValue } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
 
@@ -43,6 +44,32 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
       transition: { duration: 0.5, ease: "easeOut" },
     },
   };
+
+  const videoItem = {
+    visible: {
+      opacity: 1,
+      transition: { duration: 1.5, ease: "easeOut" },
+    },
+    hidden: { opacity: 0 },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const headlineItem = {
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1.5, ease: "easeOut" },
+    },
+    hidden: { opacity: 0, scale: 0.985 },
+    exit: {
+      opacity: 1,
+      scale: 0.985,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
     <>
       {isOpen && (
@@ -83,16 +110,19 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
           </div>
           <div className={styles.slideRight}>
             {headline && (
-              <div className={styles.headline}>
+              <motion.div variants={headlineItem} className={styles.headline}>
                 <RichText render={headline} />
-              </div>
+              </motion.div>
             )}
             {video_source && (
-              <div className={styles.videoBackground}>
+              <motion.div
+                className={styles.videoBackground}
+                variants={videoItem}
+              >
                 <video autoPlay muted loop>
                   <source src="/videos/fpo-video.mp4" type="video/mp4" />
                 </video>
-              </div>
+              </motion.div>
             )}
           </div>
         </motion.div>
@@ -126,6 +156,28 @@ const CarouselHero = ({ primary, fields }) => {
     return () => clearTimeout(timer);
   }, [count]);
 
+  const WebLink = (link, label) => {
+    return (
+      <a
+        href={link?.url}
+        title={label[0].text}
+        target={link?.target}
+        rel="noopener noreferrer"
+        className={styles.cta}
+      >
+        {label[0].text}
+      </a>
+    );
+  };
+
+  const PageLink = (link, label) => {
+    return (
+      <Link href="/[slug]" as={`/${link?._meta?.uid}`}>
+        <a className={styles.cta}>{label[0].text}</a>
+      </Link>
+    );
+  };
+
   return (
     <Section
       fullScreen
@@ -144,6 +196,10 @@ const CarouselHero = ({ primary, fields }) => {
           );
         })}
       </AnimatePresence>
+
+      {primary.link && primary.link._linkType === "Link.web"
+        ? WebLink(primary.link, primary.link_label)
+        : PageLink(primary.link, primary.link_label)}
 
       {/* <div className={styles.buttons}>
         <button onClick={() => setActiveItem(count - 1)}>Previous</button>
