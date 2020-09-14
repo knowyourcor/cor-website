@@ -2,7 +2,7 @@
   font-family: var(--font-sans-headline);
   font-size:5rem;
   line-height: 5.5rem;
-  
+  margin: 2rem 0;
   q {
     quotes: "“" "”";
   }
@@ -19,9 +19,9 @@
     font-family: var(--font-sans-sans);
     font-size: 1.25rem;
     line-height: 1.875rem;
+    margin-top: 1rem;
   }
 }
-
 
 
 .authorPortrait{

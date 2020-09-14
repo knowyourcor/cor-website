@@ -7,18 +7,24 @@ const Quote = ({ primary }) => {
   return (
     <Section backgroundColor={primary.background_color} align="center">
       <Container>
-        <Row align="center" textAlign={{ xs: "center", md: "left" }}>
+        <Row justify="center" textAlign={{ xs: "center", md: "left" }}>
           <Column
-            columns={{ xs: 14, md: 9 }}
-            offsets={{ md: 1 }}
-            overlaps={{ md: 2 }}
+            justify="center"
+            columns={{ xs: 14, md: 8, lg: 9 }}
+            offsets={{ lg: 1 }}
+            overlaps={{ lg: 2 }}
+            orders={{ xs: 2, md: 1 }}
           >
             <blockquote className={styles.quote}>
               <q>{primary.quote[0].text}</q>
               <footer>—{primary.author_name[0].text}</footer>
             </blockquote>
           </Column>
-          <Column columns={{ xs: 14, md: 6 }}>
+          <Column
+            justify="center"
+            columns={{ xs: 8, sm: 6, md: 6, lg: 6 }}
+            orders={{ xs: 1, md: 2 }}
+          >
             <div className={styles.authorPortrait}>
               <img
                 src={primary.author_portrait.xxl.url}
