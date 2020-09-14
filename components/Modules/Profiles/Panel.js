@@ -9,6 +9,11 @@ export default function Panel({
   profile_name,
   profile_description,
   profile_text,
+  blood_speed,
+  blood_clarity,
+  blood_resilience,
+  blood_fitness,
+  blood_hydration,
   profile_type,
   profile_score,
   image,
@@ -63,8 +68,8 @@ export default function Panel({
       opacity: 1,
       transition: {
         when: "beforeChildren",
-        staggerChildren: 0.15,
-        duration: 0.5,
+        staggerChildren: 0.05,
+        duration: 0.25,
         ease: "easeOut",
       },
     },
@@ -138,9 +143,182 @@ export default function Panel({
               <motion.p variants={contentItem}>
                 <small>{profile_description[0].text}</small>
               </motion.p>
+
               <motion.div variants={contentItem}>
                 <RichText render={profile_text} />
               </motion.div>
+
+              <ul className={styles.profileStats}>
+                {blood_speed[0].text && (
+                  <motion.li variants={contentItem}>
+                    <div className={styles.profileStatsIcons}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 46.055 46.055"
+                      >
+                        <g transform="translate(-463.16 -1381)">
+                          <circle
+                            cx="23.027"
+                            cy="23.027"
+                            r="23.027"
+                            transform="translate(463.16 1381)"
+                            fill="#70db8c"
+                          />
+                          <path
+                            d="M482.865 1411.026l6.48-6.554a.577.577 0 000-.807l-6.482-6.639"
+                            fill="none"
+                            stroke="#24a048"
+                            strokeLinecap="round"
+                            strokeWidth="3"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <span>
+                      <strong>Blood Speed</strong> {blood_speed[0].text}
+                    </span>
+                  </motion.li>
+                )}
+
+                {blood_clarity[0].text && (
+                  <motion.li variants={contentItem}>
+                    <div className={styles.profileStatsIcons}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 46 46"
+                      >
+                        <g transform="rotate(-90 -78.011 1029.224)">
+                          <circle
+                            cx="23"
+                            cy="23"
+                            r="23"
+                            transform="translate(905.213 1107.235)"
+                            fill="#00364e"
+                          />
+                          <path
+                            d="M920.355 1137.248l6.539-6.615a.58.58 0 000-.815l-6.542-6.7"
+                            fill="none"
+                            stroke="#aee1f3"
+                            strokeLinecap="round"
+                            strokeWidth="3"
+                          />
+                          <path
+                            d="M928.924 1137.248l6.539-6.615a.58.58 0 000-.815l-6.541-6.7"
+                            fill="none"
+                            stroke="#aee1f3"
+                            strokeLinecap="round"
+                            strokeWidth="3"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <span>
+                      <strong>Blood Clarity</strong> {blood_clarity[0].text}
+                    </span>
+                  </motion.li>
+                )}
+
+                {blood_resilience[0].text && (
+                  <motion.li variants={contentItem}>
+                    <div className={styles.profileStatsIcons}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 46 46"
+                      >
+                        <g transform="translate(-212.4 -1344.4)">
+                          <circle
+                            cx="23"
+                            cy="23"
+                            r="23"
+                            transform="translate(212.4 1344.4)"
+                            fill="#e5e0df"
+                          />
+                          <path
+                            d="M228.122 1360.252l6.373 6.3a.559.559 0 00.785 0l6.457-6.3"
+                            fill="none"
+                            stroke="#baadab"
+                            strokeLinecap="round"
+                            strokeWidth="3"
+                          />
+                          <path
+                            d="M228.122 1368.509l6.373 6.3a.559.559 0 00.785 0l6.457-6.3"
+                            fill="none"
+                            stroke="#baadab"
+                            strokeLinecap="round"
+                            strokeWidth="3"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <span>
+                      <strong>Blood Resilience</strong>{" "}
+                      {blood_resilience[0].text}
+                    </span>
+                  </motion.li>
+                )}
+
+                {blood_fitness[0].text && (
+                  <motion.li variants={contentItem}>
+                    <div className={styles.profileStatsIcons}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 46 46"
+                      >
+                        <g transform="translate(-919 -6807)">
+                          <circle
+                            cx="23"
+                            cy="23"
+                            r="23"
+                            transform="translate(919 6807)"
+                            fill="#ff7050"
+                          />
+                          <path
+                            d="M938.934 6836.798l6.293-6.365a.561.561 0 000-.784l-6.3-6.448"
+                            fill="none"
+                            stroke="#ffccbd"
+                            strokeLinecap="round"
+                            strokeWidth="3"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <span>
+                      <strong>Blood Fitness</strong> {blood_fitness[0].text}
+                    </span>
+                  </motion.li>
+                )}
+
+                {blood_hydration[0].text && (
+                  <motion.li variants={contentItem}>
+                    <div className={styles.profileStatsIcons}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 46 46"
+                      >
+                        <g transform="translate(-856.547 -1420.549)">
+                          <circle
+                            cx="23"
+                            cy="23"
+                            r="23"
+                            transform="translate(856.547 1420.549)"
+                            fill="#80deea"
+                          />
+                          <path
+                            d="M876.455 1450.402l6.345-6.417a.565.565 0 000-.79l-6.347-6.5"
+                            fill="none"
+                            stroke="#0096a6"
+                            strokeLinecap="round"
+                            strokeWidth="3"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <span>
+                      <strong>Blood Hydration</strong> {blood_hydration[0].text}
+                    </span>
+                  </motion.li>
+                )}
+              </ul>
             </motion.div>
           </Column>
         </Row>
