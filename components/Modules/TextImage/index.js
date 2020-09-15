@@ -1,19 +1,10 @@
 import { RichText } from "prismic-reactjs";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
+import Picture from "../../Picture";
 import styles from "./textImage.module.scss";
 
-// primary {
-//   headline
-//   text
-//   image
-//   background_color
-//   alignment
-//   overlap_text_and_image
-// }
-
 const TextImage = ({ primary }) => {
-  // primary.alignment
   return (
     <Section backgroundColor={primary.background_color} align="center">
       <Container>
@@ -42,11 +33,7 @@ const TextImage = ({ primary }) => {
             }
             orders={{ xs: 1, md: 2 }}
           >
-            <img
-              src={primary.image.xxl.url}
-              alt={primary.image.alt}
-              className={styles.image}
-            />
+            <Picture {...primary} classes={styles.image} />
           </Column>
         </Row>
       </Container>

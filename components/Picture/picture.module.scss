@@ -1,0 +1,68 @@
+// .picture {
+//   img {
+//     width: 100%;
+//     height: auto;
+//     display: block;
+//   }
+// }
+
+@import "../../styles/_variables.scss";
+
+.picture {
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 600ms ease-out;
+
+  &.loading {  
+    opacity: 0;
+  }
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+.picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.AspectRatio {
+  position: relative;
+  width: 100%;
+  height: 0;
+  &.landscape {
+    padding-bottom: 100%;
+    @media (min-width: $sm) {
+      padding-bottom: 56.25%;
+    }
+  }
+  &.square {
+    padding-bottom: 100%;
+  }
+  &.portrait {
+    padding-bottom: 133%;
+  }
+  picture {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  img,
+  picture {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  embed,
+  iframe,
+  object {
+    width: 100%;
+    height: 100%;
+  }
+}
