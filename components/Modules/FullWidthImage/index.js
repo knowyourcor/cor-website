@@ -10,8 +10,8 @@ const FullWidthImage = ({ primary }) => {
       </div>
       <div className={styles.content}>
         <Container>
-          <Row align="center" textAlign={{ xs: "center" }}>
-            <Column columns={{ xs: 14, sm: 11 }} offsets={{ sm: 1 }}>
+          <Row align="center" justify="center" textAlign={{ xs: "center" }}>
+            <Column columns={{ xs: 14, sm: 6 }}>
               <h2>{primary.headline[0].text}</h2>
               <Button linkData={primary.link} labelData={primary.link_label} />
             </Column>
