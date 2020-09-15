@@ -137,22 +137,11 @@
   left: 50%;
   transform: translateX(-50%);
 
-  padding: 1rem 1.5rem;
-  background-color: var(--color-teal-dark);
-  color: var(--font-inverted);
-  font-size: 1rem;
-  line-height: 1;
-  font-family: var(--font-sans-bold);
-  border-radius:  50px 50px;
-  transition: background-color 250ms ease-out;
-  &:hover {
-    background-color: darken(#034561, 10%);
-  }
-
   @media (min-width: $md) {
     position: absolute;
-    bottom: 2rem;
-    right: 4rem;
+    bottom: 3rem;
+    right: 3rem;
     left: auto;
+    transform: none;
   }
 }

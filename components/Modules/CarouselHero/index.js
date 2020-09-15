@@ -1,24 +1,12 @@
-import { useState, useEffect, useSpring, useMotionValue } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { RichText } from "prismic-reactjs";
 import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
 
-import { RichText } from "prismic-reactjs";
 import Section from "../../Section";
-import { Container, Row, Column } from "../../Grid";
+import Button from "../../Button";
 import styles from "./carouselHero.module.scss";
-
-// primary {
-//   headline
-//   text
-// }
-// fields {
-//   image
-//   headline
-//   text
-// }
-
-// TO DO: add link
 
 const Slide = ({ isOpen, image, headline, number, video_source }) => {
   const slideVariant = {
@@ -156,28 +144,6 @@ const CarouselHero = ({ primary, fields }) => {
     return () => clearTimeout(timer);
   }, [count]);
 
-  const WebLink = (link, label) => {
-    return (
-      <a
-        href={link?.url}
-        title={label[0].text}
-        target={link?.target}
-        rel="noopener noreferrer"
-        className={styles.cta}
-      >
-        {label[0].text}
-      </a>
-    );
-  };
-
-  const PageLink = (link, label) => {
-    return (
-      <Link href="/[slug]" as={`/${link?._meta?.uid}`}>
-        <a className={styles.cta}>{label[0].text}</a>
-      </Link>
-    );
-  };
-
   return (
     <Section
       fullScreen
@@ -197,9 +163,9 @@ const CarouselHero = ({ primary, fields }) => {
         })}
       </AnimatePresence>
 
-      {primary.link && primary.link._linkType === "Link.web"
-        ? WebLink(primary.link, primary.link_label)
-        : PageLink(primary.link, primary.link_label)}
+      <div className={styles.cta}>
+        <Button linkData={primary.link} labelData={primary.link_label} />
+      </div>
 
       {/* <div className={styles.buttons}>
         <button onClick={() => setActiveItem(count - 1)}>Previous</button>
