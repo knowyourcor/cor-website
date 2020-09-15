@@ -3,10 +3,10 @@ import styles from "./fullWidthImage.module.scss";
 
 const FullWidthImage = ({ primary }) => {
   return (
-    <section
-      className={styles.section}
-      style={{ backgroundImage: `url(${primary.image.xxl.url})` }}
-    >
+    <section className={styles.section}>
+      <div className={styles.backgroundImage}>
+        <img src={primary.image.xxl.url} alt={primary.image.alt} />
+      </div>
       <div className={styles.content}>
         <Container>
           <Row align="center" textAlign={{ xs: "center" }}>
