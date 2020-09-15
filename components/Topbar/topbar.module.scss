@@ -9,7 +9,8 @@
   right: 0;
   display: flex;
   align-content: center;
-  background-color: var(--color-white);
+  background: var(--color-white);
+  transition: background 0.25s ease-out;
   height: 48px;
 
   button, a {

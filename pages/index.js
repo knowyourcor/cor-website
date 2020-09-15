@@ -20,7 +20,7 @@ export default function Index({
       <Head title={pageData.meta_title} />
       <Alert preview={preview} />
       <main>
-        <Topbar mainMenuData={mainMenuData} />
+        <Topbar mainMenuData={mainMenuData} transparent />
         <Modules pageData={pageData} />
       </main>
       <Footer
