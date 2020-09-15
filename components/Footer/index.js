@@ -71,6 +71,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                     xmlns="http://www.w3.org/2000/svg"
                     width="22.393"
                     height="22.393"
+                    className={styles.mark}
                   >
                     <path
                       data-name="Path 40"
@@ -89,7 +90,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                 {internalLinksToColumn.map((set, index) => {
                   return (
                     <Column
-                      columns={{ xs: 14, md: 3 }}
+                      columns={{ xs: 6, md: 3 }}
                       key={`menu-set-${index}`}
                     >
                       <ul>
@@ -101,8 +102,8 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                   );
                 })}
 
-                <Column columns={{ xs: 14, md: 3 }}>
-                  <ul>
+                <Column columns={{ xs: 6, md: 3 }}>
+                  <ul className={styles.socialLinks}>
                     {externalLinks.map((link, index) => {
                       return WebLink(link, index);
                     })}
@@ -117,10 +118,10 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
 
         <div className={styles.tertiary}>
           <Row align="center">
-            <Column columns={{ xs: 2 }}>
+            <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 2, sm: 1 }}>
               <p>©{new Date().getFullYear()} COR LLC</p>
             </Column>
-            <Column columns={{ xs: 5 }}>
+            <Column columns={{ xs: 14, sm: 5 }} orders={{ xs: 1, sm: 2 }}>
               <ul>
                 {tertiaryMenuData && (
                   <>

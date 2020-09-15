@@ -1,3 +1,5 @@
+@import "../../styles/_variables.scss";
+
 .footer {
   width: 100%;
   font-size: 1rem;
@@ -6,6 +8,14 @@
     padding: 0;
     list-style-type: none;
     margin: 0;
+    &.socialLinks {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      @media (min-width: $md) {
+      margin-top: 0;
+      margin-bottom: 0;
+      }
+    }
   }
   p {
     font-size: 1rem;
@@ -26,6 +36,12 @@
   }
 }
 
+.mark {
+  margin-bottom: 1rem;
+}
+
+
+
 .secondary {
   margin: 2rem 0;
 }
@@ -36,7 +52,10 @@
   p {
     font-size: 0.75rem;
     line-height: 0.9375rem;
-    margin: 0;
+    margin: 1rem 0 0;
+    @media (min-width: $md) {
+      margin: 0;
+    }
   }
   a {
     font-size: 0.75rem;
@@ -45,9 +64,13 @@
   ul {
     margin: 0;
     margin-left: -1rem;
+    display: flex;
     li {
       margin: 0 1rem;
-      display: inline-block;
+      display: block;
+      a {
+        display: block;
+      }
     }
   }
 }
