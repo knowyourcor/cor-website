@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { RichText } from "prismic-reactjs";
 import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
-
 import Section from "../../Section";
 import Button from "../../Button";
 import styles from "./carouselHero.module.scss";
