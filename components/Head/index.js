@@ -17,8 +17,6 @@ const Title = ({ title }) => {
       <meta name="title" property="og:title" content={`${title} | COR`} />
       <meta name="theme-color" content="#f2f2f2" />
       <link rel="manifest" href="/site.webmanifest" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="#f2f2f2" />
     </Head>
   );
 };
