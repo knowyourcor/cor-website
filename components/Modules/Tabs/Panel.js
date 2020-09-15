@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { RichText } from "prismic-reactjs";
-import { Container, Row, Column } from "../../Grid";
+import { Row, Column } from "../../Grid";
 
 import styles from "./tabs.module.scss";
 
