@@ -6,12 +6,22 @@ import { useKeenSlider } from "keen-slider/react";
 import styles from "./carousel.module.scss";
 
 const Slide = ({ headline, text, image }) => {
+  const maskPaths = [
+    "M256 256H0V0h256v256zm-80.751-42.757l19.4 26.7a141.286 141.286 0 0051.391-158.17l-31.393 10.2a108.454 108.454 0 10-39.4 121.269z",
+    "M256 256H0V0h256v256zM128 3a125.916 125.916 0 00-25.192 2.54 124.314 124.314 0 00-44.7 18.809 125.371 125.371 0 00-45.289 55 124.371 124.371 0 00-7.284 23.464 126.215 126.215 0 000 50.383 124.314 124.314 0 0018.809 44.7 125.366 125.366 0 0055 45.288 124.371 124.371 0 0023.464 7.284 126.221 126.221 0 0050.384 0 124.314 124.314 0 0044.7-18.808 125.362 125.362 0 0045.288-55 124.376 124.376 0 007.283-23.464 125.58 125.58 0 00-3.571-63.822l-27.742 9.013A95.709 95.709 0 00128 32.165z",
+  ];
+  const randomNumber = Math.floor(Math.random() * Math.floor(2));
+  const randomDegree = Math.floor(Math.random() * Math.floor(360));
   return (
-    <div className={styles.tab}>
+    <div className={styles.container}>
       <div className={styles.portrait}>
         <img src={image.xxl.url} alt={image.alt} className={styles.image} />
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 754 754">
-          <path d="M754.001 754h-754V0h754v754zM103.566 465.85a286.381 286.381 0 0040.549 79.672 289.175 289.175 0 0062.294 62.883 286.054 286.054 0 00170.595 56.1v87.5h.029a380.085 380.085 0 0038.313-1.936 374.429 374.429 0 00334.721-334.721 379.967 379.967 0 000-76.684A374.429 374.429 0 00415.346 3.943a380.348 380.348 0 00-76.684 0A374.424 374.424 0 003.941 338.664 380.84 380.84 0 002.001 377a374.716 374.716 0 0018.331 115.891l83.23-27.039z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 256 256"
+          style={{ transform: `rotate(${randomDegree}deg)` }}
+        >
+          <path d={maskPaths[randomNumber]} fill="#fff" />
         </svg>
       </div>
 
@@ -23,30 +33,34 @@ const Slide = ({ headline, text, image }) => {
   );
 };
 
-// $xs: 32rem; // ~512px
-// $sm: 48rem; // ~768px
-// $md: 64rem; // ~1024px
-// $lg: 80rem; // ~1280px
-// $xl: 90rem; // ~1440px
-// $xxl: 105rem // ~1680px
-
 const Carousel = ({ primary, fields }) => {
   const [sliderRef] = useKeenSlider({
-    slidesPerView: 2,
-    spacing: 15,
+    slidesPerView: 3,
+    spacing: 20,
     centered: true,
     breakpoints: {
       "(min-width: 768px)": {
-        spacing: 30,
         slidesPerView: 3,
+        spacing: 50,
+        centered: false,
       },
       "(min-width: 1024px)": {
-        spacing: 30,
+        spacing: 60,
         slidesPerView: 3,
         centered: true,
       },
       "(min-width: 1280px)": {
-        spacing: 160,
+        spacing: 30,
+        slidesPerView: 4,
+        centered: true,
+      },
+      "(min-width: 1440px)": {
+        spacing: 55,
+        slidesPerView: 4,
+        centered: true,
+      },
+      "(min-width: 1680px)": {
+        spacing: 100,
         slidesPerView: 4,
         centered: true,
       },
