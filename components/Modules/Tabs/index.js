@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { RichText } from "prismic-reactjs";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Item from "./Item";
@@ -7,11 +8,11 @@ import Panel from "./Panel";
 
 import styles from "./tabs.module.scss";
 
-export default function Tabs({ primary, fields }) {
+export default function Tabs({ fields }) {
   const [isOpen, setIsOpen] = useState("tab-0");
 
   return (
-    <Section backgroundColor={primary.background_color} align="center">
+    <Section align="center">
       <Container>
         <div className={styles.tabs}>
           <Row align="center">
