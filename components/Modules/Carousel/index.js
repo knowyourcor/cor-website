@@ -5,7 +5,7 @@ import { useKeenSlider } from "keen-slider/react";
 
 import styles from "./carousel.module.scss";
 
-const Slide = ({ headline, text, image }) => {
+const Mask = ({ path }) => {
   const maskPaths = [
     "M256 256H0V0h256v256zm-80.751-42.757l19.4 26.7a141.286 141.286 0 0051.391-158.17l-31.393 10.2a108.454 108.454 0 10-39.4 121.269z",
     "M256 256H0V0h256v256zM128 3a125.916 125.916 0 00-25.192 2.54 124.314 124.314 0 00-44.7 18.809 125.371 125.371 0 00-45.289 55 124.371 124.371 0 00-7.284 23.464 126.215 126.215 0 000 50.383 124.314 124.314 0 0018.809 44.7 125.366 125.366 0 0055 45.288 124.371 124.371 0 0023.464 7.284 126.221 126.221 0 0050.384 0 124.314 124.314 0 0044.7-18.808 125.362 125.362 0 0045.288-55 124.376 124.376 0 007.283-23.464 125.58 125.58 0 00-3.571-63.822l-27.742 9.013A95.709 95.709 0 00128 32.165z",
@@ -13,16 +13,22 @@ const Slide = ({ headline, text, image }) => {
   const randomNumber = Math.floor(Math.random() * Math.floor(2));
   const randomDegree = Math.floor(Math.random() * Math.floor(360));
   return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      style={{ transform: `rotate(${randomDegree}deg)` }}
+    >
+      <path d={maskPaths[randomNumber]} fill="#fff" />
+    </svg>
+  );
+};
+
+const Slide = ({ headline, text, image }) => {
+  return (
     <div className={styles.container}>
       <div className={styles.portrait}>
         <img src={image.xxl.url} alt={image.alt} className={styles.image} />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 256 256"
-          style={{ transform: `rotate(${randomDegree}deg)` }}
-        >
-          <path d={maskPaths[randomNumber]} fill="#fff" />
-        </svg>
+        <Mask />
       </div>
 
       <div className={styles.content}>
