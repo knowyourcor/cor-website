@@ -29,6 +29,7 @@ const TextImage = ({ primary }) => {
             columns={{ xs: 14, md: 6 }}
             offsets={{ md: 1 }}
             overlaps={primary.overlap_text_and_image ? { md: 2 } : ""}
+            orders={{ xs: 2, md: 1 }}
             justify="center"
           >
             <RichText render={primary.text} />
@@ -39,6 +40,7 @@ const TextImage = ({ primary }) => {
                 ? { xs: 14, md: 9 }
                 : { xs: 14, md: 6 }
             }
+            orders={{ xs: 1, md: 2 }}
           >
             <img
               src={primary.image.xxl.url}
