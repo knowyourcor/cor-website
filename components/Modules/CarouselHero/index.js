@@ -119,7 +119,7 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
                 className={styles.videoBackground}
                 variants={videoItem}
               >
-                <video autoPlay muted loop playsinline>
+                <video autoPlay muted loop playsInline>
                   <source src="/videos/fpo-video.mp4" type="video/mp4" />
                 </video>
               </motion.div>
