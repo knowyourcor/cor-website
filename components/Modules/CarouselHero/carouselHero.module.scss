@@ -1,8 +1,9 @@
+@import "../../../styles/variables";
 
 .slide {
   width: 100%;
   height: 100%;
-  display: none;
+  
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -10,23 +11,42 @@
   right: 0;
   bottom: 0;
   left: 0;
+  
   &.active, &:first-of-type {
-    display: flex;
+    
+    @media (min-width: $md) {
+      display: flex;
+    }
   }
 
   .slideLeft {
-    height: 100vh;
-    width: 50%;
+    height: 50vh;
+    width: 100vw;
     overflow: hidden;
+    @media (min-width: $md) {
+      height: 100vh;
+      width: 50%;
+    }
   }
 
   .slideRight {
-    width: 50%;
-    height: 100vh;
+    min-height: 50vh;
+    width: 100vw;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
+    text-align: center;
+
+    // Offset for button
+    padding-bottom: 50px;
+
+    @media (min-width: $md) {
+      height: 100vh;
+      width: 50%;
+      text-align: left;
+      padding-bottom: 0;
+    }
   }
 
   .headline {
@@ -49,7 +69,7 @@
 }
 
 .score {
-  font-size: 14.0625rem;
+  font-size: 7.25rem;
   line-height: 1;
   color: var(--font-inverted);
   font-family: var(--font-sans-headline);
@@ -59,18 +79,33 @@
   transform: translate(-50%, -50%);
   z-index: 10;
   text-align: center;
-  width: 405px;
+  width: 100%;
+  @media (min-width: $md) {
+    font-size: 14.0625rem;
+    width: 405px;
+  }
   span {
+    font-size: 7.25rem;
     display: block;
+    @media (min-width: $md) {
+      font-size: 14.0625rem;
+      width: 405px;
+    }
   }
 }
 
 .corMark {
-  width: 70px;
-  height: 70px;
+  width: 38px;
+  height: 38px;
   position: absolute;
-  top: 14px;
-  right: -100px;
+  top: 12px;
+  right: 40px;
+  @media (min-width: $md) {
+    width: 70px;
+    height: 70px;
+    top: 14px;
+    right: -100px;
+  }
   svg {
     display: block;
     path {
@@ -82,7 +117,10 @@
 .videoBackground {
   position: relative;
   width:100%;
-  height: 100%;
+  height: 50vh;
+  @media (min-width: $md) {
+    height: 100vh;
+  }
   video {
     height: 100%;
     object-fit: cover;
@@ -96,7 +134,9 @@
 .cta {
   position: absolute;
   bottom: 2rem;
-  right: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+
   padding: 1rem 1.5rem;
   background-color: var(--color-teal-dark);
   color: var(--font-inverted);
@@ -107,5 +147,12 @@
   transition: background-color 250ms ease-out;
   &:hover {
     background-color: darken(#034561, 10%);
+  }
+
+  @media (min-width: $md) {
+    position: absolute;
+    bottom: 2rem;
+    right: 4rem;
+    left: auto;
   }
 }
