@@ -35,20 +35,12 @@ export default function Item({ data, isExpanded, expandItem }) {
                 y1="0"
                 y2="20"
                 fill="none"
-                stroke="#000"
                 strokeWidth="2"
                 variants={line}
                 initial="initial"
                 animate={isExpanded ? "minus" : "plus"}
               />
-              <line
-                y1="10"
-                y2="10"
-                x2="20"
-                fill="none"
-                stroke="#000"
-                strokeWidth="2"
-              />
+              <line y1="10" y2="10" x2="20" fill="none" strokeWidth="2" />
             </g>
           </svg>
         </AnimatePresence>
