@@ -1,8 +1,15 @@
+@import "../../../styles/_variables.scss";
+
 .quote {
   font-family: var(--font-sans-headline);
-  font-size:5rem;
-  line-height: 5.5rem;
-  margin: 2rem 0;
+  font-size:2.5rem;
+  line-height: 2.75rem;
+  margin: 1rem 0;
+  @media (min-width: $md) {
+    font-size:5rem;
+    line-height: 5.5rem;
+    margin: 2rem 0;
+  }
   q {
     quotes: "“" "”";
   }
@@ -17,9 +24,13 @@
 
   footer {
     font-family: var(--font-sans-sans);
-    font-size: 1.25rem;
-    line-height: 1.875rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
     margin-top: 1rem;
+    @media (min-width: $md) {
+      font-size: 1.25rem;
+      line-height: 1.875rem;
+    }
   }
 }
 

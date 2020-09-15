@@ -22,7 +22,7 @@ const Quote = ({ primary }) => {
           </Column>
           <Column
             justify="center"
-            columns={{ xs: 8, sm: 6, md: 6, lg: 6 }}
+            columns={{ xs: 10, sm: 6, md: 6, lg: 6 }}
             orders={{ xs: 1, md: 2 }}
           >
             <div className={styles.authorPortrait}>
