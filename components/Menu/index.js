@@ -8,11 +8,11 @@ import styles from "./menu.module.scss";
 const Menu = ({ active, toggle, mainMenuData }) => {
   const isActive = active ? styles["menu--active"] : "";
 
-  const navVariants = {
+  const navVariant = {
     open: {
       x: 0,
       transition: {
-        x: { stiffness: 1000, velocity: -50 },
+        x: { stiffness: 1000, velocity: 200 },
       },
     },
     closed: {
@@ -25,7 +25,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
 
   const navItemsVariants = {
     open: {
-      transition: { staggerChildren: 0.07, delayChildren: 0.25 },
+      transition: { staggerChildren: 0.07, delayChildren: 0.15 },
     },
     closed: {
       transition: { staggerChildren: 0.05, staggerDirection: -1 },
@@ -37,7 +37,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
       x: 0,
       opacity: 1,
       transition: {
-        y: { stiffness: 1000, velocity: -100 },
+        y: { stiffness: 1000, velocity: -200 },
       },
     },
     closed: {
@@ -56,27 +56,32 @@ const Menu = ({ active, toggle, mainMenuData }) => {
         style={{ transform: "translateX(-100%)" }}
         initial="closed"
         animate={active ? "open" : "closed"}
-        variants={navVariants}
+        variants={navVariant}
       >
         <div className={styles.top}>
           <Link href="/">
-            <a className={styles.mark}>
+            <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="22.393"
-                height="22.393"
+                viewBox="0 0 22.393 22.393"
+                className={styles.iconMark}
               >
                 <path d="M19.36 8.544a8.584 8.584 0 11-8.164-5.931V.003a11.194 11.194 0 1010.649 7.736z" />
                 <path d="M16.875 9.35l2.485-.807a8.586 8.586 0 00-8.164-5.935V5.22a5.973 5.973 0 015.679 4.126" />
               </svg>
             </a>
           </Link>
-          <button className={styles.close} onClick={() => toggle()}>
-            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-              <path
-                fillRule="nonzero"
-                d="M43.904 0L25 18.856 6.096 0 0 6.096 18.856 25 0 43.904 6.096 50 25 31.144 43.904 50 50 43.904 31.144 25 50 6.096z"
-              />
+          <button className={styles.linkClose} onClick={() => toggle()}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16.414"
+              height="16.414"
+              className={[styles.iconClose]}
+            >
+              <g fill="none" stroke="#fff" strokeWidth="2">
+                <path d="M.707.707l15 15" />
+                <path data-name="Line" d="M15.707.707l-15 15" />
+              </g>
             </svg>
           </button>
         </div>
