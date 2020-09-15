@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useViewportScroll, useTransform } from "framer-motion";
 import Link from "../Link";
 import Menu from "../Menu";
 
 import styles from "./topbar.module.scss";
 
-const Topbar = ({ mainMenuData }) => {
+const Topbar = ({ mainMenuData, transparent }) => {
   const [isOpen, toggleOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,13 +13,34 @@ const Topbar = ({ mainMenuData }) => {
   };
 
   const { scrollY } = useViewportScroll();
-  const background = useTransform(
-    scrollY,
-    [50, 250],
-    ["rgba(242, 242, 242, 0)", "rgba(242, 242, 242, 1)"]
-  );
+
+  const background = transparent
+    ? useTransform(
+        scrollY,
+        [50, 250],
+        ["rgba(242, 242, 242, 0)", "rgba(242, 242, 242, 1)"]
+      )
+    : "background: rgba(242, 242, 242, 1)";
 
   const opacity = useTransform(scrollY, [50, 250], ["0", "1"]);
+
+  useEffect(() => {
+    // Background color hack
+    // On refresh, if scrolled past y 250px
+    // Smooth scroll to top so FramerMotion useViewportScroll
+    // is initiated and the background color is added.
+    const timer = setTimeout(() => {
+      if (window.pageYOffset > 250 && transparent) {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
+      }
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
