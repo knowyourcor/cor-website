@@ -6,7 +6,13 @@ const ActiveLink = ({ router, children, ...props }) => {
   const child = Children.only(children);
 
   let className = child.props.className || "";
-  if (router.pathname === props.href && props.activeClassName) {
+  if (
+    router.pathname === props.href &&
+    !props.href.match(/^\/?\[[a-z]+\]$/) &&
+    props.activeClassName
+  ) {
+    className = `${className} ${props.activeClassName}`.trim();
+  } else if (router.asPath === props.as) {
     className = `${className} ${props.activeClassName}`.trim();
   }
 
