@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { RichText } from "prismic-reactjs";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
+import Picture from "../../Picture";
 import Item from "./Item";
 
 import styles from "./accordion.module.scss";
@@ -57,11 +58,7 @@ export default function Accordion({ primary, fields }) {
               </div>
             </Column>
             <Column columns={{ xs: 14, sm: 7, md: 7 }} offsets={{ sm: 1 }}>
-              <img
-                src={primary.image.xxl.url}
-                alt={primary.image.alt}
-                className={styles.image}
-              />
+              <Picture image={primary.image} className={styles.image} />
             </Column>
           </Row>
         </Container>
