@@ -11,8 +11,8 @@
 .picture {
   display: block;
   overflow: hidden;
-  opacity: 0;
-  transition: opacity 600ms ease-out;
+  // opacity: 0;
+  transition: opacity 300ms ease-out;
 
   &.loading {  
     opacity: 0;
