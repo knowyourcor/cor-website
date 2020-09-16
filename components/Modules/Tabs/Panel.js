@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import { Row, Column } from "../../Grid";
+import Picture from "../../Picture";
 
 import styles from "./tabs.module.scss";
 
@@ -32,11 +33,7 @@ export default function Panel({ text, image }) {
               <RichText render={text} />
             </Column>
             <Column columns={{ xs: 14, md: 6 }} offsets={{ md: 2 }}>
-              <img
-                src={image.xxl.url}
-                alt={image.alt}
-                className={styles.image}
-              />
+              <Picture image={image} classes={styles.image} />
             </Column>
           </Row>
         </div>
