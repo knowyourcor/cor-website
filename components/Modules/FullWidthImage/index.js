@@ -1,12 +1,13 @@
 import { Container, Row, Column } from "../../Grid";
 import Button from "../../Button";
+import Picture from "../../Picture";
 import styles from "./fullWidthImage.module.scss";
 
 const FullWidthImage = ({ primary }) => {
   return (
     <section className={styles.section}>
       <div className={styles.backgroundImage}>
-        <img src={primary.image.xxl.url} alt={primary.image.alt} />
+        <Picture image={primary.image} />
       </div>
       <div className={styles.content}>
         <Container>
