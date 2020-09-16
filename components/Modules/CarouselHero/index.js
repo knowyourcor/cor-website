@@ -3,6 +3,7 @@ import { RichText } from "prismic-reactjs";
 import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
 import Section from "../../Section";
+import Picture from "../../Picture";
 import Button from "../../Button";
 import styles from "./carouselHero.module.scss";
 
@@ -88,11 +89,12 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
             </div>
           )}
           <div className={styles.slideLeft}>
-            <motion.img
+            {/* <motion.img
               variants={imageItem}
               src={image.xxl.url}
               alt={image.alt}
-            />
+            /> */}
+            <Picture image={image} />
           </div>
           <div className={styles.slideRight}>
             {headline && (
