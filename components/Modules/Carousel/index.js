@@ -1,6 +1,7 @@
 import { RichText } from "prismic-reactjs";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
+import Picture from "../../Picture";
 import { useKeenSlider } from "keen-slider/react";
 
 import styles from "./carousel.module.scss";
@@ -27,7 +28,7 @@ const Slide = ({ headline, text, image }) => {
   return (
     <div className={styles.container}>
       <div className={styles.portrait}>
-        <img src={image.xxl.url} alt={image.alt} className={styles.image} />
+        <Picture image={image} className={styles.image} />
         <Mask />
       </div>
 
@@ -79,7 +80,6 @@ const Carousel = ({ primary, fields }) => {
         <Row align="center" textAlign={{ xs: "left" }}>
           <Column columns={{ xs: 14, md: 6 }} offsets={{ md: 1 }}>
             {primary.headline[0].text && <RichText render={primary.headline} />}
-
             {primary.text[0].text && <RichText render={primary.text} />}
           </Column>
         </Row>
