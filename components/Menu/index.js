@@ -60,7 +60,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
       >
         <div className={styles.top}>
           <Link href="/">
-            <a>
+            <a onClick={() => toggle()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 22.393 22.393"
@@ -98,14 +98,14 @@ const Menu = ({ active, toggle, mainMenuData }) => {
                     href="/[slug]"
                     as={`/${link.link._meta.uid}`}
                   >
-                    <a>{link.label[0].text}</a>
+                    <a onClick={() => toggle()}>{link.label[0].text}</a>
                   </Link>
                 ) : (
                   <Link
                     activeClassName={styles.active}
                     href={`/${link.link._meta.uid}`}
                   >
-                    <a>{link.label[0].text}</a>
+                    <a onClick={() => toggle()}>{link.label[0].text}</a>
                   </Link>
                 )}
               </motion.li>
