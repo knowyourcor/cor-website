@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { RichText } from "prismic-reactjs";
-import { Container, Row, Column } from "../../Grid";
+import { Row, Column } from "../../Grid";
+import Picture from "../../Picture";
 import RoundelMeter from "../../RoundelMeter";
 
 import styles from "./profiles.module.scss";
@@ -121,11 +122,7 @@ export default function Panel({
               <div className={styles.profileScore}>
                 <RoundelMeter score={profileScoreSign} />
               </div>
-              <img
-                src={image.xxl.url}
-                alt={image.alt}
-                className={styles.profileImage}
-              />
+              <Picture image={image} className={styles.profileImage} />
             </motion.div>
           </Column>
           <Column
