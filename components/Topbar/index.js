@@ -8,10 +8,6 @@ import styles from "./topbar.module.scss";
 const Topbar = ({ mainMenuData, transparent }) => {
   const [isOpen, toggleOpen] = useState(false);
 
-  const toggleMenu = () => {
-    toggleOpen(!isOpen);
-  };
-
   const { scrollY } = useViewportScroll();
 
   const background = transparent
@@ -52,7 +48,10 @@ const Topbar = ({ mainMenuData, transparent }) => {
       >
         <motion.div className={styles.boxShadow} style={{ opacity }} />
         <div className={styles.container}>
-          <button onClick={() => toggleMenu()} className={styles.menuToggle}>
+          <button
+            onClick={() => toggleOpen(!isOpen)}
+            className={styles.menuToggle}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16">
               <g fill="none" stroke="#000" strokeWidth="1.45">
                 <path d="M22 15H0M22 8H0M22 1H0" />
@@ -117,7 +116,7 @@ const Topbar = ({ mainMenuData, transparent }) => {
       <Menu
         mainMenuData={mainMenuData}
         active={isOpen}
-        toggle={() => toggleMenu()}
+        toggle={() => toggleOpen(!isOpen)}
       />
     </>
   );
