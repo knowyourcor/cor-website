@@ -14,7 +14,8 @@ const Picture = ({ image, classes }) => {
   const breakpointXxl = image.xxl;
 
   function handleImageLoaded() {
-    if (!loaded) {
+    const image = imageRef.current;
+    if (!image.complete) {
       setLoading(true);
     } else {
       setLoading(false);
