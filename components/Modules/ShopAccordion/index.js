@@ -23,15 +23,15 @@ export default function ShopAccordion({ primary, fields }) {
         }}
       >
         <Container>
-          <Row>
-            <Column columns={{ xs: 14, sm: 7, md: 7 }}>
+          <Row justify="center">
+            <Column columns={{ xs: 14, sm: 10, md: 7, lg: 7 }}>
               {primary.image && (
                 <Picture image={primary.image} className={styles.image} />
               )}
             </Column>
             <Column
-              columns={{ xs: 14, sm: 7, md: 5 }}
-              offsets={{ sm: 1, md: 1 }}
+              columns={{ xs: 14, md: 6, lg: 5 }}
+              offsets={{ md: 1, lg: 1 }}
             >
               <div className={styles.accordion}>
                 <motion.div className={styles.items}>
