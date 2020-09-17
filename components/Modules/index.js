@@ -10,51 +10,30 @@ import Quote from "./Quote";
 import Shop from "./Shop";
 import Tabs from "./Tabs";
 
+const moduleDefs = {
+  ["accordion"]: Accordion,
+  ["body_text"]: Text,
+  ["body_image"]: Image,
+  ["carousel"]: Carousel,
+  ["hero_carousel"]: CarouselHero,
+  ["full_width_image"]: FullWidthImage,
+  ["profiles"]: Profiles,
+  ["quote"]: Quote,
+  ["shop"]: Shop,
+  ["tabs"]: Tabs,
+  ["text_image"]: TextImage,
+};
+
 const Modules = ({ pageData }) => {
   // console.log("pageData: ", pageData);
   return (
     <>
       {(() => {
         return pageData.body.map((module, index) => {
-          switch (module.type) {
-            case "accordion":
-              return <Accordion key={`${index}_${module.type}`} {...module} />;
-              break;
-            case "body_text":
-              return <Text key={`${index}_${module.type}`} {...module} />;
-              break;
-            case "body_image":
-              return <Image key={`${index}_${module.type}`} {...module} />;
-              break;
-            case "carousel":
-              return <Carousel key={`${index}_${module.type}`} {...module} />;
-              break;
-            case "hero_carousel":
-              return (
-                <CarouselHero key={`${index}_${module.type}`} {...module} />
-              );
-              break;
-            case "full_width_image":
-              return (
-                <FullWidthImage key={`${index}_${module.type}`} {...module} />
-              );
-              break;
-            case "profiles":
-              return <Profiles key={`${index}_${module.type}`} {...module} />;
-              break;
-            case "quote":
-              return <Quote key={`${index}_${module.type}`} {...module} />;
-              break;
-            case "shop":
-              return <Shop key={`${index}_${module.type}`} {...module} />;
-              break;
-            case "tabs":
-              return <Tabs key={`${index}_${module.type}`} {...module} />;
-              break;
-            case "text_image":
-              return <TextImage key={`${index}_${module.type}`} {...module} />;
-              break;
-          }
+          const Module = moduleDefs[module?.type];
+          return (
+            Module && <Module key={`${index}_${module.type}`} {...module} />
+          );
         });
       })()}
     </>
