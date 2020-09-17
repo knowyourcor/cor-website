@@ -10,10 +10,10 @@
   font-size: 1.25rem;
   padding: 0 0 2rem;
   margin-left: -1rem;
-  margin-bottom: -4rem;
+  margin-bottom: 1rem;
   pointer-events: none;
   @media (min-width: $md) {
-    // margin-bottom: 0;
+    margin-bottom: -4rem;
     justify-content: flex-start;
     flex-basis: 50%;
     max-width: 50%;
