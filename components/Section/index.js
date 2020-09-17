@@ -21,7 +21,7 @@ const Section = (props) => {
   props.className ? classes.push(props.className) : "";
 
   return (
-    <section id={props.id} className={classes.join(" ")}>
+    <section id={props.id} className={classes.join(" ")} style={props.style}>
       {props.children}
     </section>
   );
