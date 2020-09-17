@@ -5,7 +5,7 @@ import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";
 import Alert from "../components/Alert";
 
-import { getMenuData } from "../lib/api";
+import { getShopData, getMenuData } from "../lib/api";
 
 import Modules from "../components/Modules";
 
@@ -13,26 +13,18 @@ import Modules from "../components/Modules";
 
 export default function Shop({
   preview,
+  pageData,
   mainMenuData,
   footerMenuData,
   tertiaryMenuData,
 }) {
   return (
     <>
-      <Head title="Shop" />
+      <Head title={pageData.meta_title} />
       <Alert preview={preview} />
       <main>
         <Topbar mainMenuData={mainMenuData} />
-        <Section>
-          <Container>
-            <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
-              <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
-                <h1>Shop</h1>
-                <p>Placeholder for Shop.</p>
-              </Column>
-            </Row>
-          </Container>
-        </Section>
+        <Modules pageData={pageData} />
       </main>
       <Footer
         footerMenuData={footerMenuData}
@@ -43,12 +35,14 @@ export default function Shop({
 }
 
 export async function getStaticProps({ preview = false, previewData }) {
+  const pageData = await getShopData(previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
   return {
     props: {
       preview,
+      pageData,
       mainMenuData,
       footerMenuData,
       tertiaryMenuData,
