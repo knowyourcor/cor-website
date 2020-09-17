@@ -8,6 +8,8 @@ import FullWidthImage from "./FullWidthImage";
 import Profiles from "./Profiles";
 import Quote from "./Quote";
 import Shop from "./Shop";
+import ShopAccordion from "./ShopAccordion";
+import ShopTextImage from "./ShopTextImage";
 import Tabs from "./Tabs";
 
 const moduleDefs = {
@@ -20,12 +22,14 @@ const moduleDefs = {
   ["profiles"]: Profiles,
   ["quote"]: Quote,
   ["shop"]: Shop,
+  ["shop_accordion"]: ShopAccordion,
+  ["shop_text_image"]: ShopTextImage,
   ["tabs"]: Tabs,
   ["text_image"]: TextImage,
 };
 
 const Modules = ({ pageData }) => {
-  // console.log("pageData: ", pageData);
+  console.log("pageData: ", pageData);
   return (
     <>
       {(() => {
