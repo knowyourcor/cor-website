@@ -8,12 +8,27 @@
     padding: 0;
     list-style-type: none;
     margin: 0;
+    li {
+      margin-bottom: 0.5rem;
+    }
     &.socialLinks {
       margin-top: 1rem;
       margin-bottom: 1rem;
+      
+      display: flex;
+      justify-content: space-between;
+  
+
       @media (min-width: $md) {
-      margin-top: 0;
+      margin-top: 0.75rem;
       margin-bottom: 0;
+      li {
+        margin-bottom: 0.75rem;
+        img {
+          width: 28px;
+          height: auto;
+        }
+      }
       }
     }
   }
@@ -40,15 +55,15 @@
   margin-bottom: 1rem;
 }
 
-
-
 .secondary {
   margin: 2rem 0;
 }
 
 .tertiary {
-  margin: 4rem 0 1rem;
-
+  margin: 1rem 0 2rem;
+  @media (min-width: $md) {
+    margin: 4rem 0 2rem;
+  }
   p {
     font-size: 0.75rem;
     line-height: 0.9375rem;
