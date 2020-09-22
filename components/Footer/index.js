@@ -33,6 +33,8 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
     internalLinks && chunk(internalLinks, Math.ceil(internalLinks?.length / 2));
 
   const WebLink = (link, index) => {
+    const regex = /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)?(?:\.[a-z]+)/;
+    const domain = link.link?.url.match(regex)[1];
     return (
       <li key={`weblink-${index}`}>
         <a
@@ -41,7 +43,10 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
           target={link.link?.target}
           rel="noopener noreferrer"
         >
-          {link.label[0].text}
+          <img
+            src={`/icons/${domain.toLowerCase()}.svg`}
+            alt={link.label[0].text}
+          />
         </a>
       </li>
     );
