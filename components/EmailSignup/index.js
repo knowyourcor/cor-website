@@ -49,7 +49,7 @@ const CustomForm = ({ status, message, onValidated }) => {
             ref={emailRef}
             type="email"
             className={styles.inputEmail}
-            placeholder="enter email address"
+            placeholder="Stay in the loop"
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
           />
@@ -60,7 +60,8 @@ const CustomForm = ({ status, message, onValidated }) => {
         <div className={styles.messages}>
           {!isValid && (
             <div className={styles.messageSending}>
-              Hmm, that's not right. Check your email address.
+              <span>&#9888;</span>
+              <span>Hmm, that's not right. Check your email address.</span>
             </div>
           )}
           {status === "sending" && (

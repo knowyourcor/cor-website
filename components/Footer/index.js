@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container, Row, Column } from "../Grid";
+import EmailSignup from "../EmailSignup";
 
 import styles from "./footer.module.scss";
 
@@ -102,7 +103,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                   );
                 })}
 
-                <Column columns={{ xs: 6, md: 3 }}>
+                <Column columns={{ xs: 6, md: 2 }}>
                   <ul className={styles.socialLinks}>
                     {externalLinks.map((link, index) => {
                       return WebLink(link, index);
@@ -112,7 +113,9 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
               </>
             )}
 
-            <Column columns={{ xs: 14, md: 3 }}>Email signup</Column>
+            <Column columns={{ xs: 14, md: 4 }}>
+              <EmailSignup />
+            </Column>
           </Row>
         </div>
 
