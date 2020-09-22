@@ -14,7 +14,7 @@
   border: 1.5px solid var(--font-primary);
   border: 0;
   border-radius: 50px 0 0 50px;
-  padding: 1rem 0;
+  padding: 1rem 0 1rem 1.5rem;
   color: var(--font-primary);
   background-color: #fff;
   font-size: 1.1rem;
@@ -22,7 +22,7 @@
 
   display: block;
   width: 100%;
-  text-align: center;
+  text-align: left;
 
 
   &:focus {
@@ -57,13 +57,20 @@
 }
 
 .messages {
-  padding: 1rem 0;
+  padding: 1.5rem;
   min-height: 51px;
   margin-top: -1rem;
 }
 
 .messageSending {
   color: rgba(0,0,0,.45);
+  display: flex;
+  span {
+    display: block;
+    &:first-of-type {
+      margin-right: 0.35rem;
+    }
+  }
 }
 
 .messageError {
