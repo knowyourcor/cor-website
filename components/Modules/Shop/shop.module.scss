@@ -48,3 +48,27 @@
 .content {
   padding-top: 4rem;
 }
+
+.shopActions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.addToCart {
+  padding: 1rem 1.5rem;
+  background-color: var(--color-teal-dark);
+  color: var(--font-inverted);
+  font-size: 1rem;
+  line-height: 1;
+  font-family: var(--font-sans-bold);
+  border-radius:  50px 50px;
+  transition: background-color 250ms ease-out;
+  &:hover {
+    background-color: darken(#034561, 10%);
+  }
+}
