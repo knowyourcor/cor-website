@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .accordion {
   margin-top: 2rem;
 }
@@ -60,14 +62,31 @@
   }
 }
 
-
-
-
-
 .content {
   padding: 1rem 0;
   p:last-of-type {
     margin-bottom: 0;
+  }
+}
+
+.headline {
+  h1,
+  .h1 {
+    font-size: 2.5rem;
+    line-height: 3.125rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    @media (min-width: $sm) {
+      font-size: 3.125rem;
+      line-height: 3.4375rem;
+    
+    }
+    @media (min-width: $md) {
+      font-size: 3.4375rem;
+      line-height: 3.78125rem;
+     
+    }
   }
 }
 

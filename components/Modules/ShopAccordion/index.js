@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { RichText } from "prismic-reactjs";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
@@ -79,6 +80,11 @@ export default function ShopAccordion({ primary, fields }) {
             )}
           </Column>
           <Column columns={{ xs: 14, md: 6, lg: 5 }} offsets={{ md: 1, lg: 1 }}>
+            {primary.headline[0].text && (
+              <div className={styles.headline}>
+                <RichText render={primary.headline} />
+              </div>
+            )}
             <div className={styles.accordion}>
               <motion.div className={styles.items}>
                 {fields.map((data, index) => (
