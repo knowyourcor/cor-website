@@ -1,4 +1,5 @@
 import Accordion from "./Accordion";
+import BodyText from "./BodyText";
 import Carousel from "./Carousel";
 import Text from "./Text";
 import Image from "./Image";
@@ -11,10 +12,11 @@ import Shop from "./Shop";
 import ShopAccordion from "./ShopAccordion";
 import ShopTextImage from "./ShopTextImage";
 import Tabs from "./Tabs";
+import TextAccordion from "./TextAccordion";
 
 const moduleDefs = {
   ["accordion"]: Accordion,
-  ["body_text"]: Text,
+  ["body_text"]: BodyText,
   ["body_image"]: Image,
   ["carousel"]: Carousel,
   ["hero_carousel"]: CarouselHero,
@@ -25,7 +27,9 @@ const moduleDefs = {
   ["shop_accordion"]: ShopAccordion,
   ["shop_text_image"]: ShopTextImage,
   ["tabs"]: Tabs,
+  ["text"]: Text,
   ["text_image"]: TextImage,
+  ["text_accordion"]: TextAccordion,
 };
 
 const Modules = ({ pageData }) => {
