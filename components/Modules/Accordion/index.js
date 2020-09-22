@@ -52,6 +52,7 @@ export default function Accordion({ primary, fields }) {
                       isExpanded={`item-${index}` === expanded}
                       expandItem={() => setExpanded(`item-${index}`)}
                       data={data}
+                      index={index}
                     />
                   ))}
                 </motion.div>

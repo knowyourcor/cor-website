@@ -3,7 +3,7 @@ import Content from "./Content";
 
 import styles from "./accordion.module.scss";
 
-export default function Item({ data, isExpanded, expandItem }) {
+export default function Item({ data, isExpanded, expandItem, index }) {
   const activeTabClass = isExpanded ? styles.activeTab : "";
 
   const line = {
@@ -15,13 +15,24 @@ export default function Item({ data, isExpanded, expandItem }) {
     },
   };
 
+  const handleIndex = (index) => {
+    const number = index + 1;
+    if (number < 9) {
+      return `0${number}`;
+    } else {
+      return number;
+    }
+  };
+
   return (
     <div className={styles.item}>
       <div
         className={[styles.label, activeTabClass].join(" ")}
         onClick={expandItem}
       >
-        {data.title[0].text}
+        <div>
+          <span>{handleIndex(index)}</span> {data.title[0].text}
+        </div>
         <AnimatePresence initial={false}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -41,6 +41,7 @@ export default function ShopAccordion({ primary, fields }) {
                       isExpanded={`item-${index}` === expanded}
                       expandItem={() => setExpanded(`item-${index}`)}
                       data={data}
+                      index={index}
                     />
                   ))}
                 </motion.div>
@@ -76,6 +77,7 @@ export default function ShopAccordion({ primary, fields }) {
                       isExpanded={`item-${index}` === expanded}
                       expandItem={() => setExpanded(`item-${index}`)}
                       data={data}
+                      index={index}
                     />
                   ))}
                 </motion.div>
