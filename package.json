@@ -8,7 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.4",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-prismic": "^1.0.8",
     "framer-motion": "^2.6.13",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.11.0",
     "keen-slider": "^5.2.3",
     "next": "9.5.3",
     "prismic-javascript": "^3.0.2",

@@ -4,9 +4,8 @@ import Footer from "../components/Footer";
 import Modules from "../components/Modules";
 import Alert from "../components/Alert";
 
+// import { initializeApollo } from "../lib/apolloClient";
 import { getHomepageData, getMenuData } from "../lib/api";
-
-import styles from "../styles/Home.module.scss";
 
 export default function Index({
   preview,
@@ -32,6 +31,8 @@ export default function Index({
 }
 
 export async function getStaticProps({ preview = false, previewData }) {
+  // const apolloClient = initializeApollo();
+
   const pageData = await getHomepageData(previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
