@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "../lib/apolloClient";
+import { CartProvider } from "../context/CartContext";
 import Layout from "../components/Layout";
 import "../styles/globals.scss";
 
@@ -24,7 +25,9 @@ function CorWebsite({ Component, pageProps }) {
   }, []);
   return (
     <ApolloProvider client={apolloClient}>
-      <Component {...pageProps} />
+      <CartProvider>
+        <Component {...pageProps} />
+      </CartProvider>
       <Layout isActive={layoutActive} />
     </ApolloProvider>
   );

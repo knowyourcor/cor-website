@@ -1,0 +1,61 @@
+/* pRODUCTS
+ * ============================== */
+ .product {
+  /* flex: 0 1 31%; */
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 6%;
+  padding: 1rem;
+}
+
+.productTitle {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  opacity: 0.7;
+}
+
+.productPrice {
+  display: block;
+  font-size: 1.1rem;
+  opacity: 0.5;
+  margin-bottom: 0.4rem;
+}
+
+.productOption {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.productQuantity {
+  display: block;
+  width: 15%;
+  margin-bottom: 16px;
+}
+
+.purchaseType {
+  margin: 1rem 0;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  background: #f2f2f2;
+}
+
+.button {
+  background-color: #2752ff;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  padding: 10px 17px;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #222222;
+}
+
+.button:disabled {
+  background: #bfbfbf;
+  cursor: not-allowed;
+}

@@ -1,0 +1,217 @@
+/* CART
+ * ============================== */
+.cart {
+  z-index: 5000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 350px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #e5e5e5;
+  transform: translateX(100%);
+  transition: transform 0.15s ease-in-out;
+  
+  &.open {
+    transform: translateX(0);
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    p {
+      margin: 0;
+    }
+  }
+  footer {
+    padding: 20px;
+    border-top: 1px solid #e5e5e5;
+    flex: 0 0 auto;
+  }
+}
+
+.lineItems {
+  flex: 1 0 auto;
+  margin: 0;
+  padding: 20px;
+}
+
+.info {
+  padding: 15px 20px 10px;
+  .total {
+    float: left;
+      text-transform: uppercase;
+  }
+  .small {
+    font-size: 11px;
+  }
+  .pricing {
+      margin-left: 5px;
+    font-size: 16px;
+    color: black;
+  }
+}
+
+.checkoutButton {
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+}
+
+.close {
+  // position: absolute;
+  // right: 9px;
+  // top: 8px;
+  font-size: 35px;
+  color: #999;
+  border: none;
+  background: transparent;
+  transition: transform 100ms ease;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #2752ff;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  padding: 10px 17px;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #222222;
+}
+
+.button:disabled {
+  background: #bfbfbf;
+  cursor: not-allowed;
+}
+
+/* LINE ITEMS
+ * ============================== */
+.lineItem {
+  margin-bottom: 20px;
+  overflow: hidden;
+  backface-visibility: visible;
+  min-height: 65px;
+  position: relative;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.lineItemImage {
+  width: 65px;
+  height: 65px;
+  border-radius: 3px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #e5e5e5;
+  position: absolute;
+}
+
+.lineItemImage img {
+  width: 100%;
+  height: auto;
+}
+
+.lineItemContent {
+  width: 100%;
+  padding-left: 75px;
+}
+
+.lineItemRow {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.lineItemVariantTitle {
+  float: right;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 17px;
+  color: #767676;
+}
+
+.lineItemTitle {
+  color: #4e5665;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.lineItemPrice {
+  line-height: 23px;
+  float: right;
+  font-weight: bold;
+  font-size: 15px;
+  margin-right: 40px;
+}
+
+.lineItemQuantityContainer {
+  border: 1px solid #767676;
+  float: left;
+  border-radius: 3px;
+}
+
+.lineItemQuantityUpdate {
+  color: #767676;
+  display: block;
+  float: left;
+  height: 21px;
+  line-height: 16px;
+  font-family: monospace;
+  width: 25px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 18px;
+  text-align: center;
+}
+
+.lineItemQuantityUpdateForm {
+  display: inline;
+}
+
+.lineItemQuantity {
+  color: black;
+  width: 38px;
+  height: 21px;
+  line-height: 23px;
+  font-size: 15px;
+  border: none;
+  text-align: center;
+  -moz-appearance: textfield;
+  background: transparent;
+  border-left: 1px solid #767676;
+  border-right: 1px solid #767676;
+  display: block;
+  float: left;
+  padding: 0;
+  border-radius: 0;
+}
+
+.lineItemRemove {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 0;
+  background: 0;
+  font-size: 20px;
+  top: -4px;
+  opacity: 0.5;
+}
+
+.lineItemRemove:hover {
+  opacity: 1;
+  cursor: pointer;
+}
