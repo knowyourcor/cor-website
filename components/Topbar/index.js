@@ -2,11 +2,22 @@ import { useState, useEffect } from "react";
 import { motion, useViewportScroll, useTransform } from "framer-motion";
 import Link from "../Link";
 import Menu from "../Menu";
+import Cart from "../Shop/Cart";
+
+import { useCart } from "../../context/CartContext";
 
 import styles from "./topbar.module.scss";
 
 const Topbar = ({ mainMenuData, transparent }) => {
-  const [isOpen, toggleOpen] = useState(false);
+  const { isCartOpen, setCartOpen } = useCart();
+  // Menu state
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  // Cart state
+  // const [isCartOpen, setCartOpen] = useState(false);
+  // const handleCartClose = () => {
+  //   setCartOpen(false);
+  // };
 
   const { scrollY } = useViewportScroll();
 
@@ -49,7 +60,7 @@ const Topbar = ({ mainMenuData, transparent }) => {
         <motion.div className={styles.boxShadow} style={{ opacity }} />
         <div className={styles.container}>
           <button
-            onClick={() => toggleOpen(!isOpen)}
+            onClick={() => setMenuOpen(!isMenuOpen)}
             className={styles.menuToggle}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16">
@@ -94,29 +105,37 @@ const Topbar = ({ mainMenuData, transparent }) => {
                 </svg>
               </a>
             </Link>
-            <Link activeClassName={styles.active} href="/cart">
-              <a
-                aria-label="Cart"
-                role="button"
-                tabIndex="2"
-                className={styles.activeSnap}
+
+            <a
+              aria-label="Cart"
+              role="button"
+              tabIndex="2"
+              className={styles.activeSnap}
+              onClick={() => setCartOpen(true)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 27.822 25.799"
+                className={styles.iconCart}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 27.822 25.799"
-                  className={styles.iconCart}
-                >
-                  <path d="M25.951 8.282h-4.388v-.63a7.652 7.652 0 00-15.3 0v.63H1.875A1.87 1.87 0 00.064 10.62l3.561 13.777a1.87 1.87 0 001.81 1.4h16.957a1.87 1.87 0 001.81-1.4l3.561-13.777a1.87 1.87 0 00-1.812-2.338zm-17.238-.63a5.2 5.2 0 0110.4 0v.63h-10.4zm13.225 15.693H5.885l-3.26-12.609h22.572z" />
-                </svg>
-              </a>
-            </Link>
+                <path d="M25.951 8.282h-4.388v-.63a7.652 7.652 0 00-15.3 0v.63H1.875A1.87 1.87 0 00.064 10.62l3.561 13.777a1.87 1.87 0 001.81 1.4h16.957a1.87 1.87 0 001.81-1.4l3.561-13.777a1.87 1.87 0 00-1.812-2.338zm-17.238-.63a5.2 5.2 0 0110.4 0v.63h-10.4zm13.225 15.693H5.885l-3.26-12.609h22.572z" />
+              </svg>
+            </a>
           </div>
         </div>
       </motion.div>
       <Menu
         mainMenuData={mainMenuData}
-        active={isOpen}
-        toggle={() => toggleOpen(!isOpen)}
+        active={isMenuOpen}
+        toggle={() => setMenuOpen(!isMenuOpen)}
+      />
+      <Cart
+        // removeLineItemInCart={removeLineItemInCart}
+        // updateLineItemInCart={updateLineItemInCart}
+        // checkout={checkout}
+        isCartOpen={isCartOpen}
+        handleCartClose={() => setCartOpen(false)}
+        // customerAccessToken={customerAccessToken}
       />
     </>
   );
