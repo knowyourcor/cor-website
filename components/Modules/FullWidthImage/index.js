@@ -4,10 +4,16 @@ import Picture from "../../Picture";
 import styles from "./fullWidthImage.module.scss";
 
 const FullWidthImage = ({ primary }) => {
+  console.log("primary: ", primary);
   return (
     <section className={styles.section}>
       <div className={styles.backgroundImage}>
         <Picture image={primary.image} />
+        {primary.video_source && (
+          <video autoPlay muted loop playsInline>
+            <source src={primary.video_source} type="video/mp4" />
+          </video>
+        )}
       </div>
       <div className={styles.content}>
         <Container>
