@@ -108,7 +108,7 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
                 variants={videoItem}
               >
                 <video autoPlay muted loop playsInline>
-                  <source src="/videos/fpo-video.mp4" type="video/mp4" />
+                  <source src={video_source} type="video/mp4" />
                 </video>
               </motion.div>
             )}
