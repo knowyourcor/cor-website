@@ -39,7 +39,7 @@ const Topbar = ({ mainMenuData, transparent }) => {
     const timer = setTimeout(() => {
       if (window.pageYOffset > 250 && transparent) {
         window.scrollTo({
-          top: 0,
+          top: window.pageYOffset + 1,
           left: 0,
           behavior: "smooth",
         });
