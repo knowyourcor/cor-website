@@ -34,35 +34,37 @@ export default function Accordion({ primary, fields }) {
       }}
       className={styles[`theme-${getThemeFromBackground}`]}
     >
-      <Section align="center">
-        <Container>
-          <Row align="center">
-            <Column columns={{ xs: 14, sm: 8, md: 7 }} offsets={{ sm: 1 }}>
-              <RichText render={primary.headline} />
-            </Column>
-          </Row>
+      <Section className={styles.section}>
+        <div className={styles.backgroundImage}>
+          <Picture image={primary.image} />
+        </div>
+        <div className={styles.contentContainer}>
+          <Container>
+            <Row align="center">
+              <Column columns={{ xs: 14, sm: 8, md: 7 }} offsets={{ sm: 1 }}>
+                <RichText render={primary.headline} />
+              </Column>
+            </Row>
 
-          <Row align="center">
-            <Column columns={{ xs: 14, sm: 7, md: 5 }} offsets={{ sm: 1 }}>
-              <div className={styles.accordion}>
-                <motion.div className={styles.items}>
-                  {fields.map((data, index) => (
-                    <Item
-                      key={`item-${index}`}
-                      isExpanded={`item-${index}` === expanded}
-                      expandItem={() => setExpanded(`item-${index}`)}
-                      data={data}
-                      index={index}
-                    />
-                  ))}
-                </motion.div>
-              </div>
-            </Column>
-            <Column columns={{ xs: 14, sm: 7, md: 7 }} offsets={{ sm: 1 }}>
-              <Picture image={primary.image} className={styles.image} />
-            </Column>
-          </Row>
-        </Container>
+            <Row align="center">
+              <Column columns={{ xs: 14, sm: 7, md: 5 }} offsets={{ sm: 1 }}>
+                <div className={styles.accordion}>
+                  <motion.div className={styles.items}>
+                    {fields.map((data, index) => (
+                      <Item
+                        key={`item-${index}`}
+                        isExpanded={`item-${index}` === expanded}
+                        expandItem={() => setExpanded(`item-${index}`)}
+                        data={data}
+                        index={index}
+                      />
+                    ))}
+                  </motion.div>
+                </div>
+              </Column>
+            </Row>
+          </Container>
+        </div>
       </Section>
     </div>
   );
