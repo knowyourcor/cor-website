@@ -76,3 +76,19 @@
   height: auto;
   display: block;
 }
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 33%;
+  display: flex;
+  align-items: flex-end;
+  
+  picture, img {
+    width: 100%;
+    height: auto;
+    // object-fit: cont;
+  }
+}
