@@ -35,19 +35,16 @@ export default function Accordion({ primary, fields }) {
       className={styles[`theme-${getThemeFromBackground}`]}
     >
       <Section className={styles.section}>
-        <div className={styles.backgroundImage}>
-          <Picture image={primary.image} />
-        </div>
         <div className={styles.contentContainer}>
           <Container>
             <Row align="center">
-              <Column columns={{ xs: 14, sm: 8, md: 7 }} offsets={{ sm: 1 }}>
+              <Column columns={{ xs: 14, sm: 12, md: 7 }} offsets={{ sm: 1 }}>
                 <RichText render={primary.headline} />
               </Column>
             </Row>
 
             <Row align="center">
-              <Column columns={{ xs: 14, sm: 7, md: 5 }} offsets={{ sm: 1 }}>
+              <Column columns={{ xs: 14, sm: 12, md: 5 }} offsets={{ sm: 1 }}>
                 <div className={styles.accordion}>
                   <motion.div className={styles.items}>
                     {fields.map((data, index) => (
@@ -64,6 +61,9 @@ export default function Accordion({ primary, fields }) {
               </Column>
             </Row>
           </Container>
+        </div>
+        <div className={styles.backgroundImage}>
+          <Picture image={primary.image} />
         </div>
       </Section>
     </div>
