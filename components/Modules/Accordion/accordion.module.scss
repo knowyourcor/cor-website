@@ -1,3 +1,5 @@
+@import "../../../styles/_variables.scss";
+
 .accordion {
   margin-top: 2rem;
 }
@@ -60,10 +62,6 @@
   }
 }
 
-
-
-
-
 .content {
   padding: 1rem 0;
   p:last-of-type {
@@ -78,17 +76,27 @@
 }
 
 .backgroundImage {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 33%;
-  display: flex;
-  align-items: flex-end;
-  
+  @media (min-width: $md) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 33%;
+    display: flex;
+    align-items: flex-end;
+  }
+
   picture, img {
     width: 100%;
     height: auto;
     // object-fit: cont;
   }
+}
+
+.section {
+  padding-bottom: 0;
+  @media (min-width: $md) {
+    padding-bottom: 10rem;
+  }
+  
 }
