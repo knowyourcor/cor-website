@@ -1,27 +1,16 @@
-import { useState, useEffect } from "react";
-import Layout from "../components/Layout";
+import { useEffect } from "react";
+import TagManager from "react-gtm-module";
 import "../styles/globals.scss";
 
 function CorWebsite({ Component, pageProps }) {
-  // Layout grid used for alignment while in development
-  const [layoutActive, setLayoutGrid] = useState(false);
-
-  const toggleGrid = (e) => {
-    if (e.key === "G" && e.shiftKey) {
-      setLayoutGrid((prevState) => !prevState);
-    }
-  };
-
+  // Google Tag Manager
   useEffect(() => {
-    window.addEventListener("keydown", toggleGrid);
-    return () => {
-      window.removeEventListener("keydown", toggleGrid);
-    };
+    // TODO: replace GTM-123456 with COR's GTM ID
+    // TagManager.initialize({ gtmId: "GTM-123456" });
   }, []);
   return (
     <>
       <Component {...pageProps} />
-      <Layout isActive={layoutActive} />
     </>
   );
 }
