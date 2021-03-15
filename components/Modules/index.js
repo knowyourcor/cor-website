@@ -33,7 +33,7 @@ const moduleDefs = {
 };
 
 const Modules = ({ pageData }) => {
-  console.log("pageData: ", pageData);
+  // console.log("pageData: ", pageData);
   return (
     <>
       {(() => {

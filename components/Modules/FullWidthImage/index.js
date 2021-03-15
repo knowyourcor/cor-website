@@ -4,7 +4,6 @@ import Picture from "../../Picture";
 import styles from "./fullWidthImage.module.scss";
 
 const FullWidthImage = ({ primary }) => {
-  console.log("primary: ", primary);
   return (
     <section className={styles.section}>
       <div className={styles.backgroundImage}>
