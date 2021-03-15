@@ -5,6 +5,7 @@ import {
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
+import FocusLock from "react-focus-lock";
 import { motion } from "framer-motion";
 import styles from "./menu.module.scss";
 
@@ -66,7 +67,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
   };
 
   return (
-    <>
+    <FocusLock disabled={!active}>
       <motion.nav
         className={styles.menu}
         ref={ref}
@@ -134,7 +135,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
         className={[styles.mask, isActive].join(" ")}
         onClick={() => toggle()}
       ></div>
-    </>
+    </FocusLock>
   );
 };
 
