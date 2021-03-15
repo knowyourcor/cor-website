@@ -5,17 +5,23 @@
   --background: rgba(242, 242, 242, 1);
   --font-primary: rgba(0, 0, 0, 1);
   --font-inverted: rgba(255, 255, 255, 1);
-  
-  --color-teal: #5BE1ED;
-  --color-teal-dark: #034561;
-  --color-green: #6FDC8C;
-  --color-white:rgba(242, 242, 242, 1);
-  --color-white-bright:rgba(255, 255, 255, 1);
-  --color-gray: #DBDCDD;
 
-  --font-sans: 'RegolaPro-Book', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  --font-sans-bold: 'RegolaPro-Bold', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  --font-sans-headline: 'FutworaPro-Regular', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --color-teal: #5be1ed;
+  --color-teal-dark: #034561;
+  --color-green: #6fdc8c;
+  --color-white: rgba(242, 242, 242, 1);
+  --color-white-bright: rgba(255, 255, 255, 1);
+  --color-gray: #dbdcdd;
+
+  --font-sans: "RegolaPro-Book", -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+  --font-sans-bold: "RegolaPro-Bold", -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  --font-sans-headline: "FutworaPro-Regular", -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
 html,
@@ -48,20 +54,42 @@ a {
   box-sizing: border-box;
 }
 
+/*
+  This will hide the focus indicator if the element receives focus via the mouse,
+  but it will still show up on keyboard focus.
+*/
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+[data-js-focus-visible] :focus:not([data-focus-visible-added]) {
+  outline: none;
+}
+
+.focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(209, 0, 0, 0.65);
+}
+
 ::selection {
   background-color: var(--color-teal);
   color: var(--font-primary);
 }
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
   font-family: var(--font-sans-headline);
 }
-
 
 h1,
 .h1 {
@@ -205,7 +233,6 @@ a {
   }
   &:hover,
   &:active {
-
   }
 }
 
@@ -221,9 +248,6 @@ button {
 main {
   // padding: 5rem 0;
 }
-
-
-
 
 .keen-slider {
   display: flex;
