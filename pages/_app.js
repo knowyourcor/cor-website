@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import TagManager from "react-gtm-module";
+import "focus-visible";
 import "../styles/globals.scss";
 
 function CorWebsite({ Component, pageProps }) {
