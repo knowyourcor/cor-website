@@ -41,5 +41,6 @@ All images should be managed through Prismic so they're processed and optimized 
 - [react](https://www.npmjs.com/package/react) - standard React
 - [react-dom](https://www.npmjs.com/package/react-dom) - standard React DOM
 - [react-focus-lock](https://www.npmjs.com/package/react-focus-lock) - a11y traps focus - used within main menu
-- [react-mailchimp-subscribe](https://www.npmjs.com/package/react-mailchimp-subscribe) - handle MailChimp integration
+- [react-gtm-module](https://www.npmjs.com/package/react-gtm-module) - handles Google Tag Manager integration
+- [react-mailchimp-subscribe](https://www.npmjs.com/package/react-mailchimp-subscribe) - handles MailChimp integration
 - [sass](https://www.npmjs.com/package/sass) - allows use of SASS/SCSS
