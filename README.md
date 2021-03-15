@@ -2,31 +2,44 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Local development
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Project structure
 
-## Learn More
+- **/lib** - helpers, hooks, contexts, API calls
+- **/pages** - the pages of the website including wrappers for document, app and errors
+- **/public** - all static assets like images, videos, sounds, etc. on `yarn build` these files get moved to the root
+- **/styles** - global and page level SCSS styles
+- **/components** - all site components named accordingly
 
-To learn more about Next.js, take a look at the following resources:
+## Responsive images
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All images should be managed through Prismic so they're processed and optimized by Imgix.com.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Additional notes
 
-## Deploy on Vercel
+- Component level [CSS modules](https://github.com/css-modules/css-modules) are used which has built-in support through [Next.js](https://nextjs.org/docs/basic-features/built-in-css-support)
+- [SCSS](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support) flavor of SASS is used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Package dependencies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [body-scroll-lock](https://www.npmjs.com/package/body-scroll-lock) - prevents scroll when main menu is open
+- [focus-visible](https://www.npmjs.com/package/focus-visible) - only show focus outline when navigating the site using a keyboard
+- [framer-motion](https://www.npmjs.com/package/framer-motion) - UI animations
+- [keen-slider](https://www.npmjs.com/package/keen-slider) - slider/carousel
+- [next](https://www.npmjs.com/package/next) - primary website framework
+- [prismic-javascript](https://www.npmjs.com/package/prismic-javascript) - required Prismic javascript utilities
+- [prismic-reactjs](https://www.npmjs.com/package/prismic-reactjs) - required Prismic React package
+- [react](https://www.npmjs.com/package/react) - standard React
+- [react-dom](https://www.npmjs.com/package/react-dom) - standard React DOM
+- [react-focus-lock](https://www.npmjs.com/package/react-focus-lock) - a11y traps focus - used within main menu
+- [react-mailchimp-subscribe](https://www.npmjs.com/package/react-mailchimp-subscribe) - handle MailChimp integration
+- [sass](https://www.npmjs.com/package/sass) - allows use of SASS/SCSS
