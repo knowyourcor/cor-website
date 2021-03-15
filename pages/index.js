@@ -1,5 +1,5 @@
 import Head from "../components/Head";
-import Topbar from "../components/Topbar";
+import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import Modules from "../components/Modules";
 import Alert from "../components/Alert";
@@ -18,7 +18,7 @@ export default function Index({
       <Head title={pageData.meta_title} />
       <Alert preview={preview} />
       <main>
-        <Topbar mainMenuData={mainMenuData} transparent />
+        <Navigation mainMenuData={mainMenuData} transparent />
         <Modules pageData={pageData} />
       </main>
       <Footer

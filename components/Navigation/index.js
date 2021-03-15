@@ -3,9 +3,9 @@ import { motion, useViewportScroll, useTransform } from "framer-motion";
 import Link from "../Link";
 import Menu from "../Menu";
 
-import styles from "./topbar.module.scss";
+import styles from "./navigation.module.scss";
 
-const Topbar = ({ mainMenuData, transparent }) => {
+const Navigation = ({ mainMenuData, transparent }) => {
   // Menu state
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -42,7 +42,7 @@ const Topbar = ({ mainMenuData, transparent }) => {
   return (
     <>
       <motion.div
-        className={styles.topbar}
+        className={styles.navigation}
         style={{
           background,
         }}
@@ -88,4 +88,4 @@ const Topbar = ({ mainMenuData, transparent }) => {
   );
 };
 
-export default Topbar;
+export default Navigation;

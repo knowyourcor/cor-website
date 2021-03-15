@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import Head from "../components/Head";
-import Topbar from "../components/Topbar";
+import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
 import { Container, Row, Column } from "../components/Grid";
@@ -30,7 +30,7 @@ export default function Page({
         <>
           <Head title="Loading..." />
           <main>
-            <Topbar mainMenuData={mainMenuData} />
+            <Navigation mainMenuData={mainMenuData} />
             <Section>
               <Container>
                 <Row>
@@ -54,7 +54,7 @@ export default function Page({
           <Head title={pageData?.meta_title} />
           <Alert preview={preview} />
           <main>
-            <Topbar mainMenuData={mainMenuData} />
+            <Navigation mainMenuData={mainMenuData} />
             <Section>
               <Container>
                 <Row>
