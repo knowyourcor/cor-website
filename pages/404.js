@@ -1,7 +1,7 @@
 import Head from "../components/Head";
 import Section from "../components/Section";
 import { Container, Row, Column } from "../components/Grid";
-import Topbar from "../components/Topbar";
+import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import Alert from "../components/Alert";
 
@@ -20,7 +20,7 @@ export default function Error({
       <Head title="Error" />
       <Alert preview={preview} />
       <main>
-        <Topbar mainMenuData={mainMenuData} />
+        <Navigation mainMenuData={mainMenuData} />
         <Section>
           <Container>
             <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
