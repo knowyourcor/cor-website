@@ -1,11 +1,27 @@
+import { useRef, useEffect } from "react";
 import Link from "../Link";
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from "body-scroll-lock";
 import { motion } from "framer-motion";
 import styles from "./menu.module.scss";
 
-// TODO
-// Add body scroll lock
-
 const Menu = ({ active, toggle, mainMenuData }) => {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current && ref.current.focus();
+
+    ref.current && active
+      ? disableBodyScroll(ref.current)
+      : enableBodyScroll(ref.current);
+
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [active]);
+
   const isActive = active ? styles["menu--active"] : "";
 
   const navVariant = {
@@ -53,6 +69,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
     <>
       <motion.nav
         className={styles.menu}
+        ref={ref}
         style={{ transform: "translateX(-100%)" }}
         initial="closed"
         animate={active ? "open" : "closed"}
