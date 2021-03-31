@@ -69,6 +69,7 @@ export default function Index() {
             )
           })}
         </div>
+        <Link href="/"><a className={["btn btn--inverted"].join(" ")}>Show More</a></Link>
       </Container>
     </Section>
   )

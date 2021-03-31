@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./button.module.scss";
 
 const Button = ({ linkData, labelData }) => {
+  console.log(linkData)
   const WebLink = (link, label) => {
     return (
       <a
