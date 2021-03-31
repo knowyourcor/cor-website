@@ -1,15 +1,18 @@
 import Head from "../Head";
 import Alert from "../Alert"
 import Navigation from "../Navigation";
+import Footer from "../Footer";
 
 import { getMenuData } from "../../lib/api";
 
 const Layout = ({
   children,
   mainMenuData,
+  footerMenuData,
+  tertiaryMenuData,
   classNameVal,
   title,
-  preview
+  preview,
 }) => {
   return (
     <main className={classNameVal}>
@@ -17,6 +20,10 @@ const Layout = ({
       <Alert preview={preview} />
       <Navigation mainMenuData={mainMenuData} />
       {children}
+      <Footer
+        footerMenuData={footerMenuData}
+        tertiaryMenuData={tertiaryMenuData}
+      />
     </main>
   )
 }
