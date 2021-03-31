@@ -28,9 +28,9 @@ const Carousel = ({ fields }) => {
     centered: true,
     breakpoints: {
       "(min-width: 768px)": {
-        slidesPerView: 3,
+        slidesPerView: 2,
         spacing: 50,
-        centered: true,
+        centered: false,
       },
       "(min-width: 1024px)": {
         spacing: 60,
@@ -62,7 +62,6 @@ const Carousel = ({ fields }) => {
         className={["keen-slider"].join(" ")}
       >
         {fields.map((field, index) => {
-          console.log(field)
           return (
             <div className="keen-slider__slide" key={`slide_${index}`}>
               <Slide {...field} />
@@ -71,12 +70,6 @@ const Carousel = ({ fields }) => {
         })}
       </div>
     </div>
-    // <Container>
-    //   <Row justify="space-between" align="center" textAlign={{ xs: "center", sm: "left" }}>
-    //     <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
-    //     </Column>
-    //   </Row>
-    // </Container>
   );
 };
 

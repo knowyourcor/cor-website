@@ -89,7 +89,11 @@
     span {
       margin-top: 27px;
     }
+  }
+}
 
+@media (max-width: $xs) {
+  .featuredWrap{
     a {
       justify-content: center;
     }
