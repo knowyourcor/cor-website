@@ -5,9 +5,8 @@ import Paragraph from "../components/Paragraph"
 import Image from "../components/Image";
 import TeamCarousel from "../components/TeamCarousel"
 import FeaturedPress from "../components/FeaturedPress"
-// import Hero from "./Hero"
-// import TextImage from "./TextImage"
-// import Team from "./Team"
+
+import { getMenuData } from "../lib/api";
 
 import styles from "../styles/about.module.scss"
 
@@ -59,12 +58,19 @@ const fields = [
 ]
 
 export default function Index({
-  preview
+  preview,
+  mainMenuData,
+  footerMenuData,
+  tertiaryMenuData
 }) {
   return (
     <Layout
+      classNameVal={styles.about}
       title="About Us"
       preview={preview}
+      mainMenuData={mainMenuData}
+      footerMenuData={footerMenuData}
+      tertiaryMenuData={tertiaryMenuData}
     >
       <Section className={styles.hero}>
         <Container>
@@ -109,16 +115,21 @@ export default function Index({
         </Container>
         <TeamCarousel fields={fields} />
       </Section>
-      {/* <Team /> */}
       <FeaturedPress />
     </Layout>
   )
 }
 
 export async function getStaticProps({ preview = false }) {
+  const mainMenuData = await getMenuData("main-menu");
+  const footerMenuData = await getMenuData("footer-menu");
+  const tertiaryMenuData = await getMenuData("tertiary-menu");
   return {
     props: {
-      preview
+      preview,
+      mainMenuData,
+      footerMenuData,
+      tertiaryMenuData
     },
     revalidate: 1, // In seconds
   };

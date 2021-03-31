@@ -15,32 +15,34 @@ const Layout = ({
   preview,
 }) => {
   return (
-    <main className={classNameVal}>
+    <>
       <Head title={title} />
       <Alert preview={preview} />
-      <Navigation mainMenuData={mainMenuData} />
-      {children}
+      <main className={classNameVal}>
+        <Navigation mainMenuData={mainMenuData} />
+        {children}
+      </main>
       <Footer
         footerMenuData={footerMenuData}
         tertiaryMenuData={tertiaryMenuData}
       />
-    </main>
+    </>
   )
 }
 
 export default Layout
 
 
-export async function getStaticProps() {
-  const mainMenuData = await getMenuData("main-menu");
-  const footerMenuData = await getMenuData("footer-menu");
-  const tertiaryMenuData = await getMenuData("tertiary-menu");
-  return {
-    props: {
-      mainMenuData,
-      footerMenuData,
-      tertiaryMenuData,
-    },
-    revalidate: 1, // In seconds
-  };
-}
+// export async function getStaticProps() {
+//   const mainMenuData = await getMenuData("main-menu");
+//   const footerMenuData = await getMenuData("footer-menu");
+//   const tertiaryMenuData = await getMenuData("tertiary-menu");
+//   return {
+//     props: {
+//       mainMenuData,
+//       footerMenuData,
+//       tertiaryMenuData,
+//     },
+//     revalidate: 1, // In seconds
+//   };
+// }
