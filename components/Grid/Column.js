@@ -66,18 +66,18 @@ const Column = (props) => {
   // Handle background color
   props.backgroundColor
     ? classes.push(
-        styles[
-          `background${
-            props.backgroundColor.charAt(0).toUpperCase() +
-            props.backgroundColor.slice(1)
-          }`
-        ]
-      )
+      styles[
+      `background${props.backgroundColor.charAt(0).toUpperCase() +
+      props.backgroundColor.slice(1)
+      }`
+      ]
+    )
     : "";
 
   // Handle justify
   props.justify ? classes.push(styles[`justify-${props.justify}`]) : "";
   props.zIndex ? classes.push(styles[`zIndex-${props.zIndex}`]) : "";
+  props.className ? classes.push(props.className) : "";
 
   return <div className={classes.join(" ")}>{props.children}</div>;
 };

@@ -8,15 +8,16 @@ import styles from "./navigation.module.scss";
 const Navigation = ({ mainMenuData, transparent }) => {
   // Menu state
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [scrollDetect, setScrollDetect] = useState(false)
 
   const { scrollY } = useViewportScroll();
 
   const background = transparent
     ? useTransform(
-        scrollY,
-        [50, 250],
-        ["rgba(242, 242, 242, 0)", "rgba(242, 242, 242, 1)"]
-      )
+      scrollY,
+      [50, 250],
+      ["rgba(242, 242, 242, 0)", "rgba(242, 242, 242, 1)"]
+    )
     : "background: rgba(242, 242, 242, 1)";
 
   const opacity = useTransform(scrollY, [50, 250], ["0", "1"]);
@@ -42,7 +43,7 @@ const Navigation = ({ mainMenuData, transparent }) => {
   return (
     <>
       <motion.div
-        className={styles.navigation}
+        className={`${styles.navigation} ${!transparent && styles.withBG}`}
         style={{
           background,
         }}
@@ -51,15 +52,22 @@ const Navigation = ({ mainMenuData, transparent }) => {
         <div className={styles.container}>
           <button
             onClick={() => setMenuOpen(!isMenuOpen)}
-            className={styles.menuToggle}
+            className={`${styles.menuToggle} ${styles.customBurger} ${isMenuOpen && styles.openBurger}`}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16">
+            {/* <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16">
               <g fill="none" stroke="#000" strokeWidth="1.45">
                 <path d="M22 15H0M22 8H0M22 1H0" />
               </g>
-            </svg>
+            </svg> */}
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
-
+          <Menu
+            mainMenuData={mainMenuData}
+            active={isMenuOpen}
+            toggle={() => setMenuOpen(!isMenuOpen)}
+          />
           <Link href="/">
             <a
               className={styles.logo}
@@ -77,13 +85,11 @@ const Navigation = ({ mainMenuData, transparent }) => {
               </svg>
             </a>
           </Link>
+          <div className={styles.cart}>
+            <Link href="/"><a className={styles.cart}>Bag Cart</a></Link>
+          </div>
         </div>
       </motion.div>
-      <Menu
-        mainMenuData={mainMenuData}
-        active={isMenuOpen}
-        toggle={() => setMenuOpen(!isMenuOpen)}
-      />
     </>
   );
 };

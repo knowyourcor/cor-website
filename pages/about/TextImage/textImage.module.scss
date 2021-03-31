@@ -1,0 +1,28 @@
+@import "../../../styles/_variables.scss";
+
+.textImageWrap {
+  padding-top: 0;
+}
+
+.title {
+  margin-bottom: 46px;
+
+  font-size: 60px;
+  line-height: 1.3;
+  letter-spacing: -1.8px;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1280px) {
+  .title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: $sm) {
+  .title {
+    margin-top: 27px;    
+    margin-bottom: 13px;
+
+    font-size: 39px;
+  }
+}

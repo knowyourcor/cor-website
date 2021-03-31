@@ -1,0 +1,50 @@
+@import "../../../styles/_variables.scss";
+
+.customContainer {
+  padding-top: 150px;
+  // padding-left: 2.142857%;
+  // margin-left: auto;
+  // margin-right: 0;
+  // max-width: 105rem;
+}
+
+.portrait {
+  img {
+    border-radius: 8px;
+  }
+}
+
+.text {
+  margin-top: 0;
+  margin-bottom: 0;
+  
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.tName {
+  margin-top: 10px;
+  
+  font-family: var(--font-sans-bold);
+  font-size: 16px;
+}
+
+.tPosition {
+  margin-top: 8px;
+
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.tInfo {
+  margin-top: 15px;
+
+  font-size: 14px;
+}
+
+@media (max-width: $sm) {
+  .customContainer {
+    padding-top: 30px;
+  }
+}

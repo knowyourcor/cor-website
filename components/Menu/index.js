@@ -77,7 +77,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
         variants={navVariant}
       >
         <div className={styles.top}>
-          <Link href="/">
+          {/* <Link href="/">
             <a onClick={() => toggle()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,8 +88,8 @@ const Menu = ({ active, toggle, mainMenuData }) => {
                 <path d="M16.875 9.35l2.485-.807a8.586 8.586 0 00-8.164-5.935V5.22a5.973 5.973 0 015.679 4.126" />
               </svg>
             </a>
-          </Link>
-          <button className={styles.linkClose} onClick={() => toggle()}>
+          </Link> */}
+          {/* <button className={styles.linkClose} onClick={() => toggle()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16.414"
@@ -101,7 +101,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
                 <path data-name="Line" d="M15.707.707l-15 15" />
               </g>
             </svg>
-          </button>
+          </button> */}
         </div>
         <motion.ul variants={navItemsVariants}>
           {mainMenuData?.menu_links.map((link, index) => {

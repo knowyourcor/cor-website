@@ -1,0 +1,44 @@
+@import "../../../styles/_variables.scss";
+
+.hero {
+  h2 {
+    margin-right: auto;
+    width: 836px;
+    max-width: 100%;
+
+    font-size: 89px;
+    line-height: 1.12;
+  }
+  
+  img {
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+
+  p {
+    padding-top: 100px;
+  }
+}
+
+
+.customWidth {
+  margin-right: auto;
+  width: 836px;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1280px) {
+  .hero {
+    h2 {
+      font-size: 61px;
+    }
+  }
+}
+
+@media (max-width: $sm) {
+  .hero {
+    h2 {
+      font-size: 39px;
+    }
+  }
+}
