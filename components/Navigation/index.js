@@ -40,10 +40,21 @@ const Navigation = ({ mainMenuData, transparent }) => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY !== 0) {
+        setScrollDetect(true)
+      } else setScrollDetect(false)
+    });
+  }, [])
+
   return (
     <>
       <motion.div
-        className={`${styles.navigation} ${!transparent && styles.withBG}`}
+        className={[
+          styles.navigation,
+          !transparent && styles.withBG,
+          scrollDetect && styles.onScroll].join(" ")}
         style={{
           background,
         }}
@@ -52,7 +63,7 @@ const Navigation = ({ mainMenuData, transparent }) => {
         <div className={styles.container}>
           <button
             onClick={() => setMenuOpen(!isMenuOpen)}
-            className={`${styles.menuToggle} ${styles.customBurger} ${isMenuOpen && styles.openBurger}`}
+            className={[styles.customBurger, isMenuOpen && styles.openBurger].join(" ")}
           >
             {/* <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16">
               <g fill="none" stroke="#000" strokeWidth="1.45">

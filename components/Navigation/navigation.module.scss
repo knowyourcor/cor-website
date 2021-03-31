@@ -28,6 +28,7 @@
     color: var(--color-white-bright);
 
     cursor: pointer;
+    transition: all .3s ease-in;
 
     &.active {
       color: rgba(0, 0, 0, 0.45);
@@ -65,6 +66,8 @@
       height: 18px;
 
       fill: var(--color-white-bright);
+
+      transition: all .3s ease-in;
     }
   }
 }
@@ -75,6 +78,8 @@
   .logo {
     svg {
       fill: var(--font-primary);
+
+      transition: all .3s ease-in;
     }
   }
 
@@ -228,6 +233,24 @@
       
       transform: rotate(-45deg);
     }
+  }
+}
+
+.onScroll {
+  .customBurger span {
+    background-color: var(--font-primary);
+  }
+
+  .openBurger span {
+    background-color: var(--color-green);
+  }
+
+  a {
+    color: var(--font-primary);
+  }
+
+  .logo svg {
+    fill: var(--font-primary);
   }
 }
 
