@@ -1,0 +1,169 @@
+.postContent {
+  &:nth-of-type(2n) .imageWrapper {
+    margin-left: auto;
+    width: 91.6%;
+    height: calc(100vh + 150px);
+  }
+  
+  &:nth-of-type(odd) .imageWrapper {
+    width: 75.1%;
+    height: calc(100vh + 95px);
+  }
+  
+  .imageWrapper {
+    position: relative;
+    
+    margin-top: 83px;
+    max-width: 100%;
+  }
+  
+  .contentText {
+    .contentWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 87px 0 13px;
+    }
+  
+    .contentHolder {
+      &:first-child {
+        margin-right: 13px;
+        width: 40%;
+      }
+  
+      &:last-child {
+        padding-top: 8px;
+        width: 55%;
+      }
+    }
+  
+    .heading {
+      font-family: var(--font-sans);
+      font-size: 29px;
+      font-weight: 600;
+    }
+  
+    p:not(:first-child) {
+      margin: 95px 0 0;
+    }
+  
+    .quoteText {
+      font-size: 50px;
+      font-weight: 600;
+      line-height: 66px;
+    }
+  }
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .postContent {
+    &:nth-of-type(2n) .imageWrapper {
+      width: 95.9%;
+      height: 100vh;
+    }
+
+    &:nth-of-type(odd) .imageWrapper {
+      height: 95vh;
+    }
+
+    .imageWrapper {
+      margin-top: 60px;
+    }
+
+    
+    .contentText {
+      .contentWrapper {
+        padding: 65px 0 13px;
+      }
+
+      p:not(:first-child) {
+        margin-top: 70px;
+      }
+
+      .quoteText {
+        font-size: 35px;
+        line-height: 50px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .postContent {
+    &:nth-of-type(2n) .imageWrapper {
+      width: 95.9%;
+      height: 80vh;
+    }
+
+    &:nth-of-type(odd) .imageWrapper {
+      height: 70vh;
+    }
+
+    .imageWrapper {
+      margin-top: 60px;
+    }
+
+    
+    .contentText {
+      .contentWrapper {
+        padding: 65px 0 13px;
+      }
+
+      .heading {
+        font-size: 25px;
+      }
+
+      p:not(:first-child) {
+        margin-top: 70px;
+      }
+
+      .quoteText {
+        font-size: 27px;
+        line-height: 45px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .postContent {
+    &:nth-of-type(2n) .imageWrapper {
+      width: 100%;
+      height: 70vh;
+    }
+
+    &:nth-of-type(odd) .imageWrapper {
+      width: 100%;
+      height: 70vh;
+    }
+
+    .imageWrapper {
+      margin-top: 40px;
+    }
+
+    
+    .contentText {
+      .contentWrapper {
+        padding: 65px 0 13px;
+      }
+
+      .contentHolder:first-child,
+      .contentHolder:last-child {
+        width: 100%;
+      }
+
+      .heading {
+        font-size: 25px;
+      }
+
+      p:not(:first-child) {
+        margin-top: 70px;
+      }
+
+      .quoteText {
+        font-size: 27px;
+        line-height: 45px;
+      }
+    }
+  }
+}
