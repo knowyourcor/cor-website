@@ -34,6 +34,18 @@
     font-family: var(--font-sans-bold);
     font-size: 20px;
     line-height: 1.5;
+
+    // &.btnInverted {
+    //   padding: 25px 23px;
+    //   justify-content: center;
+
+    //   font-family: var(--font-sans-bold);
+    //   font-size: 16.5px;
+    
+    //   background-color: transparent;
+    //   border: solid 1.5px var(--font-primary);
+    //   border-radius: 33px;
+    // }
   }
 
   svg {
@@ -42,9 +54,13 @@
   }
 }
 
+.featuredList {
+  margin-bottom: 97.5px;
+  width: 100%;
+}
+
 .featuredItem {
   padding-bottom: 49.5px;
-  margin-bottom: 49.5px;
 
   border-bottom: 3px solid var(--color-suva-grey);
 
@@ -58,6 +74,10 @@
       justify-content: center;
       margin-left: 0;
     }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 49.5px;
   }
 }
 
@@ -93,5 +113,9 @@
     a {
       justify-content: center;
     }
+  }
+
+  .featuredList {
+    margin-bottom: 68.5px;
   }
 }

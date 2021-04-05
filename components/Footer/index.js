@@ -70,54 +70,49 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
       <Container>
         <div className={styles.secondary}>
           <Row>
-            <Column columns={{ xs: 14, md: 2 }}>
-              <Link href="/">
-                <a>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22.393"
-                    height="22.393"
-                    className={styles.mark}
-                  >
-                    <path
-                      data-name="Path 40"
-                      d="M19.36 8.544a8.584 8.584 0 11-8.164-5.931V.003a11.194 11.194 0 1010.649 7.736z"
-                    />
-                    <path
-                      data-name="Path 41"
-                      d="M16.875 9.35l2.485-.807a8.586 8.586 0 00-8.164-5.935V5.22a5.973 5.973 0 015.679 4.126"
-                    />
-                  </svg>
-                </a>
-              </Link>
-            </Column>
-            {footerMenuData && (
-              <>
-                {internalLinksToColumn.map((set, index) => {
-                  return (
-                    <Column
-                      columns={{ xs: 6, md: 3 }}
-                      key={`menu-set-${index}`}
-                    >
-                      <ul>
-                        {set.map((link, index) => {
-                          return PageLink(link, index);
-                        })}
-                      </ul>
-                    </Column>
-                  );
-                })}
-
-                <Column columns={{ xs: 6, md: 2 }}>
-                  <ul className={styles.socialLinks}>
-                    {externalLinks.map((link, index) => {
-                      return WebLink(link, index);
-                    })}
-                  </ul>
+            <Column columns={{ xs: 14, md: 10 }}>
+              <Row>
+                <Column columns={{ xs: 14, md: 2 }}>
+                  <Link href="/">
+                    <a>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22.393"
+                        height="22.393"
+                        className={styles.mark}
+                      >
+                        <path
+                          data-name="Path 40"
+                          d="M19.36 8.544a8.584 8.584 0 11-8.164-5.931V.003a11.194 11.194 0 1010.649 7.736z"
+                        />
+                        <path
+                          data-name="Path 41"
+                          d="M16.875 9.35l2.485-.807a8.586 8.586 0 00-8.164-5.935V5.22a5.973 5.973 0 015.679 4.126"
+                        />
+                      </svg>
+                    </a>
+                  </Link>
                 </Column>
-              </>
-            )}
-
+                {footerMenuData && (
+                  <>
+                    {internalLinksToColumn.map((set, index) => {
+                      return (
+                        <Column
+                          columns={{ xs: 6, md: 2 }}
+                          key={`menu-set-${index}`}
+                        >
+                          <ul>
+                            {set.map((link, index) => {
+                              return PageLink(link, index);
+                            })}
+                          </ul>
+                        </Column>
+                      );
+                    })}
+                  </>
+                )}
+              </Row>
+            </Column>
             <Column columns={{ xs: 14, md: 4 }}>
               <EmailSignup />
             </Column>
@@ -126,10 +121,10 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
 
         <div className={styles.tertiary}>
           <Row align="center">
-            <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 2, sm: 1 }}>
+            <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 2, sm: 1 }} justify="center">
               <p>©{new Date().getFullYear()} COR LLC</p>
             </Column>
-            <Column columns={{ xs: 14, sm: 5 }} orders={{ xs: 1, sm: 2 }}>
+            <Column columns={{ xs: 14, sm: 10 }} orders={{ xs: 1, sm: 2 }} justify="center">
               <ul>
                 {tertiaryMenuData && (
                   <>
@@ -150,6 +145,15 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                 )}
               </ul>
             </Column>
+            {footerMenuData && (
+              <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 3, sm: 3 }} justify="center">
+                <ul className={styles.socialLinks}>
+                  {externalLinks.map((link, index) => {
+                    return WebLink(link, index);
+                  })}
+                </ul>
+              </Column>
+            )}
           </Row>
         </div>
       </Container>

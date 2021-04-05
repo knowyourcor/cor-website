@@ -21,13 +21,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-right: 1rem;
+    // padding-right: 1rem;
     // padding: 0.5rem 1rem;
 
     font-size: 0.75rem;
     color: var(--color-white-bright);
 
     cursor: pointer;
+    transition: all .3s ease-in;
 
     &.active {
       color: rgba(0, 0, 0, 0.45);
@@ -65,6 +66,8 @@
       height: 18px;
 
       fill: var(--color-white-bright);
+
+      transition: all .3s ease-in;
     }
   }
 }
@@ -75,12 +78,25 @@
   .logo {
     svg {
       fill: var(--font-primary);
+
+      transition: all .3s ease-in;
     }
   }
 
   nav a,
   .cart {
     color: var(--font-primary);
+  }
+}
+
+.cartIcon {
+  padding-right: 0;
+
+  svg {
+    width: 25px;
+    height: 25px;
+  
+    fill: var(--color-white-bright)
   }
 }
 
@@ -228,6 +244,31 @@
       
       transform: rotate(-45deg);
     }
+  }
+}
+
+.withBG,
+.onScroll {
+  .customBurger span {
+    background-color: var(--font-primary);
+  }
+  
+  .openBurger span {
+    background-color: var(--color-green);
+  }
+
+  .cartIcon svg {
+    fill: var(--font-primary);
+  }
+}
+
+.onScroll {
+  a {
+    color: var(--font-primary);
+  }
+
+  .logo svg {
+    fill: var(--font-primary);
   }
 }
 

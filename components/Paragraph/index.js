@@ -1,5 +1,3 @@
-
-
 export default function Index(props) {
   const classes = ["text__paragraph"]
 
