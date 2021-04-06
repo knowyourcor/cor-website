@@ -1,0 +1,72 @@
+@import "../../../styles/variables";
+
+.textDescriptionImage {
+  h1 {
+    font-family: var(--font-sans-bold);
+    font-size: 20px;
+    color: var(--color-suva-grey);
+    line-height: 2.34;
+  }
+  
+  h2 {
+    margin-right: auto;
+    width: 836px;
+    max-width: 100%;
+  
+    font-size: 89px;
+    line-height: 1.12;
+  }
+
+  p {
+    padding-top: 100px;
+    margin-right: auto;
+    width: 836px;
+    max-width: 100%;
+  }
+}
+
+.image {
+  margin-right: auto;
+  width: 1336px;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1280px) {
+  .textDescriptionImage {
+    h2 {
+      font-size: 61px;
+    }
+  }
+}
+
+@media (max-width: $sm) {
+  .textDescriptionImage {
+    padding-bottom: 88px;
+
+    h1 {
+      font-size: 12px;
+    }
+
+    h2 {
+      margin-bottom: 49px;
+
+      font-size: 34px;
+    }
+
+    p {
+      padding-top: 58px;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .textDescriptionImage {
+    h2, p {
+      width: 350px;
+    }
+  }
+
+  .image {
+    width: 382px;
+  }
+}

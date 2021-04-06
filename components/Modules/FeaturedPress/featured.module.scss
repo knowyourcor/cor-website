@@ -1,4 +1,4 @@
-@import "../../styles/_variables.scss";
+@import "../../../styles/variables";
 
 .featuredWrap {
   h2 {
@@ -35,22 +35,18 @@
     font-size: 20px;
     line-height: 1.5;
 
-    // &.btnInverted {
-    //   padding: 25px 23px;
-    //   justify-content: center;
-
-    //   font-family: var(--font-sans-bold);
-    //   font-size: 16.5px;
-    
-    //   background-color: transparent;
-    //   border: solid 1.5px var(--font-primary);
-    //   border-radius: 33px;
-    // }
+    p {
+      margin-bottom: 0;
+    }
   }
 
   svg {
     width: 48px;
     height: 29px;
+  }
+
+  img {
+    width: 100%;
   }
 }
 
@@ -94,24 +90,27 @@
   }
 }
 
-@media (max-width: $sm) {
+@media (max-width: $md) {
   .featuredWrap{
     h2 {
-      padding-bottom: 49.5px;
-
-      font-size: 39px;
+      padding-bottom: 38.6px;
     }
 
     h3 {
-      font-size: 28px;
+      margin-top: 18px;
+      margin-bottom: 18px;
+
+      font-size: 24px;
     }
 
     span {
       margin-top: 27px;
+
+      font-size: 12px;
     }
 
-    a {
-      justify-content: center;
+    h2, a {
+      font-size: 34px;
     }
   }
 

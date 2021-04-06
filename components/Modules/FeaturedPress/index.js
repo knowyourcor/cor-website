@@ -1,8 +1,11 @@
+import { RichText } from "prismic-reactjs";
+import moment from "moment"
+
 import Image from "next/image"
 import Link from "next/link"
 
-import Section from "../Section"
-import { Container, Row, Column } from "../Grid"
+import Section from "../../Section";
+import { Container, Row, Column } from "../../Grid";
 
 import styles from "./featured.module.scss"
 
@@ -30,30 +33,28 @@ const primary = [
   }
 ]
 
-export default function Index() {
+export default function Index({ primary, fields }) {
   return (
     <Section className={styles.featuredWrap}>
       <Container>
-        <h2>Featured press</h2>
+        <RichText render={primary.heading} />
         <div className={styles.featuredList}>
-          {primary.map((item, i) => {
+          {fields.map((field, i) => {
+            let date = moment(field.date).format('LL')
             return (
               <div key={i} className={styles.featuredItem}>
-                <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
+                <Row align="center" textAlign={{ xs: "left" }}>
                   <Column columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }} className="custom__column" justify="center">
-                    <Image
-                      src={item.image}
-                      alt="Featured Press"
-                      width={753}
-                      height={495}
+                    <img
+                      src={field.image.url}
                     />
                   </Column>
                   <Column columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }} justify="center">
-                    <span>{item.date}</span>
-                    <h3>{item.title}</h3>
-                    <Link href={item.url}>
+                    <span>{date}</span>
+                    <RichText render={field.heading} />
+                    <Link href="/">
                       <a>
-                        {item.urlName}
+                        <RichText render={field.link_label} />
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512">
                           <g>
                             <g>

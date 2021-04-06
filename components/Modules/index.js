@@ -13,6 +13,10 @@ import ShopAccordion from "./ShopAccordion";
 import ShopTextImage from "./ShopTextImage";
 import Tabs from "./Tabs";
 import TextAccordion from "./TextAccordion";
+import TextDescriptionImage from "./TextDescriptionImage"
+import DualGrid from "./DualGrid"
+import TextCarousel from "./TextCarousel"
+import FeaturedPress from "./FeaturedPress"
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -30,6 +34,10 @@ const moduleDefs = {
   ["text"]: Text,
   ["text_image"]: TextImage,
   ["text_accordion"]: TextAccordion,
+  ["text_description_image"]: TextDescriptionImage,
+  ["dual_grid"]: DualGrid,
+  ["text___carousel"]: TextCarousel,
+  ["featured_press"]: FeaturedPress
 };
 
 const Modules = ({ pageData }) => {
