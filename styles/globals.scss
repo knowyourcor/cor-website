@@ -306,6 +306,10 @@ main {
 }
 
 .btn--inverted {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background-color: transparent;
   border: solid 1.5px var(--font-primary);
   border-radius: 33px;

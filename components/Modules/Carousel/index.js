@@ -24,12 +24,12 @@ const Mask = ({ path }) => {
   );
 };
 
-const Slide = ({ headline, text, image }) => {
+const Slide = ({ headline, text, image, position }) => {
   return (
     <div className={styles.container}>
       <div className={styles.portrait}>
         <Picture image={image} className={styles.image} />
-        <Mask />
+        {/* <Mask /> */}
       </div>
 
       <div className={styles.content}>
@@ -68,17 +68,17 @@ const Carousel = ({ primary, fields }) => {
       },
       "(min-width: 1680px)": {
         spacing: 100,
-        slidesPerView: 4,
+        slidesPerView: 2,
         centered: true,
       },
     },
   });
 
   return (
-    <Section backgroundColor={primary.background_color} align="center">
+    <Section className={styles.carouselWrap} backgroundColor={primary.background_color} align="center">
       <Container>
         <Row align="center" textAlign={{ xs: "left" }}>
-          <Column columns={{ xs: 14, md: 6 }} offsets={{ md: 1 }}>
+          <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }} className="custom__column">
             {primary.headline[0].text && <RichText render={primary.headline} />}
             {primary.text[0].text && <RichText render={primary.text} />}
           </Column>

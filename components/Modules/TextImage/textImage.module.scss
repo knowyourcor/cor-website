@@ -1,6 +1,17 @@
+.imgWrap {
+  align-items: center;
+}
+
 .image {
-  width: 100%;
+  // width: 100%;
+  margin: 0 auto;
+  width: 855px;
+  max-width: 100%;
   height: auto;
   display: block;
   margin: 1rem 0 2rem;
+}
+
+.invertedLink {
+  margin-left: 0;
 }

@@ -25,15 +25,17 @@ export default function Item({ data, isExpanded, expandItem, index }) {
   };
 
   return (
-    <div className={styles.item}>
+    <div className={[styles.item, isExpanded && styles.activeItem].join(" ")}>
       <div
         className={[styles.label, activeTabClass].join(" ")}
         onClick={expandItem}
       >
-        <div>
-          <span>{handleIndex(index)}</span> {data.title[0].text}
+        <div className={styles.accordionHead}>
+          <span className={styles.itemIndex}>{handleIndex(index)}</span>
+          <span className={styles.itemLabel}>{data.title[0].text}</span>
+          <div className={styles.cBorder} />
         </div>
-        <AnimatePresence initial={false}>
+        {/* <AnimatePresence initial={false}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -54,7 +56,7 @@ export default function Item({ data, isExpanded, expandItem, index }) {
               <line y1="10" y2="10" x2="20" fill="none" strokeWidth="2" />
             </g>
           </svg>
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
       <AnimatePresence initial={false}>
         {isExpanded && <Content {...data} />}
