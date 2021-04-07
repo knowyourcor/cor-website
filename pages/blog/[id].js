@@ -4,18 +4,22 @@ import Content from "./Content/Index"
 
 import styles from "../../styles/blog/blog-post.module.scss"
 
-export const getStaticPaths = async () => {
-  const res = await fetch('http://jsonplaceholder.typicode.com/posts');
-  const data = await res.json();
+import { getBlogData } from "../../lib/api"
 
-  const paths = data.map(post => {
+export const getStaticPaths = async (previewData) => {
+  const pageData = await getBlogData(previewData);
+  // const res = await fetch('http://jsonplaceholder.typicode.com/posts');
+  // const data = await res.json();
+
+
+  const paths = pageData.map(post => {
     return {
-      params: { id: post.id.toString() }
+      params: { id: post.node._meta.uid }
     }
   })
 
   return {
-    paths: paths,
+    paths,
     fallback: false
   }
 }
@@ -49,10 +53,9 @@ const content = [
   }
 ]
 
-const Post = ({ post, props }) => {
-  console.log(content)
 
-  return ( 
+const Post = ({ post, props }) => {
+  return (
     <Layout
       classNameVal={styles.blogPost}
       title="Blog Post"
@@ -70,5 +73,20 @@ const Post = ({ post, props }) => {
     </Layout>
   );
 }
- 
+
 export default Post;
+
+// export async function getStaticProps({ preview = false, previewData, params = "optimizing-your-health" }) {
+//   const pageData = await getBlogData(params, previewData);
+//   const res = await fetch('http://jsonplaceholder.typicode.com/posts');
+//   const data = await res.json();
+
+//   return {
+//     props: {
+//       preview,
+//       pageData,
+//       posts: data.slice(0, 4)
+//     },
+//     revalidate: 1, // In seconds
+//   }
+// }

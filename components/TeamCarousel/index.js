@@ -1,4 +1,3 @@
-import { useRef } from "react"
 import { RichText } from "prismic-reactjs";
 import { useKeenSlider } from "keen-slider/react"
 import { Swiper, SwiperSlide } from 'swiper/react';
