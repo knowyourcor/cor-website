@@ -55,18 +55,18 @@ export default function Page({
           <Alert preview={preview} />
           <main>
             <Navigation mainMenuData={mainMenuData} />
-            <Section>
+            <Modules pageData={pageData} />
+            {/* <Section>
               <Container>
                 <Row>
                   <Column
                     columns={{ xs: 14, sm: 12, md: 10 }}
                     offsets={{ sm: 1, md: 2 }}
                   >
-                    <Modules pageData={pageData} />
                   </Column>
                 </Row>
               </Container>
-            </Section>
+            </Section> */}
           </main>
           <Footer
             footerMenuData={footerMenuData}

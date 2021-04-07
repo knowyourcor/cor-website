@@ -7,7 +7,6 @@ import TeamCarousel from "../../TeamCarousel"
 import styles from "./index.module.scss"
 
 export default function Index({ primary, fields }) {
-  console.log(primary)
   return (
     <Section style={{ backgroundColor: primary.background_color }} className={styles.textCarousel}>
       <Container>

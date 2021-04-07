@@ -2,6 +2,7 @@
 
 .customContainer {
   padding-top: 150px;
+  margin-left: auto;
 }
 
 .content {
@@ -32,6 +33,8 @@
 
 .portrait {
   img {
+    max-width: 100%;
+
     border-radius: 8px;
   }
 }
@@ -42,6 +45,12 @@
   
   line-height: normal;
   text-transform: capitalize;
+}
+
+@media (min-width: 576px) {
+  .customContainer {
+    width: 108rem;
+  }
 }
 
 @media (max-width: $sm) {

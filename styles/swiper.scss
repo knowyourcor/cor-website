@@ -1,0 +1,54 @@
+@import "./variables";
+
+//ABout: Team Carousel
+.team-carousel {
+  img, p {
+    transition: all .5s ease-in;
+  }
+
+  img {
+    width: 495px;
+    height: 580px;
+  }
+  
+  p {
+    visibility: hidden;
+  }
+
+  .swiper-slide-active {
+    p {
+      visibility: visible;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .team-carousel {
+    .swiper-slide-active {
+      img {
+        width: 622px;
+        height: 767px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .team-carousel {
+    padding-left: 15px;
+
+    .swiper-slide {
+      width: 45%;
+
+      &:not(:first-child) {
+        width: 40%;
+      }
+    }
+
+    img {
+      width: 230px;
+      height: 319px;
+    }
+  }
+}

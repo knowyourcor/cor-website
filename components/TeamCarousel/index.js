@@ -1,11 +1,13 @@
+import { useRef } from "react"
 import { RichText } from "prismic-reactjs";
 import { useKeenSlider } from "keen-slider/react"
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import styles from "./carousel.module.scss"
 
 const Slide = ({ name, position, description, image }) => {
   return (
-    <div className={styles.container}>
+    <>
       <div className={styles.portrait}>
         <img
           src={image.url}
@@ -17,7 +19,9 @@ const Slide = ({ name, position, description, image }) => {
         <RichText render={position} />
         <RichText render={description} />
       </div>
-    </div>
+    </>
+    // <div className={styles.container}>
+    // </div>
   );
 };
 
@@ -26,6 +30,10 @@ const Carousel = ({ fields }) => {
     slidesPerView: 2,
     spacing: 20,
     centered: true,
+    initialSlide: 1,
+    changed: function (slide) {
+      console.log('Slide ' + slide + ' is ' + active)
+    },
     breakpoints: {
       "(min-width: 768px)": {
         slidesPerView: 2,
@@ -54,10 +62,44 @@ const Carousel = ({ fields }) => {
       },
     },
   });
+  const swiperInit = {
+    spaceBetween: 50,
+    slidesPerView: 3,
+    effect: "fade",
+    loop: true,
+    grabCursor: true,
+    // breakpoints: {
+    //   320: {
+    //     slidesPerView: "auto",
+    //     spaceBetween: 20,
+    //     loop: false,
+    //   },
+    //   576: {
+    //     slidesPerView: 3,
+    //     spaceBetween: 20,
+    //     loop: true,
+    //   },
+    //   768: {
+    //     slidesPerView: 3,
+    //     spaceBetween: 20,
+    //     loop: true,
+    //   },
+    //   992: {
+    //     slidesPerView: 3,
+    //     spaceBetween: 20,
+    //     loop: true,
+    //   },
+    //   1200: {
+    //     slidesPerView: 3,
+    //     spaceBetween: 20,
+    //     loop: true,
+    //   },
+    // }
+  }
 
   return (
-    <div className={styles.customContainer}>
-      <div
+    <div className={["team-carousel", styles.customContainer].join(" ")}>
+      {/* <div
         ref={sliderRef}
         className={["keen-slider"].join(" ")}
       >
@@ -68,8 +110,17 @@ const Carousel = ({ fields }) => {
             </div>
           );
         })}
-      </div>
-    </div>
+      </div> */}
+      <Swiper {...swiperInit}>
+        {fields.map((field, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <Slide {...field} />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div >
   );
 };
 

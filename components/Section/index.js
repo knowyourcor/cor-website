@@ -1,7 +1,6 @@
 import styles from "./section.module.scss";
 
 const Section = (props) => {
-  console.log(props.backgroundColor)
   // Create array with base class
   const classes = [styles.section];
 
@@ -22,7 +21,6 @@ const Section = (props) => {
 
   return (
     <section id={props.id} className={classes.join(" ")} style={props.style}>
-      {/* // <section id={props.id} className={classes.join(" ")} style={props.backgroundColor}> */}
       { props.children}
     </section >
   );
