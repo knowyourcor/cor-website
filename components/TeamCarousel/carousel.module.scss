@@ -58,3 +58,15 @@
     padding-top: 30px;
   }
 }
+
+@media (min-width: 992px) and (max-width: 1728px) {
+  .customContainer {
+    width: 95%;
+  }
+}
+
+// @media (min-width: 576px) and (max-width: 991px) {
+//   .content {
+//     padding-left: 15px;
+//   }
+// }
