@@ -1,3 +1,4 @@
+@import "../variables";
 
 .blogPost {
   padding-top: 334px;
@@ -6,8 +7,7 @@
 
   background-color: var(--color-light-cyan);
 
-
-  .title {
+  h1 {
     margin-bottom: 47px;
 
     font-family: var(--font-sans);
@@ -19,8 +19,19 @@
   .wrapper {
     display: flex;
   }
-  
-  .subtitle {
+
+  .date {
+    margin-left: 47px;
+  }
+}
+
+.blogPost + footer,
+.blogPost > footer {
+  background-color: var(--color-light-cyan);
+}
+
+.subtitle {
+  p {
     position: relative;
 
     font-size: 21px;
@@ -38,17 +49,13 @@
       background-color: var(--color-teal-dark);
     }
   }
-
-  .date {
-    margin-left: 47px;
-  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
   .blogPost {
     padding-top: 170px;
 
-    .title {
+    h1 {
       font-size: 75px;
     }
   }
@@ -58,7 +65,7 @@
   .blogPost {
     padding-top: 170px;
 
-    .title {
+    h1 {
       font-size: 60px;
     }
   }
@@ -68,15 +75,16 @@
   .blogPost {
     padding-top: 140px;
 
-    .title {
+    h1 {
       margin-bottom: 25px;
 
-      font-size: 40px;
+      font-size: 34px;
       letter-spacing: 0;
     }
+  }
 
-    .subtitle {
-      font-size: 16px;
-    }
+  .subtitle p,
+  .date {
+    font-size: 12px;
   }
 }
