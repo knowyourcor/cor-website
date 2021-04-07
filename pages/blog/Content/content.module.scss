@@ -36,7 +36,7 @@
       }
     }
   
-    .heading {
+    h2 {
       font-family: var(--font-sans);
       font-size: 29px;
       font-weight: 600;
@@ -46,12 +46,38 @@
       margin: 95px 0 0;
     }
   
-    .quoteText {
-      font-size: 50px;
-      font-weight: 600;
-      line-height: 66px;
-    }
+    // .quoteText {
+    //   font-size: 50px;
+    //   font-weight: 600;
+    //   line-height: 66px;
+    // }
   }
+}
+
+.quoteText {
+  p {
+    margin-top: 100px;
+
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 66px;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0 50%;
+}
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 50%;
 }
 
 
@@ -79,11 +105,11 @@
       p:not(:first-child) {
         margin-top: 70px;
       }
+    }
 
-      .quoteText {
-        font-size: 35px;
-        line-height: 50px;
-      }
+    .quoteText p {
+      font-size: 35px;
+      line-height: 50px;
     }
   }
 }
@@ -102,25 +128,24 @@
     .imageWrapper {
       margin-top: 60px;
     }
-
     
     .contentText {
       .contentWrapper {
         padding: 65px 0 13px;
       }
 
-      .heading {
+      h2 {
         font-size: 25px;
       }
 
       p:not(:first-child) {
         margin-top: 70px;
       }
+    }
 
-      .quoteText {
-        font-size: 27px;
-        line-height: 45px;
-      }
+    .quoteText p {
+      font-size: 27px;
+      line-height: 45px;
     }
   }
 }
@@ -129,7 +154,8 @@
   .postContent {
     &:nth-of-type(2n) .imageWrapper {
       width: 100%;
-      height: 70vh;
+      height: 48vh;
+      // height: 70vh;
     }
 
     &:nth-of-type(odd) .imageWrapper {
@@ -138,13 +164,14 @@
     }
 
     .imageWrapper {
-      margin-top: 40px;
+      // margin-top: 40px;
+      margin-top: 15px;
     }
 
-    
     .contentText {
       .contentWrapper {
-        padding: 65px 0 13px;
+        // padding: 65px 0 13px;
+        padding: 41px 0 13px;
       }
 
       .contentHolder:first-child,
@@ -156,14 +183,21 @@
         font-size: 25px;
       }
 
-      p:not(:first-child) {
-        margin-top: 70px;
+      h2 {
+        font-size: 16px;
       }
 
-      .quoteText {
-        font-size: 27px;
-        line-height: 45px;
+      p:not(:first-child) {
+        // margin-top: 70px;
+        margin-top: 0;
       }
+    }
+
+    .quoteText p {
+      margin-top: 46px;
+
+      font-size: 30px;
+      line-height: 45px;
     }
   }
 }

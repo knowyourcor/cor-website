@@ -26,8 +26,8 @@ export default function About({
   )
 }
 
-export async function getStaticProps({ preview = false, previewData, params = "about" }) {
-  const pageData = await getPageData(params, previewData);
+export async function getStaticProps({ preview = false, previewData }) {
+  const pageData = await getPageData("about", previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
