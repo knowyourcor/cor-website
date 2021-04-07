@@ -4,6 +4,33 @@
 
   background-color: var(--color-light-grey);
 
+  .wrapper {
+    display: flex;
+  }
+
+  .category {
+    position: relative;
+
+    font-weight: 600;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+
+      width: 100%;
+      height: 2px;
+
+      background-color: var(--font-primary);
+    }
+    
+  }
+
+  .date {
+    color: var(--color-suva-grey);
+  }
+
   .image {
     width: 100%;
     height: 100%;
@@ -11,40 +38,17 @@
     object-position: center;
   }
 
-  .postSection {
+  .sectionPost {
+    padding-bottom: 200px;
+
+    .category {
+      font-size: 21px;
+    }
+
     .postWrapper {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-    }
-  
-    .postContent {
-      .wrapper {
-        display: flex;
-      }
-  
-      .subtitle {
-        position: relative;
-    
-        font-size: 21px;
-        font-weight: 600;
-    
-        &::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: 1px;
-    
-          width: 100%;
-          height: 2px;
-    
-          background-color: var(--font-primary);
-        }
-      }
-  
-      .date {
-        color: var(--color-suva-grey);
-      }
     }
   
     .postHolder {
@@ -107,7 +111,7 @@
           font-size: 37px;
         }
   
-        .subtitle {
+        .category {
           margin: 0 30px 0 0;
         }
         
@@ -139,11 +143,102 @@
     }
   }
 
+  .sectionPostCategory {
+    .contentWrapper {
+      padding-top: 50px;
+      margin: 0 35px;
+
+      border-top: 2px solid;
+    }
+
+    .wrapper {
+      margin: 15px 0;
+    }
+
+    .categoryWrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .selectedCategory {
+      padding: 22px 50px;
+
+      border-radius: 35px;
+
+      background-color: #e0e0e0;
+    }
+
+    .selectCategory {
+      padding: 21px 42px;
+      margin-left: 20px;
+      
+      font-size: 16.5px;
+      line-height: 2.91;
+      color: white;
+
+      background-color: black;
+      border-radius: 35px;
+    }
+
+    .postWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 103px;
+    }
+
+    .postHolder {
+      margin-bottom: 95px;
+      width: 29.2%;
+    }
+
+    .imageWrapper {
+      height: 287px;
+    }
+
+    .category,
+    .date {
+      margin: 0;
+
+      font-size: 14px;
+    }
+
+    .date {
+      margin-left: auto;
+    }
+
+    .title {
+      font-size: 30px;
+      line-height: 1.6;
+    }
+
+    .buttonHolder {
+      text-align: center;
+    }
+
+    .buttonShow {
+      padding: 7px 67px;
+
+      font-size: 16.5px;
+      line-height: 2.91;
+      
+      border-radius: 34px;
+      border: 2px solid var(--font-primary);
+
+      transition: background 250ms ease-out;
+
+      &:hover {
+        color: var(--color-white);
+
+        background-color: var(--font-primary);
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1440px) {
   .blog {
-    .postSection {
+    .sectionPost {
       .postHolder {
         &:nth-child(1) {
           .postContent {
@@ -170,6 +265,17 @@
         }
       }
     }
+
+    .sectionPostCategory {
+      .postWrapper {    
+        margin-top: 70px;
+      }
+
+      .postHolder {
+        margin-bottom: 60px;
+        width: 31.2%;
+      }
+    }
   }
 }
 
@@ -177,7 +283,9 @@
   .blog {
     padding-top: 155px;
     
-    .postSection {
+    .sectionPost {
+      padding-bottom: 140px;
+
       .postHolder {
         &:nth-child(1) {
           .postContent {
@@ -210,6 +318,25 @@
       }
     }
 
+    .sectionPostCategory {
+      .postWrapper {    
+        margin-top: 70px;
+      }
+
+      .postHolder {
+        margin-bottom: 50px;
+        width: 31.2%;
+      }
+
+      .imageWrapper {
+        height: 230px;
+      }
+
+      .title {
+        font-size: 28px;
+        line-height: 1.3;
+      }
+    }
   }
 }
 
@@ -217,11 +344,11 @@
   .blog {
     padding-top: 155px;
 
-    .postSection {
-      .postContent {
-        .subtitle {
-          font-size: 18px;
-        }
+    .sectionPost {
+      padding-bottom: 130px;
+
+      .category {
+        font-size: 18px;
       }
   
       .postHolder {
@@ -281,7 +408,38 @@
         }
       }
     }
-    
+
+    .sectionPostCategory {
+      .contentWrapper {
+        padding-top: 30px;
+      }
+
+      .selectedCategory {
+        padding: 15px 40px;
+      }
+
+      .selectCategory {
+        padding: 15px 40px;
+      }
+
+      .postWrapper {    
+        margin-top: 55px;
+      }
+
+      .postHolder {
+        margin-bottom: 30px;
+        width: 31%;
+      }
+
+      .imageWrapper {
+        height: 230px;
+      }
+
+      .title {
+        font-size: 22px;
+        line-height: 1.3;
+      }
+    }
   }
 }
 
@@ -289,20 +447,22 @@
   .blog {
     padding-top: 131px;
 
-    .postSection {
+    .category {
+      &:after {
+        height: 1px;
+      }
+    }
+
+    .sectionPost {
       .postContent {
         .wrapper {
           margin-bottom: 18px;
         }
   
-        .subtitle {
+        .category {
           margin-bottom: 0;
   
           font-size: 12px;
-  
-          &:after {
-            height: 1px;
-          }
         }
   
         .date {
@@ -378,5 +538,52 @@
       }
     }
     
+    .sectionPostCategory {
+      .contentWrapper {
+        padding-top: 30px;
+        margin: 0;
+      }
+
+      .categoryWrapper {
+        justify-content: flex-start;
+      }
+
+      .selectedCategory {
+        padding: 15px 30px;
+      }
+
+      .selectCategory {
+        padding: 5px 23px;
+      }
+
+      .postWrapper {    
+        margin-top: 55px;
+      }
+
+      .postHolder {
+        margin-bottom: 30px;
+        width: 47%;
+      }
+
+      .imageWrapper {
+        height: 145px;
+      }
+
+      .date {
+        display: none;
+      }
+
+      .title {
+        font-size: 18px;
+        line-height: 1.3;
+        word-break: break-all;
+      }
+
+      .buttonShow {
+        padding: 0 40px;
+
+        font-size: 14.5px;
+      }
+    }
   }
 }
