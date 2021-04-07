@@ -27,7 +27,7 @@ export default function Blog({
               let date = moment(data.date).format('DD MMMM, YYYY')
 
               return (
-                <div className={styles.postHolder}>
+                <div key={i} className={styles.postHolder}>
                   <div className={styles.postImage}>
                     <Link href={'/blog/' + data._meta.uid}>
                       <a>
@@ -72,7 +72,7 @@ export default function Blog({
                 let date = moment(data.date).format('DD MMMM, YYYY')
 
                 return (
-                  <div className={styles.postHolder}>
+                  <div key={i} className={styles.postHolder}>
                     <Link href={'/blog/' + data._meta.uid}>
                       <a>
                         <div className={styles.imageWrapper}>
