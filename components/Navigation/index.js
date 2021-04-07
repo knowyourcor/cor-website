@@ -54,6 +54,7 @@ const Navigation = ({ mainMenuData, transparent }) => {
         className={[
           styles.navigation,
           !transparent && styles.withBG,
+          isMenuOpen && styles.isOpen,
           scrollDetect && styles.onScroll].join(" ")}
         style={{
           background,
@@ -65,12 +66,6 @@ const Navigation = ({ mainMenuData, transparent }) => {
             onClick={() => setMenuOpen(!isMenuOpen)}
             className={[styles.customBurger, isMenuOpen && styles.openBurger].join(" ")}
           >
-            {/* <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16">
-              <g fill="none" stroke="#000" strokeWidth="1.45">
-                <path d="M22 15H0M22 8H0M22 1H0" />
-              </g>
-            </svg> */}
-            <span></span>
             <span></span>
             <span></span>
           </button>
@@ -81,7 +76,7 @@ const Navigation = ({ mainMenuData, transparent }) => {
           />
           <Link href="/">
             <a
-              className={styles.logo}
+              className={[styles.logo, isMenuOpen && styles.menuOpenLogo].join(" ")}
               aria-expanded="false"
               aria-label="Main menu"
               role="button"

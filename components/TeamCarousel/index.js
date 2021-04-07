@@ -19,8 +19,6 @@ const Slide = ({ name, position, description, image }) => {
         <RichText render={description} />
       </div>
     </>
-    // <div className={styles.container}>
-    // </div>
   );
 };
 
@@ -67,6 +65,34 @@ const Carousel = ({ fields }) => {
     effect: "fade",
     loop: true,
     grabCursor: true,
+    resizeEvent: 'auto',
+    breakpoints: {
+      315: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        loop: true,
+      },
+      576: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: true,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+        loop: true,
+      },
+      992: {
+        slidesPerView: 2,
+        spaceBetween: 50,
+        loop: true,
+      },
+      1200: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+        loop: true,
+      },
+    },
     // breakpoints: {
     //   320: {
     //     slidesPerView: "auto",
