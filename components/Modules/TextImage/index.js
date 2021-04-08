@@ -8,7 +8,7 @@ import styles from "./textImage.module.scss";
 
 const TextImage = ({ primary }) => {
   return (
-    <Section backgroundColor={primary.background_color} align="center">
+    <Section className={styles.textImage} backgroundColor={primary.background_color} align="center">
       <Container>
         {primary.headline[0].text && (
           <Row align="center" textAlign={{ xs: "left" }}>
@@ -34,6 +34,7 @@ const TextImage = ({ primary }) => {
                 ? { xs: 14 }
                 : { xs: 14 }
             }
+            justify="center"
           // orders={{ xs: 1, md: 2 }}
           >
             <Picture {...primary} classes={styles.image} />

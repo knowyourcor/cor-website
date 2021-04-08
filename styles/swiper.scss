@@ -28,7 +28,48 @@
   }
 }
 
-@media (min-width: 1500px) {
+//Dual Carousel
+.dual-carousel {
+  .swiper-main {
+    margin: 0 auto;
+    width: 903px;
+
+    .swiper-container {
+      width: 903px;
+    }
+  }
+  .swiper-controller {
+    padding: 75px;
+    
+    .swiper-container {
+      width: 645px;
+    }
+  }
+
+  .swiper-details {
+    margin-left: auto;
+    margin-right: auto;
+    width: 441px;
+    overflow: hidden;
+
+    .swiper-container {
+      width: 441px;
+    }
+  }
+
+  .roundelMeterWrap {
+    display: flex;
+    justify-content: center;
+
+    p {
+      font-size: 40px;
+      color: var(--font-primary);
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 1501px) {
   .team-carousel {
     .swiper-slide-active img {
       width: 622px;
@@ -37,10 +78,47 @@
   }
 }
 
-@media (min-width: 1200px) and (max-width: 1499px) {
+@media (min-width: 1200px) and (max-width: 1500px) {
   .team-carousel {
     .swiper-slide-active img {
       height: 627px;
+    }
+  }
+
+  .dual-carousel {
+    .swiper {
+      padding: 47px;
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .dual-carousel {
+    .swiper-main,
+    .swiper-main .swiper-container {
+      width: 706px;
+    }
+
+    .swiper-details,
+    .swiper-details .swiper-container {
+      width: 364px;
+    }
+
+    .swiper-controller,
+    .swiper-controller .swiper-container {
+      width: 463px;
+    }
+
+    .swiper-controller {
+      padding: 37px;
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .team-carousel {
+    .swiper-slide-active img {
+      height: 621px;
     }
   }
 }
@@ -49,12 +127,53 @@
   .team-carousel {
     padding-left: 15px;
   }
-}
 
-@media (min-width: 576px) and (max-width: 991px) {
-  .team-carousel {
-    .swiper-slide-active img {
-      height: 621px;
+  .dual-carousel {
+    .swiper-main {
+      margin-left: auto;
+      margin-right: 0;
+      // width: 290px;
+      width: 75vw;
+
+      .swiper-container {
+        // width: 290px;
+        height: 270px;
+        width: 75vw;
+        // height: auto;
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+
+    .swiper-details {
+      width: auto;
+      height: 274px;
+      padding-left: 15px;
+
+      .c-card:first-child,
+      .c-card:first-child .swiper-container {
+        width: 230px;
+      }
+
+      .c-card:last-child,
+      .c-card:last-child .swiper-container {
+        width: 169px;
+      }
+    }
+
+    .swiper-controller {
+      position: relative;
+      top: 0;
+      bottom: 0;
+      z-index: 0;
+      
+      padding: 67px 16px 51px;
+      margin-top: -49px;
+      width: 100%;
+
+      .swiper-container {
+        width: 100%;
+      }
     }
   }
 }

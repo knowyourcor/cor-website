@@ -6,6 +6,8 @@ import Alert from "../components/Alert";
 
 import { getHomepageData, getMenuData } from "../lib/api";
 
+import QuadCarousel from "../components/Modules/QuadCarousel"
+
 export default function Index({
   preview,
   pageData,
@@ -21,6 +23,7 @@ export default function Index({
         <Navigation mainMenuData={mainMenuData} transparent />
         <Modules pageData={pageData} />
       </main>
+      <QuadCarousel />
       <Footer
         footerMenuData={footerMenuData}
         tertiaryMenuData={tertiaryMenuData}
