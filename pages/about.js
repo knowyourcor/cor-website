@@ -3,7 +3,7 @@ import Modules from "../components/Modules";
 
 import { getPageData, getMenuData } from "../lib/api";
 
-import styles from "../styles/about.module.scss"
+// import styles from "../styles/about.module.scss"
 
 export default function About({
   preview,
@@ -14,7 +14,7 @@ export default function About({
 }) {
   return (
     <Layout
-      classNameVal={styles.about}
+      classNameVal="about"
       title={pageData?.meta_title}
       preview={preview}
       mainMenuData={mainMenuData}
