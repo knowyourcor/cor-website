@@ -7,6 +7,7 @@ import Section from "../components/Section";
 import { Container, Row, Column } from "../components/Grid";
 import Modules from "../components/Modules";
 import Alert from "../components/Alert";
+import Layout from "../components/Layout"
 
 import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
 
@@ -23,6 +24,8 @@ export default function Page({
   if (!router.isFallback && !pageData?._meta?.uid) {
     return <ErrorPage statusCode={404} />;
   }
+
+  let title = pageData?.meta_title.toLowerCase()
 
   return (
     <>
@@ -50,29 +53,25 @@ export default function Page({
           />
         </>
       ) : (
-        <>
-          <Head title={pageData?.meta_title} />
-          <Alert preview={preview} />
+        <Layout
+          classNameVal={title}
+          title={pageData?.meta_title}
+          preview={preview}
+          mainMenuData={mainMenuData}
+          footerMenuData={footerMenuData}
+          tertiaryMenuData={tertiaryMenuData}
+        >
+          <Modules pageData={pageData} />
+          {/* <Head title={pageData?.meta_title} />
+          <Alert preview={preview} /> */}
           <main>
-            <Navigation mainMenuData={mainMenuData} />
-            <Modules pageData={pageData} />
-            {/* <Section>
-              <Container>
-                <Row>
-                  <Column
-                    columns={{ xs: 14, sm: 12, md: 10 }}
-                    offsets={{ sm: 1, md: 2 }}
-                  >
-                  </Column>
-                </Row>
-              </Container>
-            </Section> */}
+            {/* <Navigation mainMenuData={mainMenuData} /> */}
           </main>
-          <Footer
+          {/* <Footer
             footerMenuData={footerMenuData}
             tertiaryMenuData={tertiaryMenuData}
-          />
-        </>
+          /> */}
+        </Layout>
       )}
     </>
   );
