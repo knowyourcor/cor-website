@@ -42,7 +42,7 @@ export default function Accordion({ primary, fields }) {
                 {fields.map((data, index) => {
                   let isExpanded = `item-${index}` === expanded
                   return (
-                    <>
+                    <div key={index}>
                       {isExpanded &&
                         <motion.svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg" className={styles.svgPieGraph}>
                           <g transform="translate(24 24)" fill="none" fillRule="evenodd">
@@ -117,7 +117,7 @@ export default function Accordion({ primary, fields }) {
                         </motion.svg>
                       }
 
-                    </>
+                    </div>
                   )
                 })}
               </Column>

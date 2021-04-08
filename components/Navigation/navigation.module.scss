@@ -55,17 +55,6 @@
     display: flex;
     padding: 10px;
 
-    &.menuOpenLogo {
-      position: absolute;
-      top: 15px;
-      left: 33px;
-      z-index: 9999;
-    
-      svg {
-        fill: var(--font-inverted)
-      }
-    }
-
     svg {
       height: 18px;
 
@@ -90,12 +79,6 @@
   nav a,
   .cart {
     color: var(--font-primary);
-  }
-}
-
-.isOpen.withBG {
-  nav a {
-    color: var(--font-inverted);
   }
 }
 
@@ -305,25 +288,6 @@
   }
 }
 
-@media (max-width: 991px) {
-  .navigation {
-    button {
-      display: flex; 
-    }
-  
-    nav ul:first-of-type a {
-      align-items: flex-start;
-
-      font-size: 29px;
-      color: var(--font-inverted);
-    }
-  }
-
-  .container {
-    padding: 0 2rem;
-  }
-}
-
 @media (min-width: 992px) {
   .navigation {
     .logo {
@@ -339,14 +303,43 @@
   .navigation {
     .logo {
       padding: 0;
+
+      &.menuOpenLogo {
+        position: absolute;
+        top: 15px;
+        left: 33px;
+        z-index: 9999;
+      
+        svg {
+          fill: var(--font-inverted)
+        }
+      }
+    }
+
+    button {
+      display: flex; 
+    }
+  
+    nav ul:first-of-type a {
+      align-items: flex-start;
+
+      font-size: 29px;
+      color: var(--font-inverted);
     }
   }
 
   .container {
     flex-direction: row-reverse;
+    padding: 0 2rem;
   }
 
   .cart {
     display: none;
+  }
+
+  .isOpen.withBG {
+    nav a {
+      color: var(--font-inverted);
+    }
   }
 }

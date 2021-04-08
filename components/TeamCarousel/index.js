@@ -65,7 +65,7 @@ const Carousel = ({ fields }) => {
     effect: "fade",
     loop: true,
     grabCursor: true,
-    resizeEvent: 'auto',
+    resizeevent: 'auto',
     breakpoints: {
       315: {
         slidesPerView: 2,

@@ -24,8 +24,6 @@ export default function Item({ data, isExpanded, expandItem, index }) {
     }
   };
 
-  console.log(isExpanded, index)
-
   return (
     <>
       <div className={[styles.item, isExpanded && styles.activeItem].join(" ")}>
