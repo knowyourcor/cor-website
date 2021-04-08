@@ -42,7 +42,9 @@ export default function Blog({
                     </Link>
                   </div>
                   <div className={styles.postContent}>
-                    <h2 className={styles.title}>{RichText.asText(data.title)}</h2>
+                    <h2 className={styles.title}>
+                    <Link href={'/blog/' + data._meta.uid}><a>{RichText.asText(data.title)}</a></Link>
+                    </h2>
                     <div className={styles.wrapper}>
                       <p className={styles.category}>{RichText.asText(data.subtitle)}</p>
                       <p className={styles.date}>{date}</p>
