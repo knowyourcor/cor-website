@@ -1,7 +1,6 @@
 import { RichText } from "prismic-reactjs";
 import Layout from "../../components/Layout"
 import { Container } from "../../components/Grid"
-import Content from "./Content/Index"
 
 import styles from "../../styles/blog/blog-post.module.scss"
 
@@ -26,18 +25,35 @@ const Post = ({
       footerMenuData={footerMenuData}
       tertiaryMenuData={tertiaryMenuData}
     >
-      <div>
-        <Container>
-          <RichText render={pageData.title} />
-          <div className={styles.wrapper}>
-            <div className={styles.subtitle}>
-              <RichText render={pageData.subtitle} />
+      <Container>
+        <RichText render={pageData.title} />
+        <div className={styles.postInfoWrapper}>
+          <p className={styles.category}>{RichText.asText(pageData.subtitle)}</p>
+          <p className={styles.date}>{dateFormat}</p>
+        </div>
+        <div>
+          {pageData.content.map((item, i) => (
+            <div key={i} className={styles.postContent}>
+              {item.image &&
+                <div className={styles.imageWrapper}>
+                  <div className={styles.imageHolder}>
+                    <img className={styles.image} src={item.image.url} />
+                  </div>
+                </div>
+              }
+              <div className={styles.contentText}>
+                <div className={styles.contentHolder}>
+                  <RichText render={item.heading} />
+                </div>
+                <div className={styles.contentHolder}>
+                  <RichText render={item.paragraph} />
+                  {item.quote && <div className={styles.quoteText}><RichText render={item.quote} /></div>}
+                </div>
+              </div>
             </div>
-            <p className={styles.date}>{dateFormat}</p>
-          </div>
-        </Container>
-        <Content props={pageData.content} />
-      </div>
+          ))}
+        </div>
+      </Container>
     </Layout>
   );
 }
@@ -49,7 +65,7 @@ export const getStaticPaths = async (previewData) => {
 
   const paths = pageData.map(post => {
     return {
-      params: { id: post.node._meta.uid }
+      params: { slug: post.node._meta.uid }
     }
   })
 
@@ -60,7 +76,7 @@ export const getStaticPaths = async (previewData) => {
 }
 
 export async function getStaticProps({ preview = false, previewData, params }) {
-  const pageData = await getBlogPostData(params.id, previewData);
+  const pageData = await getBlogPostData(params.slug, previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
