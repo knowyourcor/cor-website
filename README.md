@@ -44,3 +44,56 @@ All images should be managed through Prismic so they're processed and optimized 
 - [react-gtm-module](https://www.npmjs.com/package/react-gtm-module) - handles Google Tag Manager integration
 - [react-mailchimp-subscribe](https://www.npmjs.com/package/react-mailchimp-subscribe) - handles MailChimp integration
 - [sass](https://www.npmjs.com/package/sass) - allows use of SASS/SCSS
+
+## @Media Breakpoints
+
+**Breakpoints**
+
+```
+$xs: 32rem; // ~512px
+$sm: 48rem; // ~768px
+$md: 64rem; // ~1024px
+$lg: 80rem; // ~1280px
+$xl: 90rem; // ~1440px
+$xxl: 105rem // ~1680px
+```
+
+**@Import**
+
+Import `_variables.scss` into the SCSS file. Update path based on location of SCSS file.
+
+```
+@import "styles/_variables.scss";
+```
+
+**Usage**
+
+Using a mobile-first approach set min-width to the desired breakpoint using a SASS variable.
+
+Basic example
+
+```
+@media (min-width: $sm) {
+  /* styles go here */
+}
+```
+
+Standard example
+
+```
+.container {
+  padding: 0 1rem; /* mobile/base styles */
+
+   @media (min-width: $sm) {
+     padding: 0 1rem; /* small and up breakpoint */
+   }
+
+   @media (min-width: $md) {
+     padding: 0 3rem; /* medium and up breakpoint */
+   }
+
+   @media (min-width: $xl) {
+     padding: 0 5rem; /* xlarge and up breakpoint */
+   }
+}
+```
