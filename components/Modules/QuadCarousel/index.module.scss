@@ -1,0 +1,321 @@
+.dualCarousel {
+  overflow: inherit;
+
+  h2, h3 {
+    font-family: var(--font-sans-headline);
+  }
+
+  h2 {
+    margin-bottom: 38px;
+
+    font-size: 72px;
+    line-height: 1.18;
+    letter-spacing: -2.16px;
+  }
+
+  h3 {
+    margin-bottom: 0;
+
+    font-size: 50px;
+    letter-spacing: -1.5px;
+  }
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 8px;
+
+    font-size: 30px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 0.15px;
+    text-transform: capitalize;
+  }
+
+  p {
+    margin: 0 auto;
+    width: 752px;
+    max-width: 100%;
+
+    font-size: 20px;
+    line-height: 1.5;
+  }
+}
+
+.swiperWrap {
+  position: relative;
+
+  margin-top: 137px;
+
+  & > div {
+    overflow: hidden;
+  }
+}
+
+.mainWrap {
+  img {
+    object-fit: cover;
+  }
+}
+
+.detailsWrap {
+  position: absolute;
+  left: 0;
+  bottom: -89px;
+  z-index: 2;
+}
+
+.nameWrap {
+  h5 {
+    font-family: var(--font-sans-headline);
+  }
+
+  p {
+    color: var(--color-gray66);
+  }
+}
+
+.meterWrap {
+  margin-top: 25px;
+
+  &.card {
+    padding: 0;
+  }
+
+  .swiperSlide {
+    height: 366px;
+
+    //Target the meter
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 366px;
+
+      p {
+        color: var(--font-primary);
+        font-size: 40px;
+        text-align: center;
+      }
+    }
+  }
+
+  svg {
+    height: 380px;
+  }
+}
+
+.toDoWrap {
+  position: absolute;
+  bottom: -216px;
+  right: 0;
+  z-index: 2;
+
+  margin: 0 auto;
+  width: 645px;
+
+  p {
+    color: var(--color-gray66);
+  }
+
+  ul {
+    padding-top: 61px;
+    padding-left: 0;
+
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  svg {
+    margin-right: 23px;
+
+    height: 40px;
+  }
+}
+
+.card {
+  padding: 30px 36px;
+
+  background-color: var(--font-inverted);
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.03);
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  .dualCarousel {
+    h2 {
+      margin-bottom: 25px;
+      font-size: 60px;
+    }
+
+    h3 {
+      font-size: 43px;
+    }
+
+    h5 {
+      font-size: 25px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .meterWrap {
+    svg {
+      height: 320px;
+    }
+  }
+
+  .toDoWrap {
+    padding-top: 34px;
+    width: 532px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .dualCarousel {
+    h2 {
+      margin-bottom: 31px;
+
+      font-size: 59px;
+    }
+
+    h3 {
+      font-size: 40px;
+    }
+
+    h5 {
+      font-size: 23px;
+    }
+
+    p {
+      font-size: 17px;
+    }
+  }
+
+  .meterWrap {
+    .swiperSlide {
+      & > div {
+        width: 364px;
+      }
+    }
+
+    svg {
+      height: 280px;
+    }
+  }
+
+  .toDoWrap {
+    ul {
+      padding-top: 39px;
+    }
+
+    li {
+      font-size: 17px;
+    }
+
+    svg {
+      height: 32px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .headingWrap {
+    h2, p {
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .dualCarousel {
+    & > div {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    h2 {
+      margin-bottom: 32px;
+      
+      font-size: 34px;
+    }
+
+    h3 {
+      font-size: 24px;
+    }
+
+    h5 {
+      margin-bottom: 4px;
+
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .headingWrap {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .nameWrap {
+    p {
+      font-size: 12px;
+    }
+  }
+
+  .meterWrap {
+    .swiperSlide {
+      height: 167px;
+
+      & > div {
+        height: 167px;
+
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+
+    svg {
+      height: 135px;
+    }
+  }
+
+  .detailsWrap {
+    top: -80px;
+    bottom: 0;
+  }
+
+  .toDoWrap {
+    p {
+      font-size: 12px;
+    }
+
+    ul {
+      padding-top: 46px;
+    }
+
+    li {
+      font-size: 16px;
+    }
+
+    svg {
+      margin-right: 20px;
+      height: 30px;
+    }
+  }
+
+  .card {
+    padding: 18px;
+  }
+}
+

@@ -162,3 +162,9 @@
 
   transform: translate(-50%, -50%);
 }
+
+@media (max-width: 991px) {
+  .svgWrap {
+    height: 136.5px;
+  }
+}

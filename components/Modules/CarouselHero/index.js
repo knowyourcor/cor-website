@@ -181,9 +181,9 @@ const CarouselHero = ({ primary, fields }) => {
         })}
       </AnimatePresence>
 
-      <div className={styles.cta}>
+      {/* <div className={styles.cta}>
         <Button linkData={primary.link} labelData={primary.link_label} />
-      </div>
+      </div> */}
 
       {/* <div className={styles.buttons}>
         <button onClick={() => setActiveItem(count - 1)}>Previous</button>
