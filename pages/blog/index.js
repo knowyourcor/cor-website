@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from 'react'
 import { RichText } from "prismic-reactjs";
 import Link from "next/link"
+import Image from "next/image"
 import moment from "moment"
 
 import Layout from "../../components/Layout"
@@ -13,6 +15,19 @@ export default function Blog({
   preview,
   pageData
 }) {
+  const [show, setShow] = useState();
+  const [value, setValue] = useState([]);
+  const [category, setCategory] = useState([])
+  
+  const handleRemoveCategory = () => {
+    setValue('')
+  }
+
+  useEffect(() => {
+    const currentCategory = pageData.map(cat => cat.node.subtitle[0].text)
+    setCategory([...new Set(currentCategory)])
+  }, [])
+
   return (
     <Layout
       classNameVal={styles.blog}
@@ -61,12 +76,27 @@ export default function Blog({
         <Container>
           <div className={styles.contentWrapper}>
             <div className={styles.categoryWrapper}>
-              <div className={styles.selectedCategory}>Diet</div>
-              <select className={styles.selectCategory} value="Category">
-                <option value="Category">Category</option>
-                <option value="Diet">Diet</option>
-                <option value="Health">Health</option>
-              </select>
+              {value.length === 0 ? '' : <div className={styles.selectedCategory}>{value} <span className={styles.Icon} onClick={() => handleRemoveCategory()}><Image src="/icons/close.svg" height={12} width={12} /></span></div>}
+              <button className={styles.dropdown} onClick={() => setShow(!show)}>
+                <div className={`${styles.dropdownName} ${show === true ? styles.openDropdown : ''}`}>Category <span className={styles.Icon}><Image src="/icons/down-arrow.svg" height={13} width={13} /></span></div>
+                {show &&
+                  <div className={styles.dropdownListWrapper}>
+                    <div className={styles.List}>
+                      {category.map((item, i) => {
+                        return (
+                          <>
+                            {item !== value ? (
+                              <div key={i} className={styles.ListItem} value="Category" onClick={() => setValue(item)}>{item}</div>
+                            ) : (
+                              ''
+                            )}
+                          </>
+                        )
+                      })}
+                    </div>  
+                  </div>
+                }
+              </button>
             </div>
             <div className={styles.postWrapper}>
               {pageData.map((item, i) => {
@@ -96,7 +126,7 @@ export default function Blog({
               })}
             </div>
             <div className={styles.buttonHolder}>
-              <button className={styles.buttonShow}>Show More</button>
+              <button className="btn btn--inverted">Show More</button>
             </div>
           </div>
         </Container>
