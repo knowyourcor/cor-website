@@ -18,17 +18,26 @@ export default function Blog({
   const [show, setShow] = useState();
   const [value, setValue] = useState([]);
   const [category, setCategory] = useState([])
-  
-  const handleRemoveCategory = () => {
-    setValue('')
-  }
+  const [post, setPost] = useState([])
+  const [postCategory, setPostCategory] = useState([])
 
   useEffect(() => {
     const currentCategory = pageData.map(cat => cat.node.category[0].text)
     setCategory([...new Set(currentCategory)])
     
-    pageData.sort((a, b) => a.node.featured_post === b.node.featured_post ? 0 : a.node.featured_post ? -1 : 1)
+    const currentPageData = [...pageData]
+    currentPageData.sort((a, b) => a.node.featured_post === b.node.featured_post ? 0 : a.node.featured_post ? -1 : 1)
+    setPost(currentPageData)
   }, [])
+
+  useEffect(() => {
+    if (!value.length) {
+      setPostCategory(pageData)
+    } else {
+      const filteredData = pageData.filter(data => data.node.category[0].text === value)
+      setPostCategory(filteredData)
+    }
+  }, [value])
 
   return (
     <Layout
@@ -39,7 +48,7 @@ export default function Blog({
       <div className={styles.sectionPost}>
         <Container>
           <div className={styles.postWrapper}>
-            {pageData.filter((_, i) => i <= 3).map((item, i) => {
+            {post.filter((_, i) => i <= 3).map((item, i) => {
               let data = item.node
               let date = moment(data.date).format('DD MMMM, YYYY')
 
@@ -78,7 +87,9 @@ export default function Blog({
         <Container>
           <div className={styles.contentWrapper}>
             <div className={styles.categoryWrapper}>
-              {value.length === 0 ? '' : <div className={styles.selectedCategory}>{value} <span className={styles.Icon} onClick={() => handleRemoveCategory()}><Image src="/icons/close.svg" height={12} width={12} /></span></div>}
+              {!!value.length && (
+                <div className={styles.selectedCategory}>{value} <span className={styles.Icon} onClick={() => setValue('')}><Image src="/icons/close.svg" height={12} width={12} /></span></div>
+              )}
               <button className={styles.dropdown} onClick={() => setShow(!show)}>
                 <div className={`${styles.dropdownName} ${show === true ? styles.openDropdown : ''}`}>Category <span className={styles.Icon}><Image src="/icons/down-arrow.svg" height={13} width={13} /></span></div>
                 {show &&
@@ -99,7 +110,7 @@ export default function Blog({
               </button>
             </div>
             <div className={styles.postWrapper}>
-              {pageData.map((item, i) => {
+              {postCategory.map((item, i) => {
                 let data = item.node
                 let date = moment(data.date).format('DD MMMM, YYYY')
 
