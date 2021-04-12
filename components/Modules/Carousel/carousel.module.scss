@@ -34,10 +34,14 @@
       font-size: 0.875rem;
       line-height: 1.3125rem;
     }
-  
+
     h3 {
       font-family: var(--font-sans-bold);
       margin: 0;
+    }
+
+    p {
+      margin-bottom: 0;
     }
   }
   .portrait{

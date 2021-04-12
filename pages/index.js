@@ -4,13 +4,12 @@ import Footer from "../components/Footer";
 import Modules from "../components/Modules";
 import Alert from "../components/Alert";
 
-import { getHomepageData, getMenuData } from "../lib/api";
-
-import QuadCarousel from "../components/Modules/QuadCarousel"
+import { getHomepageData, getMenuData, getHomeData } from "../lib/api";
 
 export default function Index({
   preview,
   pageData,
+  // data,
   mainMenuData,
   footerMenuData,
   tertiaryMenuData,
@@ -23,7 +22,6 @@ export default function Index({
         <Navigation mainMenuData={mainMenuData} transparent />
         <Modules pageData={pageData} />
       </main>
-      <QuadCarousel />
       <Footer
         footerMenuData={footerMenuData}
         tertiaryMenuData={tertiaryMenuData}
@@ -33,7 +31,7 @@ export default function Index({
 }
 
 export async function getStaticProps({ preview = false, previewData }) {
-  const pageData = await getHomepageData(previewData);
+  const pageData = await getHomeData(previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
