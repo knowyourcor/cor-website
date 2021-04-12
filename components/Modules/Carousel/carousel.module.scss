@@ -1,6 +1,9 @@
 @import "../../../styles/_variables.scss";
 
 .carouselWrap {
+  padding-top: 21rem;
+  padding-bottom: 74px;
+  margin-top: -213px;
   margin-bottom: 384px;
   overflow: inherit;
 
@@ -72,16 +75,6 @@
 
 }
 
-@media (min-width: 1501px) {
-  .carouselWrap {
-    padding-bottom: 74px;
-  }
-
-  .carousel {
-    top: 114px;
-  }
-}
-
 @media (min-width: 1200px) and (max-width: 1500px) {
   .carouselWrap {
     h1 {
@@ -96,6 +89,7 @@
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .carouselWrap {
+    padding-top: 18rem;
     margin-bottom: 136px;
     
     h1 {
@@ -111,7 +105,8 @@
 @media (min-width: 992px) {
   .carousel {
     position: absolute;
-    top: 0;
+    // top: 0;
+    top: 114px;
     right: 0;
     z-index: 5;
     

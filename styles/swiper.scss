@@ -115,6 +115,14 @@
       width: 706px;
     }
 
+    .swiper-main .swiper-container {
+      height: 673px;
+
+      .swiper-pagination {
+        left: -36px;
+      }
+    }
+
     .swiper-details,
     .swiper-details .swiper-container {
       width: 364px;
@@ -151,7 +159,8 @@
       width: 75vw;
 
       .swiper-container {
-        height: 270px;
+        // height: 270px;
+        height: auto;
         width: 75vw;
         margin-right: 0;
         margin-left: 0;

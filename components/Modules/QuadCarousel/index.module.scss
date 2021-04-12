@@ -1,7 +1,7 @@
 .quadCarousel {
   margin-top: -476px;
   padding-top: 684px;
-  padding-bottom: 424px;
+  padding-bottom: 609px;
   overflow: inherit;
 
   h2, h3 {
@@ -242,6 +242,7 @@
 
 @media (max-width: 991px) {
   .quadCarousel {
+    padding-top: 482px;
     padding-bottom: 0;
 
     & > div {
