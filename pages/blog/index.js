@@ -26,6 +26,8 @@ export default function Blog({
   useEffect(() => {
     const currentCategory = pageData.map(cat => cat.node.category[0].text)
     setCategory([...new Set(currentCategory)])
+    
+    pageData.sort((a, b) => a.node.featured_post === b.node.featured_post ? 0 : a.node.featured_post ? -1 : 1)
   }, [])
 
   return (
@@ -37,11 +39,9 @@ export default function Blog({
       <div className={styles.sectionPost}>
         <Container>
           <div className={styles.postWrapper}>
-            {pageData.map((item, i) => {
+            {pageData.filter((_, i) => i <= 3).map((item, i) => {
               let data = item.node
               let date = moment(data.date).format('DD MMMM, YYYY')
-
-              console.log(data)
 
               return (
                 <div key={i} className={styles.postHolder}>
@@ -87,10 +87,8 @@ export default function Blog({
                       {category.map((item, i) => {
                         return (
                           <>
-                            {item !== value ? (
+                            {item !== value && (
                               <div key={i} className={styles.ListItem} value="Category" onClick={() => setValue(item)}>{item}</div>
-                            ) : (
-                              ''
                             )}
                           </>
                         )
