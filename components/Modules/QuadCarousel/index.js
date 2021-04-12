@@ -50,10 +50,12 @@ const params = {
   resizeevent: 'auto',
 }
 
-export default function QuadCarousel() {
+export default function QuadCarousel({ primary }) {
   const [controlledSwiper, setControlledSwiper] = useState(null);
   const [controlledSwiperOne, setControlledSwiperOne] = useState(null);
   const [controlledSwiperTwo, setControlledSwiperTwo] = useState(null);
+
+  console.log(primary)
 
   return (
     <Section className={["dual-carousel", styles.dualCarousel].join(" ")} align="center">

@@ -18,6 +18,7 @@ import DualGrid from "./DualGrid"
 import TextCarousel from "./TextCarousel"
 import FeaturedPress from "./FeaturedPress"
 import Checklist from "./Checklist"
+import QuadCarousel from "./QuadCarousel"
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -39,7 +40,8 @@ const moduleDefs = {
   ["dual_grid"]: DualGrid,
   ["text___carousel"]: TextCarousel,
   ["featured_press"]: FeaturedPress,
-  ["checklist"]: Checklist
+  ["checklist"]: Checklist,
+  ["quadcarousel"]: QuadCarousel
 };
 
 const Modules = ({ pageData }) => {
