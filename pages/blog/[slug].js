@@ -25,35 +25,37 @@ const Post = ({
       footerMenuData={footerMenuData}
       tertiaryMenuData={tertiaryMenuData}
     >
-      <Container>
-        <RichText render={pageData.title} />
-        <div className={styles.postInfoWrapper}>
-          <p className={styles.category}>{RichText.asText(pageData.subtitle)}</p>
-          <p className={styles.date}>{dateFormat}</p>
-        </div>
-        <div>
-          {pageData.content.map((item, i) => (
-            <div key={i} className={styles.postContent}>
-              {item.image &&
-                <div className={styles.imageWrapper}>
-                  <div className={styles.imageHolder}>
-                    <img className={styles.image} src={item.image.url} />
+      <div className={styles.contentWrapper} style={{ backgroundColor: `${pageData.background_color === null ? '' : pageData.background_color}` }}>
+        <Container>
+          <RichText render={pageData.title} />
+          <div className={styles.postInfoWrapper}>
+            <p className={styles.category}>{RichText.asText(pageData.category)}</p>
+            <p className={styles.date}>{dateFormat}</p>
+          </div>
+          <div>
+            {pageData.content.map((item, i) => (
+              <div key={i} className={styles.postContent}>
+                {item.image &&
+                  <div className={styles.imageWrapper}>
+                    <div className={styles.imageHolder}>
+                      <img className={styles.image} src={item.image.url} />
+                    </div>
+                  </div>
+                }
+                <div className={styles.contentText}>
+                  <div className={styles.contentHolder}>
+                    <RichText render={item.heading} />
+                  </div>
+                  <div className={styles.contentHolder}>
+                    <RichText render={item.paragraph} />
+                    {item.quote && <div className={styles.quoteText}><RichText render={item.quote} /></div>}
                   </div>
                 </div>
-              }
-              <div className={styles.contentText}>
-                <div className={styles.contentHolder}>
-                  <RichText render={item.heading} />
-                </div>
-                <div className={styles.contentHolder}>
-                  <RichText render={item.paragraph} />
-                  {item.quote && <div className={styles.quoteText}><RichText render={item.quote} /></div>}
-                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </Container>
+            ))}
+          </div>
+        </Container>
+      </div>
     </Layout>
   );
 }

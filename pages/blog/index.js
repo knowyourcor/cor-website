@@ -24,7 +24,7 @@ export default function Blog({
   }
 
   useEffect(() => {
-    const currentCategory = pageData.map(cat => cat.node.subtitle[0].text)
+    const currentCategory = pageData.map(cat => cat.node.category[0].text)
     setCategory([...new Set(currentCategory)])
   }, [])
 
@@ -40,6 +40,8 @@ export default function Blog({
             {pageData.map((item, i) => {
               let data = item.node
               let date = moment(data.date).format('DD MMMM, YYYY')
+
+              console.log(data)
 
               return (
                 <div key={i} className={styles.postHolder}>
@@ -61,7 +63,7 @@ export default function Blog({
                     <Link href={'/blog/' + data._meta.uid}><a>{RichText.asText(data.title)}</a></Link>
                     </h2>
                     <div className={styles.wrapper}>
-                      <p className={styles.category}>{RichText.asText(data.subtitle)}</p>
+                      <p className={styles.category}>{RichText.asText(data.category)}</p>
                       <p className={styles.date}>{date}</p>
                     </div>
                     {i === 0 && <p>{data.excerpt[0].text}</p>}
@@ -117,7 +119,7 @@ export default function Blog({
                       </a>
                     </Link>
                     <div className={styles.wrapper}>
-                      <p className={styles.category}>{RichText.asText(data.subtitle)}</p>
+                      <p className={styles.category}>{RichText.asText(data.category)}</p>
                       <p className={styles.date}>{date}</p>
                     </div>
                     <h2 className={styles.title}>{RichText.asText(data.title)}</h2>
