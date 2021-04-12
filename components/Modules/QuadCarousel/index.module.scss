@@ -1,4 +1,7 @@
-.dualCarousel {
+.quadCarousel {
+  margin-top: -476px;
+  padding-top: 684px;
+  padding-bottom: 424px;
   overflow: inherit;
 
   h2, h3 {
@@ -29,6 +32,10 @@
     line-height: normal;
     letter-spacing: 0.15px;
     text-transform: capitalize;
+  }
+
+  picture {
+    border-radius: 10px;
   }
 
   p {
@@ -100,7 +107,7 @@
   }
 
   svg {
-    height: 380px;
+    height: 366px;
   }
 }
 
@@ -146,7 +153,7 @@
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
-  .dualCarousel {
+  .quadCarousel {
     h2 {
       margin-bottom: 25px;
       font-size: 60px;
@@ -178,7 +185,7 @@
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .dualCarousel {
+  .quadCarousel {
     h2 {
       margin-bottom: 31px;
 
@@ -234,7 +241,9 @@
 }
 
 @media (max-width: 991px) {
-  .dualCarousel {
+  .quadCarousel {
+    padding-bottom: 0;
+
     & > div {
       padding-left: 0;
       padding-right: 0;

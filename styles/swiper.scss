@@ -1,5 +1,15 @@
 @import "./variables";
 
+.swiper-pagination-bullet  {
+  background-color: var(--color-gray66);
+
+  opacity: 1;
+
+  &.swiper-pagination-bullet-active {
+    background-color: var(--font-primary);
+  }
+}
+
 //About: Team Carousel
 .team-carousel {
   img, p, h5, h6 {
@@ -29,20 +39,26 @@
 }
 
 //Dual Carousel
-.dual-carousel {
+.quad-carousel {
   .swiper-main {
     margin: 0 auto;
     width: 903px;
 
     .swiper-container {
       width: 903px;
+      height: 810px;
     }
   }
+
   .swiper-controller {
     padding: 75px;
     
     .swiper-container {
       width: 645px;
+    }
+
+    .swiper-pagination {
+      display: none;
     }
   }
 
@@ -85,7 +101,7 @@
     }
   }
 
-  .dual-carousel {
+  .quad-carousel {
     .swiper {
       padding: 47px;
     }
@@ -93,7 +109,7 @@
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .dual-carousel {
+  .quad-carousel {
     .swiper-main,
     .swiper-main .swiper-container {
       width: 706px;
@@ -128,20 +144,21 @@
     padding-left: 15px;
   }
 
-  .dual-carousel {
+  .quad-carousel {
     .swiper-main {
       margin-left: auto;
       margin-right: 0;
-      // width: 290px;
       width: 75vw;
 
       .swiper-container {
-        // width: 290px;
         height: 270px;
         width: 75vw;
-        // height: auto;
         margin-right: 0;
         margin-left: 0;
+      }
+
+      .swiper-pagination {
+        display: none;
       }
     }
 
@@ -171,9 +188,15 @@
       margin-top: -49px;
       width: 100%;
 
+      border-radius: 0;
+
       .swiper-container {
         width: 100%;
       }
+
+      // .swiper-pagination {
+      //   display: flex;
+      // }
     }
   }
 }

@@ -72,6 +72,16 @@
 
 }
 
+@media (min-width: 1501px) {
+  .carouselWrap {
+    padding-bottom: 74px;
+  }
+
+  .carousel {
+    top: 114px;
+  }
+}
+
 @media (min-width: 1200px) and (max-width: 1500px) {
   .carouselWrap {
     h1 {
