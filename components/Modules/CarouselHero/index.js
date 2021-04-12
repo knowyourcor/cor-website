@@ -97,10 +97,12 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
             <Picture image={image} />
           </div>
           <div className={styles.slideRight}>
-            {headline && (
-              <motion.div variants={headlineItem} className={styles.headline}>
-                <RichText render={headline} />
-              </motion.div>
+            {!headline === null && (
+              <>{headline.text && (
+                <motion.div variants={headlineItem} className={styles.headline}>
+                  <RichText render={headline} />
+                </motion.div>
+              )}</>
             )}
             {video_source && (
               <motion.div
@@ -113,6 +115,22 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
               </motion.div>
             )}
           </div>
+          {!number && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 22.393 22.393"
+              className={styles.svgWrap}
+            >
+              <path
+                data-name="Path 40"
+                d="M19.36 8.544a8.584 8.584 0 11-8.164-5.931V.003a11.194 11.194 0 1010.649 7.736z"
+              />
+              <path
+                data-name="Path 41"
+                d="M16.875 9.35l2.485-.807a8.586 8.586 0 00-8.164-5.935V5.22a5.973 5.973 0 015.679 4.126"
+              />
+            </svg>
+          )}
         </motion.div>
       )}
     </>
@@ -163,9 +181,9 @@ const CarouselHero = ({ primary, fields }) => {
         })}
       </AnimatePresence>
 
-      <div className={styles.cta}>
+      {/* <div className={styles.cta}>
         <Button linkData={primary.link} labelData={primary.link_label} />
-      </div>
+      </div> */}
 
       {/* <div className={styles.buttons}>
         <button onClick={() => setActiveItem(count - 1)}>Previous</button>

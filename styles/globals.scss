@@ -12,6 +12,14 @@
   --color-white: rgba(242, 242, 242, 1);
   --color-white-bright: rgba(255, 255, 255, 1);
   --color-gray: #dbdcdd;
+  --color-gray66: #a8a8a8;
+  --color-dark-gray: #999;
+  --color-light-green: #ddf9e3;
+  --color-suva-grey: #8d8d8d;
+  --color-light-grey: #f4f4f4;
+  --color-light-cyan: #dff7fa;
+  --color-pastel-green: #6cdc89;
+  --color-forest-green: #23a046;
 
   --font-sans: "RegolaPro-Book", -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
@@ -94,29 +102,29 @@ h6,
 h1,
 .h1 {
   font-size: 2.5rem;
-  line-height: 3.125rem;
+  // line-height: 3.125rem;
   margin-top: 0;
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
   font-weight: 400;
   @media (min-width: $sm) {
     font-size: 3.125rem;
-    line-height: 3.4375rem;
-    margin-bottom: 2rem;
+    // line-height: 3.4375rem;
+    // margin-bottom: 2rem;
   }
   @media (min-width: $md) {
     font-size: 3.4375rem;
-    line-height: 3.78125rem;
-    margin-bottom: 2rem;
+    // line-height: 3.78125rem;
+    // margin-bottom: 2rem;
   }
   @media (min-width: $lg) {
     font-size: 4.0625rem;
-    line-height: 4.46875rem;
-    margin-bottom: 2rem;
+    // line-height: 4.46875rem;
+    // margin-bottom: 2rem;
   }
   @media (min-width: $xxl) {
     font-size: 4.6875rem;
-    line-height: 5.15625rem;
-    margin-bottom: 2rem;
+    // line-height: 5.15625rem;
+    // margin-bottom: 2rem;
   }
 }
 
@@ -277,5 +285,58 @@ main {
 
   &[data-keen-slider-moves] * {
     pointer-events: none;
+  }
+}
+
+p {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--font-primary);
+}
+
+.custom__column {
+  margin-left: 0 !important;
+}
+
+.btn {
+  justify-content: center;
+  margin: 0 auto;
+  width: 221px;
+  max-width: 100%;
+  height: 65px;
+
+  font-family: var(--font-sans-bold);
+  font-size: 16.5px;
+}
+
+.btn--inverted {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: transparent;
+  border: solid 1.5px var(--font-primary);
+  border-radius: 33px;
+
+  transition: all .3s ease-in-out;
+
+  &:hover, &:active {
+    color: var(--font-inverted);
+    
+    background-color: var(--font-primary);
+  }
+}
+
+@media (max-width: $sm) {
+  p {
+    font-size: 16px;
+  }
+
+  .btn {
+    width: 170px;
+    height: 45px;
+
+    font-size: 12px;
   }
 }

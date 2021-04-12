@@ -1,27 +1,34 @@
 @import "../../styles/_variables.scss";
 
 .navigation {
-  width: 100%;
-  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1000;
+
   display: flex;
   align-content: center;
+  width: 100%;
+  height: 48px;
+
   background: var(--color-white);
   transition: background 0.25s ease-out;
-  height: 48px;
 
   button,
   a {
-    font-size: 0.75rem;
-    padding: 0.5rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    // padding-right: 1rem;
+    // padding: 0.5rem 1rem;
+
+    font-size: 0.75rem;
+    color: var(--color-white-bright);
+
     cursor: pointer;
+    transition: all .3s ease-in;
 
     &.active {
       color: rgba(0, 0, 0, 0.45);
@@ -45,54 +52,87 @@
   }
 
   .logo {
-    padding: 0;
     display: flex;
-    position: relative;
-    margin: 0 auto;
     padding: 10px;
+
     svg {
       height: 18px;
+
+      fill: var(--color-white-bright);
+
+      transition: all .3s ease-in;
     }
+  }
+}
+
+.withBG {
+  background-color: var(--font-inverted);
+
+  .logo {
+    svg {
+      fill: var(--font-primary);
+
+      transition: all .3s ease-in;
+    }
+  }
+
+  nav a,
+  .cart {
+    color: var(--font-primary);
+  }
+}
+
+.cartIcon {
+  padding-right: 0;
+
+  svg {
+    width: 25px;
+    height: 25px;
+  
+    fill: var(--color-white-bright)
   }
 }
 
 .container {
   position: relative;
+
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // padding: 0 1rem;
   margin-right: auto;
   margin-left: auto;
   width: 100%;
   max-width: $xxl;
-  padding: 0 1rem;
 
-  @media (min-width: $md) {
-    padding: 0 2rem;
-  }
+  border-bottom: 1px solid var(--color-white-bright);
+
+  // @media (min-width: $md) {
+  //   padding: 0 2rem;
+  // }
 }
 
 .menuToggle {
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  @media (min-width: $md) {
-    left: 2rem;
-  }
+
+  height: 100%;
+
   transform: scale(0.96);
+
   &:active {
     transform: scale(0.86);
   }
 }
 
 .utility {
-  height: 100%;
-  display: flex;
   position: absolute;
   top: 0;
   right: 0;
-  @media (min-width: $md) {
-    right: 2rem;
-  }
+
+  display: flex;
+  height: 100%;
 }
 
 .iconAccount {
@@ -108,10 +148,198 @@
 }
 
 .boxShadow {
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+
+  width: 100%;
+  height: 100%;
+  
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.customBurger {
+  position: relative;
+  z-index: 4;
+
+  width: 26px;
+  height: 19px;
+
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+
+  span {
+    position: absolute;
+    left: 0;
+
+    display: block;
+    width: 100%;
+    height: 3px;
+
+    background: var(--color-white-bright);
+    border-radius: 9px;
+
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+
+    &:first-child {
+      top: 4px;
+
+      transform-origin: left center;
+    }
+
+    &:nth-child(2) {
+      top: 13px;
+
+      transform-origin: left center;
+    }
+
+    // &:nth-child(3) {
+    //   top: 14px;
+
+    //   transform-origin: left center;
+    // }
+  }
+}
+
+.openBurger {
+  position: absolute;
+  top: 9px;
+  right: 33px;
+  z-index: 9999;
+
+  span {
+    background-color: var(--font-inverted);
+
+    &:first-child {
+      top: 4px;
+      left: 8px;
+
+      transform: rotate(45deg);
+    }
+
+    &:nth-child(2) {
+      top: 23px;
+      left: 8px;
+
+      // opacity: 0;
+      transform: rotate(-45deg);
+    }
+
+    // &:nth-child(3) {
+    //   top: 23px;
+    //   left: 8px;
+      
+    //   transform: rotate(-45deg);
+    // }
+  }
+}
+
+.withBG,
+.onScroll {
+  .customBurger span {
+    background-color: var(--font-primary);
+  }
+  
+  .openBurger span {
+    background-color: var(--font-inverted);
+  }
+
+  .cartIcon svg {
+    fill: var(--font-primary);
+  }
+}
+
+.onScroll {
+  a {
+    color: var(--font-primary);
+  }
+
+  .logo svg {
+    fill: var(--font-primary);
+  }
+}
+
+@media (min-width: 992px) {
+  .navigation {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    button {
+      display: none; 
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .menuToggle {
+    left: 2rem;
+  }
+
+  .utility {
+    right: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .navigation {
+    .logo {
+      position: absolute;
+      left: 50%;
+      
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .navigation {
+    .logo {
+      padding: 0;
+
+      &.menuOpenLogo {
+        position: absolute;
+        top: 15px;
+        left: 33px;
+        z-index: 9999;
+      
+        svg {
+          fill: var(--font-inverted)
+        }
+      }
+    }
+
+    button {
+      display: flex; 
+    }
+  
+    nav ul:first-of-type a {
+      align-items: flex-start;
+
+      font-size: 29px;
+      color: var(--font-inverted);
+    }
+  }
+
+  .container {
+    flex-direction: row-reverse;
+    padding: 0 2rem;
+  }
+
+  .cart {
+    display: none;
+  }
+
+  .isOpen.withBG {
+    nav a {
+      color: var(--font-inverted);
+    }
+  }
 }

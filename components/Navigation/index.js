@@ -8,15 +8,16 @@ import styles from "./navigation.module.scss";
 const Navigation = ({ mainMenuData, transparent }) => {
   // Menu state
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [scrollDetect, setScrollDetect] = useState(false)
 
   const { scrollY } = useViewportScroll();
 
   const background = transparent
     ? useTransform(
-        scrollY,
-        [50, 250],
-        ["rgba(242, 242, 242, 0)", "rgba(242, 242, 242, 1)"]
-      )
+      scrollY,
+      [50, 250],
+      ["rgba(242, 242, 242, 0)", "rgba(242, 242, 242, 1)"]
+    )
     : "background: rgba(242, 242, 242, 1)";
 
   const opacity = useTransform(scrollY, [50, 250], ["0", "1"]);
@@ -39,10 +40,22 @@ const Navigation = ({ mainMenuData, transparent }) => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY !== 0) {
+        setScrollDetect(true)
+      } else setScrollDetect(false)
+    });
+  }, [])
+
   return (
     <>
       <motion.div
-        className={styles.navigation}
+        className={[
+          styles.navigation,
+          !transparent && styles.withBG,
+          isMenuOpen && styles.isOpen,
+          scrollDetect && styles.onScroll].join(" ")}
         style={{
           background,
         }}
@@ -51,18 +64,19 @@ const Navigation = ({ mainMenuData, transparent }) => {
         <div className={styles.container}>
           <button
             onClick={() => setMenuOpen(!isMenuOpen)}
-            className={styles.menuToggle}
+            className={[styles.customBurger, isMenuOpen && styles.openBurger].join(" ")}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16">
-              <g fill="none" stroke="#000" strokeWidth="1.45">
-                <path d="M22 15H0M22 8H0M22 1H0" />
-              </g>
-            </svg>
+            <span></span>
+            <span></span>
           </button>
-
+          <Menu
+            mainMenuData={mainMenuData}
+            active={isMenuOpen}
+            toggle={() => setMenuOpen(!isMenuOpen)}
+          />
           <Link href="/">
             <a
-              className={styles.logo}
+              className={[styles.logo, isMenuOpen && styles.menuOpenLogo].join(" ")}
               aria-expanded="false"
               aria-label="Main menu"
               role="button"
@@ -77,13 +91,17 @@ const Navigation = ({ mainMenuData, transparent }) => {
               </svg>
             </a>
           </Link>
+          <div className={styles.cart}>
+            <Link href="/">
+              <a className={styles.cartIcon}>
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M60.53,18.71A2,2,0,0,0,59,18H48.85A15,15,0,0,0,34,5H30A15,15,0,0,0,15.15,18H5a2,2,0,0,0-1.53.71A2,2,0,0,0,3,20.35l5.33,30.3A6.51,6.51,0,0,0,14.77,56H49.23a6.51,6.51,0,0,0,6.41-5.36L61,20.35A2,2,0,0,0,60.53,18.71ZM30,9h4a11,11,0,0,1,10.81,9H19.19A11,11,0,0,1,30,9ZM51.71,49.94A2.52,2.52,0,0,1,49.23,52H14.77a2.5,2.5,0,0,1-2.47-2L7.38,22H56.62Z" />
+                </svg>
+              </a>
+            </Link>
+          </div>
         </div>
       </motion.div>
-      <Menu
-        mainMenuData={mainMenuData}
-        active={isMenuOpen}
-        toggle={() => setMenuOpen(!isMenuOpen)}
-      />
     </>
   );
 };

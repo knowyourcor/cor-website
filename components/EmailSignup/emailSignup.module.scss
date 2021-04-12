@@ -2,78 +2,85 @@
 
 .form {
   display: block;
-  width: 105%;
-  
-  margin: 1rem 0;
+  margin-top: 1rem;
   margin-left: -2.5%;
-  @media (min-width: $md) {
-    width: 100%;
-    margin-left: 0;
-    padding-bottom: 10rem;
-  }
+  width: 105%;
 }
 
 .inputContainer {
-  width: 100%;
   display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .inputEmail {
-  border: 1.5px solid var(--font-primary);
-  border: 0;
-  border-radius: 50px 0 0 50px;
-  padding: 1rem 0 1rem 1.5rem;
-  color: var(--font-primary);
-  background-color: #fff;
-  font-size: 1.1rem;
-  margin: 1rem 0;
-
   display: block;
+  padding: 0;
+  margin: 0;
   width: 100%;
+  
+  font-family: var(--font-sans-bold);
+  font-size: 14px;
+  color: var(--font-primary);
+  line-height: 2.14;
   text-align: left;
+  
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--font-primary);
+  border-radius: 0;
 
 
   &:focus {
-    border: 0;
+    box-shadow: none;
+
     outline: none;
   }
+
   &::placeholder {
-    color: rgba(0,0,0,.45);
+    color: var(--font-primary);
   }
 }
 
 .buttonSubmit {
   display: block;
-  margin: 0 auto;
-  border: none;
-  color: var(--font-inverted);
-  background-color: var(--color-teal-dark);
-  font-weight: 600;
+  padding: 15px 9px;
+  margin: 28.5px 0;
+  width: 129px;
+  max-width: 100%;
+
   font-size: 0.8rem;
-  // letter-spacing: 0.200rem;
-  border-radius: 0 50px 50px 0;
-  padding: 1rem 2.25rem 1rem 2rem;
-  margin: 1rem 0;
+  font-weight: 600;
+  color: var(--font-inverted);
   text-transform: uppercase;
+
+  background-color: var(--font-primary);
+  border: none;
+  border-radius: 23px;
+
   cursor: pointer;
   transition: background 250ms ease-out;
+
   &:hover, &:focus, &:active {
-    border: none;
-    outline: none;
     background-color: lighten(#034561, 10);
+    border: none;
+
+    outline: none;
   }
 }
 
 .messages {
   padding: 0 1.5rem;
-
 }
 
 .messageSending {
-  color: rgba(0,0,0,.45);
   display: flex;
+
+  color: rgba(0,0,0,.45);
+
   span {
     display: block;
+
     &:first-of-type {
       margin-right: 0.35rem;
     }
@@ -86,4 +93,19 @@
 
 .messageSuccess {
   color:rgba(0,0,0,.45);
+}
+
+@media (min-width: $md) {
+  .form {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: $md) {
+  .form {
+    margin-top: 60px;
+    margin-left: 0;
+    width: 100%;
+  }
 }

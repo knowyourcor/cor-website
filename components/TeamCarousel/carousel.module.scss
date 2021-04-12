@@ -1,0 +1,72 @@
+@import "../../styles/variables";
+
+.customContainer {
+  padding-top: 150px;
+  margin-left: auto;
+}
+
+.content {
+  h5 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    
+    font-family: var(--font-sans-bold);
+    font-size: 16px;
+    text-transform: capitalize;
+  }
+  
+  h6 {
+    margin-top: 8px;
+    margin-bottom: 0;
+  
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  p {
+    margin-top: 15px;
+  
+    font-size: 14px;
+  }
+}
+
+.portrait {
+  img {
+    max-width: 100%;
+
+    border-radius: 8px;
+  }
+}
+
+.text {
+  margin-top: 0;
+  margin-bottom: 0;
+  
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+@media (min-width: 576px) {
+  .customContainer {
+    width: 108rem;
+  }
+}
+
+@media (max-width: $sm) {
+  .customContainer {
+    padding-top: 30px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1728px) {
+  .customContainer {
+    width: 95%;
+  }
+}
+
+// @media (min-width: 576px) and (max-width: 991px) {
+//   .content {
+//     padding-left: 15px;
+//   }
+// }

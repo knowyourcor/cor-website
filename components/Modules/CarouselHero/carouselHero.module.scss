@@ -149,3 +149,22 @@
     transform: none;
   }
 }
+
+.svgWrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+
+  height: 324px;
+
+  fill: var(--font-inverted);
+
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 991px) {
+  .svgWrap {
+    height: 136.5px;
+  }
+}

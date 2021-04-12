@@ -76,34 +76,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
         animate={active ? "open" : "closed"}
         variants={navVariant}
       >
-        <div className={styles.top}>
-          <Link href="/">
-            <a onClick={() => toggle()}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 22.393 22.393"
-                className={styles.iconMark}
-              >
-                <path d="M19.36 8.544a8.584 8.584 0 11-8.164-5.931V.003a11.194 11.194 0 1010.649 7.736z" />
-                <path d="M16.875 9.35l2.485-.807a8.586 8.586 0 00-8.164-5.935V5.22a5.973 5.973 0 015.679 4.126" />
-              </svg>
-            </a>
-          </Link>
-          <button className={styles.linkClose} onClick={() => toggle()}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16.414"
-              height="16.414"
-              className={[styles.iconClose]}
-            >
-              <g fill="none" stroke="#fff" strokeWidth="2">
-                <path d="M.707.707l15 15" />
-                <path data-name="Line" d="M15.707.707l-15 15" />
-              </g>
-            </svg>
-          </button>
-        </div>
-        <motion.ul variants={navItemsVariants}>
+        <motion.ul className={styles.mainMenu} variants={navItemsVariants}>
           {mainMenuData?.menu_links.map((link, index) => {
             return (
               <motion.li
@@ -129,6 +102,28 @@ const Menu = ({ active, toggle, mainMenuData }) => {
               </motion.li>
             );
           })}
+          <motion.li variants={navItemVariants}>
+            <Link activeClassName={styles.active} href="/blog" as={`/blog`}>
+              <a onClick={() => toggle()}>Blog</a>
+            </Link>
+          </motion.li>
+        </motion.ul>
+        <motion.ul className={styles.subMenu} variants={navItemsVariants}>
+          <motion.li variants={navItemVariants}>
+            <Link activeClassName={styles.active} href="/">
+              <a onClick={() => toggle()}>Legal</a>
+            </Link>
+          </motion.li>
+          <motion.li variants={navItemVariants}>
+            <Link activeClassName={styles.active} href="/">
+              <a onClick={() => toggle()}>Privacy</a>
+            </Link>
+          </motion.li>
+          <motion.li variants={navItemVariants}>
+            <Link activeClassName={styles.active} href="/">
+              <a onClick={() => toggle()}>Cookies</a>
+            </Link>
+          </motion.li>
         </motion.ul>
       </motion.nav>
       <div
