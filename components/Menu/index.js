@@ -102,29 +102,25 @@ const Menu = ({ active, toggle, mainMenuData }) => {
               </motion.li>
             );
           })}
+          <motion.li variants={navItemVariants}>
+            <Link activeClassName={styles.active} href="/blog" as={`/blog`}>
+              <a onClick={() => toggle()}>Blog</a>
+            </Link>
+          </motion.li>
         </motion.ul>
         <motion.ul className={styles.subMenu} variants={navItemsVariants}>
           <motion.li variants={navItemVariants}>
-            <Link
-              activeClassName={styles.active}
-              href="/"
-            >
+            <Link activeClassName={styles.active} href="/">
               <a onClick={() => toggle()}>Legal</a>
             </Link>
           </motion.li>
           <motion.li variants={navItemVariants}>
-            <Link
-              activeClassName={styles.active}
-              href="/"
-            >
+            <Link activeClassName={styles.active} href="/">
               <a onClick={() => toggle()}>Privacy</a>
             </Link>
           </motion.li>
           <motion.li variants={navItemVariants}>
-            <Link
-              activeClassName={styles.active}
-              href="/"
-            >
+            <Link activeClassName={styles.active} href="/">
               <a onClick={() => toggle()}>Cookies</a>
             </Link>
           </motion.li>
