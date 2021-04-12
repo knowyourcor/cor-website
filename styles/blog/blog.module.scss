@@ -225,13 +225,16 @@
     .postWrapper {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       margin-top: 103px;
     }
 
     .postHolder {
       margin-bottom: 95px;
       width: 29.2%;
+
+      &:nth-child(3n - 1) {
+        margin: 0 6%;
+      }
     }
 
     .imageWrapper {
@@ -274,18 +277,18 @@
           }
         }
         
-        &:not(:first-child) .imageWrapper {
-          height: 680px;
-        }
-  
         &:nth-child(2) {
           margin: 120px 0 0 36px;
         }
-  
+        
         &:last-child {
           .imageWrapper {
             height: 500px;
           }
+        }
+
+        &:not(:first-child) .imageWrapper {
+          height: 680px;
         }
       }
     }
@@ -298,6 +301,10 @@
       .postHolder {
         margin-bottom: 60px;
         width: 31.2%;
+
+        &:nth-child(3n - 1) {
+          margin: 0 3%;
+        }
       }
     }
   }
@@ -350,6 +357,10 @@
       .postHolder {
         margin-bottom: 50px;
         width: 31.2%;
+
+        &:nth-child(3n - 1) {
+          margin: 0 3%;
+        }
       }
 
       .imageWrapper {
@@ -453,6 +464,10 @@
       .postHolder {
         margin-bottom: 30px;
         width: 31%;
+
+        &:nth-child(3n - 1) {
+          margin: 0 3%;
+        }
       }
 
       .imageWrapper {
@@ -587,6 +602,14 @@
       .postHolder {
         margin-bottom: 30px;
         width: 47%;
+
+        &:nth-child(3n - 1) {
+          margin: 0;
+        }
+
+        &:nth-child(odd) {
+          margin-right: 6%;
+        }
       }
 
       .imageWrapper {
