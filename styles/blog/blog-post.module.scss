@@ -3,12 +3,13 @@
 .blogPost {
   position: relative;
 
-  padding: 334px 0 178px;
   overflow: hidden;
 
   color: var(--color-teal-dark);
 
-  background-color: var(--color-light-cyan);
+  .contentWrapper {
+    padding: 334px 0 178px;
+  }
 
   h1 {
     margin-bottom: 47px;
