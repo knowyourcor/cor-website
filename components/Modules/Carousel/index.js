@@ -24,7 +24,7 @@ const Mask = ({ path }) => {
   );
 };
 
-const Slide = ({ headline, text, image }) => {
+const Slide = ({ headline, text, image, position }) => {
   return (
     <div className={styles.container}>
       <div className={styles.portrait}>
@@ -34,7 +34,7 @@ const Slide = ({ headline, text, image }) => {
       <div className={styles.content}>
         <RichText render={headline} />
         {text && <RichText render={text} />}
-        {/* <RichText render={position_value} /> */}
+        <RichText render={position} />
       </div>
     </div>
   );
@@ -44,7 +44,7 @@ const Carousel = ({ primary, fields }) => {
   const [sliderRef] = useKeenSlider({
     slidesPerView: 2.5,
     spacing: 20,
-    centered: true,
+    centered: false,
     breakpoints: {
       "(min-width: 320px)": {
         slidesPerView: 1.5,
@@ -59,22 +59,22 @@ const Carousel = ({ primary, fields }) => {
       "(min-width: 1024px)": {
         spacing: 60,
         slidesPerView: 2.5,
-        centered: true,
+        centered: false,
       },
       "(min-width: 1280px)": {
         spacing: 30,
         slidesPerView: 2.5,
-        centered: true,
+        centered: false,
       },
       "(min-width: 1440px)": {
         spacing: 55,
         slidesPerView: 2.5,
-        centered: true,
+        centered: false,
       },
       "(min-width: 1680px)": {
         spacing: 100,
         slidesPerView: 2.5,
-        centered: true,
+        centered: false,
       },
     },
   });

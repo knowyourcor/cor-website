@@ -27,6 +27,8 @@ export default function Page({
 
   let title = pageData?.meta_title.toLowerCase()
 
+  console.log(pageData)
+
   return (
     <>
       {router.isFallback ? (

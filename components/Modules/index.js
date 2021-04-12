@@ -17,6 +17,7 @@ import TextDescriptionImage from "./TextDescriptionImage"
 import DualGrid from "./DualGrid"
 import TextCarousel from "./TextCarousel"
 import FeaturedPress from "./FeaturedPress"
+import Checklist from "./Checklist"
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -37,7 +38,8 @@ const moduleDefs = {
   ["text_description_image"]: TextDescriptionImage,
   ["dual_grid"]: DualGrid,
   ["text___carousel"]: TextCarousel,
-  ["featured_press"]: FeaturedPress
+  ["featured_press"]: FeaturedPress,
+  ["checklist"]: Checklist
 };
 
 const Modules = ({ pageData }) => {
