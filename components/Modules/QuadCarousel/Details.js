@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { RichText } from "prismic-reactjs";
 import SwiperCore, { Controller, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -71,7 +70,7 @@ export default function Details({
             return (
               <SwiperSlide key={i} className={styles.swiperSlide}>
                 {`item-${i}` === active &&
-                  <RoundelMeter className="roundelMeterWrap" score={item.number} />
+                  <RoundelMeter className="roundelMeterWrap" score={item.meter_number} />
                 }
               </SwiperSlide>
             )

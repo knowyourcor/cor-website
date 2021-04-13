@@ -1,3 +1,4 @@
+import { RichText } from "prismic-reactjs";
 import { motion } from "framer-motion";
 import styles from "./roundelmeter.module.scss";
 
@@ -118,7 +119,7 @@ const Roundel = ({ score }) => {
         </g>
       </motion.svg>
       <div className={styles.meterScore}>
-        <p>{score}</p>
+        <RichText render={score} />
       </div>
     </div>
   );
