@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .quadCarousel {
   margin-top: -476px;
   padding-top: 684px;
@@ -48,6 +50,14 @@
   }
 }
 
+.card {
+  padding: 30px 36px;
+
+  background-color: var(--font-inverted);
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.03);
+}
+
 .swiperWrap {
   position: relative;
 
@@ -58,10 +68,19 @@
   }
 }
 
-.mainWrap {
-  img {
-    object-fit: cover;
+.mainSwiper {
+  margin: 0 auto;
+  width: 903px;
+
+  & > div {
+    width: 903px;
+    height: 810px;
   }
+}
+
+.detailsWrap,
+.listWrap {
+  pointer-events: none;
 }
 
 .detailsWrap {
@@ -69,6 +88,57 @@
   left: 0;
   bottom: -89px;
   z-index: 2;
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 441px;
+  overflow: hidden;
+
+  & > div {
+    width: 441px;
+  }
+}
+
+.listWrap {
+  position: absolute;
+  bottom: -216px;
+  right: 0;
+  z-index: 2;
+
+  padding: 75px;
+  margin: 0 auto;
+  width: 645px;
+
+  & > div {
+    width: 645px;
+
+    & > div:first-child {
+      display: none;
+    }
+  }
+
+  p {
+    color: var(--color-gray66);
+  }
+
+  ul {
+    padding-top: 61px;
+    padding-left: 0;
+
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  svg {
+    margin-right: 23px;
+
+    height: 40px;
+  }
 }
 
 .nameWrap {
@@ -111,47 +181,6 @@
   }
 }
 
-.toDoWrap {
-  position: absolute;
-  bottom: -216px;
-  right: 0;
-  z-index: 2;
-
-  margin: 0 auto;
-  width: 645px;
-
-  p {
-    color: var(--color-gray66);
-  }
-
-  ul {
-    padding-top: 61px;
-    padding-left: 0;
-
-    list-style: none;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  svg {
-    margin-right: 23px;
-
-    height: 40px;
-  }
-}
-
-.card {
-  padding: 30px 36px;
-
-  background-color: var(--font-inverted);
-  border-radius: 15px;
-  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.03);
-}
-
 @media (min-width: 1200px) and (max-width: 1500px) {
   .quadCarousel {
     h2 {
@@ -178,7 +207,7 @@
     }
   }
 
-  .toDoWrap {
+  .listWrap {
     padding-top: 34px;
     width: 532px;
   }
@@ -205,19 +234,35 @@
     }
   }
 
-  .meterWrap {
-    .swiperSlide {
-      & > div {
-        width: 364px;
-      }
-    }
+  .mainSwiper {
+    width: 706px;
+  
+    & > div {
+      width: 706px;
+      height: 673px;
 
-    svg {
-      height: 280px;
+      & > div {
+        left: -36px;
+      }
     }
   }
 
-  .toDoWrap {
+  .detailsWrap {
+    width: 364px;
+
+    & > div {
+      width: 364px;
+    }
+  }
+
+  .listWrap {
+    padding: 37px;
+    width: 463px;
+
+    & > div {
+      width: 463px;
+    }
+
     ul {
       padding-top: 39px;
     }
@@ -228,6 +273,18 @@
 
     svg {
       height: 32px;
+    }
+  }
+
+  .meterWrap {
+    .swiperSlide {
+      & > div {
+        width: 364px;
+      }
+    }
+
+    svg {
+      height: 280px;
     }
   }
 }
@@ -271,6 +328,80 @@
     }
   }
 
+  .card {
+    padding: 18px;
+  }
+
+  .mainSwiper {
+    margin-left: auto;
+    margin-right: 0;
+    width: 75vw;
+  
+    & > div {
+      height: auto;
+      width: 75vw;
+      margin-right: 0;
+      margin-left: 0;
+
+      & > div:first-child {
+        display: none;
+      }
+    }
+  }
+
+  .detailsWrap {
+    top: -80px;
+    bottom: 0;
+
+    padding-left: 15px;
+    width: auto;
+    height: 274px;
+
+    .card:first-child,
+    .card:first-child .swiper-container {
+      width: 230px;
+    }
+
+    .card:last-child,
+    .card:last-child .swiper-container {
+      width: 169px;
+    }
+  }
+
+  .listWrap {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    
+    padding: 67px 16px 51px;
+    margin-top: -49px;
+    width: 100%;
+
+    border-radius: 0;
+
+    & > div {
+      width: 100%;
+    }
+
+    p {
+      font-size: 12px;
+    }
+
+    ul {
+      padding-top: 46px;
+    }
+
+    li {
+      font-size: 16px;
+    }
+
+    svg {
+      margin-right: 20px;
+      height: 30px;
+    }
+  }
+
   .headingWrap {
     padding-left: 15px;
     padding-right: 15px;
@@ -298,34 +429,6 @@
     svg {
       height: 135px;
     }
-  }
-
-  .detailsWrap {
-    top: -80px;
-    bottom: 0;
-  }
-
-  .toDoWrap {
-    p {
-      font-size: 12px;
-    }
-
-    ul {
-      padding-top: 46px;
-    }
-
-    li {
-      font-size: 16px;
-    }
-
-    svg {
-      margin-right: 20px;
-      height: 30px;
-    }
-  }
-
-  .card {
-    padding: 18px;
   }
 }
 

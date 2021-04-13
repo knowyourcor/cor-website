@@ -1,4 +1,4 @@
-import SwiperCore, { Controller, Pagination, EffectFade  } from 'swiper'
+import SwiperCore, { Controller, Pagination, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Picture from "../../Picture"
@@ -6,7 +6,7 @@ import Picture from "../../Picture"
 import styles from "./index.module.scss"
 
 // install Swiper's Controller component
-SwiperCore.use([Controller, Pagination, EffectFade ]);
+SwiperCore.use([Controller, Pagination, EffectFade]);
 
 export default function Main({
   fields,
@@ -16,16 +16,16 @@ export default function Main({
 
   const params = {
     resizeevent: 'auto',
-    
+
   }
 
   return (
-    <div className={["swiper-main", styles.mainSwiper].join(" ")}>
+    <div className={styles.mainSwiper}>
       <Swiper
         {...params}
         slidesPerView={1}
         effect='fade'
-        fadeEffect= {{
+        fadeEffect={{
           crossFade: true
         }}
         pagination={{ clickable: true }}

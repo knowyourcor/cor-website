@@ -20,11 +20,11 @@ export default function List({
 }) {
 
   return (
-    <div className={["swiper-controller c-card", styles.card, styles.toDoWrap].join(" ")}>
+    <div className={[styles.card, styles.listWrap].join(" ")}>
       <Swiper
         pagination={{ clickable: true }}
         effect="fade"
-        fadeEffect= {{
+        fadeEffect={{
           crossFade: true
         }}
         onSwiper={setControlledSwiper}

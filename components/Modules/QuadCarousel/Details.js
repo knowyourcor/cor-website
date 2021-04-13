@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { RichText } from "prismic-reactjs";
-import SwiperCore, { Controller, EffectFade  } from 'swiper'
+import SwiperCore, { Controller, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { motion } from "framer-motion"
@@ -10,12 +10,11 @@ import RoundelMeter from "../../RoundelMeter"
 import styles from "./index.module.scss"
 
 // install Swiper's Controller component
-SwiperCore.use([Controller, EffectFade ]);
+SwiperCore.use([Controller, EffectFade]);
 
 export default function Details({
   fields,
   active,
-  setActive,
   controlledSwiperTwo,
   setControlledSwiperOne,
   setControlledSwiperTwo,
@@ -28,12 +27,12 @@ export default function Details({
   }
 
   return (
-    <div className={["swiper-details", styles.detailsWrap].join(" ")}>
-      <div className={["c-card", styles.card, styles.nameWrap].join(" ")}>
+    <div className={styles.detailsWrap}>
+      <div className={[styles.card, styles.nameWrap].join(" ")}>
         <Swiper
           {...params}
           effect="fade"
-          fadeEffect= {{
+          fadeEffect={{
             crossFade: true
           }}
           onSwiper={setControlledSwiperOne}
@@ -54,16 +53,16 @@ export default function Details({
                     <p>Today’s Program Results</p>
                   </motion.div>
                 </motion.div>
-                
+
               </SwiperSlide>
             )
           })}
         </Swiper>
       </div>
-      <div className={["c-card", styles.card, styles.meterWrap].join(" ")}>
+      <div className={[styles.card, styles.meterWrap].join(" ")}>
         <Swiper
           effect="fade"
-          fadeEffect= {{
+          fadeEffect={{
             crossFade: true
           }}
           onSwiper={setControlledSwiperTwo}

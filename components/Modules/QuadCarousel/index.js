@@ -1,14 +1,8 @@
 import React, { useState } from 'react'
-import SwiperCore, { Controller, Pagination } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { motion, AnimatePresence } from "framer-motion";
-
 import { RichText } from "prismic-reactjs";
 
 import Section from "../../Section"
 import { Container } from "../../Grid"
-import Image from "../../Image"
-
 import Main from "./Main"
 import Details from "./Details"
 import List from "./List"
@@ -49,7 +43,7 @@ export default function QuadCarousel({ primary, fields }) {
   }
 
   return (
-    <Section className={["quad-carousel", styles.quadCarousel].join(" ")} align="center" style={{ backgroundColor: primary.background_color }}>
+    <Section className={styles.quadCarousel} align="center" style={{ backgroundColor: primary.background_color }}>
       <Container>
         <div className={styles.headingWrap}>
           <RichText render={primary.heading} />
