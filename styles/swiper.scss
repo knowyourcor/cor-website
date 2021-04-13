@@ -50,6 +50,11 @@
     }
   }
 
+  .swiper-controller,
+  .swiper-details {
+    pointer-events: none;
+  }
+
   .swiper-controller {
     padding: 75px;
     
