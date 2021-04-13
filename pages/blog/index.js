@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import Image from "next/image";
@@ -23,19 +23,28 @@ export default function Blog({
   const [category, setCategory] = useState([]);
   const [post, setPost] = useState([]);
   const [postCategory, setPostCategory] = useState([]);
+  const endCursor = useRef(null)
+
+  const handleShowMore = async () => {
+    // const response = await getBlogData(limit, endCursor.current)
+
+    // console.log(response)
+  }
 
   useEffect(() => {
     const currentCategory = pageData.map((cat) => cat.node.category[0].text);
     setCategory([...new Set(currentCategory)]);
-
+    
     const currentPageData = [...pageData];
     currentPageData.sort((a, b) =>
-      a.node.featured_post === b.node.featured_post
-        ? 0
-        : a.node.featured_post
-        ? -1
-        : 1
+    a.node.featured_post === b.node.featured_post
+    ? 0
+    : a.node.featured_post
+    ? -1
+    : 1
     );
+
+    endCursor.current = currentPageData[0].cursor
     setPost(currentPageData);
   }, []);
 
@@ -109,7 +118,7 @@ export default function Blog({
             <div className={styles.categoryWrapper}>
               {!!value.length && (
                 <div className={styles.selectedCategory}>
-                  {value}{" "}
+                  {value}
                   <span className={styles.Icon} onClick={() => setValue("")}>
                     <Image src="/icons/close.svg" height={12} width={12} />
                   </span>
@@ -119,12 +128,8 @@ export default function Blog({
                 className={styles.dropdown}
                 onClick={() => setShow(!show)}
               >
-                <div
-                  className={`${styles.dropdownName} ${
-                    show === true ? styles.openDropdown : ""
-                  }`}
-                >
-                  Category{" "}
+                <div className={`${styles.dropdownName} ${show && styles.openDropdown}`}>
+                  Category
                   <span className={styles.Icon}>
                     <Image src="/icons/down-arrow.svg" height={13} width={13} />
                   </span>
@@ -185,7 +190,7 @@ export default function Blog({
               })}
             </div>
             <div className={styles.buttonHolder}>
-              <button className="btn btn--inverted">Show More</button>
+              <button className="btn btn--inverted" onClick={handleShowMore}>Show More</button>
             </div>
           </div>
         </Container>
