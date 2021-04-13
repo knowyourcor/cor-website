@@ -16,7 +16,6 @@ export default function Main({
 
   const params = {
     resizeevent: 'auto',
-
   }
 
   return (
