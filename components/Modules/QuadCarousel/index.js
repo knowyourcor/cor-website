@@ -17,7 +17,7 @@ export default function QuadCarousel({ primary, fields }) {
 
   const parentVariant = {
     open: {
-      transition: { staggerChildren: 0.07, delayChildren: 0.25 },
+      transition: { staggerChildren: 0.10, delayChildren: 0.25 },
     },
     closed: {
       transition: { staggerChildren: 0.05, staggerDirection: -1 },
@@ -27,17 +27,17 @@ export default function QuadCarousel({ primary, fields }) {
 
   const childVariants = {
     open: {
-      // x: 0,
+      y: 0,
       opacity: 1,
       transition: {
-        y: { stiffness: 1000, velocity: -200 },
+        x: { stiffness: 1000, velocity: -200 },
       },
     },
     closed: {
-      // x: 50,
+      y: -50,
       opacity: 0,
       transition: {
-        y: { stiffness: 1000 },
+        x: { stiffness: 1000 },
       },
     },
   }

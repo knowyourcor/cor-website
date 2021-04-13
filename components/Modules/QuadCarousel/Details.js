@@ -41,6 +41,7 @@ export default function Details({
             return (
               <SwiperSlide key={i} className={styles.cDetails}>
                 <motion.div
+                  initial={{ opacity: 1 }}
                   animate={`item-${i}` === active ? "open" : "closed"}
                   transition={{ staggerChildren: 0.2, delayChildren: 0.15 }}
                   variants={parentVariant}

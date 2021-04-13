@@ -88,8 +88,8 @@ const Carousel = ({ primary, fields }) => {
     spacing: 20,
     breakpoints: {
       "(min-width: 320px)": {
-        slidesPerView: 2.5,
-        spacing: 5,
+        slidesPerView: 1.5,
+        spacing: 10,
         centered: false,
       },
       "(min-width: 768px)": {

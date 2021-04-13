@@ -156,5 +156,17 @@
 
   .mansory {
     margin-top: 55px;
+
+    & > div:nth-child(odd) .portrait {
+      height: 254.7px;
+
+      picture {
+        height: 254.7px;
+      }
+
+      img {
+        height: 100%;
+      }
+    }
   }
 }
