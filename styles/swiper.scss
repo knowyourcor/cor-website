@@ -38,53 +38,6 @@
   }
 }
 
-//Dual Carousel
-.quad-carousel {
-  .swiper-main {
-    margin: 0 auto;
-    width: 903px;
-
-    .swiper-container {
-      width: 903px;
-      height: 810px;
-    }
-  }
-
-  .swiper-controller {
-    padding: 75px;
-    
-    .swiper-container {
-      width: 645px;
-    }
-
-    .swiper-pagination {
-      display: none;
-    }
-  }
-
-  .swiper-details {
-    margin-left: auto;
-    margin-right: auto;
-    width: 441px;
-    overflow: hidden;
-
-    .swiper-container {
-      width: 441px;
-    }
-  }
-
-  .roundelMeterWrap {
-    display: flex;
-    justify-content: center;
-
-    p {
-      font-size: 40px;
-      color: var(--font-primary);
-      text-align: center;
-    }
-  }
-}
-
 @media (min-width: 1501px) {
   .team-carousel {
     .swiper-slide-active img {
@@ -100,43 +53,6 @@
       height: 627px;
     }
   }
-
-  .quad-carousel {
-    .swiper {
-      padding: 47px;
-    }
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  .quad-carousel {
-    .swiper-main,
-    .swiper-main .swiper-container {
-      width: 706px;
-    }
-
-    .swiper-main .swiper-container {
-      height: 673px;
-
-      .swiper-pagination {
-        left: -36px;
-      }
-    }
-
-    .swiper-details,
-    .swiper-details .swiper-container {
-      width: 364px;
-    }
-
-    .swiper-controller,
-    .swiper-controller .swiper-container {
-      width: 463px;
-    }
-
-    .swiper-controller {
-      padding: 37px;
-    }
-  }
 }
 
 @media (min-width: 576px) and (max-width: 991px) {
@@ -150,63 +66,6 @@
 @media (max-width: 991px) {
   .team-carousel {
     padding-left: 15px;
-  }
-
-  .quad-carousel {
-    .swiper-main {
-      margin-left: auto;
-      margin-right: 0;
-      width: 75vw;
-
-      .swiper-container {
-        // height: 270px;
-        height: auto;
-        width: 75vw;
-        margin-right: 0;
-        margin-left: 0;
-      }
-
-      .swiper-pagination {
-        display: none;
-      }
-    }
-
-    .swiper-details {
-      width: auto;
-      height: 274px;
-      padding-left: 15px;
-
-      .c-card:first-child,
-      .c-card:first-child .swiper-container {
-        width: 230px;
-      }
-
-      .c-card:last-child,
-      .c-card:last-child .swiper-container {
-        width: 169px;
-      }
-    }
-
-    .swiper-controller {
-      position: relative;
-      top: 0;
-      bottom: 0;
-      z-index: 0;
-      
-      padding: 67px 16px 51px;
-      margin-top: -49px;
-      width: 100%;
-
-      border-radius: 0;
-
-      .swiper-container {
-        width: 100%;
-      }
-
-      // .swiper-pagination {
-      //   display: flex;
-      // }
-    }
   }
 }
 

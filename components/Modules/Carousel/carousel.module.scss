@@ -10,6 +10,11 @@
   h1 {
     font-size: 50px;
   }
+
+  a {
+    font-weight: 500;
+    text-decoration: underline;
+  }
 }
 
 .image {
@@ -69,6 +74,22 @@
 
 }
 
+.mansory {
+  margin-top: 132px;
+
+  & > div {
+    border-radius: 15px;
+
+    &:nth-child(even),
+    &:nth-child(even) .portrait,
+    &:nth-child(even) .portrait picture {
+      height: 453px;
+
+      border-radius: 15px;
+    }
+  }
+}
+
 @media (min-width: 1200px) and (max-width: 1500px) {
   .carouselWrap {
     h1 {
@@ -76,7 +97,7 @@
     }
   }
   
-  .carousel {
+  .rightAlignSwiper {
     margin-top: 42px;
   }
 }
@@ -91,13 +112,13 @@
     }
   }
 
-  .carousel {
+  .rightAlignSwiper {
     margin-top: 45px;
   }
 }
 
 @media (min-width: 992px) {
-  .carousel {
+  .rightAlignSwiper {
     position: absolute;
     // top: 0;
     top: 114px;
@@ -125,11 +146,27 @@
     }
   }
 
-  .carousel {
+  .rightAlignSwiper {
     padding-left: 15px;
 
     .content {
       padding-top: 13px;
+    }
+  }
+
+  .mansory {
+    margin-top: 55px;
+
+    & > div:nth-child(odd) .portrait {
+      height: 254.7px;
+
+      picture {
+        height: 254.7px;
+      }
+
+      img {
+        height: 100%;
+      }
     }
   }
 }

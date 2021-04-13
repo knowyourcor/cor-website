@@ -1,4 +1,4 @@
-import SwiperCore, { Controller, Pagination } from 'swiper'
+import SwiperCore, { Controller, Pagination, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Picture from "../../Picture"
@@ -6,11 +6,12 @@ import Picture from "../../Picture"
 import styles from "./index.module.scss"
 
 // install Swiper's Controller component
-SwiperCore.use([Controller, Pagination]);
+SwiperCore.use([Controller, Pagination, EffectFade]);
 
-export default function MainCarousel({
+export default function Main({
   fields,
-  controlledSwiper
+  controlledSwiper,
+  setActive,
 }) {
 
   const params = {
@@ -18,12 +19,19 @@ export default function MainCarousel({
   }
 
   return (
-    <div className={["swiper-main", styles.mainSwiper].join(" ")}>
+    <div className={styles.mainSwiper}>
       <Swiper
         {...params}
         slidesPerView={1}
+        effect='fade'
+        fadeEffect={{
+          crossFade: true
+        }}
         pagination={{ clickable: true }}
         controller={{ control: controlledSwiper }}
+        onSlideChange={(swiper) => {
+          setActive(`item-${swiper.activeIndex}`)
+        }}
       >
         {fields.map((item, i) => {
           return (

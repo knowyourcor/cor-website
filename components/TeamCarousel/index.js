@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { RichText } from "prismic-reactjs";
-import { useKeenSlider } from "keen-slider/react"
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import styles from "./carousel.module.scss"
@@ -23,123 +23,60 @@ const Slide = ({ name, position, description, image }) => {
 };
 
 const Carousel = ({ fields }) => {
-  const [sliderRef] = useKeenSlider({
-    slidesPerView: 2,
-    spacing: 20,
-    centered: true,
-    initialSlide: 1,
-    changed: function (slide) {
-      console.log('Slide ' + slide + ' is ' + active)
-    },
-    breakpoints: {
-      "(min-width: 768px)": {
-        slidesPerView: 2,
-        spacing: 50,
-        centered: false,
-      },
-      "(min-width: 1024px)": {
-        spacing: 60,
-        slidesPerView: 3,
-        centered: false,
-      },
-      "(min-width: 1280px)": {
-        spacing: 30,
-        slidesPerView: 4,
-        centered: true,
-      },
-      "(min-width: 1440px)": {
-        spacing: 55,
-        slidesPerView: 4,
-        centered: true,
-      },
-      "(min-width: 1680px)": {
-        spacing: 100,
-        slidesPerView: 4,
-        centered: true,
-      },
-    },
-  });
+  const [activeSlide, setActiveSlide] = useState("item-1");
+
   const swiperInit = {
     spaceBetween: 50,
-    slidesPerView: 3,
-    effect: "fade",
+    slidesPerView: 3.5,
     loop: true,
-    grabCursor: true,
     resizeevent: 'auto',
     breakpoints: {
       315: {
-        slidesPerView: 2,
+        slidesPerView: 2.5,
         spaceBetween: 20,
         loop: true,
       },
       576: {
-        slidesPerView: 3,
+        slidesPerView: 3.5,
         spaceBetween: 20,
         loop: true,
       },
       768: {
-        slidesPerView: 3,
+        slidesPerView: 3.5,
         spaceBetween: 50,
         loop: true,
       },
       992: {
-        slidesPerView: 2,
+        slidesPerView: 2.5,
         spaceBetween: 50,
         loop: true,
       },
       1200: {
-        slidesPerView: 3,
+        slidesPerView: 3.5,
         spaceBetween: 50,
         loop: true,
       },
-    },
-    // breakpoints: {
-    //   320: {
-    //     slidesPerView: "auto",
-    //     spaceBetween: 20,
-    //     loop: false,
-    //   },
-    //   576: {
-    //     slidesPerView: 3,
-    //     spaceBetween: 20,
-    //     loop: true,
-    //   },
-    //   768: {
-    //     slidesPerView: 3,
-    //     spaceBetween: 20,
-    //     loop: true,
-    //   },
-    //   992: {
-    //     slidesPerView: 3,
-    //     spaceBetween: 20,
-    //     loop: true,
-    //   },
-    //   1200: {
-    //     slidesPerView: 3,
-    //     spaceBetween: 20,
-    //     loop: true,
-    //   },
-    // }
+    }
   }
 
   return (
     <div className={["team-carousel", styles.customContainer].join(" ")}>
-      {/* <div
-        ref={sliderRef}
-        className={["keen-slider"].join(" ")}
+      <Swiper
+        {...swiperInit}
+        onSlideChange={(swiper) => {
+          setActiveSlide(`item-${swiper.activeIndex}`)
+          console.log(swiper)
+        }}
       >
         {fields.map((field, index) => {
           return (
-            <div className="keen-slider__slide" key={`slide_${index}`}>
-              <Slide {...field} />
-            </div>
-          );
-        })}
-      </div> */}
-      <Swiper {...swiperInit}>
-        {fields.map((field, index) => {
-          return (
-            <SwiperSlide key={index}>
+            <SwiperSlide
+              key={index}
+              className={[
+                styles.swiperSlide,
+                `item-${index}` === activeSlide && styles.swiperSlideActive].join(" ")
+              }
+            >
               <Slide {...field} />
             </SwiperSlide>
           );
