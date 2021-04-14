@@ -20,7 +20,7 @@ export default function List({
 }) {
 
   return (
-    <div className={[styles.card, styles.listWrap].join(" ")}>
+    <div className={styles.listWrap}>
       <Swiper
         pagination={{ clickable: true }}
         effect="fade"
@@ -34,6 +34,7 @@ export default function List({
           return (
             <SwiperSlide key={i}>
               <motion.div
+                className={styles.listContent}
                 initial={{ opacity: 1 }}
                 animate={`item-${i}` === active ? "open" : "closed"}
                 transition={{ staggerChildren: 0.2, delayChildren: 0.15 }}
