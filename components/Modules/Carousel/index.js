@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { useKeenSlider } from "keen-slider/react";
 import Link from "next/link"
@@ -43,83 +44,94 @@ const Slide = ({ headline, text, image, position }) => {
 };
 
 const Carousel = ({ primary, fields }) => {
-  const [sliderRef] = useKeenSlider({
-    slidesPerView: 2.5,
-    spacing: 20,
-    centered: false,
-    breakpoints: {
-      "(min-width: 320px)": {
-        slidesPerView: 1.5,
+  const [galleryOptions, setGalleryOptions] = useState()
+  const [sliderOptions, setSliderOptions] = useState()
+  
+  const [galleryRef] = useKeenSlider(galleryOptions)
+  const [sliderRef] = useKeenSlider(sliderOptions);
+  
+  useEffect(() => {
+    return setTimeout(() => {
+      setGalleryOptions({
+        slidesPerView: 3.5,
+        mode: "free",
+        loop: true,
         spacing: 20,
         centered: false,
-      },
-      "(min-width: 768px)": {
-        slidesPerView: 2.5,
-        spacing: 50,
-        centered: false,
-      },
-      "(min-width: 1024px)": {
-        spacing: 60,
-        slidesPerView: 2.5,
-        centered: false,
-      },
-      "(min-width: 1280px)": {
-        spacing: 30,
-        slidesPerView: 2.5,
-        centered: false,
-      },
-      "(min-width: 1440px)": {
-        spacing: 55,
-        slidesPerView: 2.5,
-        centered: false,
-      },
-      "(min-width: 1680px)": {
-        spacing: 100,
-        slidesPerView: 2.5,
-        centered: false,
-      },
-    },
-  });
+        breakpoints: {
+          "(min-width: 320px)": {
+            slidesPerView: 1.5,
+            spacing: 10,
+            centered: false,
+          },
+          "(min-width: 768px)": {
+            slidesPerView: 2.5,
+            spacing: 10,
+            centered: false,
+          },
+          "(min-width: 1024px)": {
+            spacing: 20,
+            slidesPerView: 3.5,
+            centered: false,
+          },
+          "(min-width: 1280px)": {
+            spacing: 20,
+            slidesPerView: 3.5,
+            centered: false,
+          },
+          "(min-width: 1440px)": {
+            spacing: 20,
+            slidesPerView: 3.5,
+            centered: false,
+          },
+          "(min-width: 1680px)": {
+            spacing: 20,
+            slidesPerView: 3.5,
+            centered: false,
+          },
+        },
+      })
 
-  const [galleryRef] = useKeenSlider({
-    slidesPerView: 3.5,
-    mode: "free",
-    loop: true,
-    spacing: 20,
-    breakpoints: {
-      "(min-width: 320px)": {
-        slidesPerView: 1.5,
-        spacing: 10,
-        centered: false,
-      },
-      "(min-width: 768px)": {
+      setSliderOptions({
         slidesPerView: 2.5,
-        spacing: 10,
-        centered: false,
-      },
-      "(min-width: 1024px)": {
         spacing: 20,
-        slidesPerView: 3.5,
         centered: false,
-      },
-      "(min-width: 1280px)": {
-        spacing: 20,
-        slidesPerView: 3.5,
-        centered: false,
-      },
-      "(min-width: 1440px)": {
-        spacing: 20,
-        slidesPerView: 3.5,
-        centered: false,
-      },
-      "(min-width: 1680px)": {
-        spacing: 20,
-        slidesPerView: 3.5,
-        centered: false,
-      },
-    },
-  })
-
+        breakpoints: {
+          "(min-width: 320px)": {
+            slidesPerView: 1.5,
+            spacing: 20,
+            centered: false,
+          },
+          "(min-width: 768px)": {
+            slidesPerView: 2.5,
+            spacing: 50,
+            centered: false,
+          },
+          "(min-width: 1024px)": {
+            spacing: 60,
+            slidesPerView: 2.5,
+            centered: false,
+          },
+          "(min-width: 1280px)": {
+            spacing: 30,
+            slidesPerView: 2.5,
+            centered: false,
+          },
+          "(min-width: 1440px)": {
+            spacing: 55,
+            slidesPerView: 2.5,
+            centered: false,
+          },
+          "(min-width: 1680px)": {
+            spacing: 100,
+            slidesPerView: 2.5,
+            centered: false,
+          },
+        },
+      })
+    }, 200)
+  }, [])
+ 
   return (
     <Section className={styles.carouselWrap} backgroundColor={primary.background_color} align="center">
       <Container>
@@ -142,7 +154,7 @@ const Carousel = ({ primary, fields }) => {
         className={[
           "keen-slider",
           primary.carousel_type === "Right Align Swiper" && styles.rightAlignSwiper,
-          primary.carousel_type === "Mansory" && styles.mansory].join(" ")
+          primary.carousel_type === "Masonry" && styles.masonry].join(" ")
         }>
         {fields.map((field, index) => {
           return (
