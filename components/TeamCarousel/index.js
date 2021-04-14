@@ -29,7 +29,7 @@ const Carousel = ({ fields }) => {
     spaceBetween: 50,
     slidesPerView: 3.5,
     loop: true,
-    resizeevent: 'auto',
+    resizeObserver: true,
     breakpoints: {
       315: {
         slidesPerView: 2.5,
@@ -60,12 +60,11 @@ const Carousel = ({ fields }) => {
   }
 
   return (
-    <div className={["team-carousel", styles.customContainer].join(" ")}>
+    <div className={["swiper--slides__visibility", styles.customContainer].join(" ")}>
       <Swiper
         {...swiperInit}
         onSlideChange={(swiper) => {
           setActiveSlide(`item-${swiper.activeIndex}`)
-          console.log(swiper)
         }}
       >
         {fields.map((field, index) => {

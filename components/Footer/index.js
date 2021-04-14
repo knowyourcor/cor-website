@@ -124,7 +124,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
             <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 2, sm: 1 }} justify="center">
               <p>©{new Date().getFullYear()} COR LLC</p>
             </Column>
-            <Column columns={{ xs: 14, sm: 10 }} orders={{ xs: 1, sm: 2 }} justify="center">
+            <Column columns={{ xs: 14, sm: 9, md: 10 }} orders={{ xs: 1, sm: 2 }} justify="center">
               <ul>
                 {tertiaryMenuData && (
                   <>

@@ -275,7 +275,7 @@
   }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1025px) { //~1025
   .navigation {
     padding-left: 15px;
     padding-right: 15px;
@@ -333,6 +333,12 @@
 
   .isOpen.withBG {
     nav a {
+      color: var(--font-inverted);
+    }
+  }
+
+  .onScroll.isOpen {
+    a {
       color: var(--font-inverted);
     }
   }
