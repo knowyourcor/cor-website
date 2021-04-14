@@ -210,6 +210,8 @@
 
 @media (max-width: $xl) {
   .quadCarousel {
+    padding-top: 555px;
+
     h2 {
       margin-bottom: 31px;
 
@@ -225,8 +227,14 @@
     }
 
     p {
+      width: 57vw;
+
       font-size: 14px;
     }
+  }
+
+  .swiperWrap {
+    margin-top: 68px;
   }
 
   .mainSwiper {
@@ -245,10 +253,10 @@
   .detailsWrap {
     left: 12px;
 
-    width: 301px;
+    width: 34vw;
 
     & > div {
-      width: 301px;
+      width: 34vw;
     }
   }
 
@@ -282,7 +290,7 @@
       height: 271px;
 
       & > div {
-        width: 301px;
+        width: 34vw;
         height: 271px;
 
         p {
@@ -324,8 +332,14 @@
     }
 
     p {
+      width: 100%;
+
       font-size: 16px;
     }
+  }
+
+  .swiperWrap {
+    margin-top: 137px;
   }
 
   .card {

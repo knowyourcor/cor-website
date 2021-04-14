@@ -13,7 +13,6 @@
   left: 0;
   
   &.active, &:first-of-type {
-    
     @media (min-width: $md) {
       display: flex;
     }
@@ -163,7 +162,23 @@
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 991px) {
+@media (max-width: $md) {
+  .slide {
+    flex-direction: column-reverse;
+
+    &.active, &:first-of-type {
+      display: flex;
+    }
+
+    .slideRight {
+      padding-bottom: 0;
+    }
+
+    img {
+      object-position: top;
+    }
+  }
+
   .svgWrap {
     height: 136.5px;
   }
