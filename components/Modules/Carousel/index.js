@@ -51,7 +51,7 @@ const Carousel = ({ primary, fields }) => {
   const [sliderRef] = useKeenSlider(sliderOptions);
   
   useEffect(() => {
-    return setTimeout(() => {
+    const timeout = setTimeout(() => {
       setGalleryOptions({
         slidesPerView: 3.5,
         mode: "free",
@@ -130,6 +130,8 @@ const Carousel = ({ primary, fields }) => {
         },
       })
     }, 200)
+
+    return () => clearTimeout(timeout)
   }, [])
  
   return (
