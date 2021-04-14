@@ -106,30 +106,30 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1025px) { //~1025px
   .menu {
     transform: none !important;
-
+  
     ul {
       padding-left: 0;
     }
-
+  
     li {
       opacity: 1 !important;
       transform: none !important;
     }
   }
-
+  
   .mainMenu {
     display: flex;
   }
-
+  
   .subMenu {
     display: none;
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: $md) {
   .menu {
     position: fixed;
     z-index: 1001;

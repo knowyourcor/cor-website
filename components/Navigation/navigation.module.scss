@@ -104,12 +104,6 @@
   margin-left: auto;
   width: 100%;
   max-width: $xxl;
-
-  border-bottom: 1px solid var(--color-white-bright);
-
-  // @media (min-width: $md) {
-  //   padding: 0 2rem;
-  // }
 }
 
 .menuToggle {
@@ -267,18 +261,11 @@
   }
 }
 
-@media (min-width: 992px) {
-  .navigation {
-    padding-left: 15px;
-    padding-right: 15px;
-
-    button {
-      display: none; 
-    }
+@media (min-width: $md) {
+  .container {
+    border-bottom: 1px solid var(--color-white-bright);
   }
-}
 
-@media (min-width: 768px) {
   .menuToggle {
     left: 2rem;
   }
@@ -288,18 +275,25 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1025px) { //~1025
   .navigation {
+    padding-left: 15px;
+    padding-right: 15px;
+
     .logo {
       position: absolute;
       left: 50%;
       
       transform: translateX(-50%);
     }
+
+    button {
+      display: none; 
+    }
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: $md) {
   .navigation {
     .logo {
       padding: 0;
@@ -339,6 +333,12 @@
 
   .isOpen.withBG {
     nav a {
+      color: var(--font-inverted);
+    }
+  }
+
+  .onScroll.isOpen {
+    a {
       color: var(--font-inverted);
     }
   }

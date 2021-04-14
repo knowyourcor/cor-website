@@ -11,7 +11,7 @@
 }
 
 //About: Team Carousel
-.team-carousel {
+.swiper--slides__visibility {
   img, p, h5, h6 {
     transition: all .3s ease-in;
   }
@@ -19,6 +19,8 @@
   img {
     width: 495px;
     height: 580px;
+
+    object-fit: cover;
   }
   
   p {
@@ -31,15 +33,11 @@
       visibility: visible;
       opacity: 1;
     }
-
-    img {
-      object-fit: cover;
-    }
   }
 }
 
-@media (min-width: 1501px) {
-  .team-carousel {
+@media (min-width: $xxl) {
+  .swiper--slides__visibility {
     .swiper-slide-active img {
       width: 622px;
       height: 767px;
@@ -47,38 +45,42 @@
   }
 }
 
-@media (min-width: 1200px) and (max-width: 1500px) {
-  .team-carousel {
+@media (max-width: $xl) {
+  .swiper--slides__visibility {
     .swiper-slide-active img {
-      height: 627px;
+      height: 439px;
+    }
+
+    img {
+      height: 400px;
     }
   }
 }
 
-@media (min-width: 576px) and (max-width: 991px) {
-  .team-carousel {
-    .swiper-slide-active img {
-      height: 621px;
-    }
-  }
-}
-
-@media (max-width: 991px) {
-  .team-carousel {
+@media (max-width: $md) {
+  .swiper--slides__visibility {
     padding-left: 15px;
+
+    .swiper-slide-active img {
+      height: 528px;
+    }
   }
 }
 
-@media (max-width: 575px) {
-  .team-carousel {
+@media (max-width: $xs) {
+  .swiper--slides__visibility {
     .swiper-container {
-      width: 575px;
+      width: 512px;
     }
 
     .swiper-slide-active {
       h5, h6 {
         visibility: visible;
         opacity: 1;
+      }
+
+      img {
+        height: 100%;
       }
     }
 

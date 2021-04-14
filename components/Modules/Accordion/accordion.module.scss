@@ -176,58 +176,32 @@
   }
 }
 
-@media (min-width: 1200px) and (max-width: 1500px) {
+@media (max-width: $xl) {
   .section {
     h1 {
-      font-size: 39px;
-    }
-
-    .itemLabel {
-      font-size: 30px;
-    }
-
-    .item p {
-      font-size: 17px;
+      font-size: 36px;
     }
   }
 
   .svgPieGraph {
-    height: 542px;
+    height: 442px;
   }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-  .section h1 {
-    font-size: 32px;
-  }
-
-  .accordion {
-    .itemLabel {
-      font-size: 25px;
+@media (max-width: 1023px) { 
+  .section {
+    h1 {
+      position: absolute;
+      top: 0;
     }
-
-    .item p {
-      font-size: 16px;
-    }
-  }
-
-  .content {
-    padding-bottom: 43px;
-  }
-
-  .svgPieGraph {
-    height: 384px;
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: $md) {
   .section {
     padding-bottom: 70px;
     
     h1 {
-      position: absolute;
-      top: 0;
-
       font-size: 34px;
     }
   }

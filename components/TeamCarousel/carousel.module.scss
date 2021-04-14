@@ -3,6 +3,17 @@
 .customContainer {
   padding-top: 150px;
   margin-left: auto;
+
+  .swiper-slide-active {
+    p {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    img {
+      object-fit: cover;
+    }
+  }
 }
 
 .content {
@@ -47,7 +58,7 @@
   text-transform: capitalize;
 }
 
-@media (min-width: 576px) {
+@media (min-width: $xs) {
   .customContainer {
     width: 108rem;
   }

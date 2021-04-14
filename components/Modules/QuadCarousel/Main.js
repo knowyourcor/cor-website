@@ -18,14 +18,12 @@ export default function Main({
 
   const variants = {
     open: {
-      x: 0,
       opacity: 1,
       transition: {
         y: { stiffness: 1000, velocity: -200 },
       }
     },
     closed: {
-      x: 0,
       opacity: 0,
       transition: {
         y: { stiffness: 1000 },
@@ -52,7 +50,6 @@ export default function Main({
           return (
             <SwiperSlide className="swiperSlide" key={i}>
               <motion.div
-                initial={{ x: 300, opacity: 0 }}
                 animate={`item-${i}` === active ? "open" : "closed"}
                 variants={variants}
               >
