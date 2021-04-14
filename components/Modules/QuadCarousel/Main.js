@@ -1,5 +1,6 @@
 import SwiperCore, { Controller, Pagination, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { motion } from "framer-motion"
 
 import Picture from "../../Picture"
 
@@ -11,17 +12,31 @@ SwiperCore.use([Controller, Pagination, EffectFade]);
 export default function Main({
   fields,
   controlledSwiper,
+  active,
   setActive,
 }) {
 
-  const params = {
-    resizeevent: 'auto',
+  const variants = {
+    open: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        y: { stiffness: 1000, velocity: -200 },
+      }
+    },
+    closed: {
+      x: 0,
+      opacity: 0,
+      transition: {
+        y: { stiffness: 1000 },
+      },
+    },
   }
 
   return (
     <div className={styles.mainSwiper}>
       <Swiper
-        {...params}
+        resizeevent='auto'
         slidesPerView={1}
         effect='fade'
         fadeEffect={{
@@ -36,7 +51,13 @@ export default function Main({
         {fields.map((item, i) => {
           return (
             <SwiperSlide className="swiperSlide" key={i}>
-              <Picture image={item.image} />
+              <motion.div
+                initial={{ x: 300, opacity: 0 }}
+                animate={`item-${i}` === active ? "open" : "closed"}
+                variants={variants}
+              >
+                <Picture image={item.image} />
+              </motion.div>
             </SwiperSlide>
           )
         })}

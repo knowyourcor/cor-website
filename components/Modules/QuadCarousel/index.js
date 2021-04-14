@@ -62,6 +62,7 @@ export default function QuadCarousel({ primary, fields }) {
           <Main
             fields={fields}
             controlledSwiper={controlledSwiper}
+            active={active}
             setActive={setActive}
           />
           <List
