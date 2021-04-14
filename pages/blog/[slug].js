@@ -36,20 +36,16 @@ const Post = ({
             {pageData.content.map((item, i) => { 
               return (
                 <div key={i} className={styles.postContent}>
-                  {item.image &&
-                    <div className={styles.imageWrapper}>
-                      <div className={styles.imageHolder}>
+                  <div className={styles.mediaWrapper}>
+                    <div className={styles.mediaHolder}>
+                      {item.image &&
                         <img className={styles.image} src={item.image.url} />
-                      </div>
+                      }
+                      {item?.embed_media?.html &&
+                        <div className={styles.video} dangerouslySetInnerHTML={{ __html: item?.embed_media?.html }} />
+                      }
                     </div>
-                  }
-                  {item?.embed_media?.html &&
-                    <div className={styles.videoWrapper}>
-                      <div className={styles.videoHolder}>
-                        <div dangerouslySetInnerHTML={{ __html: item?.embed_media?.html }} />
-                      </div>
-                    </div>
-                  }
+                  </div>
                   <div className={styles.contentText}>
                     <div className={styles.contentHolder}>
                       <RichText render={item.heading} />
