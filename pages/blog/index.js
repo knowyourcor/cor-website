@@ -9,11 +9,12 @@ import { Container } from "../../components/Grid";
 
 import styles from "../../styles/blog/blog.module.scss";
 
-import { getBlogData, getMenuData } from "../../lib/api";
+import { getBlogData, getCategoryBlogData, getMenuData } from "../../lib/api";
 
 export default function Blog({
   preview,
   pageData,
+  categories,
   mainMenuData,
   footerMenuData,
   tertiaryMenuData,
@@ -23,40 +24,51 @@ export default function Blog({
   const [category, setCategory] = useState([]);
   const [post, setPost] = useState([]);
   const [postCategory, setPostCategory] = useState([]);
-  const endCursor = useRef(null)
+  const endCursor = useRef(null);
 
-  const handleShowMore = async () => {
-    // const response = await getBlogData(limit, endCursor.current)
+  const handleShowMore = async () => {};
 
-    // console.log(response)
-  }
-
-  useEffect(() => {
-    const currentCategory = pageData.map((cat) => cat.node.category[0].text);
-    setCategory([...new Set(currentCategory)]);
-    
-    const currentPageData = [...pageData];
-    currentPageData.sort((a, b) =>
-    a.node.featured_post === b.node.featured_post
-    ? 0
-    : a.node.featured_post
-    ? -1
-    : 1
+  const setPostData = () => {
+    const items = [];
+    Object.values(pageData).forEach((data) =>
+      data.edges.forEach((edge) => items.push(edge))
     );
+    setPost(
+      items.sort((a, b) =>
+        a.node.featured_post === b.node.featured_post
+          ? 0
+          : a.node.featured_post
+          ? -1
+          : 1
+      )
+    );
+  };
 
-    endCursor.current = currentPageData[0].cursor
-    setPost(currentPageData);
-  }, []);
+  const setCategoriesDropdown = () => {
+    const currentCategory = categories.categories.edges.map(
+      (cat) => cat.node.category[0].text
+    );
+    setCategory([...new Set(currentCategory)]);
+  };
 
-  useEffect(() => {
+  const filterCategoriesData = () => {
     if (!value.length) {
-      setPostCategory(pageData);
+      setPostCategory(categories.categoriesData.edges);
     } else {
-      const filteredData = pageData.filter(
+      const filteredData = categories.categoriesData.edges.filter(
         (data) => data.node.category[0].text === value
       );
       setPostCategory(filteredData);
     }
+  };
+
+  useEffect(() => {
+    setPostData();
+    setCategoriesDropdown();
+  }, []);
+
+  useEffect(() => {
+    filterCategoriesData();
   }, [value]);
 
   return (
@@ -71,47 +83,46 @@ export default function Blog({
       <div className={styles.sectionPost}>
         <Container>
           <div className={styles.postWrapper}>
-            {post
-              .filter((_, i) => i <= 3)
-              .map((item, i) => {
-                let data = item.node;
-                let date = moment(data.date).format("DD MMMM, YYYY");
+            {post.map((item, i) => {
+              let data = item.node;
+              let date = moment(data.date).format("DD MMMM, YYYY");
 
-                return (
-                  <div key={i} className={styles.postHolder}>
-                    <div className={styles.postImage}>
-                      <Link href={"/blog/" + data._meta.uid}>
-                        <a>
-                          <div className={styles.imageWrapper}>
-                            <img
-                              src={data.content[0].image.url}
-                              className={styles.image}
-                              alt=""
-                            />
-                          </div>
-                        </a>
-                      </Link>
-                    </div>
-                    <div className={styles.postContent}>
-                      <h2 className={styles.title}>
-                        <Link href={"/blog/" + data._meta.uid}>
-                          <a>{RichText.asText(data.title)}</a>
-                        </Link>
-                      </h2>
-                      <div className={styles.wrapper}>
-                        <p className={styles.category}>
-                          {RichText.asText(data.category)}
-                        </p>
-                        <p className={styles.date}>{date}</p>
-                      </div>
-                      {i === 0 && <p>{data.excerpt[0].text}</p>}
-                    </div>
+              return (
+                <div key={i} className={styles.postHolder}>
+                  <div className={styles.postImage}>
+                    <Link href={"/blog/" + data._meta.uid}>
+                      <a>
+                        <div className={styles.imageWrapper}>
+                          <img
+                            src={data.content[0].image.url}
+                            className={styles.image}
+                            alt=""
+                          />
+                        </div>
+                      </a>
+                    </Link>
                   </div>
-                );
-              })}
+                  <div className={styles.postContent}>
+                    <h2 className={styles.title}>
+                      <Link href={"/blog/" + data._meta.uid}>
+                        <a>{RichText.asText(data.title)}</a>
+                      </Link>
+                    </h2>
+                    <div className={styles.wrapper}>
+                      <p className={styles.category}>
+                        {RichText.asText(data.category)}
+                      </p>
+                      <p className={styles.date}>{date}</p>
+                    </div>
+                    {i === 0 && <p>{data.excerpt[0].text}</p>}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </Container>
       </div>
+
       <div className={styles.sectionPostCategory}>
         <Container>
           <div className={styles.contentWrapper}>
@@ -128,7 +139,11 @@ export default function Blog({
                 className={styles.dropdown}
                 onClick={() => setShow(!show)}
               >
-                <div className={`${styles.dropdownName} ${show && styles.openDropdown}`}>
+                <div
+                  className={`${styles.dropdownName} ${
+                    show && styles.openDropdown
+                  }`}
+                >
                   Category
                   <span className={styles.Icon}>
                     <Image src="/icons/down-arrow.svg" height={13} width={13} />
@@ -190,7 +205,9 @@ export default function Blog({
               })}
             </div>
             <div className={styles.buttonHolder}>
-              <button className="btn btn--inverted" onClick={handleShowMore}>Show More</button>
+              <button className="btn btn--inverted" onClick={handleShowMore}>
+                Show More
+              </button>
             </div>
           </div>
         </Container>
@@ -201,6 +218,7 @@ export default function Blog({
 
 export async function getStaticProps({ preview = false, previewData }) {
   const pageData = await getBlogData(previewData);
+  const categories = await getCategoryBlogData("", previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
@@ -208,6 +226,7 @@ export async function getStaticProps({ preview = false, previewData }) {
     props: {
       preview,
       pageData,
+      categories,
       mainMenuData,
       footerMenuData,
       tertiaryMenuData,
