@@ -118,7 +118,7 @@ export default function Blog({
             <div className={styles.categoryWrapper}>
               {!!value.length && (
                 <div className={styles.selectedCategory}>
-                  {value}
+                  <span>{value}</span>
                   <span className={styles.Icon} onClick={() => setValue("")}>
                     <Image src="/icons/close.svg" height={12} width={12} />
                   </span>
