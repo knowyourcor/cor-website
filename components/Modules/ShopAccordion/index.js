@@ -59,51 +59,52 @@ export default function ShopAccordion({ primary, fields }) {
       style={{
         backgroundColor: backgroundColor,
       }}
+      className={styles.accordionWrap}
     >
-      <Container>
-        <Row>
-          <Column columns={{ xs: 14, md: 6, lg: 5 }} offsets={{ md: 1, lg: 1 }} className="custom__column">
-            {primary.headline[0].text && (
-              <div className={styles.headline}>
-                <RichText render={primary.headline} />
-              </div>
-            )}
-            <div className={styles.accordion}>
-              <motion.div className={styles.items}>
-                {fields.map((data, index) => (
-                  <Item
-                    key={`item-${index}`}
-                    isExpanded={`item-${index}` === expanded}
-                    expandItem={() => {
-                      setExpanded(`item-${index}`);
-                      handleImageChange(data.image);
-                    }}
-                    data={data}
-                    index={index}
-                    changeImage={handleImageChange}
-                  />
-                ))}
-              </motion.div>
+      <Row align="center">
+        <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }} justofy="center">
+          {primary.headline[0].text && (
+            <div className={styles.headline}>
+              <RichText render={primary.headline} />
             </div>
-          </Column>
-          {/* <Column columns={{ xs: 14, sm: 10, md: 7, lg: 7 }}>
-            {imageData && (
-              <div className={styles.primaryImage}>
-                <AnimatePresence initial={false}>
-                  <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    variants={imageVariant}
-                    key={imageData.url}
-                  >
-                    <Picture image={imageData} className={styles.image} />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            )}
-          </Column> */}
-        </Row>
+          )}
+          <div className={styles.accordion}>
+            <motion.div className={styles.items}>
+              {fields.map((data, index) => (
+                <Item
+                  key={`item-${index}`}
+                  isExpanded={`item-${index}` === expanded}
+                  expandItem={() => {
+                    setExpanded(`item-${index}`);
+                    handleImageChange(data.image);
+                  }}
+                  data={data}
+                  index={index}
+                  changeImage={handleImageChange}
+                />
+              ))}
+            </motion.div>
+          </div>
+        </Column>
+        <Column columns={{ xs: 14, md: 8 }} offsets={{ md: 1 }} className={styles.columnPaddingRight}>
+          {imageData && (
+            <div className={styles.primaryImage}>
+              <AnimatePresence initial={false}>
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={imageVariant}
+                  key={imageData.url}
+                >
+                  <Picture image={imageData} className={styles.image} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          )}
+        </Column>
+      </Row>
+      {/* <Container>
       </Container>
       <div className={styles.imageWrap}>
         {imageData && (
@@ -121,26 +122,7 @@ export default function ShopAccordion({ primary, fields }) {
             </AnimatePresence>
           </div>
         )}
-        <Row justify="flex-end">
-          <Column columns={{ xs: 14, sm: 10, md: 7, lg: 7 }}>
-          </Column>
-        </Row>
-        {/* {imageData && (
-          <div className={styles.primaryImage}>
-            <AnimatePresence initial={false}>
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                variants={imageVariant}
-                key={imageData.url}
-              >
-                <Picture image={imageData} className={styles.image} />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        )} */}
-      </div>
+      </div> */}
     </Section>
   );
 }

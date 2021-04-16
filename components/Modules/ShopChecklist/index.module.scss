@@ -1,8 +1,9 @@
 @import "../../../styles/_variables.scss";
 
 .checklistWrap {
-  padding-bottom: 694px;
-  margin-top: 196px;
+  & > div {
+    padding-top: 98px;
+  }
 
   h5 {
     font-family: var(--font-sans-headline);
@@ -13,7 +14,6 @@
   }
 
   p {
-
     font-size: 20px;
   }
 }
@@ -33,8 +33,8 @@
 
 .listHolder {
   position: absolute;
-  bottom: -646px;
-  left: 21vw;
+  bottom: -173px;
+  left: 30vw;
   z-index: 2;
 
   .card {
@@ -229,12 +229,12 @@
   padding-left: 10px;
 }
 
-.imageWrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 57vw;
-}
+// .imageWrap {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 57vw;
+// }
 
 @media (max-width: $xl) {
   .checklistWrap {
