@@ -4,16 +4,107 @@
   margin-top: 2rem;
 }
 
-.items {
-  border-bottom: 1px solid #000;
+.accordionHead {
+  display: flex;
+  align-items: center;
 }
-
 
 .item {
-  padding: 1rem 0;
+  position: relative;
+
   overflow: hidden;
-  border-top: 1px solid #000;
+
+  &:not(:last-child) {
+    padding-bottom: 1rem;
+  }
+
+  &:last-child {
+    .cBorder {
+      top: 50px;
+    }
+  }
+
+  &.activeItem {
+    &:last-child {
+      .cBorder {
+        top: 32px;
+      }
+    }
+  }
+
+  .itemLabel,
+  .itemIndex {
+    color: var(--color-suva-grey)
+  }
+
+  .itemLabel {
+    padding-left: 64px;
+
+    font-size: 30px;
+  } 
+
+  .itemIndex {
+    font-size: 14px;
+  }
+
+  p {
+    padding-left: 96.23px;
+
+    font-size: 20px;
+    line-height: 1.5;
+  }
 }
+
+.cBorder {
+  position: absolute;
+  top: 32px;
+  left: 8px;
+
+  height: 100%;
+
+  border-left: 1px solid var(--color-suva-grey);
+}
+
+.activeItem {
+  .itemLabel,
+  .itemIndex {
+    color: var(--font-primary)
+  }
+
+  .cBorder {
+    border-left: 1px solid var(--font-primary);
+  }
+}
+
+.imageWrap {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  // width: 1679px;
+  display: flex;
+  align-items: flex-end;
+  width: 50%;
+  height: 100%;
+
+  picture {
+    margin-left: auto;
+    margin-right: 0;
+    width: 81%;
+  }
+}
+
+
+// .items {
+//   border-bottom: 1px solid #000;
+// }
+
+
+// .item {
+//   padding: 1rem 0;
+//   overflow: hidden;
+//   // border-top: 1px solid #000;
+// }
 .icon {
   width: 20px;
   height: 20px;
@@ -70,7 +161,7 @@
 }
 
 .headline {
-  h1,
+  h2,
   .h1 {
     font-size: 2.5rem;
     line-height: 3.125rem;
@@ -99,13 +190,19 @@
 .primaryImage {
   width: 100%;
   height: 0;
-  padding-top: 100%;
+  // padding-top: 100%;
+  padding-top: 75%;
   position: relative;
+
   > div {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

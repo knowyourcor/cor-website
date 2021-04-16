@@ -61,25 +61,8 @@ export default function ShopAccordion({ primary, fields }) {
       }}
     >
       <Container>
-        <Row justify="center">
-          <Column columns={{ xs: 14, sm: 10, md: 7, lg: 7 }}>
-            {imageData && (
-              <div className={styles.primaryImage}>
-                <AnimatePresence initial={false}>
-                  <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    variants={imageVariant}
-                    key={imageData.url}
-                  >
-                    <Picture image={imageData} className={styles.image} />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            )}
-          </Column>
-          <Column columns={{ xs: 14, md: 6, lg: 5 }} offsets={{ md: 1, lg: 1 }}>
+        <Row>
+          <Column columns={{ xs: 14, md: 6, lg: 5 }} offsets={{ md: 1, lg: 1 }} className="custom__column">
             {primary.headline[0].text && (
               <div className={styles.headline}>
                 <RichText render={primary.headline} />
@@ -103,8 +86,61 @@ export default function ShopAccordion({ primary, fields }) {
               </motion.div>
             </div>
           </Column>
+          {/* <Column columns={{ xs: 14, sm: 10, md: 7, lg: 7 }}>
+            {imageData && (
+              <div className={styles.primaryImage}>
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={imageVariant}
+                    key={imageData.url}
+                  >
+                    <Picture image={imageData} className={styles.image} />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            )}
+          </Column> */}
         </Row>
       </Container>
+      <div className={styles.imageWrap}>
+        {imageData && (
+          <div className={styles.primaryImage}>
+            <AnimatePresence initial={false}>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={imageVariant}
+                key={imageData.url}
+              >
+                <Picture image={imageData} className={styles.image} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        )}
+        <Row justify="flex-end">
+          <Column columns={{ xs: 14, sm: 10, md: 7, lg: 7 }}>
+          </Column>
+        </Row>
+        {/* {imageData && (
+          <div className={styles.primaryImage}>
+            <AnimatePresence initial={false}>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={imageVariant}
+                key={imageData.url}
+              >
+                <Picture image={imageData} className={styles.image} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        )} */}
+      </div>
     </Section>
   );
 }

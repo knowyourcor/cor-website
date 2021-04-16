@@ -19,6 +19,8 @@ import TextCarousel from "./TextCarousel"
 import FeaturedPress from "./FeaturedPress"
 import Checklist from "./Checklist"
 import QuadCarousel from "./QuadCarousel"
+import ShopTextBackgroundImage from "./ShopTextBackgroundImage"
+import ShopChecklist from "./ShopChecklist"
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -41,7 +43,9 @@ const moduleDefs = {
   ["text___carousel"]: TextCarousel,
   ["featured_press"]: FeaturedPress,
   ["checklist"]: Checklist,
-  ["quadcarousel"]: QuadCarousel
+  ["quadcarousel"]: QuadCarousel,
+  ["text___background_image"]: ShopTextBackgroundImage,
+  ["shop_checklist"]: ShopChecklist
 };
 
 const Modules = ({ pageData }) => {
