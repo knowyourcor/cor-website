@@ -33,7 +33,7 @@ const Post = ({
             <p className={styles.date}>{dateFormat}</p>
           </div>
           <div>
-            {pageData.content.map((item, i) => { 
+            {pageData.content.map((item, i) => {
               return (
                 <div key={i} className={styles.postContent}>
                   <div className={styles.mediaWrapper}>
@@ -70,7 +70,21 @@ export default Post;
 export const getStaticPaths = async (previewData) => {
   const pageData = await getBlogData(previewData);
 
-  const paths = pageData.map(post => {
+  const arr = []
+  const arr2 = []
+
+  pageData.posts.edges.forEach(element => {
+    arr.push(element)
+  });
+
+  pageData.featuredPost.edges.forEach(element => {
+    arr2.push(element)
+  });
+
+  const combineArr = arr.concat(arr2)
+
+  const paths = combineArr.map(post => {
+    console.log(post.node._meta.uid)
     return {
       params: { slug: post.node._meta.uid }
     }

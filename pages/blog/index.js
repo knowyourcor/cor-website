@@ -19,6 +19,7 @@ export default function Blog({
   footerMenuData,
   tertiaryMenuData,
 }) {
+
   const [show, setShow] = useState();
   const [value, setValue] = useState([]);
   const [category, setCategory] = useState([]);
@@ -26,7 +27,7 @@ export default function Blog({
   const [postCategory, setPostCategory] = useState([]);
   const endCursor = useRef(null);
 
-  const handleShowMore = async () => {};
+  const handleShowMore = async () => { };
 
   const setPostData = () => {
     const items = [];
@@ -38,8 +39,8 @@ export default function Blog({
         a.node.featured_post === b.node.featured_post
           ? 0
           : a.node.featured_post
-          ? -1
-          : 1
+            ? -1
+            : 1
       )
     );
   };
@@ -140,9 +141,8 @@ export default function Blog({
                 onClick={() => setShow(!show)}
               >
                 <div
-                  className={`${styles.dropdownName} ${
-                    show && styles.openDropdown
-                  }`}
+                  className={`${styles.dropdownName} ${show && styles.openDropdown
+                    }`}
                 >
                   Category
                   <span className={styles.Icon}>
