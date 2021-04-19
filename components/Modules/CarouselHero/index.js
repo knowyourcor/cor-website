@@ -158,7 +158,7 @@ const CarouselHero = ({ primary, fields }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setActiveItem(count + 1);
-    }, 6500);
+    }, 80500);
     return () => clearTimeout(timer);
   }, [count]);
 
