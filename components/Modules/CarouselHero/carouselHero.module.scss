@@ -61,6 +61,12 @@
   }
 }
 
+.headline {
+  h1 {
+    padding-left: 89px;
+  }
+}
+
 .buttons {
   position: absolute;
   top: 200px;
@@ -219,6 +225,12 @@
     
     color: var(--color-white-bright);
     text-align: center;
+
+    h1 {
+      margin: 0 auto;
+      width: 55%;
+      max-width: 100%;
+    }
   }
 }
 
@@ -242,5 +254,17 @@
 
   .svgWrap {
     height: 136.5px;
+  }
+
+  .fullWidth {
+    .content h1 {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .headline h1 {
+    padding-left: 0;
   }
 }
