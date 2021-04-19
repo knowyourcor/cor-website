@@ -251,7 +251,7 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1023px) {
   .accordionWrap {
     & > div {
       flex-direction: column-reverse;
@@ -283,17 +283,13 @@
   }
   
   .primaryImage {
-    padding-top: 90%;
-    margin-top: 122px;
-    margin-bottom: 869px;
-  }
-}
+    padding-top: 0;
+    margin-top: 85px;
+    height: auto;
 
-@media (max-width: $sm) {
-  .primaryImage {
-    padding-top: 75%;
-    margin-top: 177px;
-    margin-bottom: 631px;
+    & > div {
+      position: relative;
+    }
   }
 }
 
@@ -309,12 +305,6 @@
   }
 
   .cBorder {
-    top: 58px;
-  }
-
-  .primaryImage {
-    padding-top: 90%;
-    margin-top: 94px;
-    margin-bottom: 411px;
+    top: 36px;
   }
 }

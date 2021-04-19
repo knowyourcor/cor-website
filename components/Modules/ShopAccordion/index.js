@@ -62,7 +62,7 @@ export default function ShopAccordion({ primary, fields }) {
       className={styles.accordionWrap}
     >
       <Row align="center">
-        <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }} justify="center">
+        <Column columns={{ xs: 14, md: 5, xl: 4 }} offsets={{ md: 1 }} justify="center">
           {primary.headline[0].text && (
             <div className={styles.headline}>
               <RichText render={primary.headline} />
@@ -86,7 +86,7 @@ export default function ShopAccordion({ primary, fields }) {
             </motion.div>
           </div>
         </Column>
-        <Column columns={{ xs: 14, md: 8 }} offsets={{ md: 1 }} className={styles.columnPaddingRight}>
+        <Column columns={{ xs: 14, md: 7, xl: 8 }} offsets={{ md: 1 }} className={styles.columnPaddingRight}>
           {imageData && (
             <div className={styles.primaryImage}>
               <AnimatePresence initial={false}>

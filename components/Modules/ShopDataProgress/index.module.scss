@@ -1,7 +1,7 @@
 @import "../../../styles/_variables.scss";
 
 .dataProgress {
-  padding-bottom: 26rem;
+  padding-bottom: 17rem;
   overflow: initial;
 
   h2 {
@@ -88,9 +88,9 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1023px) {
   .dataProgress {
-    padding-bottom: 6rem;
+    padding-bottom: 1rem;
 
     & > div {
       padding-left: 0;
