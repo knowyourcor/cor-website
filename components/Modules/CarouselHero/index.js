@@ -7,7 +7,7 @@ import Picture from "../../Picture";
 import Button from "../../Button";
 import styles from "./carouselHero.module.scss";
 
-const Slide = ({ isOpen, image, headline, number, video_source }) => {
+const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
   const slideVariant = {
     visible: {
       opacity: 1,
@@ -57,6 +57,7 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
       transition: { duration: 0.5, ease: "easeOut" },
     },
   };
+
   return (
     <>
       {isOpen && (
@@ -67,44 +68,28 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
           variants={slideVariant}
           className={styles.slide}
         >
-          {number && (
-            <div className={styles.score}>
-              <div className={styles.corMark}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 22.393 22.393"
-                >
-                  <path
-                    data-name="Path 40"
-                    d="M19.36 8.544a8.584 8.584 0 11-8.164-5.931V.003a11.194 11.194 0 1010.649 7.736z"
-                  />
-                  <path
-                    data-name="Path 41"
-                    d="M16.875 9.35l2.485-.807a8.586 8.586 0 00-8.164-5.935V5.22a5.973 5.973 0 015.679 4.126"
-                  />
-                </svg>
-              </div>
-
-              <CountUp start={number - 20} end={number} duration={2.5} />
-            </div>
-          )}
           <div className={styles.slideLeft}>
-            {/* <motion.img
-              variants={imageItem}
-              src={image.xxl.url}
-              alt={image.alt}
-            /> */}
-            <Picture image={image} />
+            {variant === "Portrait Image(s) + Animated Totem(s)" &&
+              <Picture image={image} />
+            }
+            {variant === "Images / Video + Headline" && video_source &&
+              <motion.div
+                className={styles.videoBackground}
+                variants={videoItem}
+              >
+                <video autoPlay muted loop playsInline>
+                  <source src={video_source} type="video/mp4" />
+                </video>
+              </motion.div>
+            }
           </div>
           <div className={styles.slideRight}>
-            {!headline === null && (
-              <>{headline.text && (
-                <motion.div variants={headlineItem} className={styles.headline}>
-                  <RichText render={headline} />
-                </motion.div>
-              )}</>
+            {variant === "Images / Video + Headline" && (
+              <motion.div variants={headlineItem} className={styles.headline}>
+                <RichText render={headline} />
+              </motion.div>
             )}
-            {video_source && (
+            {variant === "Portrait Image(s) + Animated Totem(s)" && video_source && (
               <motion.div
                 className={styles.videoBackground}
                 variants={videoItem}
@@ -115,7 +100,22 @@ const Slide = ({ isOpen, image, headline, number, video_source }) => {
               </motion.div>
             )}
           </div>
-          {!number && (
+          {variant === "Full-Bleed Video" &&
+            <div className={styles.fullWidth}>
+              <div className={styles.backgroundImage}>
+                {/* <Picture image={image} /> */}
+                {video_source && (
+                  <video autoPlay muted loop playsInline>
+                    <source src={video_source} type="video/mp4" />
+                  </video>
+                )}
+              </div>
+              <div className={styles.content}>
+                {headline[0].text && <RichText render={headline} />}
+              </div>
+            </div>
+          }
+          {variant === "Portrait Image(s) + Animated Totem(s)" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 22.393 22.393"
@@ -158,9 +158,18 @@ const CarouselHero = ({ primary, fields }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setActiveItem(count + 1);
-    }, 110500); //6
+    }, 6500);
     return () => clearTimeout(timer);
   }, [count]);
+
+  if (fields[0].variant !== "Portrait Image(s) + Animated Totem(s)") {
+    // let findData = fields.find(el => el.variant === "Portrait Image(s) + Animated Totem(s)")
+    fields.unshift(
+      fields.splice(
+        fields.map(function (e) { return e.variant }).indexOf('Portrait Image(s) + Animated Totem(s)'),
+        1)[0]
+    )
+  }
 
   return (
     <Section
