@@ -10,7 +10,7 @@ export default function Checklist({ primary, fields }) {
   return (
     <Section className={styles.checklistWrap} backgroundColor={primary.background_color}>
       <Row align="center">
-        <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }} justofy="center">
+        <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }} justify="center">
           <RichText render={primary.heading} />
           <RichText render={primary.text} />
           <div className={styles.listHolder}>

@@ -1,6 +1,8 @@
 @import "../../../styles/_variables.scss";
 
 .checklistWrap {
+  padding-bottom: 770px;
+  
   & > div {
     padding-top: 98px;
   }
@@ -231,7 +233,8 @@
 
 @media (max-width: $xl) {
   .checklistWrap {
-    padding-bottom: 450px;
+    // padding-bottom: 450px;
+    padding-bottom: 1000px;
 
     h2 {
       font-size: 35px;
@@ -268,7 +271,7 @@
 
 @media (max-width: $sm) {
   .checklistWrap {
-    padding-bottom: 296px;
+    padding-bottom: 829px;
 
     h2 {
       margin-bottom: 32px;
@@ -300,10 +303,6 @@
 }
 
 @media (max-width: $xs) {
-  .checklistWrap {
-    padding-bottom: rem;
-  }
-
   .listHolder {  
     li p {
       padding-left: 12px;
