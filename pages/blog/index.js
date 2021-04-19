@@ -3,7 +3,11 @@ import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import Image from "next/image";
 import moment from "moment";
+import { gql } from "@apollo/client";
+import client from "../../apollo-client";
 
+import ClientOnly from "../../components/Apollo/ClientOnly";
+import Categories from "../../components/Apollo/Categories";
 import Layout from "../../components/Layout";
 import { Container } from "../../components/Grid";
 
@@ -19,12 +23,7 @@ export default function Blog({
   footerMenuData,
   tertiaryMenuData,
 }) {
-
-  const [show, setShow] = useState();
-  const [value, setValue] = useState([]);
-  const [category, setCategory] = useState([]);
   const [post, setPost] = useState([]);
-  const [postCategory, setPostCategory] = useState([]);
   const endCursor = useRef(null);
 
   const handleShowMore = async () => { };
@@ -45,32 +44,24 @@ export default function Blog({
     );
   };
 
-  const setCategoriesDropdown = () => {
-    const currentCategory = categories.categories.edges.map(
-      (cat) => cat.node.category[0].text
-    );
-    setCategory([...new Set(currentCategory)]);
-  };
-
-  const filterCategoriesData = () => {
-    if (!value.length) {
-      setPostCategory(categories.categoriesData.edges);
-    } else {
-      const filteredData = categories.categoriesData.edges.filter(
-        (data) => data.node.category[0].text === value
-      );
-      setPostCategory(filteredData);
-    }
-  };
+  // const filterCategoriesData = () => {
+  //   if (!value.length) {
+  //     setPostCategory(categories.categoriesData.edges);
+  //   } else {
+  //     const filteredData = categories.categoriesData.edges.filter(
+  //       (data) => data.node.category[0].text === value
+  //     );
+  //     setPostCategory(filteredData);
+  //   }
+  // };
 
   useEffect(() => {
     setPostData();
-    setCategoriesDropdown();
   }, []);
 
-  useEffect(() => {
-    filterCategoriesData();
-  }, [value]);
+  // useEffect(() => {
+  //   filterCategoriesData();
+  // }, [value]);
 
   return (
     <Layout
@@ -127,53 +118,11 @@ export default function Blog({
       <div className={styles.sectionPostCategory}>
         <Container>
           <div className={styles.contentWrapper}>
-            <div className={styles.categoryWrapper}>
-              {!!value.length && (
-                <div className={styles.selectedCategory}>
-                  <span>{value}</span>
-                  <span className={styles.Icon} onClick={() => setValue("")}>
-                    <Image src="/icons/close.svg" height={12} width={12} />
-                  </span>
-                </div>
-              )}
-              <button
-                className={styles.dropdown}
-                onClick={() => setShow(!show)}
-              >
-                <div
-                  className={`${styles.dropdownName} ${show && styles.openDropdown
-                    }`}
-                >
-                  Category
-                  <span className={styles.Icon}>
-                    <Image src="/icons/down-arrow.svg" height={13} width={13} />
-                  </span>
-                </div>
-                {show && (
-                  <div className={styles.dropdownListWrapper}>
-                    <div className={styles.List}>
-                      {category.map((item, i) => {
-                        return (
-                          <>
-                            {item !== value && (
-                              <div
-                                key={i}
-                                className={styles.ListItem}
-                                value="Category"
-                                onClick={() => setValue(item)}
-                              >
-                                {item}
-                              </div>
-                            )}
-                          </>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </button>
-            </div>
-            <div className={styles.postWrapper}>
+            <ClientOnly>
+              <Categories />
+            </ClientOnly>
+
+            {/* <div className={styles.postWrapper}>
               {postCategory.map((item, i) => {
                 let data = item.node;
                 let date = moment(data.date).format("DD MMMM, YYYY");
@@ -203,7 +152,7 @@ export default function Blog({
                   </div>
                 );
               })}
-            </div>
+            </div> */}
             <div className={styles.buttonHolder}>
               <button className="btn btn--inverted" onClick={handleShowMore}>
                 Show More
