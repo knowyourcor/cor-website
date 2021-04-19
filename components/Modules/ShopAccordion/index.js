@@ -62,7 +62,7 @@ export default function ShopAccordion({ primary, fields }) {
       className={styles.accordionWrap}
     >
       <Row align="center">
-        <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }} justofy="center">
+        <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }} justify="center">
           {primary.headline[0].text && (
             <div className={styles.headline}>
               <RichText render={primary.headline} />

@@ -229,152 +229,91 @@
   padding-left: 10px;
 }
 
-// .imageWrap {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   width: 57vw;
-// }
-
 @media (max-width: $xl) {
   .checklistWrap {
-    h5 {
-      font-size: 31px;
+    padding-bottom: 450px;
+
+    h2 {
+      font-size: 35px;
+      line-height: normal;
     }
 
     p {
-      width: 373px;
-
-      font-size: 16px;
+      font-size: 17px;
     }
   }
 
   .listHolder {
-    left: 19vw;
-
-    width: 33vw;
-    max-width: 100%;
-  }
-
-  .cardList {
-    height: 256px;
-
-    label {
-      .checkmark {
-        width: 30px;
-        height: 30px;
-      }
-    }
-
-    p {
-      padding-left: 7px;
-
-      width: 100%;
-    }
-  }
-
-  .cardHeader {
-    h3 {
-      font-size: 22px;
-    }
-
-    h6 {
-      font-size: 16px;
-    }
-
-    p {
-      width: 100%;
-
-      font-size: 12px;
-    }
-  }
-
-  .actionHolder svg {
-    height: 30px;
-  }
-
-  .card {
-    padding: 19px 20px;
+    bottom: -394px;
   }
 }
 
-@media (max-width: $md) {
+@media (max-width: 991px) {
   .checklistWrap {
-    padding-bottom: 500px;
-
     picture {
+      margin-top: 19px;
       margin-left: auto;
-      width: 74vw;
+      width: 73%;
     }
 
-    h5 {
-      margin-top: 0;
-      margin-bottom: 0;
-      width: 580px;
-      max-width: 100%;
-
-      font-size: 34px;
-    }
-
-    p {
-      margin-top: 32px;
-      margin-left: 0;
-      margin-right: auto;
-
-      font-size: 14px;
+    h2,p {
+      padding: 0 1rem;
     }
   }
 
   .listHolder {
-    bottom: -424px;
-    left: 10px;
+    left: 27px;
+  }
+}
 
-    width: 87%;
+@media (max-width: $sm) {
+  .checklistWrap {
+    padding-bottom: 296px;
+
+    h2 {
+      margin-bottom: 32px;
+    }
   }
 
-  .card {
-    padding: 19px 20px;
-  }
+  .listHolder {    
+    bottom: -288px;
+    left: 25px;
 
-  .cardHeader {
-    h3 {
-      font-size: 18px;
-    }
+    width: 52%;
 
-    h6 {
-      font-size: 14px;
-    }
-
-    p {
+    li p {
+      padding-left: 12px;
       margin-top: 0;
 
-      font-size: 12px;
-    }
-  }
-
-  .cardList {    
-    height: 300px;
-
-    label {
-      .checkmark {
-        width: 30px;
-        height: 30px;
-      }
+      font-size: 17px;
     }
 
-    p {
-      padding-left: 5px;
-      margin-top: 0;
-    }
-  }
-
-  .actionHolder {
-    svg {
+    img {
+      width: 30px;
       height: 30px;
     }
+
+    .card {
+      padding: 11px 12px;
+    }
+  }
+}
+
+@media (max-width: $xs) {
+  .checklistWrap {
+    padding-bottom: rem;
   }
 
-  .cColumn {
-    flex-direction: column-reverse;
+  .listHolder {  
+    li p {
+      padding-left: 12px;
+
+      font-size: 13px;
+    }
+
+    img {
+      width: 26px;
+      height: 26px;
+    }
   }
 }
