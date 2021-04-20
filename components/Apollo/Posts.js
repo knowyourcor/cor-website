@@ -8,8 +8,8 @@ import moment from "moment";
 import styles from "../../styles/blog/blog.module.scss";
 
 const POSTS_QUERY = gql`
-  query Posts($after: String) {
-    allBlog_posts(first: 6, after: $after) {
+  query Posts($after: String, $category: String) {
+    allBlog_posts(first: 6, after: $after, where: { category_fulltext: $category }) {
       pageInfo {
         hasNextPage
         endCursor
@@ -37,16 +37,19 @@ const POSTS_QUERY = gql`
   }
 `;
 
-export default function Posts() {
+export default function Posts(props) {
+  const categoryName = props.category
+
   const { data, loading, error, fetchMore } = useQuery(POSTS_QUERY, {
     variables: {
       after: null,
       limit: null,
+      category: categoryName,
     }
   });
 
-  if (loading) {
-    return <h2 className="loading">Loading...</h2>;
+  if (loading || !data) {
+    return <h2 style={{ fontSize: "30px" }}>Loading...</h2>;
   }
   
   if (error) {

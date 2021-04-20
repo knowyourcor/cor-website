@@ -1,21 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import moment from "moment";
 import ClientOnly from "../../components/Apollo/ClientOnly";
-import Categories from "../../components/Apollo/Categories";
-import Posts from "../../components/Apollo/Posts";
+import SectionPostCategory from "../../components/Apollo/Categories";
 import Layout from "../../components/Layout";
 import { Container } from "../../components/Grid";
 
 import styles from "../../styles/blog/blog.module.scss";
 
-import { getBlogData, getCategoryBlogData, getMenuData } from "../../lib/api";
+import { getBlogData, getMenuData } from "../../lib/api";
 
 export default function Blog({
   preview,
   pageData,
-  categories,
   mainMenuData,
   footerMenuData,
   tertiaryMenuData,
@@ -37,26 +35,12 @@ export default function Blog({
       )
     );
   };
-  console.log(categories)
-
-  // const filterCategoriesData = () => {
-  //   if (!value.length) {
-  //     setPostCategory(categories.categoriesData.edges);
-  //   } else {
-  //     const filteredData = categories.categoriesData.edges.filter(
-  //       (data) => data.node.category[0].text === value
-  //     );
-  //     setPostCategory(filteredData);
-  //   }
-  // };
 
   useEffect(() => {
     setPostData();
   }, []);
 
-  // useEffect(() => {
-  //   filterCategoriesData();
-  // }, [value]);
+  console.log(post.length, 'post')
 
   return (
     <Layout
@@ -110,23 +94,17 @@ export default function Blog({
         </Container>
       </div>
 
-      <div className={styles.sectionPostCategory}>
-        <Container>
-          <div className={styles.contentWrapper}>
-            <ClientOnly>
-              <Categories />
-              <Posts />
-            </ClientOnly>
-          </div>
-        </Container>
-      </div>
+      {post.length < 5 &&
+        <ClientOnly>
+          <SectionPostCategory />
+        </ClientOnly>
+      }
     </Layout>
   );
 }
 
 export async function getStaticProps({ preview = false, previewData }) {
   const pageData = await getBlogData(previewData);
-  const categories = await getCategoryBlogData("", previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
@@ -134,7 +112,6 @@ export async function getStaticProps({ preview = false, previewData }) {
     props: {
       preview,
       pageData,
-      categories,
       mainMenuData,
       footerMenuData,
       tertiaryMenuData,

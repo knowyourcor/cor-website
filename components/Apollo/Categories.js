@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
+import Posts from "../../components/Apollo/Posts";
+import { Container } from "../../components/Grid";
 import styles from "../../styles/blog/blog.module.scss";
 
 const CATEGORIES_QUERY = gql`
@@ -23,7 +25,7 @@ const CATEGORIES_QUERY = gql`
 
 export default function Categories() {
   const [show, setShow] = useState();
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState("");
   const [category, setCategory] = useState([]);
   
   const { data, loading, error, fetchMore } = useQuery(CATEGORIES_QUERY, {
@@ -33,7 +35,7 @@ export default function Categories() {
   });
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <> </>;
   }
   
   if (error) {
@@ -60,59 +62,62 @@ export default function Categories() {
   const categories = data.allBlog_posts.edges;
 
   const CategoriesDropdown = () => {
-    setShow(!show)
-    
-    const currentCategory = categories.map(
-      (cat) => cat.node.category[0].text
-      );
+    const currentCategory = categories.map(cat => cat.node.category[0].text);
     setCategory([...new Set(currentCategory)]);
+
+    setShow(!show)
   };
 
   return (
-    <>
-      <div className={styles.categoryWrapper}>
-        {!!value.length && (
-          <div className={styles.selectedCategory}>
-            <span>{value}</span>
-            <span className={styles.Icon} onClick={() => setValue("")}>
-              <Image src="/icons/close.svg" height={12} width={12} />
-            </span>
-          </div>
-        )}
-        <button
-          className={styles.dropdown}
-          onClick={() => CategoriesDropdown()}
-        >
-          <div className={`${styles.dropdownName} ${show && styles.openDropdown}`}>
-            Category
-            <span className={styles.Icon}>
-              <Image src="/icons/down-arrow.svg" height={13} width={13} />
-            </span>
-          </div>
-          {show && (
-            <div className={styles.dropdownListWrapper}>
-              <div className={styles.List}>
-                {category.map((item, i) => {
-                  return (
-                    <>
-                      {item !== value && (
-                        <div
-                          key={i}
-                          className={styles.ListItem}
-                          value="Category"
-                          onClick={() => setValue(item)}
-                        >
-                          {item}
-                        </div>
-                      )}
-                    </>
-                  );
-                })}
+    <div className={styles.sectionPostCategory}>
+      <Container>
+        <div className={styles.contentWrapper}>
+          <div className={styles.categoryWrapper}>
+            {!!value.length && (
+              <div className={styles.selectedCategory}>
+                <span>{value}</span>
+                <span className={styles.Icon} onClick={() => setValue("")}>
+                  <Image src="/icons/close.svg" height={12} width={12} />
+                </span>
               </div>
-            </div>
-          )}
-        </button>
-      </div>
-    </>
+            )}
+            <button
+              className={styles.dropdown}
+              onClick={CategoriesDropdown}
+            >
+              <div className={`${styles.dropdownName} ${show && styles.openDropdown}`}>
+                Category
+                <span className={styles.Icon}>
+                  <Image src="/icons/down-arrow.svg" height={13} width={13} />
+                </span>
+              </div>
+              {show && (
+                <div className={styles.dropdownListWrapper}>
+                  <div className={styles.List}>
+                    {category.map((item, i) => {
+                      return (
+                        <>
+                          {item !== value && (
+                            <div
+                              key={i}
+                              className={styles.ListItem}
+                              value="Category"
+                              onClick={() => setValue(item)}
+                            >
+                              {item}
+                            </div>
+                          )}
+                        </>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </button>
+          </div>
+          <Posts category={value} />
+        </div>
+      </Container>
+    </div>
   );
 }
