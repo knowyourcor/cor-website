@@ -64,7 +64,7 @@ export default function Page({
           tertiaryMenuData={tertiaryMenuData}
         >
           <Modules pageData={pageData} />
-          {/* <FeaturedPress /> */}
+          <FeaturedPress />
         </Layout>
       )}
     </>
