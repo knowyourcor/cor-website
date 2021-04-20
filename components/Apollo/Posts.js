@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React from "react";
+import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
+import { RichText } from "prismic-reactjs";
+import moment from "moment";
+
 import styles from "../../styles/blog/blog.module.scss";
 
 const POSTS_QUERY = gql`
-  query Categories($after: String) {
+  query Posts($after: String) {
     allBlog_posts(first: 6, after: $after) {
       pageInfo {
-        hasPreviousPage
         hasNextPage
-        startCursor
         endCursor
       }
       edges {
@@ -37,14 +38,15 @@ const POSTS_QUERY = gql`
 `;
 
 export default function Posts() {
-  const { data, loading, error, fetchMore } = useQuery(QUERY, {
+  const { data, loading, error, fetchMore } = useQuery(POSTS_QUERY, {
     variables: {
-      after: null
+      after: null,
+      limit: null,
     }
   });
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <h2 className="loading">Loading...</h2>;
   }
   
   if (error) {
@@ -52,30 +54,30 @@ export default function Posts() {
     return null;
   }
   
-  if (data.allBlog_posts.pageInfo.hasNextPage) {
-    const { endCursor } = data.allBlog_posts.pageInfo;
-    
-    fetchMore({
-      variables: { after: endCursor, offset: 0 },
+  const handleShowMore = () => { 
+    if (data.allBlog_posts.pageInfo.hasNextPage) {
+      const { endCursor } = data.allBlog_posts.pageInfo;
       
-      updateQuery: (prevResult, { fetchMoreResult }) => {
-        fetchMoreResult.allBlog_posts.edges = [
-          ...prevResult.allBlog_posts.edges,
-          ...fetchMoreResult.allBlog_posts.edges
-        ];
-        return fetchMoreResult;
-      }
-    });
-  }
+      fetchMore({
+        variables: { after: endCursor, offset: 0, limit: 6 },
+        
+        updateQuery: (prevResult, { fetchMoreResult }) => {
+          fetchMoreResult.allBlog_posts.edges = [
+            ...prevResult.allBlog_posts.edges,
+            ...fetchMoreResult.allBlog_posts.edges
+          ];
+          return fetchMoreResult;
+        }
+      });
+    }
+  };
   
   const posts = data.allBlog_posts.edges;
-
-  console.log(posts)
 
   return (
     <>
       <div className={styles.postWrapper}>
-        {postCategory.map((item, i) => {
+        {posts.map((item, i) => {
           let data = item.node;
           let date = moment(data.date).format("DD MMMM, YYYY");
 
@@ -105,6 +107,13 @@ export default function Posts() {
           );
         })}
       </div>
+      {data.allBlog_posts.pageInfo.hasNextPage && 
+        <div className={styles.buttonHolder}>
+          <button className="btn btn--inverted" onClick={handleShowMore}>
+            Show More
+          </button>
+        </div>
+      }
     </>
   );
 }
