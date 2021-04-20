@@ -43,6 +43,7 @@ export default function Blog({
       )
     );
   };
+  console.log(categories)
 
   // const filterCategoriesData = () => {
   //   if (!value.length) {
