@@ -35,7 +35,6 @@ export default function Blog({
       )
     );
   };
-  console.log(categories)
 
   useEffect(() => {
     setPostData();
