@@ -1,10 +1,11 @@
 import { RichText } from "prismic-reactjs";
+
 import Layout from "../../components/Layout"
 import { Container } from "../../components/Grid"
 
 import styles from "../../styles/blog/blog-post.module.scss"
 
-import { getBlogData, getBlogPostData, getMenuData } from "../../lib/api"
+import { getBlogData, getBlogPostData, getMenuData, getCategoryBlogData } from "../../lib/api"
 
 const Post = ({
   preview,
@@ -68,23 +69,31 @@ const Post = ({
 export default Post;
 
 export const getStaticPaths = async (previewData) => {
-  const pageData = await getBlogData(previewData);
+  const blogData = await getCategoryBlogData('', previewData);
 
-  const arr = []
-  const arr2 = []
+  // api.query(
+  //   Prismic.Predicates.at('document.type', 'recipe'),
+  //   { pageSize: 50, page: 3 }
+  // ).then(function (response) {
+  //   console.log(response)
+  //   // response is the response object, response.results holds the documents
+  // });
 
-  pageData.posts.edges.forEach(element => {
-    arr.push(element)
-  });
+  // const arr = []
+  // const arr2 = []
 
-  pageData.featuredPost.edges.forEach(element => {
-    arr2.push(element)
-  });
+  // pageData.posts.edges.forEach(element => {
+  //   arr.push(element)
+  // });
 
-  const combineArr = arr.concat(arr2)
+  // pageData.featuredPost.edges.forEach(element => {
+  //   arr2.push(element)
+  // });
 
-  const paths = combineArr.map(post => {
-    console.log(post.node._meta.uid)
+  // const combineArr = arr.concat(arr2)
+
+  const paths = blogData.categoriesData.edges.map(post => {
+    // console.log(post.node._meta.uid)
     return {
       params: { slug: post.node._meta.uid }
     }
