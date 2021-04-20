@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import Link from "next/link";
-import Image from "next/image";
 import moment from "moment";
-import { gql } from "@apollo/client";
-import client from "../../apollo-client";
-
 import ClientOnly from "../../components/Apollo/ClientOnly";
 import Categories from "../../components/Apollo/Categories";
+import Posts from "../../components/Apollo/Posts";
 import Layout from "../../components/Layout";
 import { Container } from "../../components/Grid";
 
@@ -24,9 +21,6 @@ export default function Blog({
   tertiaryMenuData,
 }) {
   const [post, setPost] = useState([]);
-  const endCursor = useRef(null);
-
-  const handleShowMore = async () => { };
 
   const setPostData = () => {
     const items = [];
@@ -121,44 +115,8 @@ export default function Blog({
           <div className={styles.contentWrapper}>
             <ClientOnly>
               <Categories />
+              <Posts />
             </ClientOnly>
-
-            {/* <div className={styles.postWrapper}>
-              {postCategory.map((item, i) => {
-                let data = item.node;
-                let date = moment(data.date).format("DD MMMM, YYYY");
-
-                return (
-                  <div key={i} className={styles.postHolder}>
-                    <Link href={"/blog/" + data._meta.uid}>
-                      <a>
-                        <div className={styles.imageWrapper}>
-                          <img
-                            src={data.content[0].image.url}
-                            className={styles.image}
-                            alt=""
-                          />
-                        </div>
-                      </a>
-                    </Link>
-                    <div className={styles.wrapper}>
-                      <p className={styles.category}>
-                        {RichText.asText(data.category)}
-                      </p>
-                      <p className={styles.date}>{date}</p>
-                    </div>
-                    <h2 className={styles.title}>
-                      {RichText.asText(data.title)}
-                    </h2>
-                  </div>
-                );
-              })}
-            </div> */}
-            <div className={styles.buttonHolder}>
-              <button className="btn btn--inverted" onClick={handleShowMore}>
-                Show More
-              </button>
-            </div>
           </div>
         </Container>
       </div>
