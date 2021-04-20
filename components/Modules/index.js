@@ -16,7 +16,6 @@ import TextAccordion from "./TextAccordion";
 import TextDescriptionImage from "./TextDescriptionImage"
 import DualGrid from "./DualGrid"
 import TextCarousel from "./TextCarousel"
-import FeaturedPress from "./FeaturedPress"
 import Checklist from "./Checklist"
 import QuadCarousel from "./QuadCarousel"
 import ShopTextBackgroundImage from "./ShopTextBackgroundImage"
@@ -43,7 +42,6 @@ const moduleDefs = {
   ["text_description_image"]: TextDescriptionImage,
   ["dual_grid"]: DualGrid,
   ["text___carousel"]: TextCarousel,
-  ["featured_press"]: FeaturedPress,
   ["checklist"]: Checklist,
   ["quadcarousel"]: QuadCarousel,
   ["text___background_image"]: ShopTextBackgroundImage,

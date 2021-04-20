@@ -28,7 +28,6 @@ export default function Page({
   }
 
   let title = pageData?.meta_title.toLowerCase()
-
   return (
     <>
       {router.isFallback ? (
@@ -64,7 +63,8 @@ export default function Page({
           tertiaryMenuData={tertiaryMenuData}
         >
           <Modules pageData={pageData} />
-          <FeaturedPress />
+          {pageData?.featured_press && <FeaturedPress />}
+
         </Layout>
       )}
     </>

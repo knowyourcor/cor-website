@@ -12,20 +12,6 @@
     border-bottom: 3px solid var(--color-suva-grey);
   }
 
-  .featuredList {
-    h1 {
-      padding-bottom: 0;
-      margin-top: 38px;
-      margin-bottom: 38px;
-  
-      font-size: 40px;
-      line-height: 1.38;
-      letter-spacing: -1.2px;
-  
-      border-bottom: 0;
-    }
-  }
-
   span {
     font-family: var(--font-sans);
     font-size: 20px;
@@ -58,12 +44,27 @@
 .featuredList {
   margin-bottom: 97.5px;
   width: 100%;
+
+  h1 {
+    padding-bottom: 0;
+    margin-top: 38px;
+    margin-bottom: 38px;
+
+    font-size: 40px;
+    line-height: 1.38;
+    letter-spacing: -1.2px;
+  }
+
+  a p {
+    font-weight: bold;
+    text-decoration: underline;
+  }
 }
 
 .featuredItem {
   padding-bottom: 49.5px;
 
-  border-bottom: 3px solid var(--color-suva-grey);
+  border-bottom: 2px solid var(--color-suva-grey);
 
   &:nth-child(even) div {
     display: flex;
@@ -75,6 +76,10 @@
       justify-content: center;
       margin-left: 0;
     }
+
+    .actionWrap {
+      justify-content: flex-end;
+    }
   }
 
   &:not(:last-child) {
@@ -82,23 +87,40 @@
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1280px) {
-  .featuredWrap{
-    h2 {
-      padding-bottom: 51.5px;
-      font-size: 40px;
-    }
+// @media screen and (min-width: 769px) and (max-width: 1280px) {
+//   .featuredWrap{
+//     h2 {
+//       padding-bottom: 51.5px;
+//       font-size: 40px;
+//     }
 
-    h3 {
-      font-size: 26px;
+//     h3 {
+//       font-size: 26px;
+//     }
+//   }
+// }
+
+@media (max-width: $xl) {
+  .featuredWrap {
+    span {
+      font-size: 17px;
     }
+  }
+
+  .featuredList h1 {    
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    font-size: 27px;
   }
 }
 
-@media (max-width: $md) {
+@media (max-width: $sm) {
   .featuredWrap{
     h2 {
       padding-bottom: 38.6px;
+
+      font-size: 34px;
     }
 
     h3 {
@@ -109,21 +131,37 @@
     }
 
     span {
-      margin-top: 27px;
+      margin-top: 11px;
 
       font-size: 12px;
-    }
-
-    h2 {
-      font-size: 34px;
     }
     
     a {
       font-size: 12px;
     }
-  }
 
+    svg {
+      width: 34px;
+      height: 18px;
+    }
+  }
+  
   .featuredList {
     margin-bottom: 68.5px;
+    
+    h1 {
+      margin-top: 18px;
+      margin-bottom: 18px;
+
+      font-size: 20px;
+    }
+
+    a p {
+      font-size: 12px;
+    }
+  }
+
+  .featuredItem {
+    padding-bottom: 36.6px;
   }
 }
