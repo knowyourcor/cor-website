@@ -40,6 +40,8 @@ export default function Blog({
     setPostData();
   }, []);
 
+  console.log(post.length, 'post')
+
   return (
     <Layout
       classNameVal={styles.blog}
@@ -92,9 +94,11 @@ export default function Blog({
         </Container>
       </div>
 
-      <ClientOnly>
-        <SectionPostCategory />
-      </ClientOnly>
+      {post.length < 5 &&
+        <ClientOnly>
+          <SectionPostCategory />
+        </ClientOnly>
+      }
     </Layout>
   );
 }
