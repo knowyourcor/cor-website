@@ -40,8 +40,6 @@ export default function Blog({
     setPostData();
   }, []);
 
-  console.log(post.length, 'post')
-
   return (
     <Layout
       classNameVal={styles.blog}
