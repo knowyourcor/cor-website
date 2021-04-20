@@ -46,10 +46,10 @@ const Slide = ({ headline, text, image, position }) => {
 const Carousel = ({ primary, fields }) => {
   const [galleryOptions, setGalleryOptions] = useState()
   const [sliderOptions, setSliderOptions] = useState()
-  
+
   const [galleryRef] = useKeenSlider(galleryOptions)
   const [sliderRef] = useKeenSlider(sliderOptions);
-  
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setGalleryOptions({
@@ -94,6 +94,8 @@ const Carousel = ({ primary, fields }) => {
 
       setSliderOptions({
         slidesPerView: 2.5,
+        mode: "free",
+        loop: true,
         spacing: 20,
         centered: false,
         breakpoints: {
@@ -133,7 +135,7 @@ const Carousel = ({ primary, fields }) => {
 
     return () => clearTimeout(timeout)
   }, [])
- 
+
   return (
     <Section className={styles.carouselWrap} backgroundColor={primary.background_color} align="center">
       <Container>

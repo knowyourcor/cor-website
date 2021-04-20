@@ -49,7 +49,7 @@ const TextImage = ({ primary }) => {
             className="custom__column"
           >
             <RichText render={primary.text} />
-            <Link href="/"><a className={["btn btn--inverted", styles.invertedLink].join(" ")}>Show More</a></Link>
+            <Link href="/"><a className={["btn btn--inverted", styles.invertedLink].join(" ")}>Shop Now</a></Link>
           </Column>
         </Row>
       </Container>

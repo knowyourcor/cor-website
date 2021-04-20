@@ -11,6 +11,8 @@ import Layout from "../components/Layout"
 
 import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
 
+import FeaturedPress from "../components/FeaturedPress"
+
 // import styles from "../styles/Page.module.scss";
 
 export default function Page({
@@ -62,15 +64,7 @@ export default function Page({
           tertiaryMenuData={tertiaryMenuData}
         >
           <Modules pageData={pageData} />
-          {/* <Head title={pageData?.meta_title} />
-          <Alert preview={preview} /> */}
-          <main>
-            {/* <Navigation mainMenuData={mainMenuData} /> */}
-          </main>
-          {/* <Footer
-            footerMenuData={footerMenuData}
-            tertiaryMenuData={tertiaryMenuData}
-          /> */}
+          <FeaturedPress />
         </Layout>
       )}
     </>
