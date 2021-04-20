@@ -22,6 +22,7 @@ import QuadCarousel from "./QuadCarousel"
 import ShopTextBackgroundImage from "./ShopTextBackgroundImage"
 import ShopChecklist from "./ShopChecklist"
 import ShopDataProgress from "./ShopDataProgress"
+import Product from "./Product"
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -47,7 +48,8 @@ const moduleDefs = {
   ["quadcarousel"]: QuadCarousel,
   ["text___background_image"]: ShopTextBackgroundImage,
   ["shop_checklist"]: ShopChecklist,
-  ["dualdatagrid"]: ShopDataProgress
+  ["dualdatagrid"]: ShopDataProgress,
+  ["product"]: Product
 };
 
 const Modules = ({ pageData }) => {
