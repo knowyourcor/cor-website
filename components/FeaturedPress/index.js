@@ -14,7 +14,7 @@ import styles from "./index.module.scss"
 
 const POSTS_QUERY = gql`
 query FeaturedPress($after: String) {
-  allBlog_posts(first: 3, after: $after, where: { category_fulltext: "Featured Press" }) {
+  allBlog_posts(sortBy:date_DESC, first: 3, after: $after, where: { category_fulltext: "Featured Press"}) {
     pageInfo {
       hasPreviousPage
       hasNextPage
@@ -121,7 +121,7 @@ export default function Index() {
           {posts?.map((item, i) => {
             let pathNode = item.node
             let pathNodeContent = pathNode.content[0]
-            let date = moment(item.node.date).format('LL')
+            let date = moment(item.node.date).format("DD MMMM, YYYY")
             return (
               <div key={i} className={styles.featuredItem}>
                 <Row align="center" textAlign={{ xs: "left" }}>
