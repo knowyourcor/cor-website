@@ -206,6 +206,9 @@ export default function QuadCarousel({ primary, fields }) {
               pagination={{ clickable: true }}
               onSwiper={setControlledSwiper}
               controller={{ control: controlledSwiperOne }}
+              onSlideChange={(swiper) => {
+                setActive(`item-${swiper.activeIndex}`)
+              }}
             >
               {fields.map((data, i) => {
                 return (

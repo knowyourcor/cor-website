@@ -103,9 +103,13 @@ export default function Posts(props) {
                 </p>
                 <p className={styles.date}>{date}</p>
               </div>
-              <h2 className={styles.title}>
-                {RichText.asText(data.title)}
-              </h2>
+              <Link href={"/blog/" + data._meta.uid}>
+                <a>
+                  <h2 className={styles.title}>
+                    {RichText.asText(data.title)}
+                  </h2>
+                </a>
+              </Link>
             </div>
           );
         })}
