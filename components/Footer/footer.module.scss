@@ -97,6 +97,18 @@
       margin: 0;
     }
 
+    .tertiaryMenu {
+      li {
+        &:not(:first-child) {
+          padding-left: 62px;
+        }
+  
+        &:first-child {
+          padding-left: 16px;
+        }
+      }
+    }
+
     li {
       &:not(:first-child) {
         padding-left: 26px;

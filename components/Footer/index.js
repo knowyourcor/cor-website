@@ -134,7 +134,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
               <p>©{new Date().getFullYear()} COR LLC</p>
             </Column>
             <Column columns={{ xs: 14, sm: 9, md: 10 }} orders={{ xs: 2, sm: 2 }} justify="center">
-              <ul>
+              <ul className={styles.tertiaryMenu}>
                 {tertiaryMenuData && (
                   <>
                     {tertiaryMenuData?.menu_links.map((link, index) => {
