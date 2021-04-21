@@ -72,7 +72,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
           <Row>
             <Column columns={{ xs: 14, md: 10 }}>
               <Row>
-                <Column columns={{ xs: 14, md: 2 }}>
+                <Column columns={{ xs: 14, md: 3 }}>
                   <Link href="/">
                     <a>
                       <svg
@@ -98,7 +98,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                     {internalLinksToColumn.map((set, index) => {
                       return (
                         <Column
-                          columns={{ xs: 6, md: 2 }}
+                          columns={{ xs: 6, md: 3 }}
                           key={`menu-set-${index}`}
                         >
                           <ul>
@@ -113,6 +113,15 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                 )}
               </Row>
             </Column>
+            {footerMenuData && (
+              <Column columns={{ xs: 14 }} justify="center" className={styles.socialhideMdup}>
+                <ul className={styles.socialLinks}>
+                  {externalLinks.map((link, index) => {
+                    return WebLink(link, index);
+                  })}
+                </ul>
+              </Column>
+            )}
             <Column columns={{ xs: 14, md: 4 }}>
               <EmailSignup />
             </Column>
@@ -121,10 +130,10 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
 
         <div className={styles.tertiary}>
           <Row align="center">
-            <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 2, sm: 1 }} justify="center">
+            <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 1, sm: 1 }} justify="center">
               <p>©{new Date().getFullYear()} COR LLC</p>
             </Column>
-            <Column columns={{ xs: 14, sm: 9, md: 10 }} orders={{ xs: 1, sm: 2 }} justify="center">
+            <Column columns={{ xs: 14, sm: 9, md: 10 }} orders={{ xs: 2, sm: 2 }} justify="center">
               <ul>
                 {tertiaryMenuData && (
                   <>
@@ -146,7 +155,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
               </ul>
             </Column>
             {footerMenuData && (
-              <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 3, sm: 3 }} justify="center">
+              <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 3, sm: 3 }} justify="center" className={styles.socialHideSmDown}>
                 <ul className={styles.socialLinks}>
                   {externalLinks.map((link, index) => {
                     return WebLink(link, index);

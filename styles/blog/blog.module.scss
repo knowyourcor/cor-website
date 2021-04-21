@@ -2,6 +2,7 @@
 
 .blog {
   padding-top: 199px;
+  margin-bottom: 142px;
 
   background-color: var(--color-light-grey);
 
@@ -75,6 +76,10 @@
      
             width: calc(100% + 160px);
             height: 100%;
+
+            .image {
+              object-position: left center;
+            }
           }
         }
     
@@ -154,7 +159,7 @@
       padding-top: 50px;
       margin: 0 35px;
 
-      border-top: 2px solid;
+      border-top: 2px solid var(--font-primary);
     }
 
     .wrapper {
@@ -517,6 +522,7 @@
 @media (max-width: $sm) {
   .blog {
     padding-top: 69px;
+    margin-bottom: 55px;
 
     .category {
       margin-right: 0;
