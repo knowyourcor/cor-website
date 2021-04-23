@@ -76,7 +76,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
         animate={active ? "open" : "closed"}
         variants={navVariant}
       >
-        <motion.ul className={styles.mainMenu} variants={navItemsVariants}>
+        <motion.ul className={[styles.mainMenu, active && styles.isMenuOpen].join(" ")} variants={navItemsVariants}>
           {mainMenuData?.menu_links.map((link, index) => {
             return (
               <motion.li

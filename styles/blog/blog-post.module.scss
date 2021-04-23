@@ -8,7 +8,8 @@
   color: var(--color-teal-dark);
 
   .contentWrapper {
-    padding: 334px 0 178px;
+    // padding: 334px 0 178px;
+    padding: 34px 0 178px;
   }
 
   h1 {
@@ -186,7 +187,8 @@
 @media (max-width: $xl) {
   .blogPost {
     .contentWrapper {
-      padding: 230px 0 120px;
+      // padding: 230px 0 120px;
+      padding-bottom: 120px;
     }
 
     .postContent {
@@ -204,7 +206,8 @@
 @media (max-width: $lg) {
   .blogPost {
     .contentWrapper {
-      padding: 170px 0 50px;
+      // padding: 170px 0 50px;
+      padding-bottom: 50px;
     }
 
     h1 {
@@ -269,7 +272,8 @@
 @media (max-width: $md) {
   .blogPost {
     .contentWrapper {
-      padding: 150px 0 30px;
+      // padding: 150px 0 30px;
+      padding: 50px 0 30px;
     }
 
     h1 {
@@ -328,7 +332,8 @@
 @media (max-width: $sm) {
   .blogPost {
     .contentWrapper {
-      padding: 108px 0 16px;
+      // padding: 108px 0 16px;
+      padding: 0 0 16px;
     }
 
     h1 {

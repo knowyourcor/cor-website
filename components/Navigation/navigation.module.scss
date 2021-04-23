@@ -10,7 +10,8 @@
   display: flex;
   align-content: center;
   width: 100%;
-  height: 48px;
+  // height: 48px;
+  height: 89px;
 
   background: var(--color-white);
   transition: background 0.25s ease-out;
@@ -25,7 +26,7 @@
     // padding: 0.5rem 1rem;
 
     // font-size: 0.75rem;
-    font-size: 18px;
+    // font-size: 18px;
     color: var(--color-white-bright);
 
     cursor: pointer;
@@ -57,7 +58,8 @@
     padding: 10px;
 
     svg {
-      height: 18px;
+      // height: 18px;
+      height: 26.2px;
 
       fill: var(--color-white-bright);
 
@@ -239,6 +241,10 @@
 
 .withBG,
 .onScroll {
+  .container {
+    border-bottom: 0;
+  }
+  
   .customBurger span {
     background-color: var(--font-primary);
   }
@@ -296,12 +302,18 @@
 
 @media (max-width: $md) {
   .navigation {
+    height: 60.4px;
+
     .logo {
       padding: 0;
 
+      svg {
+        height: 20px;
+      }
+
       &.menuOpenLogo {
         position: absolute;
-        top: 15px;
+        top: 17px;
         left: 33px;
         z-index: 9999;
       
@@ -318,14 +330,14 @@
     nav ul:first-of-type a {
       align-items: flex-start;
 
-      font-size: 29px;
+      // font-size: 29px;
       color: var(--font-inverted);
     }
   }
 
   .container {
     flex-direction: row-reverse;
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
 
   .cart {
