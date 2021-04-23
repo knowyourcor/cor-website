@@ -1,3 +1,5 @@
+import client from "../../apollo-client";
+import gql from "graphql-tag";
 import { RichText } from "prismic-reactjs";
 
 import Layout from "../../components/Layout"
@@ -25,6 +27,7 @@ const Post = ({
       mainMenuData={mainMenuData}
       footerMenuData={footerMenuData}
       tertiaryMenuData={tertiaryMenuData}
+      style={{ backgroundColor: `${pageData.background_color === null ? '' : pageData.background_color}` }}
     >
       <div className={styles.contentWrapper} style={{ backgroundColor: `${pageData.background_color === null ? '' : pageData.background_color}` }}>
         <Container>
@@ -68,8 +71,48 @@ const Post = ({
 
 export default Post;
 
+const POSTS_QUERY = gql`
+  query Posts($after: String) {
+    allBlog_posts(first: 100, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          featured_post
+          title
+          category
+          date
+          excerpt
+          _meta {
+            uid
+          }
+          content {
+            image
+            heading
+            paragraph
+            quote
+          }
+        }
+        cursor
+      }
+    }
+  }
+`;
+
 export const getStaticPaths = async (previewData) => {
-  const blogData = await getCategoryBlogData('', previewData);
+  // const blogData = await getCategoryBlogData('', previewData);
+
+  const { data } = await client.query({
+    query: POSTS_QUERY
+  })
+
+  const paths = data.allBlog_posts.edges.map(id => {
+    return {
+      params: { slug: id.node._meta.uid }
+    }
+  })
 
   // api.query(
   //   Prismic.Predicates.at('document.type', 'recipe'),
@@ -92,12 +135,12 @@ export const getStaticPaths = async (previewData) => {
 
   // const combineArr = arr.concat(arr2)
 
-  const paths = blogData.categoriesData.edges.map(post => {
-    // console.log(post.node._meta.uid)
-    return {
-      params: { slug: post.node._meta.uid }
-    }
-  })
+  // const paths = blogData.categoriesData.edges.map(post => {
+  //   // console.log(post.node._meta.uid)
+  //   return {
+  //     params: { slug: post.node._meta.uid }
+  //   }
+  // })
 
   return {
     paths,

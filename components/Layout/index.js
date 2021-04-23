@@ -3,8 +3,6 @@ import Alert from "../Alert"
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 
-import styles from "./layout.module.scss"
-
 const Layout = ({
   children,
   mainMenuData,
@@ -18,7 +16,7 @@ const Layout = ({
     <>
       <Head title={title} />
       <Alert preview={preview} />
-      <main className={[classNameVal, styles.layout].join(" ")}>
+      <main className={classNameVal}>
         <Navigation mainMenuData={mainMenuData} />
         {children}
       </main>

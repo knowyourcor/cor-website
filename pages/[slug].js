@@ -28,6 +28,7 @@ export default function Page({
   }
 
   let title = pageData?.meta_title.toLowerCase()
+
   return (
     <>
       {router.isFallback ? (
@@ -55,7 +56,7 @@ export default function Page({
         </>
       ) : (
         <Layout
-          classNameVal={title}
+          classNameVal={["page__layout", title].join(" ")}
           title={pageData?.meta_title}
           preview={preview}
           mainMenuData={mainMenuData}
