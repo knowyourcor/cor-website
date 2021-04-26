@@ -71,17 +71,6 @@ export default function Page({
   );
 }
 
-// export async function getStaticPaths() {
-//   const allPages = await getAllPagesWithSlug();
-//   return {
-//     paths:
-//       allPages?.map(({ node }) => {
-//         return { params: { slug: `${node._meta.uid}` } };
-//       }) || [],
-//     fallback: true,
-//   };
-// }
-
 export async function getStaticPaths() {
   const allPages = await getAllPagesWithSlug();
   const allPaths = allPages?.map(({ node }) => `/${node._meta.uid}`);
