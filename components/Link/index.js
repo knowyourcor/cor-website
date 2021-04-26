@@ -2,25 +2,26 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import React, { Children } from "react";
 
-const ActiveLink = ({ children, ...props }) => {
-  const router = useRouter();
+const ActiveLink = ({ children, activeClassName, ...props }) => {
+  const { asPath } = useRouter();
   const child = Children.only(children);
-  let className = child.props.className || "";
-  const isDynamicRoute = props.href.match(/^\/?\[{1,2}\.{0,3}[a-z]+\]{1,2}$/);
+  const childClassName = child.props.className || "";
 
-  if (
-    router.pathname === props.href &&
-    !isDynamicRoute &&
-    props.activeClassName
-  ) {
-    className = `${className} ${props.activeClassName}`.trim();
-  } else if (router.asPath === props.as && isDynamicRoute) {
-    className = `${className} ${props.activeClassName}`.trim();
-  }
+  // pages/index.js will be matched via props.href
+  // pages/about.js will be matched via props.href
+  // pages/[slug].js will be matched via props.as
+  const className =
+    asPath === props.href || asPath === props.as
+      ? `${childClassName} ${activeClassName}`.trim()
+      : childClassName;
 
-  delete props.activeClassName;
-
-  return <Link {...props}>{React.cloneElement(child, { className })}</Link>;
+  return (
+    <Link {...props}>
+      {React.cloneElement(child, {
+        className: className || null,
+      })}
+    </Link>
+  );
 };
 
 export default ActiveLink;
