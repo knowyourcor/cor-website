@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import Link from "../Link";
+import Link from "next/link";
 import {
   disableBodyScroll,
   enableBodyScroll,
@@ -76,35 +76,28 @@ const Menu = ({ active, toggle, mainMenuData }) => {
         animate={active ? "open" : "closed"}
         variants={navVariant}
       >
-        <motion.ul className={[styles.mainMenu, active && styles.isMenuOpen].join(" ")} variants={navItemsVariants}>
+        <motion.ul
+          className={[styles.mainMenu, active && styles.isMenuOpen].join(" ")}
+          variants={navItemsVariants}
+        >
           {mainMenuData?.menu_links.map((link, index) => {
             return (
               <motion.li
                 key={`${link.link._meta.uid}_${index}`}
                 variants={navItemVariants}
               >
-                {link.link._meta.type === "page" ? (
-                  <Link
-                    activeClassName={styles.active}
-                    href="/[slug]"
-                    as={`/${link.link._meta.uid}`}
-                  >
-                    <a onClick={() => toggle()}>{link.label[0].text}</a>
-                  </Link>
-                ) : (
-                  <Link
-                    activeClassName={styles.active}
-                    href={`/${link.link._meta.uid}`}
-                  >
-                    <a onClick={() => toggle()}>{link.label[0].text}</a>
-                  </Link>
-                )}
+                <Link
+                  activeClassName={styles.active}
+                  href={`/${link.link._meta.uid}`}
+                >
+                  <a onClick={() => toggle()}>{link.label[0].text}</a>
+                </Link>
               </motion.li>
             );
           })}
           <motion.li variants={navItemVariants}>
-            <Link activeClassName={styles.active} href="/blog" as={`/blog`}>
-              <a onClick={() => toggle()}>Blog</a>
+            <Link activeClassName={styles.active} href="/blog">
+              <a onClick={() => toggle()}>Blog 2</a>
             </Link>
           </motion.li>
         </motion.ul>
