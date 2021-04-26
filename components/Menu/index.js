@@ -95,11 +95,6 @@ const Menu = ({ active, toggle, mainMenuData }) => {
               </motion.li>
             );
           })}
-          <motion.li variants={navItemVariants}>
-            <Link activeClassName={styles.active} href="/blog">
-              <a onClick={() => toggle()}>Blog 2</a>
-            </Link>
-          </motion.li>
         </motion.ul>
         <motion.ul className={styles.subMenu} variants={navItemsVariants}>
           <motion.li variants={navItemVariants}>
