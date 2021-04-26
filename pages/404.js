@@ -7,7 +7,7 @@ import Alert from "../components/Alert";
 
 import { getMenuData } from "../lib/api";
 
-// import styles from "../styles/Error.module.scss";
+import styles from "../styles/Error.module.scss";
 
 export default function Error({
   preview,
@@ -21,7 +21,7 @@ export default function Error({
       <Alert preview={preview} />
       <main>
         <Navigation mainMenuData={mainMenuData} />
-        <Section>
+        <section className={styles.error}>
           <Container>
             <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
               <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
@@ -29,7 +29,7 @@ export default function Error({
               </Column>
             </Row>
           </Container>
-        </Section>
+        </section>
       </main>
       <Footer
         footerMenuData={footerMenuData}

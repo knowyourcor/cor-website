@@ -76,7 +76,7 @@ export async function getStaticPaths() {
   const allPaths = allPages?.map(({ node }) => `/${node._meta.uid}`);
   return {
     paths: allPaths || [],
-    fallback: true,
+    fallback: false,
   };
 }
 
