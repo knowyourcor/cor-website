@@ -7,11 +7,11 @@ import Section from "../components/Section";
 import { Container, Row, Column } from "../components/Grid";
 import Modules from "../components/Modules";
 import Alert from "../components/Alert";
-import Layout from "../components/Layout"
+import Layout from "../components/Layout";
 
 import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
 
-import FeaturedPress from "../components/FeaturedPress"
+import FeaturedPress from "../components/FeaturedPress";
 
 // import styles from "../styles/Page.module.scss";
 
@@ -27,7 +27,7 @@ export default function Page({
     return <ErrorPage statusCode={404} />;
   }
 
-  let title = pageData?.meta_title.toLowerCase()
+  let title = pageData?.meta_title?.toLowerCase();
 
   return (
     <>
@@ -65,7 +65,6 @@ export default function Page({
         >
           <Modules pageData={pageData} />
           {pageData?.featured_press && <FeaturedPress />}
-
         </Layout>
       )}
     </>
