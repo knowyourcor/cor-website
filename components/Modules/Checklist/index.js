@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { RichText } from "prismic-reactjs";
+import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
 
 import Section from "../../Section"
 import { Container, Row, Column } from "../../Grid"
-import Image from "../../Image"
 import Picture from "../../Picture"
 
 import styles from "./index.module.scss"
-import Item from "../Accordion/Item";
 
 const Checkbox = ({ type = "checkbox", name, checked = false, onChange }) => {
   return (
@@ -20,6 +20,27 @@ const Checkbox = ({ type = "checkbox", name, checked = false, onChange }) => {
 
 export default function Checklist({ primary, fields }) {
   const [checkedItems, setCheckedItems] = useState({});
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    rootMargin: "25px 0px",
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
 
   const handleChange = event => {
     setCheckedItems({
@@ -33,7 +54,15 @@ export default function Checklist({ primary, fields }) {
       <Container>
         <Row align="center">
           <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }} className="custom__column">
-            <RichText render={primary.heading} />
+            <motion.div
+              ref={ref}
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              exit="hidden"
+              variants={variants}
+            >
+              <RichText render={primary.heading} />
+            </motion.div>
             <div className={styles.listHolder}>
               <div className={styles.card}>
                 <div className={styles.cardHeader}>
@@ -75,8 +104,16 @@ export default function Checklist({ primary, fields }) {
             </div>
           </Column>
           <Column columns={{ xs: 14, md: 8 }} offsets={{ md: 1 }} className={styles.cColumn}>
-            <Picture image={primary.image} />
-            <RichText render={primary.text} />
+            <motion.div
+              ref={ref}
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              exit="hidden"
+              variants={variants}
+            >
+              <Picture image={primary.image} />
+              <RichText render={primary.text} />
+            </motion.div>
           </Column>
         </Row>
       </Container>

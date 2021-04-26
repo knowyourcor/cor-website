@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useInView } from 'react-intersection-observer';
 import { RichText } from "prismic-reactjs";
 import { motion } from "framer-motion";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
 import Item from "./Item";
+
 
 import styles from "./accordion.module.scss";
 
@@ -27,6 +29,27 @@ export default function Accordion({ primary, fields }) {
     "dark"
   );
 
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
+
   return (
     <div
       style={{
@@ -42,7 +65,14 @@ export default function Accordion({ primary, fields }) {
                 {fields.map((data, index) => {
                   let isExpanded = `item-${index}` === expanded
                   return (
-                    <div className={styles.svgWrap} key={index}>
+                    <motion.div
+                      ref={ref}
+                      initial="hidden"
+                      animate={inView ? "show" : "hidden"}
+                      exit="hidden"
+                      variants={variants}
+                      className={styles.svgWrap} key={index}
+                    >
                       {isExpanded &&
                         <motion.svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg" className={styles.svgPieGraph}>
                           <g transform="translate(24 24)" fill="none" fillRule="evenodd">
@@ -117,13 +147,28 @@ export default function Accordion({ primary, fields }) {
                         </motion.svg>
                       }
 
-                    </div>
+                    </motion.div>
                   )
                 })}
               </Column>
               <Column columns={{ xs: 14, sm: 12, md: 6 }} offsets={{ sm: 1 }}>
-                <RichText render={primary.headline} />
-                <div className={styles.accordion}>
+                <motion.div
+                  ref={ref}
+                  initial="hidden"
+                  animate={inView ? "show" : "hidden"}
+                  exit="hidden"
+                  variants={variants}
+                >
+                  <RichText render={primary.headline} />
+                </motion.div>
+                <motion.div
+                  ref={ref}
+                  initial="hidden"
+                  animate={inView ? "show" : "hidden"}
+                  exit="hidden"
+                  variants={variants}
+                  className={styles.accordion}
+                >
                   <motion.div className={styles.items}>
                     {fields.map((data, index) => (
                       <Item
@@ -135,9 +180,8 @@ export default function Accordion({ primary, fields }) {
                       />
                     ))}
                   </motion.div>
-                </div>
+                </motion.div>
               </Column>
-
             </Row>
           </Container>
         </div>

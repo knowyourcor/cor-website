@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
 
 import styles from "./carousel.module.scss"
 
@@ -59,8 +61,36 @@ const Carousel = ({ fields }) => {
     }
   }
 
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
+
   return (
-    <div className={["swiper--slides__visibility", styles.customContainer].join(" ")}>
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={variants}
+      className={["swiper--slides__visibility", styles.customContainer].join(" ")}
+    >
       <Swiper
         {...swiperInit}
         onSlideChange={(swiper) => {
@@ -81,7 +111,7 @@ const Carousel = ({ fields }) => {
           );
         })}
       </Swiper>
-    </div >
+    </motion.div>
   );
 };
 

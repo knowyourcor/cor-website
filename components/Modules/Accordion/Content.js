@@ -1,5 +1,5 @@
 import { RichText } from "prismic-reactjs";
-import { motion } from "framer-motion";
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 
 import styles from "./accordion.module.scss";
 
@@ -46,17 +46,20 @@ export default function Content({ text }) {
   };
 
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      variants={container}
-    >
-      <motion.div variants={item}>
-        <div className={styles.content}>
-          <RichText render={text} />
-        </div>
+    <>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        variants={container}
+      >
+
+        <motion.div variants={item}>
+          <div className={styles.content}>
+            <RichText render={text} />
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </>
   );
 }

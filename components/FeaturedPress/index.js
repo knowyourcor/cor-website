@@ -4,6 +4,7 @@ import { RichText } from "prismic-reactjs";
 import moment from "moment"
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
+import { useInView } from 'react-intersection-observer';
 import { motion } from "framer-motion";
 
 import Section from "../Section";
@@ -48,6 +49,9 @@ query FeaturedPress($after: String) {
 export default function Index() {
   const [isHovered, setHovered] = useState(false)
   const [activeItem, setActiveItem] = useState("item-0");
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
 
   const { data, loading, error, fetchMore } = useQuery(POSTS_QUERY, {
     variables: {
@@ -112,6 +116,23 @@ export default function Index() {
       transition: transition,
     },
   }
+
+  const transitionAnimate = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transitionAnimate
+    },
+    show: {
+      opacity: 1,
+      transitionAnimate
+    }
+  };
 
   return (
     <Section className={styles.featuredWrap}>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useInView } from 'react-intersection-observer';
 import { RichText } from "prismic-reactjs";
 import SwiperCore, { Controller, Pagination, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -95,6 +96,12 @@ export default function QuadCarousel({ primary, fields }) {
   const [controlledSwiperOne, setControlledSwiperOne] = useState(null);
   const [controlledSwiperTwo, setControlledSwiperTwo] = useState(null);
   const [active, setActive] = useState("item-0")
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    trackVisibility: true,
+    delay: 100,
+    rootMargin: "25px 0px",
+  });
 
   const parentVariant = {
     open: {
@@ -122,6 +129,23 @@ export default function QuadCarousel({ primary, fields }) {
     },
   }
 
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
+
   const params = {
     effect: "fade",
     fadeEffect: {
@@ -133,23 +157,95 @@ export default function QuadCarousel({ primary, fields }) {
   return (
     <Section className={styles.quadCarousel} align="center" style={{ backgroundColor: primary.background_color }}>
       <Container>
-        <div className={styles.headingWrap}>
-          <RichText render={primary.heading} />
-          <RichText render={primary.paragraph} />
-        </div>
-        <div className={styles.swiperWrap}>
-          <div className={styles.detailsWrap}>
-            <div className={[styles.card, styles.nameWrap].join(" ")}>
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          exit="hidden"
+          variants={variants}
+        >
+          <div className={styles.headingWrap}>
+            <RichText render={primary.heading} />
+            <RichText render={primary.paragraph} />
+          </div>
+          <div className={styles.swiperWrap}>
+            <div className={styles.detailsWrap}>
+              <div className={[styles.card, styles.nameWrap].join(" ")}>
+                <Swiper
+                  {...params}
+                  onSwiper={setControlledSwiperOne}
+                  controller={{ control: controlledSwiperTwo }}
+                >
+                  {fields.map((item, i) => {
+                    return (
+                      <SwiperSlide key={i} className={styles.cDetails}>
+                        <DetailsName
+                          {...item}
+                          index={i}
+                          active={active}
+                          parentVariant={parentVariant}
+                          childVariants={childVariants}
+                        />
+                      </SwiperSlide>
+                    )
+                  })}
+                </Swiper>
+              </div>
+              <div className={[styles.card, styles.meterWrap].join(" ")}>
+                <Swiper
+                  {...params}
+                  onSwiper={setControlledSwiperTwo}
+                >
+                  {fields.map((item, i) => {
+                    return (
+                      <SwiperSlide key={i} className={styles.swiperSlide}>
+                        {`item-${i}` === active &&
+                          <RoundelMeter className="roundelMeterWrap" score={item.meter_number} />
+                        }
+                      </SwiperSlide>
+                    )
+                  })}
+                </Swiper>
+              </div>
+            </div>
+            <div className={styles.mainSwiper}>
               <Swiper
                 {...params}
-                onSwiper={setControlledSwiperOne}
-                controller={{ control: controlledSwiperTwo }}
+                slidesPerView={1}
+                pagination={{ clickable: true }}
+                controller={{ control: controlledSwiper }}
+                onSlideChange={(swiper) => {
+                  setActive(`item-${swiper.activeIndex}`)
+                }}
               >
                 {fields.map((item, i) => {
                   return (
-                    <SwiperSlide key={i} className={styles.cDetails}>
-                      <DetailsName
+                    <SwiperSlide className="swiperSlide" key={i}>
+                      <MainPhoto
                         {...item}
+                        index={i}
+                        active={active}
+                      />
+                    </SwiperSlide>
+                  )
+                })}
+              </Swiper>
+            </div>
+            <div className={styles.listWrap}>
+              <Swiper
+                {...params}
+                pagination={{ clickable: true }}
+                onSwiper={setControlledSwiper}
+                controller={{ control: controlledSwiperOne }}
+                onSlideChange={(swiper) => {
+                  setActive(`item-${swiper.activeIndex}`)
+                }}
+              >
+                {fields.map((data, i) => {
+                  return (
+                    <SwiperSlide key={i}>
+                      <List
+                        {...data}
                         index={i}
                         active={active}
                         parentVariant={parentVariant}
@@ -159,73 +255,9 @@ export default function QuadCarousel({ primary, fields }) {
                   )
                 })}
               </Swiper>
-            </div>
-            <div className={[styles.card, styles.meterWrap].join(" ")}>
-              <Swiper
-                {...params}
-                onSwiper={setControlledSwiperTwo}
-              >
-                {fields.map((item, i) => {
-                  return (
-                    <SwiperSlide key={i} className={styles.swiperSlide}>
-                      {`item-${i}` === active &&
-                        <RoundelMeter className="roundelMeterWrap" score={item.meter_number} />
-                      }
-                    </SwiperSlide>
-                  )
-                })}
-              </Swiper>
-            </div>
+            </div >
           </div>
-          <div className={styles.mainSwiper}>
-            <Swiper
-              {...params}
-              slidesPerView={1}
-              pagination={{ clickable: true }}
-              controller={{ control: controlledSwiper }}
-              onSlideChange={(swiper) => {
-                setActive(`item-${swiper.activeIndex}`)
-              }}
-            >
-              {fields.map((item, i) => {
-                return (
-                  <SwiperSlide className="swiperSlide" key={i}>
-                    <MainPhoto
-                      {...item}
-                      index={i}
-                      active={active}
-                    />
-                  </SwiperSlide>
-                )
-              })}
-            </Swiper>
-          </div>
-          <div className={styles.listWrap}>
-            <Swiper
-              {...params}
-              pagination={{ clickable: true }}
-              onSwiper={setControlledSwiper}
-              controller={{ control: controlledSwiperOne }}
-              onSlideChange={(swiper) => {
-                setActive(`item-${swiper.activeIndex}`)
-              }}
-            >
-              {fields.map((data, i) => {
-                return (
-                  <SwiperSlide key={i}>
-                    <List
-                      {...data}
-                      index={i}
-                      active={active}
-                      parentVariant={parentVariant}
-                      childVariants={childVariants}
-                    />
-                  </SwiperSlide>
-                )
-              })}
-            </Swiper>
-          </div >
-        </div>
+        </motion.div>
       </Container>
     </Section>
   )
