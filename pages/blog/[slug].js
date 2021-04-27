@@ -1,6 +1,7 @@
 import client from "../../apollo-client";
 import gql from "graphql-tag";
 import { RichText } from "prismic-reactjs";
+import { useQuery } from "@apollo/client";
 
 import Layout from "../../components/Layout"
 import { Container } from "../../components/Grid"
@@ -9,13 +10,14 @@ import styles from "../../styles/blog/blog-post.module.scss"
 
 import { getBlogData, getBlogPostData, getMenuData, getCategoryBlogData } from "../../lib/api"
 
-const Post = ({
+export default function Post({ 
   preview,
   pageData,
   mainMenuData,
   footerMenuData,
   tertiaryMenuData,
-}) => {
+}) {
+
   let date = pageData.date
   let dateFormat = date.replace(/-/g, '.')
 
@@ -69,8 +71,6 @@ const Post = ({
   );
 }
 
-export default Post;
-
 const POSTS_QUERY = gql`
   query Posts($after: String) {
     allBlog_posts(first: 100, after: $after) {
@@ -102,8 +102,6 @@ const POSTS_QUERY = gql`
 `;
 
 export const getStaticPaths = async (previewData) => {
-  // const blogData = await getCategoryBlogData('', previewData);
-
   const { data } = await client.query({
     query: POSTS_QUERY
   })
@@ -113,34 +111,6 @@ export const getStaticPaths = async (previewData) => {
       params: { slug: id.node._meta.uid }
     }
   })
-
-  // api.query(
-  //   Prismic.Predicates.at('document.type', 'recipe'),
-  //   { pageSize: 50, page: 3 }
-  // ).then(function (response) {
-  //   console.log(response)
-  //   // response is the response object, response.results holds the documents
-  // });
-
-  // const arr = []
-  // const arr2 = []
-
-  // pageData.posts.edges.forEach(element => {
-  //   arr.push(element)
-  // });
-
-  // pageData.featuredPost.edges.forEach(element => {
-  //   arr2.push(element)
-  // });
-
-  // const combineArr = arr.concat(arr2)
-
-  // const paths = blogData.categoriesData.edges.map(post => {
-  //   // console.log(post.node._meta.uid)
-  //   return {
-  //     params: { slug: post.node._meta.uid }
-  //   }
-  // })
 
   return {
     paths,

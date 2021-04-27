@@ -4,6 +4,8 @@ import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import { RichText } from "prismic-reactjs";
 import moment from "moment";
+import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
 
 import styles from "../../styles/blog/blog.module.scss";
 
@@ -36,6 +38,67 @@ const POSTS_QUERY = gql`
     }
   }
 `;
+
+const PostItem = ({ item, index }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition: {
+        ease: "easeInOut",
+        duration: 0.5,
+      }
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        ease: "easeInOut",
+        duration: 0.5,
+      }
+    }
+  };
+
+  let date = moment(item.node.date).format("DD MMMM, YYYY");
+
+  return (
+    <motion.div 
+      ref={ref}
+      className={styles.postHolder}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={variants}
+    >
+      <Link href={"/blog/" + item.node._meta.uid}>
+        <a>
+          <div className={styles.imageWrapper}>
+            <img
+              src={item.node.content[0].image.url}
+              className={styles.image}
+              alt=""
+            />
+          </div>
+        </a>
+      </Link>
+      <div className={styles.wrapper}>
+        <p className={styles.category}>
+          {RichText.asText(item.node.category)}
+        </p>
+        <p className={styles.date}>{date}</p>
+      </div>
+      <Link href={"/blog/" + item.node._meta.uid}>
+        <a>
+          <h2 className={styles.title}>
+            {RichText.asText(item.node.title)}
+          </h2>
+        </a>
+      </Link>
+    </motion.div>
+  )
+}
 
 export default function Posts(props) {
   const categoryName = props.category
@@ -81,36 +144,12 @@ export default function Posts(props) {
     <>
       <div className={styles.postWrapper}>
         {posts.map((item, i) => {
-          let data = item.node;
-          let date = moment(data.date).format("DD MMMM, YYYY");
-
           return (
-            <div key={i} className={styles.postHolder}>
-              <Link href={"/blog/" + data._meta.uid}>
-                <a>
-                  <div className={styles.imageWrapper}>
-                    <img
-                      src={data.content[0].image.url}
-                      className={styles.image}
-                      alt=""
-                    />
-                  </div>
-                </a>
-              </Link>
-              <div className={styles.wrapper}>
-                <p className={styles.category}>
-                  {RichText.asText(data.category)}
-                </p>
-                <p className={styles.date}>{date}</p>
-              </div>
-              <Link href={"/blog/" + data._meta.uid}>
-                <a>
-                  <h2 className={styles.title}>
-                    {RichText.asText(data.title)}
-                  </h2>
-                </a>
-              </Link>
-            </div>
+            <PostItem 
+              item={item}
+              index={i}
+              key={i}
+            />
           );
         })}
       </div>
