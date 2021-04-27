@@ -58,7 +58,7 @@ const FeaturedBlog = ({ item, index }) => {
   let date = moment(item.node.date).format("DD MMMM, YYYY")
 
   const transitionAnimate = {
-    duration: 0.5,
+    duration: 0.25,
     ease: "easeInOut"
   };
 
