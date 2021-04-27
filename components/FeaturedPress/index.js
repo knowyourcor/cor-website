@@ -46,7 +46,7 @@ query FeaturedPress($after: String) {
 }
 `;
 
-const FeaturedBlog = ({ item }) => {
+const FeaturedBlog = ({ item, index }) => {
   const [isHovered, setHovered] = useState(false)
   const [activeItem, setActiveItem] = useState("item-0");
   const { ref, inView } = useInView({
@@ -58,8 +58,7 @@ const FeaturedBlog = ({ item }) => {
   let date = moment(item.node.date).format("DD MMMM, YYYY")
 
   const transitionAnimate = {
-    duration: 0.4,
-    delay: 0.2,
+    duration: 0.5,
     ease: "easeInOut"
   };
 
@@ -120,11 +119,11 @@ const FeaturedBlog = ({ item }) => {
               className={styles.actionWrap}
               onMouseEnter={() => {
                 setHovered(true)
-                setActiveItem(`item-${i}`)
+                setActiveItem(`item-${index}`)
               }}
               onMouseLeave={() => {
                 setHovered(false)
-                setActiveItem(`item-${i}`)
+                setActiveItem(`item-${index}`)
               }}
             >
               <Link
@@ -134,7 +133,7 @@ const FeaturedBlog = ({ item }) => {
                   <RichText render={pathNodeContent?.link_name} />
                   <motion.svg viewBox="0 0 512 512"
                     initial={false}
-                    animate={isHovered && `item-${i}` === activeItem ? "open" : "closed"}
+                    animate={isHovered && `item-${index}` === activeItem ? "open" : "closed"}
                     variants={svgVariants}
                   >
                     <g>
@@ -204,6 +203,7 @@ export default function Index() {
             return (
               <FeaturedBlog
                 item={item}
+                index={i}
                 key={i}
               />
             )
