@@ -1,7 +1,7 @@
 import { RichText } from "prismic-reactjs";
 
 import Section from "../../Section"
-import { Container, Row, Column } from "../../Grid"
+import { Row, Column } from "../../Grid"
 import Picture from "../../Picture"
 
 import styles from "./index.module.scss"

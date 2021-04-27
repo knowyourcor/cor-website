@@ -34,16 +34,18 @@
 }
 
 .listHolder {
-  position: absolute;
-  bottom: -173px;
-  left: 30vw;
-  z-index: 2;
+  position: relative;
 
   .card {
     padding: 18px 19px;
   }
 
   ul {
+    position: absolute;
+    top: 55px;
+    left: 28vw;
+    z-index: 2;
+
     padding-left: 0;
 
     list-style: none;
@@ -246,13 +248,17 @@
     }
   }
 
-  .listHolder {
-    bottom: -394px;
+  .listHolder ul {
+    // bottom: -394px;
+    top: 2vw;
+    left: 15vw;
   }
 }
 
 @media (max-width: 1023px) {
   .checklistWrap {
+    padding-bottom: 875px;
+
     picture {
       margin-top: 19px;
       margin-left: auto;
@@ -264,14 +270,15 @@
     }
   }
 
-  .listHolder {
+  .listHolder ul {
+    top: 35vw;
     left: 27px;
   }
 }
 
 @media (max-width: $sm) {
   .checklistWrap {
-    padding-bottom: 829px;
+    padding-bottom: 760px;
 
     h2 {
       margin-bottom: 32px;
@@ -279,16 +286,22 @@
   }
 
   .listHolder {    
-    bottom: -288px;
-    left: 25px;
+    width: 100%;
 
-    width: 52%;
+    ul {
+      top: 45vw;
+      left: 25px;
 
-    li p {
-      padding-left: 12px;
-      margin-top: 0;
+      width: 56%;
+    }
 
-      font-size: 17px;
+    li {
+      p {
+        padding-left: 12px;
+        margin-top: 0;
+  
+        font-size: 17px;
+      }
     }
 
     img {
@@ -304,10 +317,16 @@
 
 @media (max-width: $xs) {
   .listHolder {  
-    li p {
-      padding-left: 12px;
+    li {
+      &:not(:last-child) {
+        margin-bottom: 9px;
+      }
 
-      font-size: 13px;
+      p {
+        padding-left: 12px;
+  
+        font-size: 13px;
+      }
     }
 
     img {
