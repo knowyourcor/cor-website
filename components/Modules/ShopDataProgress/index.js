@@ -1,4 +1,6 @@
 import { RichText } from "prismic-reactjs";
+import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
 import { Column, Container, Row } from "../../Grid";
 import Picture from "../../Picture";
 import Section from "../../Section";
@@ -6,10 +8,38 @@ import Section from "../../Section";
 import styles from "./index.module.scss"
 
 export default function Index({ primary }) {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
+
   return (
     <Section style={{ backgroundColor: primary.background_color }} className={styles.dataProgress}>
       <Container>
-        <div className={styles.contentWrap}>
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          exit="hidden"
+          variants={variants}
+          className={styles.contentWrap}
+        >
           <Row align="center">
             <Column columns={{ xs: 14, md: 7 }} offsets={{ md: 1 }} className="custom__column">
               <div className={styles.imageDetailsHolder}>
@@ -26,7 +56,7 @@ export default function Index({ primary }) {
               </div>
             </Column>
           </Row>
-        </div>
+        </motion.div>
       </Container>
     </Section>
   )
