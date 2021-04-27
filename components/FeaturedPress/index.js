@@ -50,7 +50,14 @@ const FeaturedBlog = ({ item, index }) => {
   const [isHovered, setHovered] = useState(false)
   const [activeItem, setActiveItem] = useState("item-0");
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: [
+      0,
+      0.2,
+      0.4,
+      0.6,
+      0.8,
+      1
+    ],
   });
 
   let pathNode = item.node
@@ -58,8 +65,9 @@ const FeaturedBlog = ({ item, index }) => {
   let date = moment(item.node.date).format("DD MMMM, YYYY")
 
   const transitionAnimate = {
-    duration: 0.5,
-    ease: "easeInOut"
+    duration: 0.25,
+    delay: 0.2,
+    easing: [0.42, 0, 0.58, 1],
   };
 
   const variants = {
