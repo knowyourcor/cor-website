@@ -46,7 +46,7 @@ const HealthMeter = ({ fields, expanded }) => (
                     strokeWidth="19"
                     cx="50"
                     cy="50"
-                    r={index === 3 && isExpanded ? 56 : 50}
+                    r={index === 3 && isExpanded ? 55 : 50}
                     style={{
                       strokeDasharray: index === 3 && isExpanded ? 360 : 328,
                       strokeWidth: index === 3 && isExpanded ? 29 : 19,
@@ -67,7 +67,7 @@ const HealthMeter = ({ fields, expanded }) => (
                   strokeWidth="29"
                   cx="50"
                   cy="50"
-                  r={index === 2 && isExpanded ? 56 : 50}
+                  r={index === 2 && isExpanded ? 55 : 50}
                   style={{
                     strokeDasharray: index === 2 && isExpanded ? 343 : 336,
                     strokeWidth: index === 2 && isExpanded ? 29 : 19,
