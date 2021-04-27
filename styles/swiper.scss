@@ -13,7 +13,7 @@
 //About: Team Carousel
 .swiper--slides__visibility {
   img, p, h5, h6 {
-    transition: all .3s ease-in;
+    transition: transform .3s ease-in;
   }
 
   img {

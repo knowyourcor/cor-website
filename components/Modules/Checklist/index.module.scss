@@ -82,7 +82,7 @@
 
   .card {
     opacity: .5;
-    transition: all .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
 
     &:first-child {
       opacity: 1;
@@ -146,7 +146,7 @@
       border: 1px solid var(--font-primary);
       border-radius: 50%;
 
-      transition: all .3s ease-in;
+      transition: .3s ease-in;
 
       &:after {
         content: "";

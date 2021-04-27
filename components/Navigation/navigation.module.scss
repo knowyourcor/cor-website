@@ -30,7 +30,7 @@
     color: var(--color-white-bright);
 
     cursor: pointer;
-    transition: all .3s ease-in;
+    transition: .3s ease-in;
 
     &.active {
       color: rgba(0, 0, 0, 0.45);
@@ -63,7 +63,7 @@
 
       fill: var(--color-white-bright);
 
-      transition: all .3s ease-in;
+      transition: .3s ease-in;
     }
   }
 }
@@ -75,7 +75,7 @@
     svg {
       fill: var(--font-primary);
 
-      transition: all .3s ease-in;
+      transition: .3s ease-in;
     }
   }
 
