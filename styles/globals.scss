@@ -326,7 +326,7 @@ p {
   border: solid 1.5px var(--font-primary);
   border-radius: 33px;
 
-  transition: color .3s ease-in-out;
+  transition: background-color .3s ease-in-out;
 
   &:hover, &:active {
     color: var(--font-inverted);

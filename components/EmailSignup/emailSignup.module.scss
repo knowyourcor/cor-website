@@ -59,7 +59,7 @@
   border-radius: 23px;
 
   cursor: pointer;
-  transition: background 250ms ease-out;
+  transition: background-color 250ms ease-out;
 
   &:hover, &:focus, &:active {
     background-color: lighten(#034561, 10);

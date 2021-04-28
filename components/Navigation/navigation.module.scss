@@ -14,7 +14,7 @@
   height: 89px;
 
   background: var(--color-white);
-  transition: background 0.25s ease-out;
+  transition: background-color 0.25s ease-out;
 
   button,
   a {
@@ -30,7 +30,7 @@
     color: var(--color-white-bright);
 
     cursor: pointer;
-    transition: .3s ease-in;
+    transition: color .3s ease-in;
 
     &.active {
       color: rgba(0, 0, 0, 0.45);
@@ -63,7 +63,7 @@
 
       fill: var(--color-white-bright);
 
-      transition: .3s ease-in;
+      transition: fill .3s ease-in;
     }
   }
 }
@@ -75,7 +75,7 @@
     svg {
       fill: var(--font-primary);
 
-      transition: .3s ease-in;
+      transition: fill .3s ease-in;
     }
   }
 
@@ -164,7 +164,7 @@
 
   cursor: pointer;
   transform: rotate(0deg);
-  transition: .5s ease-in-out;
+  transition: transform .5s ease-in-out;
   
   &:hover,
   &:focus {
@@ -184,7 +184,7 @@
 
     opacity: 1;
     transform: rotate(0deg);
-    transition: .25s ease-in-out;
+    transition: transform .25s ease-in-out;
 
     &:first-child {
       top: 4px;

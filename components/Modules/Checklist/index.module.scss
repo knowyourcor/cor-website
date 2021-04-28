@@ -146,7 +146,7 @@
       border: 1px solid var(--font-primary);
       border-radius: 50%;
 
-      transition: .3s ease-in;
+      transition: background-color .3s ease-in;
 
       &:after {
         content: "";
