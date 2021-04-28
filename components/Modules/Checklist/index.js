@@ -9,14 +9,44 @@ import Picture from "../../Picture"
 
 import styles from "./index.module.scss"
 
-const Checkbox = ({ type = "checkbox", name, checked = false, onChange }) => {
+const Checkbox = ({ type = "checkbox", name, checked = false, onChange, variants }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    rootMargin: "25px 0px",
+  });
+
   return (
-    <>
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={variants}
+    >
       <input type={type} name={name} checked={checked} onChange={onChange} />
       <span className={styles.checkmark}></span>
-    </>
+    </motion.div>
   );
 };
+
+const Paragraph = ({ text, variants }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    rootMargin: "25px 0px",
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={variants}
+    >
+      <RichText render={text} />
+    </motion.div>
+  )
+}
 
 export default function Checklist({ primary, fields }) {
   const [checkedItems, setCheckedItems] = useState({});
@@ -96,6 +126,7 @@ export default function Checklist({ primary, fields }) {
                         name={item.checklist_item[0].text}
                         checked={checkedItems[item.checklist_item[0].text]}
                         onChange={handleChange}
+                        variants={variants}
                       />
                     </label>
                   </div>
@@ -104,16 +135,11 @@ export default function Checklist({ primary, fields }) {
             </div>
           </Column>
           <Column columns={{ xs: 14, md: 8 }} offsets={{ md: 1 }} className={styles.cColumn}>
-            <motion.div
-              ref={ref}
-              initial="hidden"
-              animate={inView ? "show" : "hidden"}
-              exit="hidden"
+            <Picture image={primary.image} />
+            <Paragraph
+              {...primary}
               variants={variants}
-            >
-              <Picture image={primary.image} />
-              <RichText render={primary.text} />
-            </motion.div>
+            />
           </Column>
         </Row>
       </Container>
