@@ -6,20 +6,70 @@ import { motion } from "framer-motion";
 
 import styles from "./carousel.module.scss"
 
+const TeamDetails = ({ name, position, description, fadeInVariants }) => {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={fadeInVariants}
+      className={styles.content}
+    >
+      <RichText render={name} />
+      <RichText render={position} />
+      <RichText render={description} />
+    </motion.div>
+  )
+}
+
 const Slide = ({ name, position, description, image }) => {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const fadeInVariants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
+
   return (
     <>
-      <div className={styles.portrait}>
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        exit="hidden"
+        variants={fadeInVariants}
+        className={styles.portrait}
+      >
         <img
           src={image.url}
         />
-      </div>
+      </motion.div>
 
-      <div className={styles.content}>
-        <RichText render={name} />
-        <RichText render={position} />
-        <RichText render={description} />
-      </div>
+      <TeamDetails
+        name={name}
+        description={description}
+        position={position}
+        fadeInVariants={fadeInVariants}
+      />
     </>
   );
 };
@@ -61,36 +111,8 @@ const Carousel = ({ fields }) => {
     }
   }
 
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-  });
-
-  const transition = {
-    duration: 0.4,
-    delay: 0.2,
-    ease: "easeInOut"
-  };
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      transition
-    },
-    show: {
-      opacity: 1,
-      transition
-    }
-  };
-
   return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "show" : "hidden"}
-      exit="hidden"
-      variants={variants}
-      className={["swiper--slides__visibility", styles.customContainer].join(" ")}
-    >
+    <div className={["swiper--slides__visibility", styles.customContainer].join(" ")}>
       <Swiper
         {...swiperInit}
         onSlideChange={(swiper) => {
@@ -111,7 +133,7 @@ const Carousel = ({ fields }) => {
           );
         })}
       </Swiper>
-    </motion.div>
+    </div>
   );
 };
 

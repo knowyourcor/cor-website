@@ -8,6 +8,24 @@ import Picture from "../../Picture";
 
 import styles from "./index.module.scss"
 
+const Paragraph = ({ description, fadeInVariants }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={fadeInVariants}
+    >
+      <RichText render={description} />
+    </motion.div>
+  )
+}
+
 export default function Index({ primary }) {
   const { ref, inView } = useInView({
     threshold: 0.5,
@@ -19,7 +37,7 @@ export default function Index({ primary }) {
     ease: "easeInOut"
   };
 
-  const variants = {
+  const fadeInVariants = {
     hidden: {
       opacity: 0,
       transition
@@ -38,7 +56,7 @@ export default function Index({ primary }) {
           initial="hidden"
           animate={inView ? "show" : "hidden"}
           exit="hidden"
-          variants={variants}
+          variants={fadeInVariants}
         >
           <RichText render={primary.heading} />
           <RichText render={primary.sub_heading} />
@@ -50,9 +68,10 @@ export default function Index({ primary }) {
         <Picture image={primary.image} />
       </motion.div>
       <Container>
-        <motion.div>
-          <RichText render={primary.description} />
-        </motion.div>
+        <Paragraph
+          {...primary}
+          fadeInVariants={fadeInVariants}
+        />
       </Container>
     </Section>
   )

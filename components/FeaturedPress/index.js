@@ -46,32 +46,16 @@ query FeaturedPress($after: String) {
 }
 `;
 
-const FeaturedBlog = ({ item, index }) => {
+const FeaturedBlog = ({ item, index, fadeInVariants }) => {
   const [isHovered, setHovered] = useState(false)
   const [activeItem, setActiveItem] = useState("item-0");
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0,
   });
 
   let pathNode = item.node
   let pathNodeContent = pathNode.content[0]
   let date = moment(item.node.date).format("DD MMMM, YYYY")
-
-  const transitionAnimate = {
-    duration: 0.25,
-    ease: "easeInOut"
-  };
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      transitionAnimate
-    },
-    show: {
-      opacity: 1,
-      transitionAnimate
-    }
-  };
 
   const transition = {
     opacity: {
@@ -102,7 +86,7 @@ const FeaturedBlog = ({ item, index }) => {
       initial="hidden"
       animate={inView ? "show" : "hidden"}
       exit="hidden"
-      variants={variants}
+      variants={fadeInVariants}
       className={styles.featuredItem}
     >
       <Row align="center" textAlign={{ xs: "left" }}>
@@ -159,6 +143,10 @@ export default function Index() {
     }
   });
 
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
   if (loading) {
     return (
       <Section>
@@ -194,10 +182,34 @@ export default function Index() {
 
   const posts = data.allBlog_posts.edges;
 
+  const transitionAnimate = {
+    duration: 0.25,
+    ease: "easeInOut"
+  };
+
+  const fadeInVariants = {
+    hidden: {
+      opacity: 0,
+      transitionAnimate
+    },
+    show: {
+      opacity: 1,
+      transitionAnimate
+    }
+  };
+
   return (
     <Section className={styles.featuredWrap}>
       <Container>
-        <h2>Featured press</h2>
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          exit="hidden"
+          variants={fadeInVariants}
+        >
+          <h2>Featured press</h2>
+        </motion.div>
         <div className={styles.featuredList}>
           {posts?.map((item, i) => {
             return (
@@ -205,6 +217,7 @@ export default function Index() {
                 item={item}
                 index={i}
                 key={i}
+                fadeInVariants={fadeInVariants}
               />
             )
           })}
@@ -218,8 +231,6 @@ export default function Index() {
           <Link href="/blog"><a className="btn btn--inverted">View More Blogs</a></Link>
         )
         }
-
-        {/* <Link href="/blog"><a className="btn btn--inverted">Show More</a></Link> */}
       </Container>
     </Section>
   )

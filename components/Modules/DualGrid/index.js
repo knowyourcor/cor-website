@@ -10,7 +10,7 @@ import styles from "./index.module.scss"
 
 export default function Index({ primary }) {
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0,
   });
 
   const transition = {
@@ -33,23 +33,23 @@ export default function Index({ primary }) {
   return (
     <Section className={styles.dualGrid}>
       <Container>
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "show" : "hidden"}
-          exit="hidden"
-          variants={variants}
-        >
-          <Row align="center" textAlign={{ xs: "left" }}>
-            <Column className="custom__column" columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }} justify="center">
-              <Picture image={primary.image} />
-            </Column>
-            <Column columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }} justify="center" >
+        <Row align="center" textAlign={{ xs: "left" }}>
+          <Column className="custom__column" columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }} justify="center">
+            <Picture image={primary.image} />
+          </Column>
+          <Column columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }} justify="center" >
+            <motion.div
+              ref={ref}
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              exit="hidden"
+              variants={variants}
+            >
               <RichText render={primary.heading} />
               <RichText render={primary.description} />
-            </Column>
-          </Row>
-        </motion.div>
+            </motion.div>
+          </Column>
+        </Row>
       </Container>
     </Section>
   )

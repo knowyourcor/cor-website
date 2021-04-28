@@ -10,7 +10,7 @@ import styles from "./index.module.scss"
 
 export default function Index({ primary, fields }) {
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0,
   });
 
   const transition = {

@@ -8,9 +8,29 @@ import Picture from "../../Picture"
 
 import styles from "./index.module.scss"
 
+const Channel = ({ icon, item, fadeInVariants }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+
+  return (
+    <motion.li
+      ref={ref}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={fadeInVariants}
+      className={styles.card}
+    >
+      <img src={icon.url} />
+      <RichText render={item} />
+    </motion.li>
+  )
+}
+
 export default function Checklist({ primary, fields }) {
   const { ref, inView } = useInView({
-    threshold: 0,
+    threshold: 0.5,
   });
 
   const transition = {
@@ -19,7 +39,7 @@ export default function Checklist({ primary, fields }) {
     ease: "easeInOut"
   };
 
-  const variants = {
+  const fadeInVariants = {
     hidden: {
       opacity: 0,
       transition
@@ -33,33 +53,30 @@ export default function Checklist({ primary, fields }) {
 
   return (
     <Section className={styles.checklistWrap} backgroundColor={primary.background_color}>
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={inView ? "show" : "hidden"}
-        exit="hidden"
-        variants={variants}
-      >
-        <Row align="center">
-          <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }} justify="center">
+      <Row align="center">
+        <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }} justify="center">
+          <motion.div
+            ref={ref}
+            initial="hidden"
+            animate={inView ? "show" : "hidden"}
+            exit="hidden"
+            variants={fadeInVariants}
+          >
             <RichText render={primary.heading} />
             <RichText render={primary.text} />
-            <div className={styles.listHolder}>
-              <ul>
-                {fields.map((item, i) => (
-                  <li key={i} className={styles.card}>
-                    <img src={item.icon.url} />
-                    <RichText render={item.item} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Column>
-          <Column columns={{ xs: 14, md: 8 }} offsets={{ md: 1 }} className={styles.cColumn}>
-            <Picture image={primary.image} />
-          </Column>
-        </Row>
-      </motion.div>
+          </motion.div>
+          <div className={styles.listHolder}>
+            <ul>
+              {fields.map((item, i) => (
+                <Channel key={i} {...item} fadeInVariants={fadeInVariants} />
+              ))}
+            </ul>
+          </div>
+        </Column>
+        <Column columns={{ xs: 14, md: 8 }} offsets={{ md: 1 }} className={styles.cColumn}>
+          <Picture image={primary.image} />
+        </Column>
+      </Row>
     </Section>
   )
 }
