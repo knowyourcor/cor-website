@@ -1,14 +1,99 @@
 import client from "../../apollo-client";
 import gql from "graphql-tag";
 import { RichText } from "prismic-reactjs";
-import { useQuery } from "@apollo/client";
-
+import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
 import Layout from "../../components/Layout"
 import { Container } from "../../components/Grid"
 
 import styles from "../../styles/blog/blog-post.module.scss"
 
 import { getBlogData, getBlogPostData, getMenuData, getCategoryBlogData } from "../../lib/api"
+
+const BlogContentMedia = ({ mediaItem }) => {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.mediaWrapper}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={variants}
+    >
+      <div className={styles.mediaHolder}>
+        {mediaItem.image &&
+          <img className={styles.image} src={mediaItem.image.url} />
+        }
+        {mediaItem?.embed_media?.html &&
+          <div className={styles.video} dangerouslySetInnerHTML={{ __html: mediaItem?.embed_media?.html }} />
+        }
+      </div>
+    </motion.div>
+  )
+}
+
+const BlogContentText = ({ textItem }) => {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.contentText}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={variants}
+    >
+      <div className={styles.contentHolder}>
+        <RichText render={textItem.heading} />
+      </div>
+      <div className={styles.contentHolder}>
+        <RichText render={textItem.paragraph} />
+        {textItem.quote && <div className={styles.quoteText}><RichText render={textItem.quote} /></div>}
+      </div>
+    </motion.div>
+  )
+}
 
 export default function Post({ 
   preview,
@@ -17,6 +102,26 @@ export default function Post({
   footerMenuData,
   tertiaryMenuData,
 }) {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const fadeInVariants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
 
   let date = pageData.date
   let dateFormat = date.replace(/-/g, '.')
@@ -33,34 +138,25 @@ export default function Post({
     >
       <div className={styles.contentWrapper} style={{ backgroundColor: `${pageData.background_color === null ? '' : pageData.background_color}` }}>
         <Container>
-          <RichText render={pageData.title} />
-          <div className={styles.postInfoWrapper}>
-            <p className={styles.category}>{RichText.asText(pageData.category)}</p>
-            <p className={styles.date}>{dateFormat}</p>
-          </div>
+          <motion.div 
+            ref={ref} 
+            initial="hidden"
+            animate={inView ? "show" : "hidden"}
+            exit="hidden"
+            variants={fadeInVariants}
+          >
+            <RichText render={pageData.title} />
+            <div className={styles.postInfoWrapper}>
+              <p className={styles.category}>{RichText.asText(pageData.category)}</p>
+              <p className={styles.date}>{dateFormat}</p>
+            </div>
+          </motion.div>
           <div>
             {pageData.content.map((item, i) => {
               return (
                 <div key={i} className={styles.postContent}>
-                  <div className={styles.mediaWrapper}>
-                    <div className={styles.mediaHolder}>
-                      {item.image &&
-                        <img className={styles.image} src={item.image.url} />
-                      }
-                      {item?.embed_media?.html &&
-                        <div className={styles.video} dangerouslySetInnerHTML={{ __html: item?.embed_media?.html }} />
-                      }
-                    </div>
-                  </div>
-                  <div className={styles.contentText}>
-                    <div className={styles.contentHolder}>
-                      <RichText render={item.heading} />
-                    </div>
-                    <div className={styles.contentHolder}>
-                      <RichText render={item.paragraph} />
-                      {item.quote && <div className={styles.quoteText}><RichText render={item.quote} /></div>}
-                    </div>
-                  </div>
+                  <BlogContentMedia mediaItem={item} />
+                  <BlogContentText textItem={item} />
                 </div>
               );
             })}
