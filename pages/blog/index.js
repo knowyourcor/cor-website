@@ -15,23 +15,23 @@ import { getBlogData, getMenuData } from "../../lib/api";
 
 const BlogPostItem = ({ item, index }) => {
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0,
   });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition: {
-        ease: "easeInOut",
-        duration: 0.5,
-      }
+      transition
     },
     show: {
       opacity: 1,
-      transition: {
-        ease: "easeInOut",
-        duration: 0.5,
-      }
+      transition
     }
   };
 
@@ -130,7 +130,6 @@ export default function Blog({
           </div>
         </Container>
       </div>
-
       {post.length < 5 &&
         <ClientOnly>
           <SectionPostCategory />
