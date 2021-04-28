@@ -92,8 +92,7 @@ const Meter = ({ meter_number, index, active, fadeInVariants }) => {
 
 const List = ({ heading, list, index, active, parentVariant, childVariants, fadeInVariants }) => {
   const { ref, inView } = useInView({
-    threshold: 0.5,
-    rootMargin: "25px 0px",
+    threshold: 0,
   });
 
   return (
