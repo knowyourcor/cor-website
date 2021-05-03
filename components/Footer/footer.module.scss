@@ -24,7 +24,8 @@
   }
 
   a {
-    font-size: 1rem;
+    // font-size: 1rem;
+    font-size: 20px;
     line-height: 1.25rem;
 
     cursor: pointer;
@@ -50,6 +51,10 @@
 .secondary {
   // margin-top: 67px;
   margin-bottom: 117px;
+
+  li {
+    margin-bottom: 8px;
+  }
 }
 
 .tertiary {
@@ -92,8 +97,44 @@
       margin: 0;
     }
 
+    .tertiaryMenu {
+      li {
+        &:not(:first-child) {
+          padding-left: 62px;
+        }
+  
+        &:first-child {
+          padding-left: 16px;
+        }
+      }
+    }
+
     li {
-      padding-left: 26px;
+      &:not(:first-child) {
+        padding-left: 26px;
+      }
+
+      &:first-child {
+        padding-left: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: $xl) {
+  .footer {
+    a {
+      font-size: 15px;
+    }
+  }
+
+  .tertiary {
+    li:first-child {
+      padding-left: 8px;
+    }
+
+    a {
+      font-size: 12px;
     }
   }
 }
@@ -117,21 +158,71 @@
 }
 
 @media (max-width: $sm) {
+  .footer {
+    .mark {
+      display: none;
+    }
+
+    a {
+      font-size: 16px;
+    }
+
+    .socialLinks {
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 70px;
+
+      li:not(:first-child) {
+        padding-left: 40px;
+      }
+    }
+  }
+
   .secondary {
     margin-bottom: 38px;
   }
 
-  .socialLinks {
-    justify-content: flex-start;
-  }
-
   .tertiary {
     p {
-      margin-top: 16px;
+      margin-top: 0;
+    }
+
+    p, a {
+      font-size: 9px;
+    }
+
+    ul {
+      margin-top: 9px;
+    }
+
+    li:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .socialhideMdup {
+    display: block;
+  }
+
+  .socialHideSmDown {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) { //~767
+  .tertiary {
+    ul:not(.socialLinks) {
+      margin-bottom: 16px;
     }
 
     ul.socialLinks {
       margin-top: 16px;
     }
+  }
+}
+
+@media (min-width: 769px) {
+  .socialhideMdup {
+    display: none;
   }
 }

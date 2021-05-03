@@ -49,17 +49,17 @@
   width: 129px;
   max-width: 100%;
 
-  font-size: 0.8rem;
+  font-size: 14px;
   font-weight: 600;
   color: var(--font-inverted);
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   background-color: var(--font-primary);
   border: none;
   border-radius: 23px;
 
   cursor: pointer;
-  transition: background 250ms ease-out;
+  transition: background-color 250ms ease-out;
 
   &:hover, &:focus, &:active {
     background-color: lighten(#034561, 10);
@@ -99,6 +99,13 @@
   .form {
     margin-left: 0;
     width: 100%;
+  }
+}
+
+@media (max-width: $xl) {
+  .form {
+    margin-top: 3px;
+    margin-left: 0;
   }
 }
 

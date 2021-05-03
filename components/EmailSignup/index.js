@@ -54,7 +54,7 @@ const CustomForm = ({ status, message, onValidated }) => {
             onFocus={handleInputFocus}
           />
           <button onClick={handleSubmit} className={styles.buttonSubmit}>
-            Join
+            Submit
           </button>
         </div>
         <div className={styles.messages}>

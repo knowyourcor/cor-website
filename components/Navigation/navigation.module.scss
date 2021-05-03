@@ -10,10 +10,11 @@
   display: flex;
   align-content: center;
   width: 100%;
-  height: 48px;
+  // height: 48px;
+  height: 89px;
 
   background: var(--color-white);
-  transition: background 0.25s ease-out;
+  transition: background-color 0.25s ease-out;
 
   button,
   a {
@@ -24,11 +25,12 @@
     // padding-right: 1rem;
     // padding: 0.5rem 1rem;
 
-    font-size: 0.75rem;
+    // font-size: 0.75rem;
+    // font-size: 18px;
     color: var(--color-white-bright);
 
     cursor: pointer;
-    transition: all .3s ease-in;
+    transition: color .3s ease-in;
 
     &.active {
       color: rgba(0, 0, 0, 0.45);
@@ -56,11 +58,12 @@
     padding: 10px;
 
     svg {
-      height: 18px;
+      // height: 18px;
+      height: 26.2px;
 
       fill: var(--color-white-bright);
 
-      transition: all .3s ease-in;
+      transition: fill .3s ease-in;
     }
   }
 }
@@ -72,7 +75,7 @@
     svg {
       fill: var(--font-primary);
 
-      transition: all .3s ease-in;
+      transition: fill .3s ease-in;
     }
   }
 
@@ -104,12 +107,6 @@
   margin-left: auto;
   width: 100%;
   max-width: $xxl;
-
-  border-bottom: 1px solid var(--color-white-bright);
-
-  // @media (min-width: $md) {
-  //   padding: 0 2rem;
-  // }
 }
 
 .menuToggle {
@@ -167,7 +164,7 @@
 
   cursor: pointer;
   transform: rotate(0deg);
-  transition: .5s ease-in-out;
+  transition: transform .5s ease-in-out;
   
   &:hover,
   &:focus {
@@ -187,7 +184,7 @@
 
     opacity: 1;
     transform: rotate(0deg);
-    transition: .25s ease-in-out;
+    transition: transform .25s ease-in-out;
 
     &:first-child {
       top: 4px;
@@ -244,6 +241,10 @@
 
 .withBG,
 .onScroll {
+  .container {
+    border-bottom: 0;
+  }
+  
   .customBurger span {
     background-color: var(--font-primary);
   }
@@ -267,18 +268,11 @@
   }
 }
 
-@media (min-width: 992px) {
-  .navigation {
-    padding-left: 15px;
-    padding-right: 15px;
-
-    button {
-      display: none; 
-    }
+@media (min-width: $md) {
+  .container {
+    border-bottom: 1px solid var(--color-white-bright);
   }
-}
 
-@media (min-width: 768px) {
   .menuToggle {
     left: 2rem;
   }
@@ -288,25 +282,38 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1025px) { //~1025
   .navigation {
+    padding-left: 15px;
+    padding-right: 15px;
+
     .logo {
       position: absolute;
       left: 50%;
       
       transform: translateX(-50%);
     }
+
+    button {
+      display: none; 
+    }
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: $md) {
   .navigation {
+    height: 60.4px;
+
     .logo {
       padding: 0;
 
+      svg {
+        height: 20px;
+      }
+
       &.menuOpenLogo {
         position: absolute;
-        top: 15px;
+        top: 17px;
         left: 33px;
         z-index: 9999;
       
@@ -323,14 +330,14 @@
     nav ul:first-of-type a {
       align-items: flex-start;
 
-      font-size: 29px;
+      // font-size: 29px;
       color: var(--font-inverted);
     }
   }
 
   .container {
     flex-direction: row-reverse;
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
 
   .cart {
@@ -339,6 +346,12 @@
 
   .isOpen.withBG {
     nav a {
+      color: var(--font-inverted);
+    }
+  }
+
+  .onScroll.isOpen {
+    a {
       color: var(--font-inverted);
     }
   }

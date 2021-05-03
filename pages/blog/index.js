@@ -1,15 +1,81 @@
 import React, { useState, useEffect } from "react";
 import { RichText } from "prismic-reactjs";
 import Link from "next/link";
-import Image from "next/image";
 import moment from "moment";
-
+import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
+import ClientOnly from "../../components/Apollo/ClientOnly";
+import SectionPostCategory from "../../components/Apollo/Categories";
 import Layout from "../../components/Layout";
 import { Container } from "../../components/Grid";
 
 import styles from "../../styles/blog/blog.module.scss";
 
 import { getBlogData, getMenuData } from "../../lib/api";
+
+const BlogPostItem = ({ item, index }) => {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
+
+  let date = moment(item.node.date).format("DD MMMM, YYYY");
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.postHolder}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      exit="hidden"
+      variants={variants}
+    >
+      <div className={styles.postImage}>
+        <Link href={"/blog/" + item.node._meta.uid}>
+          <a>
+            <div className={styles.imageWrapper}>
+              <img
+                src={item.node.content[0].image.url}
+                className={styles.image}
+                alt=""
+              />
+            </div>
+          </a>
+        </Link>
+      </div>
+      <div className={styles.postContent}>
+        <h2 className={styles.title}>
+          <Link href={"/blog/" + item.node._meta.uid}>
+            <a>{RichText.asText(item.node.title)}</a>
+          </Link>
+        </h2>
+        <div className={styles.wrapper}>
+          <p className={styles.category}>
+            {RichText.asText(item.node.category)}
+          </p>
+          <p className={styles.date}>{date}</p>
+        </div>
+        {index === 0 && <p>{item.node.excerpt[0].text}</p>}
+      </div>
+    </motion.div>
+  )
+}
 
 export default function Blog({
   preview,
@@ -18,37 +84,27 @@ export default function Blog({
   footerMenuData,
   tertiaryMenuData,
 }) {
-  const [show, setShow] = useState();
-  const [value, setValue] = useState([]);
-  const [category, setCategory] = useState([]);
   const [post, setPost] = useState([]);
-  const [postCategory, setPostCategory] = useState([]);
 
-  useEffect(() => {
-    const currentCategory = pageData.map((cat) => cat.node.category[0].text);
-    setCategory([...new Set(currentCategory)]);
-
-    const currentPageData = [...pageData];
-    currentPageData.sort((a, b) =>
-      a.node.featured_post === b.node.featured_post
-        ? 0
-        : a.node.featured_post
-        ? -1
-        : 1
+  const setPostData = () => {
+    const items = [];
+    Object.values(pageData).forEach((data) =>
+      data.edges.forEach((edge) => items.push(edge))
     );
-    setPost(currentPageData);
-  }, []);
+    setPost(
+      items.sort((a, b) =>
+        a.node.featured_post === b.node.featured_post
+          ? 0
+          : a.node.featured_post
+            ? -1
+            : 1
+      )
+    );
+  };
 
   useEffect(() => {
-    if (!value.length) {
-      setPostCategory(pageData);
-    } else {
-      const filteredData = pageData.filter(
-        (data) => data.node.category[0].text === value
-      );
-      setPostCategory(filteredData);
-    }
-  }, [value]);
+    setPostData();
+  }, []);
 
   return (
     <Layout
@@ -62,134 +118,23 @@ export default function Blog({
       <div className={styles.sectionPost}>
         <Container>
           <div className={styles.postWrapper}>
-            {post
-              .filter((_, i) => i <= 3)
-              .map((item, i) => {
-                let data = item.node;
-                let date = moment(data.date).format("DD MMMM, YYYY");
-
-                return (
-                  <div key={i} className={styles.postHolder}>
-                    <div className={styles.postImage}>
-                      <Link href={"/blog/" + data._meta.uid}>
-                        <a>
-                          <div className={styles.imageWrapper}>
-                            <img
-                              src={data.content[0].image.url}
-                              className={styles.image}
-                              alt=""
-                            />
-                          </div>
-                        </a>
-                      </Link>
-                    </div>
-                    <div className={styles.postContent}>
-                      <h2 className={styles.title}>
-                        <Link href={"/blog/" + data._meta.uid}>
-                          <a>{RichText.asText(data.title)}</a>
-                        </Link>
-                      </h2>
-                      <div className={styles.wrapper}>
-                        <p className={styles.category}>
-                          {RichText.asText(data.category)}
-                        </p>
-                        <p className={styles.date}>{date}</p>
-                      </div>
-                      {i === 0 && <p>{data.excerpt[0].text}</p>}
-                    </div>
-                  </div>
-                );
-              })}
+            {post.map((item, i) => {
+              return (
+                <BlogPostItem 
+                  item={item}
+                  index={i}
+                  key={i}
+                />
+              );
+            })}
           </div>
         </Container>
       </div>
-      <div className={styles.sectionPostCategory}>
-        <Container>
-          <div className={styles.contentWrapper}>
-            <div className={styles.categoryWrapper}>
-              {!!value.length && (
-                <div className={styles.selectedCategory}>
-                  {value}{" "}
-                  <span className={styles.Icon} onClick={() => setValue("")}>
-                    <Image src="/icons/close.svg" height={12} width={12} />
-                  </span>
-                </div>
-              )}
-              <button
-                className={styles.dropdown}
-                onClick={() => setShow(!show)}
-              >
-                <div
-                  className={`${styles.dropdownName} ${
-                    show === true ? styles.openDropdown : ""
-                  }`}
-                >
-                  Category{" "}
-                  <span className={styles.Icon}>
-                    <Image src="/icons/down-arrow.svg" height={13} width={13} />
-                  </span>
-                </div>
-                {show && (
-                  <div className={styles.dropdownListWrapper}>
-                    <div className={styles.List}>
-                      {category.map((item, i) => {
-                        return (
-                          <>
-                            {item !== value && (
-                              <div
-                                key={i}
-                                className={styles.ListItem}
-                                value="Category"
-                                onClick={() => setValue(item)}
-                              >
-                                {item}
-                              </div>
-                            )}
-                          </>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </button>
-            </div>
-            <div className={styles.postWrapper}>
-              {postCategory.map((item, i) => {
-                let data = item.node;
-                let date = moment(data.date).format("DD MMMM, YYYY");
-
-                return (
-                  <div key={i} className={styles.postHolder}>
-                    <Link href={"/blog/" + data._meta.uid}>
-                      <a>
-                        <div className={styles.imageWrapper}>
-                          <img
-                            src={data.content[0].image.url}
-                            className={styles.image}
-                            alt=""
-                          />
-                        </div>
-                      </a>
-                    </Link>
-                    <div className={styles.wrapper}>
-                      <p className={styles.category}>
-                        {RichText.asText(data.category)}
-                      </p>
-                      <p className={styles.date}>{date}</p>
-                    </div>
-                    <h2 className={styles.title}>
-                      {RichText.asText(data.title)}
-                    </h2>
-                  </div>
-                );
-              })}
-            </div>
-            <div className={styles.buttonHolder}>
-              <button className="btn btn--inverted">Show More</button>
-            </div>
-          </div>
-        </Container>
-      </div>
+      {post.length < 5 &&
+        <ClientOnly>
+          <SectionPostCategory />
+        </ClientOnly>
+      }
     </Layout>
   );
 }

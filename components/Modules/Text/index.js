@@ -12,7 +12,7 @@ const Text = ({ primary }) => {
         <Row align="center">
           <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
             <div className={styles.text}>
-              <RichText render={primary.text} />hhh
+              <RichText render={primary.text} />
             </div>
           </Column>
         </Row>

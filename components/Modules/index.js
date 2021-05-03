@@ -16,9 +16,12 @@ import TextAccordion from "./TextAccordion";
 import TextDescriptionImage from "./TextDescriptionImage"
 import DualGrid from "./DualGrid"
 import TextCarousel from "./TextCarousel"
-import FeaturedPress from "./FeaturedPress"
 import Checklist from "./Checklist"
 import QuadCarousel from "./QuadCarousel"
+import ShopTextBackgroundImage from "./ShopTextBackgroundImage"
+import ShopChecklist from "./ShopChecklist"
+import ShopDataProgress from "./ShopDataProgress"
+import Product from "./Product"
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -39,9 +42,12 @@ const moduleDefs = {
   ["text_description_image"]: TextDescriptionImage,
   ["dual_grid"]: DualGrid,
   ["text___carousel"]: TextCarousel,
-  ["featured_press"]: FeaturedPress,
   ["checklist"]: Checklist,
-  ["quadcarousel"]: QuadCarousel
+  ["quadcarousel"]: QuadCarousel,
+  ["text___background_image"]: ShopTextBackgroundImage,
+  ["shop_checklist"]: ShopChecklist,
+  ["dualdatagrid"]: ShopDataProgress,
+  ["product"]: Product
 };
 
 const Modules = ({ pageData }) => {

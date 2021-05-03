@@ -1,8 +1,13 @@
+import React, { useEffect, useState } from "react";
+import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
 import { RichText } from "prismic-reactjs";
+import { useKeenSlider } from "keen-slider/react";
+import Link from "next/link"
+
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
-import { useKeenSlider } from "keen-slider/react";
 
 import styles from "./carousel.module.scss";
 
@@ -32,76 +37,167 @@ const Slide = ({ headline, text, image, position }) => {
       </div>
 
       <div className={styles.content}>
-        <RichText render={headline} />
+        {headline && <RichText render={headline} />}
         {text && <RichText render={text} />}
-        <RichText render={position} />
+        {position && <RichText render={position} />}
       </div>
     </div>
   );
 };
 
 const Carousel = ({ primary, fields }) => {
-  const [sliderRef] = useKeenSlider({
-    slidesPerView: 2.5,
-    spacing: 20,
-    centered: false,
-    breakpoints: {
-      "(min-width: 320px)": {
-        slidesPerView: 1.5,
+  const [galleryOptions, setGalleryOptions] = useState()
+  const [sliderOptions, setSliderOptions] = useState()
+
+  const [galleryRef] = useKeenSlider(galleryOptions)
+  const [sliderRef] = useKeenSlider(sliderOptions);
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  const transition = {
+    duration: 0.4,
+    delay: 0.2,
+    ease: "easeInOut"
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      transition
+    },
+    show: {
+      opacity: 1,
+      transition
+    }
+  };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setGalleryOptions({
+        slidesPerView: 3.5,
+        mode: "free",
+        loop: true,
         spacing: 20,
         centered: false,
-      },
-      "(min-width: 768px)": {
+        breakpoints: {
+          "(min-width: 320px)": {
+            slidesPerView: 1.5,
+            spacing: 10,
+            centered: false,
+          },
+          "(min-width: 768px)": {
+            slidesPerView: 2.5,
+            spacing: 10,
+            centered: false,
+          },
+          "(min-width: 1024px)": {
+            spacing: 20,
+            slidesPerView: 3.5,
+            centered: false,
+          },
+          "(min-width: 1280px)": {
+            spacing: 20,
+            slidesPerView: 3.5,
+            centered: false,
+          },
+          "(min-width: 1440px)": {
+            spacing: 20,
+            slidesPerView: 3.5,
+            centered: false,
+          },
+          "(min-width: 1680px)": {
+            spacing: 20,
+            slidesPerView: 3.5,
+            centered: false,
+          },
+        },
+      })
+
+      setSliderOptions({
         slidesPerView: 2.5,
-        spacing: 50,
+        mode: "free",
+        loop: true,
+        spacing: 20,
         centered: false,
-      },
-      "(min-width: 1024px)": {
-        spacing: 60,
-        slidesPerView: 2.5,
-        centered: false,
-      },
-      "(min-width: 1280px)": {
-        spacing: 30,
-        slidesPerView: 2.5,
-        centered: false,
-      },
-      "(min-width: 1440px)": {
-        spacing: 55,
-        slidesPerView: 2.5,
-        centered: false,
-      },
-      "(min-width: 1680px)": {
-        spacing: 100,
-        slidesPerView: 2.5,
-        centered: false,
-      },
-    },
-  });
+        breakpoints: {
+          "(min-width: 320px)": {
+            slidesPerView: 1.5,
+            spacing: 20,
+            centered: false,
+          },
+          "(min-width: 768px)": {
+            slidesPerView: 2.5,
+            spacing: 50,
+            centered: false,
+          },
+          "(min-width: 1024px)": {
+            spacing: 60,
+            slidesPerView: 2.5,
+            centered: false,
+          },
+          "(min-width: 1280px)": {
+            spacing: 30,
+            slidesPerView: 2.5,
+            centered: false,
+          },
+          "(min-width: 1440px)": {
+            spacing: 55,
+            slidesPerView: 2.5,
+            centered: false,
+          },
+          "(min-width: 1680px)": {
+            spacing: 100,
+            slidesPerView: 2.5,
+            centered: false,
+          },
+        },
+      })
+    }, 200)
+
+    return () => clearTimeout(timeout)
+  }, [])
 
   return (
     <Section className={styles.carouselWrap} backgroundColor={primary.background_color} align="center">
-      <Container>
-        <Row align="center" textAlign={{ xs: "left" }}>
-          <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }} className="custom__column">
-            {primary.headline[0].text && <RichText render={primary.headline} />}
-            {primary.text[0].text && <RichText render={primary.text} />}
-          </Column>
-        </Row>
-      </Container>
-
-      <div
-        ref={sliderRef}
-        className={["keen-slider", styles.carousel].join(" ")}
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        exit="hidden"
+        variants={variants}
       >
-        {fields.map((field, index) => {
-          return (
-            <div className="keen-slider__slide" key={`slide_${index}`}>
-              <Slide {...field} />
-            </div>
-          );
-        })}
-      </div>
+        <Container>
+          <Row align="center" textAlign={{ xs: "left" }}>
+            <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }} className="custom__column">
+              {primary.headline[0].text && <RichText render={primary.headline} />}
+              {primary.text[0].text && primary.text_alignment === "Left" && <RichText render={primary.text} />}
+            </Column>
+            {primary.text[0].text && primary.text_alignment === "Right" && (
+              <Column columns={{ xs: 14, md: 7 }} offsets={{ md: 1 }}>
+                <RichText render={primary.text} />
+                <Link href="/"><a><RichText render={primary.link_label} /></a></Link>
+              </Column>
+            )}
+          </Row>
+        </Container>
+        <div
+          ref={primary.carousel_type === "Right Align Swiper" ? sliderRef : galleryRef}
+          className={[
+            "keen-slider",
+            primary.carousel_type === "Right Align Swiper" && styles.rightAlignSwiper,
+            primary.carousel_type === "Masonry" && styles.masonry].join(" ")
+          }>
+          {fields.map((field, index) => {
+            return (
+              <div className="keen-slider__slide" key={`slide_${index}`}>
+                <Slide {...field} />
+              </div>
+            );
+          })}
+        </div>
+      </motion.div>
     </Section>
   );
 };

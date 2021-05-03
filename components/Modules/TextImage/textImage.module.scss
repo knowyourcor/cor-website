@@ -1,9 +1,15 @@
+@import "../../../styles/_variables.scss";
+
 .textImage {
   h1 {
     margin-bottom: 32.5px;
     
     font-family: var(--font-sans-headline);
     font-size: 89px;
+  }
+
+  p {
+    font-size: 30px;
   }
 }
 
@@ -25,7 +31,7 @@
   margin-left: 0;
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (max-width: $xl) {
   .textImage {
     h1 {
       font-size: 52px;
@@ -37,27 +43,11 @@
   }
 
   .image {
-    width: 718px;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1500px) {
-  .textImage {
-    h1 {
-      font-size: 61px;
-    }
-
-    p {
-      font-size: 18px;
-    }
-  }
-
-  .image {
     width: 916px;
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: $md) {
   .textImage {
     h1 {
       font-size: 34px;

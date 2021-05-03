@@ -7,9 +7,11 @@ import Section from "../components/Section";
 import { Container, Row, Column } from "../components/Grid";
 import Modules from "../components/Modules";
 import Alert from "../components/Alert";
-import Layout from "../components/Layout"
+import Layout from "../components/Layout";
 
 import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
+
+import FeaturedPress from "../components/FeaturedPress";
 
 // import styles from "../styles/Page.module.scss";
 
@@ -25,7 +27,7 @@ export default function Page({
     return <ErrorPage statusCode={404} />;
   }
 
-  let title = pageData?.meta_title.toLowerCase()
+  let title = pageData?.meta_title?.toLowerCase();
 
   return (
     <>
@@ -54,7 +56,7 @@ export default function Page({
         </>
       ) : (
         <Layout
-          classNameVal={title}
+          classNameVal={["page__layout", title].join(" ")}
           title={pageData?.meta_title}
           preview={preview}
           mainMenuData={mainMenuData}
@@ -62,38 +64,19 @@ export default function Page({
           tertiaryMenuData={tertiaryMenuData}
         >
           <Modules pageData={pageData} />
-          {/* <Head title={pageData?.meta_title} />
-          <Alert preview={preview} /> */}
-          <main>
-            {/* <Navigation mainMenuData={mainMenuData} /> */}
-          </main>
-          {/* <Footer
-            footerMenuData={footerMenuData}
-            tertiaryMenuData={tertiaryMenuData}
-          /> */}
+          {pageData?.featured_press && <FeaturedPress />}
         </Layout>
       )}
     </>
   );
 }
 
-// export async function getStaticPaths() {
-//   const allPages = await getAllPagesWithSlug();
-//   return {
-//     paths:
-//       allPages?.map(({ node }) => {
-//         return { params: { slug: `${node._meta.uid}` } };
-//       }) || [],
-//     fallback: true,
-//   };
-// }
-
 export async function getStaticPaths() {
   const allPages = await getAllPagesWithSlug();
   const allPaths = allPages?.map(({ node }) => `/${node._meta.uid}`);
   return {
     paths: allPaths || [],
-    fallback: true,
+    fallback: false,
   };
 }
 

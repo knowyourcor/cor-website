@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .quadCarousel {
   margin-top: -476px;
   padding-top: 684px;
@@ -48,6 +50,14 @@
   }
 }
 
+.card {
+  padding: 30px 36px;
+
+  background-color: var(--font-inverted);
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.03);
+}
+
 .swiperWrap {
   position: relative;
 
@@ -58,9 +68,24 @@
   }
 }
 
-.mainWrap {
-  img {
-    object-fit: cover;
+.mainSwiper {
+  margin: 0 auto;
+  width: 903px;
+
+  border-radius: 15px;
+
+  & > div {
+    width: 903px;
+    height: 810px;
+
+    border-radius: 15px;
+  }
+}
+
+.detailsWrap,
+.listWrap {
+  & > div {
+    pointer-events: none;
   }
 }
 
@@ -69,6 +94,70 @@
   left: 0;
   bottom: -89px;
   z-index: 2;
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 441px;
+  overflow: hidden;
+
+  & > div {
+    width: 441px;
+  }
+}
+
+.listWrap {
+  position: absolute;
+  bottom: -216px;
+  right: 0;
+  z-index: 2;
+
+  margin: 0 auto;
+  width: 645px;
+  
+  & > div {
+    width: 645px;
+    
+    & > div:first-child {
+      display: none;
+    }
+    
+    & > div:nth-child(2) {
+      
+      background-color: var(--font-inverted);
+      border-radius: 15px;
+      box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.03);
+    }
+  }
+  
+  .listContent {
+    padding: 75px;
+  }
+
+  p {
+    color: var(--color-gray66);
+  }
+
+  ul {
+    padding-top: 61px;
+    padding-left: 0;
+
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  svg {
+    margin-right: 23px;
+
+    height: 40px;
+  }
 }
 
 .nameWrap {
@@ -90,8 +179,10 @@
 
   .swiperSlide {
     height: 366px;
-
-    //Target the meter
+  }
+  
+  //Target the meter
+  .meter__animation {
     & > div {
       display: flex;
       justify-content: center;
@@ -111,128 +202,7 @@
   }
 }
 
-.toDoWrap {
-  position: absolute;
-  bottom: -216px;
-  right: 0;
-  z-index: 2;
-
-  margin: 0 auto;
-  width: 645px;
-
-  p {
-    color: var(--color-gray66);
-  }
-
-  ul {
-    padding-top: 61px;
-    padding-left: 0;
-
-    list-style: none;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  svg {
-    margin-right: 23px;
-
-    height: 40px;
-  }
-}
-
-.card {
-  padding: 30px 36px;
-
-  background-color: var(--font-inverted);
-  border-radius: 15px;
-  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.03);
-}
-
-@media (min-width: 1200px) and (max-width: 1500px) {
-  .quadCarousel {
-    h2 {
-      margin-bottom: 25px;
-      font-size: 60px;
-    }
-
-    h3 {
-      font-size: 43px;
-    }
-
-    h5 {
-      font-size: 25px;
-    }
-
-    p {
-      font-size: 16px;
-    }
-  }
-
-  .meterWrap {
-    svg {
-      height: 320px;
-    }
-  }
-
-  .toDoWrap {
-    padding-top: 34px;
-    width: 532px;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  .quadCarousel {
-    h2 {
-      margin-bottom: 31px;
-
-      font-size: 59px;
-    }
-
-    h3 {
-      font-size: 40px;
-    }
-
-    h5 {
-      font-size: 23px;
-    }
-
-    p {
-      font-size: 17px;
-    }
-  }
-
-  .meterWrap {
-    .swiperSlide {
-      & > div {
-        width: 364px;
-      }
-    }
-
-    svg {
-      height: 280px;
-    }
-  }
-
-  .toDoWrap {
-    ul {
-      padding-top: 39px;
-    }
-
-    li {
-      font-size: 17px;
-    }
-
-    svg {
-      height: 32px;
-    }
-  }
-}
-
-@media (min-width: 768px) {
+@media (min-width: $sm) {
   .headingWrap {
     h2, p {
       text-align: center;
@@ -240,7 +210,106 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: $xl) {
+  .quadCarousel {
+    padding-top: 555px;
+
+    h2 {
+      margin-bottom: 31px;
+
+      font-size: 59px;
+    }
+
+    h3 {
+      font-size: 34px;
+    }
+
+    h5 {
+      font-size: 19px;
+    }
+
+    p {
+      width: 57vw;
+
+      font-size: 14px;
+    }
+  }
+
+  .swiperWrap {
+    margin-top: 68px;
+  }
+
+  .mainSwiper {
+    width: 706px;
+  
+    & > div {
+      width: 706px;
+      height: 673px;
+
+      & > div:first-child {
+        left: -36px !important;
+      }
+    }
+  }
+
+  .detailsWrap {
+    left: 12px;
+
+    width: 34vw;
+
+    & > div {
+      width: 34vw;
+    }
+  }
+
+  .listWrap {
+    width: 380px;
+
+    & > div {
+      width: 380px;
+    }
+    
+    .listContent {
+      padding: 37px;
+    }
+
+    ul {
+      padding-top: 27px;
+      margin-bottom: 0;
+    }
+
+    li {
+      font-size: 15px;
+    }
+
+    svg {
+      height: 24px;
+    }
+  }
+
+  .meterWrap {
+    .swiperSlide {
+      height: 271px;
+    }
+    
+    .meter__animation {
+      & > div {
+        width: 34vw;
+        height: 271px;
+  
+        p {
+          font-size: 29px;
+        }
+      }
+    }
+
+    svg {
+      height: 236px;
+    }
+  }
+}
+
+@media (max-width: $sm) {
   .quadCarousel {
     padding-top: 482px;
     padding-bottom: 0;
@@ -267,45 +336,96 @@
     }
 
     p {
+      width: 100%;
+
       font-size: 16px;
     }
   }
 
-  .headingWrap {
-    padding-left: 15px;
-    padding-right: 15px;
+  .swiperWrap {
+    margin-top: 137px;
   }
 
-  .nameWrap {
-    p {
-      font-size: 12px;
-    }
+  .card {
+    padding: 18px;
   }
 
-  .meterWrap {
-    .swiperSlide {
-      height: 167px;
+  .mainSwiper {
+    margin-left: auto;
+    margin-right: 0;
+    width: 75vw;
+  
+    & > div {
+      height: auto;
+      width: 75vw;
+      margin-right: 0;
+      margin-left: 0;
 
-      & > div {
-        height: 167px;
-
-        p {
-          font-size: 18px;
-        }
+      & > div:first-child {
+        display: none;
       }
-    }
-
-    svg {
-      height: 135px;
     }
   }
 
   .detailsWrap {
     top: -80px;
     bottom: 0;
+
+    padding-left: 15px;
+    width: auto;
+    height: 274px;
+    pointer-events: none;
+
+    .card:first-child,
+    .card:first-child .swiper-container {
+      width: 230px;
+    }
+
+    .card:last-child,
+    .card:last-child .swiper-container {
+      width: 169px;
+    }
   }
 
-  .toDoWrap {
+  .listWrap {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    
+    margin-top: -49px;
+    width: 100%;
+    
+    border-radius: 0;
+    
+    & > div {
+      width: 100%;
+      height: 590px;
+      // pointer-events: visible;
+
+      & > div:nth-child(1) {
+        bottom: 0;
+
+        display: block;
+        padding-top: 7px;
+
+        height: 34px;
+        
+        background-color: #f2f2f2;
+      }
+      
+      & > div:nth-child(2) {
+        padding: 0;
+        height: 556px;
+
+        border-radius: 0;
+      }
+    }
+    
+    .listContent {
+      padding: 67px 16px 51px;
+    }
+
     p {
       font-size: 12px;
     }
@@ -324,8 +444,36 @@
     }
   }
 
-  .card {
-    padding: 18px;
+  .headingWrap {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .nameWrap {
+    p {
+      font-size: 12px;
+    }
+  }
+
+  .meterWrap {
+    .swiperSlide {
+      height: 167px;
+    }
+    
+    .meter__animation {
+      & > div {
+        width: 100%;
+        height: 167px;
+  
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+
+    svg {
+      height: 135px;
+    }
   }
 }
 

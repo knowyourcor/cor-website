@@ -1,3 +1,5 @@
+@import "../../../styles/_variables.scss";
+
 .checklistWrap {
   h5 {
     font-family: var(--font-sans-headline);
@@ -80,7 +82,7 @@
 
   .card {
     opacity: .5;
-    transition: all .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
 
     &:first-child {
       opacity: 1;
@@ -144,7 +146,7 @@
       border: 1px solid var(--font-primary);
       border-radius: 50%;
 
-      transition: all .3s ease-in;
+      transition: background-color .3s ease-in;
 
       &:after {
         content: "";
@@ -200,25 +202,7 @@
   padding-left: 10px;
 }
 
-@media (min-width: 1200px) and (max-width: 1500px) {
-  .checklistWrap {
-    h5 {
-      font-size: 35px;
-    }
-
-    p {
-      width: 439px;
-    }
-  }
-
-  .cardHeader {
-    p {
-      width: 100%;
-    }
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (max-width: $xl) {
   .checklistWrap {
     h5 {
       font-size: 31px;
@@ -233,6 +217,9 @@
 
   .listHolder {
     left: 19vw;
+
+    width: 33vw;
+    max-width: 100%;
   }
 
   .cardList {
@@ -277,7 +264,7 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: $md) {
   .checklistWrap {
     padding-bottom: 500px;
 
@@ -289,6 +276,8 @@
     h5 {
       margin-top: 0;
       margin-bottom: 0;
+      width: 580px;
+      max-width: 100%;
 
       font-size: 34px;
     }
@@ -306,7 +295,7 @@
     bottom: -424px;
     left: 10px;
 
-    width: 80%;
+    width: 87%;
   }
 
   .card {
