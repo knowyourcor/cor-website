@@ -27,7 +27,7 @@
 
     // font-size: 0.75rem;
     // font-size: 18px;
-    color: var(--color-white-bright);
+    // color: var(--color-white-bright);
 
     cursor: pointer;
     transition: color .3s ease-in;
@@ -68,6 +68,32 @@
   }
 }
 
+.getApp__btn {
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  font-weight: normal;
+  line-height: 2.91;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--font-primary);
+
+  a {
+    padding: 11px 0 14px;
+    width: 125px;
+
+    background-color: var(--font-inverted);
+    border-radius: 33px;
+
+    transition: background-color .3s ease-in-out;
+
+    &:hover {
+      color: var(--font-inverted);
+
+      background-color: var(--color-prussian-blue);
+    }
+  }
+}
+
 .withBG {
   background-color: var(--font-inverted);
 
@@ -82,6 +108,18 @@
   nav a,
   .cart {
     color: var(--font-primary);
+  }
+
+  .getApp__btn a {
+    color: var(--font-inverted);
+
+    background-color: var(--color-prussian-blue);
+
+    &:hover {
+      color: var(--font-inverted);
+
+      background-color: var(--color-prussian-blue-hover);
+    }
   }
 }
 
@@ -266,6 +304,14 @@
   .logo svg {
     fill: var(--font-primary);
   }
+
+  .getApp__btn {
+    a {
+      color: var(--font-inverted);
+
+      background-color: var(--color-prussian-blue);
+    }
+  }
 }
 
 @media (min-width: $md) {
@@ -340,7 +386,8 @@
     padding: 0 1rem;
   }
 
-  .cart {
+  .cart,
+  .getApp__btn {
     display: none;
   }
 

@@ -91,7 +91,12 @@ const Navigation = ({ mainMenuData, transparent }) => {
               </svg>
             </a>
           </Link>
-          <div className={styles.cart}>
+          <div className={styles.getApp__btn}>
+            <Link href="/">
+              <a>Get App</a>
+            </Link>
+          </div>
+          {/* <div className={styles.cart}>
             <Link href="/">
               <a className={styles.cartIcon}>
                 <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -99,7 +104,7 @@ const Navigation = ({ mainMenuData, transparent }) => {
                 </svg>
               </a>
             </Link>
-          </div>
+          </div> */}
         </div>
       </motion.div>
     </>
