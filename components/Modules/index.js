@@ -22,6 +22,7 @@ import ShopTextBackgroundImage from "./ShopTextBackgroundImage"
 import ShopChecklist from "./ShopChecklist"
 import ShopDataProgress from "./ShopDataProgress"
 import Product from "./Product"
+import TextDownloader from "./TextDownloader"
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -47,7 +48,8 @@ const moduleDefs = {
   ["text___background_image"]: ShopTextBackgroundImage,
   ["shop_checklist"]: ShopChecklist,
   ["dualdatagrid"]: ShopDataProgress,
-  ["product"]: Product
+  ["product"]: Product,
+  ["text___downloader"]: TextDownloader
 };
 
 const Modules = ({ pageData }) => {
