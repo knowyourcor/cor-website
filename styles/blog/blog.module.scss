@@ -198,6 +198,14 @@
       animation: fadeIn .2s ease-in;
     }
 
+    .closeCategoriesIcon {
+      position: absolute;
+      top: 36px;
+      right: 55px;
+
+      cursor: pointer;
+    }
+
     .dropdown {
       position: relative;
 
@@ -210,6 +218,7 @@
       .Icon {
         position: absolute;
         top: 50%;
+
         transform: translateY(-44%);
 
         div {
@@ -226,27 +235,84 @@
       }
 
       &ListWrapper {
-        position: absolute;
-        top: 65px;
-        left: 50%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1000;
 
-        padding: 0 14px;
+        padding: 91px 55px 30px;
         
-        color: var(--font-primary);
+        width: 30%;
+        height: 100%;
+        
+        font-size: 20px;
+        font-weight: 600;
+        text-align: start;
         white-space: nowrap;
+        
+        animation: fadeIn 0.2s ease-in;
+        
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          left: 0;
+          z-index: -1;
+          height: 100%;
+          
+          background-color: var(--color-pacific-blue);
+        }
 
-        background-color: var(--color-gainsboro);
-        border: 1px solid;
+        &:after {
+          content: '';
 
-        transform: translateX(-50%);
-        animation: fadeIn .2s ease-in;
-      }
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: -2;
+          
+          background-color: var(--font-primary);
+          
+          opacity: .6;
+        }
 
-      .ListItem {
-        line-height: 30px;
+        .title {
+          font-size: 18px;
+          color: var(--color-light-cyan);
+          text-decoration: underline;
+        }
       }
     }
 
+    .ListItem {
+      color: var(--color-light-cyan);
+      line-height: 30px;
+
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-dark-grey);
+
+        transition: color .2s ease-in-out;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+
+      &.selected {
+        color: var(--color-dark-grey);
+
+        span {
+          margin-right: 5px;
+        }
+      }
+    }
+    
     .postWrapper {
       display: flex;
       flex-wrap: wrap;
