@@ -42,7 +42,6 @@ const DownloadIcon = () => (
 )
 
 export default function Index({ primary }) {
-  console.log(primary)
   return (
     <Section style={{ backgroundColor: primary.background_color }} className={styles.textDownloader}>
       <Container>

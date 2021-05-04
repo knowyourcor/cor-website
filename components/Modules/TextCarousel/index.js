@@ -7,6 +7,7 @@ import { Container, Row, Column } from "../../Grid";
 import TeamCarousel from "../../TeamCarousel"
 
 import styles from "./index.module.scss"
+import TeamFlip from "../../TeamFlip";
 
 export default function Index({ primary, fields }) {
   const { ref, inView } = useInView({
@@ -50,6 +51,7 @@ export default function Index({ primary, fields }) {
           </Row>
         </motion.div>
       </Container>
+      <TeamFlip fields={fields} />
       <TeamCarousel fields={fields} />
     </Section>
   )
