@@ -3,21 +3,25 @@ import Navigation from "../Navigation";
 import Footer from "../Footer";
 
 export default function Layout({ children, preview }) {
-  const {
-    mainMenuData,
-    footerMenuData,
-    tertiaryMenuData,
-  } = children?.props?.children?.props?.children?.props;
-
   return (
     <>
       <Alert preview={preview} />
-      {mainMenuData && <Navigation mainMenuData={mainMenuData} />}
+      {children?.props?.children?.props?.children?.props?.mainMenuData && (
+        <Navigation
+          mainMenuData={
+            children?.props?.children?.props?.children?.props?.mainMenuData
+          }
+        />
+      )}
       {children}
-      {footerMenuData && (
+      {children?.props?.children?.props?.children?.props?.footerMenuData && (
         <Footer
-          footerMenuData={footerMenuData}
-          tertiaryMenuData={tertiaryMenuData}
+          footerMenuData={
+            children?.props?.children?.props?.children?.props?.footerMenuData
+          }
+          tertiaryMenuData={
+            children?.props?.children?.props?.children?.props?.tertiaryMenuData
+          }
         />
       )}
       {/* a11y - aria-describedby */}
