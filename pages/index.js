@@ -18,7 +18,7 @@ export default function Index({
       <Head title={pageData.meta_title} />
       <Alert preview={preview} />
       <main>
-        <Navigation mainMenuData={mainMenuData} transparent />
+        <Navigation mainMenuData={mainMenuData} />
         <Modules pageData={pageData} />
       </main>
       <Footer
