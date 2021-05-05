@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 import { RichText } from "prismic-reactjs";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import { getLayout } from "../../components/Layout/PageLayout";
 import Layout from "../../components/Layout";
 import { Container } from "../../components/Grid";
 
@@ -142,13 +143,8 @@ export default function Post({
   let dateFormat = date.replace(/-/g, ".");
 
   return (
-    <Layout
-      classNameVal={styles.blogPost}
-      title="Blog Post"
-      preview={preview}
-      mainMenuData={mainMenuData}
-      footerMenuData={footerMenuData}
-      tertiaryMenuData={tertiaryMenuData}
+    <div
+      className={styles.blogPost}
       style={{
         backgroundColor: `${
           pageData.background_color === null ? "" : pageData.background_color
@@ -195,7 +191,7 @@ export default function Post({
           </div>
         </Container>
       </div>
-    </Layout>
+    </div>
   );
 }
 
@@ -263,3 +259,5 @@ export async function getStaticProps({ preview = false, previewData, params }) {
     revalidate: 1, // In seconds
   };
 }
+
+Post.getLayout = getLayout;

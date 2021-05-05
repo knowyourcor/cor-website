@@ -1,30 +1,15 @@
 import Head from "../components/Head";
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
+import { getLayout } from "../components/Layout/PageLayout";
 import Modules from "../components/Modules";
-import Alert from "../components/Alert";
 
 import { getHomepageData, getMenuData } from "../lib/api";
 
-export default function Index({
-  preview,
-  pageData,
-  mainMenuData,
-  footerMenuData,
-  tertiaryMenuData,
-}) {
+export default function Index({ pageData }) {
   return (
     <>
       <Head title={pageData.meta_title} />
-      <Alert preview={preview} />
-      <main>
-        <Navigation mainMenuData={mainMenuData} />
-        <Modules pageData={pageData} />
-      </main>
-      <Footer
-        footerMenuData={footerMenuData}
-        tertiaryMenuData={tertiaryMenuData}
-      />
+
+      <Modules pageData={pageData} />
     </>
   );
 }
@@ -45,3 +30,5 @@ export async function getStaticProps({ preview = false, previewData }) {
     revalidate: 1, // In seconds
   };
 }
+
+Index.getLayout = getLayout;

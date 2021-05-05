@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import ClientOnly from "../../components/Apollo/ClientOnly";
 import SectionPostCategory from "../../components/Apollo/Categories";
-import Layout from "../../components/Layout";
+import { getLayout } from "../../components/Layout/PageLayout";
 import { Container } from "../../components/Grid";
 
 import styles from "../../styles/blog/blog.module.scss";
@@ -78,13 +78,7 @@ const BlogPostItem = ({ item, index }) => {
   );
 };
 
-export default function Blog({
-  preview,
-  pageData,
-  mainMenuData,
-  footerMenuData,
-  tertiaryMenuData,
-}) {
+export default function Blog({ pageData }) {
   const [post, setPost] = useState([]);
 
   const setPostData = () => {
@@ -108,14 +102,7 @@ export default function Blog({
   }, []);
 
   return (
-    <Layout
-      classNameVal={styles.blog}
-      title="Blog"
-      preview={preview}
-      mainMenuData={mainMenuData}
-      footerMenuData={footerMenuData}
-      tertiaryMenuData={tertiaryMenuData}
-    >
+    <div className={styles.blog}>
       <div className={styles.sectionPost}>
         <Container>
           <div className={styles.postWrapper}>
@@ -130,7 +117,7 @@ export default function Blog({
           <SectionPostCategory />
         </ClientOnly>
       )}
-    </Layout>
+    </div>
   );
 }
 
@@ -150,3 +137,5 @@ export async function getStaticProps({ preview = false, previewData }) {
     revalidate: 1, // In seconds
   };
 }
+
+Blog.getLayout = getLayout;
