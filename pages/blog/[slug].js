@@ -1,35 +1,41 @@
 import client from "../../apollo-client";
 import gql from "graphql-tag";
 import { RichText } from "prismic-reactjs";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import Layout from "../../components/Layout"
-import { Container } from "../../components/Grid"
+import Layout from "../../components/Layout";
+import { Container } from "../../components/Grid";
 
-import styles from "../../styles/blog/blog-post.module.scss"
+import styles from "../../styles/blog/blog-post.module.scss";
 
-import { getBlogData, getBlogPostData, getMenuData, getCategoryBlogData } from "../../lib/api"
+import {
+  getBlogData,
+  getBlogPostData,
+  getMenuData,
+  getCategoryBlogData,
+} from "../../lib/api";
 
 const BlogContentMedia = ({ mediaItem }) => {
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (
@@ -42,37 +48,41 @@ const BlogContentMedia = ({ mediaItem }) => {
       variants={variants}
     >
       <div className={styles.mediaHolder}>
-        {mediaItem.image &&
+        {mediaItem.image && (
           <img className={styles.image} src={mediaItem.image.url} />
-        }
-        {mediaItem?.embed_media?.html &&
-          <div className={styles.video} dangerouslySetInnerHTML={{ __html: mediaItem?.embed_media?.html }} />
-        }
+        )}
+        {mediaItem?.embed_media?.html && (
+          <div
+            className={styles.video}
+            dangerouslySetInnerHTML={{ __html: mediaItem?.embed_media?.html }}
+          />
+        )}
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
 const BlogContentText = ({ textItem }) => {
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (
@@ -89,13 +99,17 @@ const BlogContentText = ({ textItem }) => {
       </div>
       <div className={styles.contentHolder}>
         <RichText render={textItem.paragraph} />
-        {textItem.quote && <div className={styles.quoteText}><RichText render={textItem.quote} /></div>}
+        {textItem.quote && (
+          <div className={styles.quoteText}>
+            <RichText render={textItem.quote} />
+          </div>
+        )}
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default function Post({ 
+export default function Post({
   preview,
   pageData,
   mainMenuData,
@@ -104,27 +118,28 @@ export default function Post({
 }) {
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const fadeInVariants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
-  let date = pageData.date
-  let dateFormat = date.replace(/-/g, '.')
+  let date = pageData.date;
+  let dateFormat = date.replace(/-/g, ".");
 
   return (
     <Layout
@@ -134,12 +149,23 @@ export default function Post({
       mainMenuData={mainMenuData}
       footerMenuData={footerMenuData}
       tertiaryMenuData={tertiaryMenuData}
-      style={{ backgroundColor: `${pageData.background_color === null ? '' : pageData.background_color}` }}
+      style={{
+        backgroundColor: `${
+          pageData.background_color === null ? "" : pageData.background_color
+        }`,
+      }}
     >
-      <div className={styles.contentWrapper} style={{ backgroundColor: `${pageData.background_color === null ? '' : pageData.background_color}` }}>
+      <div
+        className={styles.contentWrapper}
+        style={{
+          backgroundColor: `${
+            pageData.background_color === null ? "" : pageData.background_color
+          }`,
+        }}
+      >
         <Container>
-          <motion.div 
-            ref={ref} 
+          <motion.div
+            ref={ref}
             initial="hidden"
             animate={inView ? "show" : "hidden"}
             exit="hidden"
@@ -147,7 +173,9 @@ export default function Post({
           >
             <RichText render={pageData.title} />
             <div className={styles.postInfoWrapper}>
-              <p className={styles.category}>{RichText.asText(pageData.category)}</p>
+              <p className={styles.category}>
+                {RichText.asText(pageData.category)}
+              </p>
               <p className={styles.date}>{dateFormat}</p>
             </div>
           </motion.div>
@@ -156,11 +184,10 @@ export default function Post({
               return (
                 <div key={i} className={styles.postContent}>
                   {!item.image && !item?.embed_media?.html ? (
-                      ''
-                    ) : (
-                      <BlogContentMedia mediaItem={item} />
-                    )
-                  }
+                    ""
+                  ) : (
+                    <BlogContentMedia mediaItem={item} />
+                  )}
                   <BlogContentText textItem={item} />
                 </div>
               );
@@ -204,20 +231,20 @@ const POSTS_QUERY = gql`
 
 export const getStaticPaths = async (previewData) => {
   const { data } = await client.query({
-    query: POSTS_QUERY
-  })
+    query: POSTS_QUERY,
+  });
 
-  const paths = data.allBlog_posts.edges.map(id => {
+  const paths = data.allBlog_posts.edges.map((id) => {
     return {
-      params: { slug: id.node._meta.uid }
-    }
-  })
+      params: { slug: id.node._meta.uid },
+    };
+  });
 
   return {
     paths,
-    fallback: false
-  }
-}
+    fallback: false,
+  };
+};
 
 export async function getStaticProps({ preview = false, previewData, params }) {
   const pageData = await getBlogPostData(params.slug, previewData);
@@ -234,5 +261,5 @@ export async function getStaticProps({ preview = false, previewData, params }) {
       tertiaryMenuData,
     },
     revalidate: 1, // In seconds
-  }
+  };
 }

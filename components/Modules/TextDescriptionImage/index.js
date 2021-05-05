@@ -1,16 +1,17 @@
 import { RichText } from "prismic-reactjs";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 import Section from "../../Section";
 import { Container } from "../../Grid";
 import Picture from "../../Picture";
 
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 
 const Paragraph = ({ description, fadeInVariants }) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
+    triggerOnce: true,
   });
 
   return (
@@ -23,29 +24,30 @@ const Paragraph = ({ description, fadeInVariants }) => {
     >
       <RichText render={description} />
     </motion.div>
-  )
-}
+  );
+};
 
 export default function Index({ primary }) {
   const { ref, inView } = useInView({
     threshold: 0.5,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const fadeInVariants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (
@@ -62,17 +64,12 @@ export default function Index({ primary }) {
           <RichText render={primary.sub_heading} />
         </motion.div>
       </Container>
-      <motion.div
-        className={styles.image}
-      >
+      <motion.div className={styles.image}>
         <Picture image={primary.image} />
       </motion.div>
       <Container>
-        <Paragraph
-          {...primary}
-          fadeInVariants={fadeInVariants}
-        />
+        <Paragraph {...primary} fadeInVariants={fadeInVariants} />
       </Container>
     </Section>
-  )
+  );
 }

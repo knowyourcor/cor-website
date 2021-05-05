@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { RichText } from "prismic-reactjs";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { useInView } from 'react-intersection-observer';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
-import styles from "./carousel.module.scss"
+import styles from "./carousel.module.scss";
 
 const TeamDetails = ({ name, position, description, fadeInVariants }) => {
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   return (
@@ -24,29 +25,30 @@ const TeamDetails = ({ name, position, description, fadeInVariants }) => {
       <RichText render={position} />
       <RichText render={description} />
     </motion.div>
-  )
-}
+  );
+};
 
 const Slide = ({ name, position, description, image }) => {
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const fadeInVariants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (
@@ -59,9 +61,7 @@ const Slide = ({ name, position, description, image }) => {
         variants={fadeInVariants}
         className={styles.portrait}
       >
-        <img
-          src={image.url}
-        />
+        <img src={image.url} />
       </motion.div>
 
       <TeamDetails
@@ -108,15 +108,19 @@ const Carousel = ({ fields }) => {
         spaceBetween: 50,
         loop: true,
       },
-    }
-  }
+    },
+  };
 
   return (
-    <div className={["swiper--slides__visibility", styles.customContainer].join(" ")}>
+    <div
+      className={["swiper--slides__visibility", styles.customContainer].join(
+        " "
+      )}
+    >
       <Swiper
         {...swiperInit}
         onSlideChange={(swiper) => {
-          setActiveSlide(`item-${swiper.activeIndex}`)
+          setActiveSlide(`item-${swiper.activeIndex}`);
         }}
       >
         {fields.map((field, index) => {
@@ -125,8 +129,8 @@ const Carousel = ({ fields }) => {
               key={index}
               className={[
                 styles.swiperSlide,
-                `item-${index}` === activeSlide && styles.swiperSlideActive].join(" ")
-              }
+                `item-${index}` === activeSlide && styles.swiperSlideActive,
+              ].join(" ")}
             >
               <Slide {...field} />
             </SwiperSlide>

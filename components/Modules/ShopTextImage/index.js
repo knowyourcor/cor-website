@@ -1,5 +1,5 @@
 import { RichText } from "prismic-reactjs";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
@@ -10,27 +10,32 @@ import styles from "./shopTextImage.module.scss";
 const TextImage = ({ primary }) => {
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const fadeInVariants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (
-    <Section className={styles.section} style={{ backgroundColor: primary.background_color }} align="center">
+    <Section
+      className={styles.section}
+      style={{ backgroundColor: primary.background_color }}
+      align="center"
+    >
       <Container>
         <motion.div
           ref={ref}
@@ -41,7 +46,11 @@ const TextImage = ({ primary }) => {
         >
           {primary.headline[0].text && (
             <Row align="center" textAlign={{ xs: "left" }}>
-              <Column columns={{ xs: 14, md: 8 }} offsets={{ md: 2 }} className="custom__column">
+              <Column
+                columns={{ xs: 14, md: 8 }}
+                offsets={{ md: 2 }}
+                className="custom__column"
+              >
                 <RichText render={primary.headline} />
               </Column>
               <Column columns={{ xs: 14, md: 4 }}>

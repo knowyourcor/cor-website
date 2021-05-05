@@ -1,61 +1,66 @@
-import { useState } from "react"
-import Link from "next/link"
+import { useState } from "react";
+import Link from "next/link";
 import { RichText } from "prismic-reactjs";
-import moment from "moment"
+import moment from "moment";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 import Section from "../Section";
 import { Container, Row, Column } from "../Grid";
 
-import styles from "./index.module.scss"
-
+import styles from "./index.module.scss";
 
 const POSTS_QUERY = gql`
-query FeaturedPress($after: String) {
-  allBlog_posts(sortBy:date_DESC, first: 3, after: $after, where: { category_fulltext: "Featured Press"}) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    edges {
-      node {
-        featured_post
-        title
-        category
-        date
-        excerpt
-        _meta {
-          uid
-        }
-        content {
-          image
-          heading
-          paragraph
-          quote
-          link_name
-        }
+  query FeaturedPress($after: String) {
+    allBlog_posts(
+      sortBy: date_DESC
+      first: 3
+      after: $after
+      where: { category_fulltext: "Featured Press" }
+    ) {
+      pageInfo {
+        hasPreviousPage
+        hasNextPage
+        startCursor
+        endCursor
       }
-      cursor
+      edges {
+        node {
+          featured_post
+          title
+          category
+          date
+          excerpt
+          _meta {
+            uid
+          }
+          content {
+            image
+            heading
+            paragraph
+            quote
+            link_name
+          }
+        }
+        cursor
+      }
     }
   }
-}
 `;
 
 const FeaturedBlog = ({ item, index, fadeInVariants }) => {
-  const [isHovered, setHovered] = useState(false)
+  const [isHovered, setHovered] = useState(false);
   const [activeItem, setActiveItem] = useState("item-0");
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
-  let pathNode = item.node
-  let pathNodeContent = pathNode.content[0]
-  let date = moment(item.node.date).format("DD MMMM, YYYY")
+  let pathNode = item.node;
+  let pathNodeContent = pathNode.content[0];
+  let date = moment(item.node.date).format("DD MMMM, YYYY");
 
   const transition = {
     opacity: {
@@ -78,7 +83,7 @@ const FeaturedBlog = ({ item, index, fadeInVariants }) => {
       x: 0,
       transition: transition,
     },
-  }
+  };
 
   return (
     <motion.div
@@ -90,34 +95,48 @@ const FeaturedBlog = ({ item, index, fadeInVariants }) => {
       className={styles.featuredItem}
     >
       <Row align="center" textAlign={{ xs: "left" }}>
-        <Column columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }} className="custom__column" justify="center">
-          <img
-            src={pathNodeContent.image.url}
-          />
+        <Column
+          columns={{ xs: 14, sm: 6 }}
+          offsets={{ sm: 1 }}
+          className="custom__column"
+          justify="center"
+        >
+          <img src={pathNodeContent.image.url} />
         </Column>
-        <Column columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }} justify="center">
+        <Column
+          columns={{ xs: 14, sm: 6 }}
+          offsets={{ sm: 1 }}
+          justify="center"
+        >
           <span>{date}</span>
-          <Link href={"/blog/" + pathNode._meta.uid}><a><RichText render={pathNode.title} /></a></Link>
+          <Link href={"/blog/" + pathNode._meta.uid}>
+            <a>
+              <RichText render={pathNode.title} />
+            </a>
+          </Link>
           {pathNodeContent?.link_name && (
             <motion.div
               className={styles.actionWrap}
               onMouseEnter={() => {
-                setHovered(true)
-                setActiveItem(`item-${index}`)
+                setHovered(true);
+                setActiveItem(`item-${index}`);
               }}
               onMouseLeave={() => {
-                setHovered(false)
-                setActiveItem(`item-${index}`)
+                setHovered(false);
+                setActiveItem(`item-${index}`);
               }}
             >
-              <Link
-                href={"/blog/" + pathNode._meta.uid}
-              >
+              <Link href={"/blog/" + pathNode._meta.uid}>
                 <a>
                   <RichText render={pathNodeContent?.link_name} />
-                  <motion.svg viewBox="0 0 512 512"
+                  <motion.svg
+                    viewBox="0 0 512 512"
                     initial={false}
-                    animate={isHovered && `item-${index}` === activeItem ? "open" : "closed"}
+                    animate={
+                      isHovered && `item-${index}` === activeItem
+                        ? "open"
+                        : "closed"
+                    }
                     variants={svgVariants}
                   >
                     <g>
@@ -133,18 +152,19 @@ const FeaturedBlog = ({ item, index, fadeInVariants }) => {
         </Column>
       </Row>
     </motion.div>
-  )
-}
+  );
+};
 
 export default function Index() {
   const { data, loading, error, fetchMore } = useQuery(POSTS_QUERY, {
     variables: {
-      after: null
-    }
+      after: null,
+    },
   });
 
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   if (loading) {
@@ -154,7 +174,7 @@ export default function Index() {
           <h2 className="loading">Loading...</h2>
         </Container>
       </Section>
-    )
+    );
   }
 
   if (error) {
@@ -172,10 +192,10 @@ export default function Index() {
         updateQuery: (prevResult, { fetchMoreResult }) => {
           fetchMoreResult.allBlog_posts.edges = [
             ...prevResult.allBlog_posts.edges,
-            ...fetchMoreResult.allBlog_posts.edges
+            ...fetchMoreResult.allBlog_posts.edges,
           ];
           return fetchMoreResult;
-        }
+        },
       });
     }
   };
@@ -184,18 +204,18 @@ export default function Index() {
 
   const transitionAnimate = {
     duration: 0.25,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const fadeInVariants = {
     hidden: {
       opacity: 0,
-      transitionAnimate
+      transitionAnimate,
     },
     show: {
       opacity: 1,
-      transitionAnimate
-    }
+      transitionAnimate,
+    },
   };
 
   return (
@@ -219,7 +239,7 @@ export default function Index() {
                 key={i}
                 fadeInVariants={fadeInVariants}
               />
-            )
+            );
           })}
         </div>
         {data.allBlog_posts.pageInfo.hasNextPage ? (
@@ -227,11 +247,13 @@ export default function Index() {
             <button className="btn btn--inverted" onClick={handleShowMore}>
               Show More
             </button>
-          </div>) : (
-          <Link href="/blog"><a className="btn btn--inverted">View More Blogs</a></Link>
-        )
-        }
+          </div>
+        ) : (
+          <Link href="/blog">
+            <a className="btn btn--inverted">View More Blogs</a>
+          </Link>
+        )}
       </Container>
     </Section>
-  )
+  );
 }
