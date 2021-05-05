@@ -67,58 +67,52 @@ const Menu = ({ active, toggle, mainMenuData }) => {
   };
 
   return (
-    <FocusLock disabled={!active}>
-      <motion.nav
-        className={styles.menu}
-        ref={ref}
-        style={{ transform: "translateX(-100%)" }}
-        initial="closed"
-        animate={active ? "open" : "closed"}
-        variants={navVariant}
+    <motion.nav
+      className={styles.menu}
+      ref={ref}
+      style={{ transform: "translateX(-100%)" }}
+      initial="closed"
+      animate={active ? "open" : "closed"}
+      variants={navVariant}
+    >
+      <motion.ul
+        className={[styles.mainMenu, active && styles.isMenuOpen].join(" ")}
+        variants={navItemsVariants}
       >
-        <motion.ul
-          className={[styles.mainMenu, active && styles.isMenuOpen].join(" ")}
-          variants={navItemsVariants}
-        >
-          {mainMenuData?.menu_links.map((link, index) => {
-            return (
-              <motion.li
-                key={`${link.link._meta.uid}_${index}`}
-                variants={navItemVariants}
+        {mainMenuData?.menu_links.map((link, index) => {
+          return (
+            <motion.li
+              key={`${link.link._meta.uid}_${index}`}
+              variants={navItemVariants}
+            >
+              <Link
+                activeClassName={styles.active}
+                href={`/${link.link._meta.uid}`}
               >
-                <Link
-                  activeClassName={styles.active}
-                  href={`/${link.link._meta.uid}`}
-                >
-                  <a onClick={() => toggle()}>{link.label[0].text}</a>
-                </Link>
-              </motion.li>
-            );
-          })}
-        </motion.ul>
-        <motion.ul className={styles.subMenu} variants={navItemsVariants}>
-          <motion.li variants={navItemVariants}>
-            <Link activeClassName={styles.active} href="/">
-              <a onClick={() => toggle()}>Legal</a>
-            </Link>
-          </motion.li>
-          <motion.li variants={navItemVariants}>
-            <Link activeClassName={styles.active} href="/">
-              <a onClick={() => toggle()}>Privacy</a>
-            </Link>
-          </motion.li>
-          <motion.li variants={navItemVariants}>
-            <Link activeClassName={styles.active} href="/">
-              <a onClick={() => toggle()}>Cookies</a>
-            </Link>
-          </motion.li>
-        </motion.ul>
-      </motion.nav>
-      <div
-        className={[styles.mask, isActive].join(" ")}
-        onClick={() => toggle()}
-      ></div>
-    </FocusLock>
+                <a onClick={() => toggle()}>{link.label[0].text}</a>
+              </Link>
+            </motion.li>
+          );
+        })}
+      </motion.ul>
+      <motion.ul className={styles.subMenu} variants={navItemsVariants}>
+        <motion.li variants={navItemVariants}>
+          <Link activeClassName={styles.active} href="/">
+            <a onClick={() => toggle()}>Legal</a>
+          </Link>
+        </motion.li>
+        <motion.li variants={navItemVariants}>
+          <Link activeClassName={styles.active} href="/">
+            <a onClick={() => toggle()}>Privacy</a>
+          </Link>
+        </motion.li>
+        <motion.li variants={navItemVariants}>
+          <Link activeClassName={styles.active} href="/">
+            <a onClick={() => toggle()}>Cookies</a>
+          </Link>
+        </motion.li>
+      </motion.ul>
+    </motion.nav>
   );
 };
 
