@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-
 import { RichText } from "prismic-reactjs";
+import Picture from "../Picture";
 import { Column, Container, Row } from "../Grid";
 
 import styles from "./index.module.scss";
@@ -50,7 +50,7 @@ const TeamList = ({ name, position, description, image }) => {
         exit="hidden"
         variants={fadeInVariants}
         className={styles.contentWrap}
-        onClick={() => setActiveFlip(!activeFlip)}
+        // onClick={() => setActiveFlip(!activeFlip)}
       >
         <div
           className={[styles.card, activeFlip && styles.isFlipped].join(" ")}
@@ -58,13 +58,18 @@ const TeamList = ({ name, position, description, image }) => {
           <div
             className={[styles.card__face, styles.card__facefront].join(" ")}
           >
-            <img src={image.url} />
+            {/* <img src={image.url} /> */}
+
+            <div className={styles.portrait}>
+              <Picture image={image} className={styles.image} />
+            </div>
+
             <div className={styles.info}>
               <RichText render={name} />
               <RichText render={position} />
             </div>
           </div>
-          <div className={[styles.card__face, styles.card__faceback].join(" ")}>
+          {/* <div className={[styles.card__face, styles.card__faceback].join(" ")}>
             <div className={styles.card__flip}>
               <div className={styles.card__flipHeader}>
                 <div
@@ -83,7 +88,7 @@ const TeamList = ({ name, position, description, image }) => {
                 <RichText render={description} />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         {/* {activeFlip && (
         )} */}
@@ -95,7 +100,7 @@ const TeamList = ({ name, position, description, image }) => {
 export default function TeamFlip({ fields }) {
   const [userList, setUserList] = useState([]);
 
-  const postsPerPage = 3;
+  const postsPerPage = 9;
   const ref = useRef(postsPerPage);
   const fieldsLength = fields.length;
   const userLength = userList.length;
