@@ -1,27 +1,29 @@
+import React from "react";
 import Alert from "../Alert";
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 
 export default function Layout({ children, preview }) {
+  const childProps = React.Children.map(
+    children.props.children.props.children,
+    (child) => {
+      return {
+        mainMenuData: child.props.mainMenuData,
+        footerMenuData: child.props.footerMenuData,
+        tertiaryMenuData: child.props.tertiaryMenuData,
+      };
+    }
+  );
+
   return (
     <>
       <Alert preview={preview} />
-      {children?.props?.children?.props?.children?.props?.mainMenuData && (
-        <Navigation
-          mainMenuData={
-            children?.props?.children?.props?.children?.props?.mainMenuData
-          }
-        />
-      )}
+      {childProps && <Navigation mainMenuData={childProps[0].mainMenuData} />}
       {children}
-      {children?.props?.children?.props?.children?.props?.footerMenuData && (
+      {childProps && (
         <Footer
-          footerMenuData={
-            children?.props?.children?.props?.children?.props?.footerMenuData
-          }
-          tertiaryMenuData={
-            children?.props?.children?.props?.children?.props?.tertiaryMenuData
-          }
+          footerMenuData={childProps[0].footerMenuData}
+          tertiaryMenuData={childProps[0].tertiaryMenuData}
         />
       )}
       {/* a11y - aria-describedby */}
