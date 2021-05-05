@@ -68,6 +68,10 @@ export default function Categories() {
     setShow(!show)
   };
 
+  const handleOnClick = (item) => {
+    value === item ? setValue('') : setValue(item)
+  }
+
   return (
     <div className={styles.sectionPostCategory}>
       <Container>
@@ -98,7 +102,7 @@ export default function Categories() {
                           key={i}
                           className={`${styles.ListItem} ${value === item ? styles.selected : ''}`}
                           value="Category"
-                          onClick={() => value ? setValue('') : setValue(item)}
+                          onClick={() => handleOnClick(item)}
                         >
                           {value === item && (
                             <span>

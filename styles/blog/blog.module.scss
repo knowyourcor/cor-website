@@ -171,7 +171,6 @@
       justify-content: flex-end;
     }
 
-    .selectedCategory,
     .dropdown {
       display: flex;
       align-items: center;
@@ -187,15 +186,6 @@
         
         cursor: pointer;
       }
-    }
-
-    .selectedCategory {
-      padding: 0 36px 0 32px;
-      margin-right: 20px;
-
-      background-color: var(--color-gainsboro);
-
-      animation: fadeIn .2s ease-in;
     }
 
     .closeCategoriesIcon {
@@ -242,37 +232,34 @@
 
         padding: 91px 55px 30px;
         
-        width: 30%;
+        width: 430px;
         height: 100%;
         
         font-size: 20px;
         font-weight: 600;
         text-align: start;
-        white-space: nowrap;
         
         animation: fadeIn 0.2s ease-in;
-        
-        &:before {
+
+        &:before,
+        &:after {
           content: '';
-          position: absolute;
+
           top: 0;
           right: 0;
+          bottom: 0;
           left: 0;
-          left: 0;
+        }
+        
+        &:before {
+          position: absolute;
           z-index: -1;
-          height: 100%;
           
           background-color: var(--color-pacific-blue);
         }
 
         &:after {
-          content: '';
-
           position: fixed;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
           z-index: -2;
           
           background-color: var(--font-primary);
@@ -700,15 +687,6 @@
         justify-content: flex-start;
       }
 
-      .selectedCategory {
-        order: 2;
-        padding: 0 20px;
-        height: 45px;
-
-        font-size: 12px;
-        line-height: 2.5;
-      }
-
       .dropdown {
         padding: 0 56px 0 21px;
         margin: 0 10px 10px 0;
@@ -722,13 +700,20 @@
         .Icon {
           margin-left: 24px;
         }
-      
-        &ListWrapper {
-          top: 50px;
-          left: 0;
 
-          transform: translateX(0);
+        &ListWrapper {
+          width: 100%;
+          padding: 75px 37px 30px;
         }
+      }
+
+      .closeCategoriesIcon {
+        right: 37px;
+      }
+
+      .ListItem {
+        font-size: 18px;
+        line-height: 20px;
       }
 
       .postWrapper {    
