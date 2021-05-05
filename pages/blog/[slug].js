@@ -155,7 +155,12 @@ export default function Post({
             {pageData.content.map((item, i) => {
               return (
                 <div key={i} className={styles.postContent}>
-                  <BlogContentMedia mediaItem={item} />
+                  {!item.image && !item?.embed_media?.html ? (
+                      ''
+                    ) : (
+                      <BlogContentMedia mediaItem={item} />
+                    )
+                  }
                   <BlogContentText textItem={item} />
                 </div>
               );
