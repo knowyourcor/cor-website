@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { useInView } from 'react-intersection-observer';
+import React, { useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { RichText } from "prismic-reactjs";
-import SwiperCore, { Controller, Pagination, EffectFade } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { motion } from "framer-motion"
+import SwiperCore, { Controller, Pagination, EffectFade } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion";
 
-import Section from "../../Section"
-import { Container } from "../../Grid"
-import Picture from "../../Picture"
-import RoundelMeter from "../../RoundelMeter"
+import Section from "../../Section";
+import { Container } from "../../Grid";
+import Picture from "../../Picture";
+import RoundelMeter from "../../RoundelMeter";
 
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 
 SwiperCore.use([Controller, Pagination, EffectFade]);
 
@@ -18,13 +18,13 @@ const MainPhoto = ({ image, index, active }) => {
   const variantsPhoto = {
     open: {
       opacity: 1,
-      transition: { delay: .25 }
+      transition: { delay: 0.25 },
     },
     closed: {
       opacity: 0,
-      transition: { delay: .15 },
+      transition: { delay: 0.15 },
     },
-  }
+  };
 
   return (
     <motion.div
@@ -34,13 +34,21 @@ const MainPhoto = ({ image, index, active }) => {
     >
       <Picture image={image} />
     </motion.div>
-  )
-}
+  );
+};
 
-const DetailsName = ({ name, index, active, parentVariant, childVariants, fadeInVariants }) => {
+const DetailsName = ({
+  name,
+  index,
+  active,
+  parentVariant,
+  childVariants,
+  fadeInVariants,
+}) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
+    triggerOnce: true,
   });
 
   return (
@@ -65,13 +73,14 @@ const DetailsName = ({ name, index, active, parentVariant, childVariants, fadeIn
         </motion.div>
       </motion.div>
     </motion.div>
-  )
-}
+  );
+};
 
 const Meter = ({ meter_number, index, active, fadeInVariants }) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
+    triggerOnce: true,
   });
 
   return (
@@ -83,16 +92,25 @@ const Meter = ({ meter_number, index, active, fadeInVariants }) => {
       variants={fadeInVariants}
       className={styles.meter__animation}
     >
-      {`item-${index}` === active &&
+      {`item-${index}` === active && (
         <RoundelMeter className="roundelMeterWrap" score={meter_number} />
-      }
+      )}
     </motion.div>
-  )
-}
+  );
+};
 
-const List = ({ heading, list, index, active, parentVariant, childVariants, fadeInVariants }) => {
+const List = ({
+  heading,
+  list,
+  index,
+  active,
+  parentVariant,
+  childVariants,
+  fadeInVariants,
+}) => {
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   return (
@@ -123,38 +141,49 @@ const List = ({ heading, list, index, active, parentVariant, childVariants, fade
         >
           {list.map((list, j) => {
             return (
-              <motion.li key={j} variants={childVariants} >
+              <motion.li key={j} variants={childVariants}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
                   <g transform="translate(-1228 -6342)">
-                    <circle cx="20" cy="20" r="20" fill="#6fda8c" transform="translate(1228 6342)" />
+                    <circle
+                      cx="20"
+                      cy="20"
+                      r="20"
+                      fill="#6fda8c"
+                      transform="translate(1228 6342)"
+                    />
                     <g>
-                      <path fill="#23a046" d="M1499.759 458.341a1.49 1.49 0 0 1-1.138-.528l-4.391-5.187a1.491 1.491 0 1 1 2.276-1.926l3.148 3.719 5.675-8.01a1.491 1.491 0 1 1 2.433 1.724l-6.787 9.579a1.491 1.491 0 0 1-1.152.628z" transform="translate(-252.957 5909.939)" />
+                      <path
+                        fill="#23a046"
+                        d="M1499.759 458.341a1.49 1.49 0 0 1-1.138-.528l-4.391-5.187a1.491 1.491 0 1 1 2.276-1.926l3.148 3.719 5.675-8.01a1.491 1.491 0 1 1 2.433 1.724l-6.787 9.579a1.491 1.491 0 0 1-1.152.628z"
+                        transform="translate(-252.957 5909.939)"
+                      />
                     </g>
                   </g>
                 </svg>
                 {list.text}
               </motion.li>
-            )
+            );
           })}
         </motion.ul>
       </motion.div>
     </motion.div>
-  )
-}
+  );
+};
 
 export default function QuadCarousel({ primary, fields }) {
   const [controlledSwiper, setControlledSwiper] = useState(null);
   const [controlledSwiperOne, setControlledSwiperOne] = useState(null);
   const [controlledSwiperTwo, setControlledSwiperTwo] = useState(null);
-  const [active, setActive] = useState("item-0")
+  const [active, setActive] = useState("item-0");
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
+    triggerOnce: true,
   });
 
   const parentVariant = {
     open: {
-      transition: { staggerChildren: 0.10, delayChildren: 0.25 },
+      transition: { staggerChildren: 0.1, delayChildren: 0.25 },
     },
     closed: {
       transition: { staggerChildren: 0.05, staggerDirection: -1 },
@@ -176,35 +205,39 @@ export default function QuadCarousel({ primary, fields }) {
         x: { stiffness: 1000 },
       },
     },
-  }
+  };
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const fadeInVariants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   const params = {
     effect: "fade",
     fadeEffect: {
-      crossFade: true
+      crossFade: true,
     },
     resizeObserver: true,
-  }
+  };
 
   return (
-    <Section className={styles.quadCarousel} align="center" style={{ backgroundColor: primary.background_color }}>
+    <Section
+      className={styles.quadCarousel}
+      align="center"
+      style={{ backgroundColor: primary.background_color }}
+    >
       <Container>
         <div className={styles.headingWrap}>
           <motion.div
@@ -238,15 +271,12 @@ export default function QuadCarousel({ primary, fields }) {
                         fadeInVariants={fadeInVariants}
                       />
                     </SwiperSlide>
-                  )
+                  );
                 })}
               </Swiper>
             </div>
             <div className={[styles.card, styles.meterWrap].join(" ")}>
-              <Swiper
-                {...params}
-                onSwiper={setControlledSwiperTwo}
-              >
+              <Swiper {...params} onSwiper={setControlledSwiperTwo}>
                 {fields.map((item, i) => {
                   return (
                     <SwiperSlide key={i} className={styles.swiperSlide}>
@@ -257,7 +287,7 @@ export default function QuadCarousel({ primary, fields }) {
                         fadeInVariants={fadeInVariants}
                       />
                     </SwiperSlide>
-                  )
+                  );
                 })}
               </Swiper>
             </div>
@@ -269,19 +299,15 @@ export default function QuadCarousel({ primary, fields }) {
               pagination={{ clickable: true }}
               controller={{ control: controlledSwiper }}
               onSlideChange={(swiper) => {
-                setActive(`item-${swiper.activeIndex}`)
+                setActive(`item-${swiper.activeIndex}`);
               }}
             >
               {fields.map((item, i) => {
                 return (
                   <SwiperSlide className="swiperSlide" key={i}>
-                    <MainPhoto
-                      {...item}
-                      index={i}
-                      active={active}
-                    />
+                    <MainPhoto {...item} index={i} active={active} />
                   </SwiperSlide>
-                )
+                );
               })}
             </Swiper>
           </div>
@@ -292,7 +318,7 @@ export default function QuadCarousel({ primary, fields }) {
               onSwiper={setControlledSwiper}
               controller={{ control: controlledSwiperOne }}
               onSlideChange={(swiper) => {
-                setActive(`item-${swiper.activeIndex}`)
+                setActive(`item-${swiper.activeIndex}`);
               }}
             >
               {fields.map((data, i) => {
@@ -307,12 +333,12 @@ export default function QuadCarousel({ primary, fields }) {
                       fadeInVariants={fadeInVariants}
                     />
                   </SwiperSlide>
-                )
+                );
               })}
             </Swiper>
-          </div >
+          </div>
         </div>
       </Container>
     </Section>
-  )
+  );
 }

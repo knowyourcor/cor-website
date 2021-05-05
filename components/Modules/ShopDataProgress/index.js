@@ -1,15 +1,16 @@
 import { RichText } from "prismic-reactjs";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { Column, Container, Row } from "../../Grid";
 import Picture from "../../Picture";
 import Section from "../../Section";
 
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 
 const Heading = ({ tag, heading, fadeInVariants }) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
+    triggerOnce: true,
   });
 
   return (
@@ -24,37 +25,45 @@ const Heading = ({ tag, heading, fadeInVariants }) => {
       <span>{tag}</span>
       <RichText render={heading} />
     </motion.div>
-  )
-}
+  );
+};
 
 export default function Index({ primary }) {
   const { ref, inView } = useInView({
     threshold: 0.5,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const fadeInVariants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (
-    <Section style={{ backgroundColor: primary.background_color }} className={styles.dataProgress}>
+    <Section
+      style={{ backgroundColor: primary.background_color }}
+      className={styles.dataProgress}
+    >
       <Container>
         <div className={styles.contentWrap}>
           <Row align="center">
-            <Column columns={{ xs: 14, md: 7 }} offsets={{ md: 1 }} className="custom__column">
+            <Column
+              columns={{ xs: 14, md: 7 }}
+              offsets={{ md: 1 }}
+              className="custom__column"
+            >
               <div className={styles.imageDetailsHolder}>
                 <Picture image={primary.big_image} />
                 <motion.div
@@ -79,5 +88,5 @@ export default function Index({ primary }) {
         </div>
       </Container>
     </Section>
-  )
+  );
 }

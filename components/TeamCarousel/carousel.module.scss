@@ -59,6 +59,12 @@
   text-transform: capitalize;
 }
 
+@media (min-width: $md) {
+  .customContainer {
+    display: none;
+  }
+}
+
 @media (min-width: $xs) {
   .customContainer {
     width: 108rem;

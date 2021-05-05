@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import Section from "../../Section";
@@ -14,6 +14,7 @@ export default function ShopAccordion({ primary, fields }) {
   const [imageData, setImageData] = useState();
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const backgroundColor = primary.background_color
@@ -31,18 +32,18 @@ export default function ShopAccordion({ primary, fields }) {
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   const imageTransition = {
@@ -82,7 +83,11 @@ export default function ShopAccordion({ primary, fields }) {
       className={styles.accordionWrap}
     >
       <Row align="center">
-        <Column columns={{ xs: 14, md: 5, xl: 4 }} offsets={{ md: 1 }} justify="center">
+        <Column
+          columns={{ xs: 14, md: 5, xl: 4 }}
+          offsets={{ md: 1 }}
+          justify="center"
+        >
           <motion.div
             ref={ref}
             initial="hidden"
@@ -114,7 +119,11 @@ export default function ShopAccordion({ primary, fields }) {
             </div>
           </motion.div>
         </Column>
-        <Column columns={{ xs: 14, md: 7, xl: 8 }} offsets={{ md: 1 }} className={styles.columnPaddingRight}>
+        <Column
+          columns={{ xs: 14, md: 7, xl: 8 }}
+          offsets={{ md: 1 }}
+          className={styles.columnPaddingRight}
+        >
           <motion.div
             ref={ref}
             initial="hidden"

@@ -1,82 +1,58 @@
-import { useState, useEffect } from "react";
-import { motion, useViewportScroll, useTransform } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import FocusLock from "react-focus-lock";
 import Link from "../Link";
 import Menu from "../Menu";
-
+import MenuToggle from "../MenuToggle";
 import styles from "./navigation.module.scss";
 
-const Navigation = ({ mainMenuData, transparent }) => {
+const Navigation = ({ mainMenuData }) => {
   // Menu state
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [scrollDetect, setScrollDetect] = useState(false)
 
-  const { scrollY } = useViewportScroll();
-
-  const background = transparent
-    ? useTransform(
-      scrollY,
-      [50, 250],
-      ["rgba(242, 242, 242, 0)", "rgba(242, 242, 242, 1)"]
-    )
-    : "background: rgba(242, 242, 242, 1)";
-
-  const opacity = useTransform(scrollY, [50, 250], ["0", "1"]);
-
-  useEffect(() => {
-    // Background color hack
-    // On refresh, if scrolled past y 250px
-    // Smooth scroll to top so FramerMotion useViewportScroll
-    // is initiated and the background color is added.
-    const timer = setTimeout(() => {
-      if (window.pageYOffset > 250 && transparent) {
-        window.scrollTo({
-          top: window.pageYOffset + 1,
-          left: 0,
-          behavior: "smooth",
-        });
-      }
-    }, 50);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY !== 0) {
-        setScrollDetect(true)
-      } else setScrollDetect(false)
-    });
-  }, [])
+  const skipToContentProps = {
+    "aria-hidden": isMenuOpen ? "true" : "false",
+    ...(isMenuOpen ? { tabIndex: "-1" } : false),
+  };
 
   return (
-    <>
-      <motion.div
+    <FocusLock disabled={!isMenuOpen}>
+      <motion.nav
         className={[
           styles.navigation,
-          !transparent && styles.withBG,
+          styles.withBG,
           isMenuOpen && styles.isOpen,
-          scrollDetect && styles.onScroll].join(" ")}
-        style={{
-          background,
-        }}
+          styles.onScroll,
+        ].join(" ")}
+        initial={false}
+        animate={isMenuOpen ? "open" : "closed"}
       >
-        <motion.div className={styles.boxShadow} style={{ opacity }} />
+        <motion.div className={styles.boxShadow} />
         <div className={styles.container}>
-          <button
-            onClick={() => setMenuOpen(!isMenuOpen)}
-            className={[styles.customBurger, isMenuOpen && styles.openBurger].join(" ")}
+          <a
+            className={styles.skipToContentLink}
+            href="#main"
+            {...skipToContentProps}
           >
-            <span></span>
-            <span></span>
-          </button>
+            Skip to Content
+          </a>
+
+          <MenuToggle
+            toggle={() => setMenuOpen(!isMenuOpen)}
+            isOpen={isMenuOpen}
+          />
+
           <Menu
             mainMenuData={mainMenuData}
             active={isMenuOpen}
             toggle={() => setMenuOpen(!isMenuOpen)}
           />
+
           <Link href="/">
             <a
-              className={[styles.logo, isMenuOpen && styles.menuOpenLogo].join(" ")}
+              className={[styles.logo, isMenuOpen && styles.menuOpenLogo].join(
+                " "
+              )}
               aria-expanded="false"
               aria-label="Main menu"
               role="button"
@@ -91,18 +67,12 @@ const Navigation = ({ mainMenuData, transparent }) => {
               </svg>
             </a>
           </Link>
-          <div className={styles.cart}>
-            <Link href="/">
-              <a className={styles.cartIcon}>
-                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M60.53,18.71A2,2,0,0,0,59,18H48.85A15,15,0,0,0,34,5H30A15,15,0,0,0,15.15,18H5a2,2,0,0,0-1.53.71A2,2,0,0,0,3,20.35l5.33,30.3A6.51,6.51,0,0,0,14.77,56H49.23a6.51,6.51,0,0,0,6.41-5.36L61,20.35A2,2,0,0,0,60.53,18.71ZM30,9h4a11,11,0,0,1,10.81,9H19.19A11,11,0,0,1,30,9ZM51.71,49.94A2.52,2.52,0,0,1,49.23,52H14.77a2.5,2.5,0,0,1-2.47-2L7.38,22H56.62Z" />
-                </svg>
-              </a>
-            </Link>
-          </div>
+          <Link href="/">
+            <a className={styles.getApp__btn}>Get App</a>
+          </Link>
         </div>
-      </motion.div>
-    </>
+      </motion.nav>
+    </FocusLock>
   );
 };
 

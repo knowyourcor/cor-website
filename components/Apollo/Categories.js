@@ -61,6 +61,12 @@ export default function Categories() {
   
   const categories = data.allBlog_posts.edges;
 
+  category.sort( function( a , b) {
+    if(a > b) return 1;
+    if(a < b) return -1;
+    return category;
+  });
+
   const CategoriesDropdown = () => {
     const currentCategory = categories.map(cat => cat.node.category[0].text);
     setCategory([...new Set(currentCategory)]);
@@ -68,19 +74,15 @@ export default function Categories() {
     setShow(!show)
   };
 
+  const handleOnClick = (item) => {
+    value === item ? setValue('') : setValue(item)
+  }
+
   return (
     <div className={styles.sectionPostCategory}>
       <Container>
         <div className={styles.contentWrapper}>
           <div className={styles.categoryWrapper}>
-            {!!value.length && (
-              <div className={styles.selectedCategory}>
-                <span>{value}</span>
-                <span className={styles.Icon} onClick={() => setValue("")}>
-                  <Image src="/icons/close.svg" height={12} width={12} />
-                </span>
-              </div>
-            )}
             <button
               className={styles.dropdown}
               onClick={CategoriesDropdown}
@@ -91,29 +93,36 @@ export default function Categories() {
                   <Image src="/icons/down-arrow.svg" height={13} width={13} />
                 </span>
               </div>
-              {show && (
-                <div className={styles.dropdownListWrapper}>
-                  <div className={styles.List}>
-                    {category.map((item, i) => {
-                      return (
-                        <>
-                          {item !== value && (
-                            <div
-                              key={i}
-                              className={styles.ListItem}
-                              value="Category"
-                              onClick={() => setValue(item)}
-                            >
-                              {item}
-                            </div>
-                          )}
-                        </>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
             </button>
+            {show && (
+              <div className={styles.dropdownListWrapper}>
+                <span className={styles.closeCategoriesIcon} onClick={() => setShow(false)}>
+                  <Image src="/icons/close-icon-light-cyan.svg" height={14} width={14} />
+                </span>
+                <h2 className={styles.title}>Categories</h2>
+                <div className={styles.List}>
+                  {category.map((item, i) => {
+                    return (
+                      <>
+                        <div
+                          key={i}
+                          className={`${styles.ListItem} ${value === item ? styles.selected : ''}`}
+                          value="Category"
+                          onClick={() => handleOnClick(item)}
+                        >
+                          {value === item && (
+                            <span>
+                              <Image src="/icons/close-icon-v2.svg" height={14} width={14} />
+                            </span>
+                          )}
+                          {item}
+                        </div>
+                      </>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
           <Posts category={value} />
         </div>

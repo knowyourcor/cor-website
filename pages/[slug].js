@@ -1,27 +1,14 @@
 import { useRouter } from "next/router";
+import { getLayout } from "../components/Layout/PageLayout";
 import ErrorPage from "next/error";
 import Head from "../components/Head";
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
 import Section from "../components/Section";
 import { Container, Row, Column } from "../components/Grid";
 import Modules from "../components/Modules";
-import Alert from "../components/Alert";
-import Layout from "../components/Layout";
-
 import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
-
 import FeaturedPress from "../components/FeaturedPress";
 
-// import styles from "../styles/Page.module.scss";
-
-export default function Page({
-  preview,
-  pageData,
-  mainMenuData,
-  footerMenuData,
-  tertiaryMenuData,
-}) {
+export default function Page({ pageData }) {
   const router = useRouter();
   if (!router.isFallback && !pageData?._meta?.uid) {
     return <ErrorPage statusCode={404} />;
@@ -34,38 +21,25 @@ export default function Page({
       {router.isFallback ? (
         <>
           <Head title="Loading..." />
-          <main>
-            <Navigation mainMenuData={mainMenuData} />
-            <Section>
-              <Container>
-                <Row>
-                  <Column
-                    columns={{ xs: 14, sm: 12, md: 10 }}
-                    offsets={{ sm: 1, md: 2 }}
-                  >
-                    <h2>Loading…</h2>
-                  </Column>
-                </Row>
-              </Container>
-            </Section>
-          </main>
-          <Footer
-            footerMenuData={footerMenuData}
-            tertiaryMenuData={tertiaryMenuData}
-          />
+
+          <Section>
+            <Container>
+              <Row>
+                <Column
+                  columns={{ xs: 14, sm: 12, md: 10 }}
+                  offsets={{ sm: 1, md: 2 }}
+                >
+                  <h2>Loading…</h2>
+                </Column>
+              </Row>
+            </Container>
+          </Section>
         </>
       ) : (
-        <Layout
-          classNameVal={["page__layout", title].join(" ")}
-          title={pageData?.meta_title}
-          preview={preview}
-          mainMenuData={mainMenuData}
-          footerMenuData={footerMenuData}
-          tertiaryMenuData={tertiaryMenuData}
-        >
+        <>
           <Modules pageData={pageData} />
           {pageData?.featured_press && <FeaturedPress />}
-        </Layout>
+        </>
       )}
     </>
   );
@@ -96,3 +70,5 @@ export async function getStaticProps({ preview = false, previewData, params }) {
     revalidate: 5,
   };
 }
+
+Page.getLayout = getLayout;

@@ -1,40 +1,22 @@
 import Head from "../components/Head";
-import Section from "../components/Section";
+import { getLayout } from "../components/Layout/PageLayout";
 import { Container, Row, Column } from "../components/Grid";
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-import Alert from "../components/Alert";
-
 import { getMenuData } from "../lib/api";
-
 import styles from "../styles/Error.module.scss";
 
-export default function Error({
-  preview,
-  mainMenuData,
-  footerMenuData,
-  tertiaryMenuData,
-}) {
+export default function Error() {
   return (
     <>
       <Head title="Error" />
-      <Alert preview={preview} />
-      <main>
-        <Navigation mainMenuData={mainMenuData} />
-        <section className={styles.error}>
-          <Container>
-            <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
-              <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
-                <h1>404 - Page Not Found</h1>
-              </Column>
-            </Row>
-          </Container>
-        </section>
-      </main>
-      <Footer
-        footerMenuData={footerMenuData}
-        tertiaryMenuData={tertiaryMenuData}
-      />
+      <section className={styles.error}>
+        <Container>
+          <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
+            <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
+              <h1>404 - Page Not Found</h1>
+            </Column>
+          </Row>
+        </Container>
+      </section>
     </>
   );
 }
@@ -53,3 +35,5 @@ export async function getStaticProps({ preview = false, previewData }) {
     revalidate: 1, // In seconds
   };
 }
+
+Error.getLayout = getLayout;

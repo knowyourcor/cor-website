@@ -25,25 +25,29 @@
 }
 
 .container {
-
   .content {
     position: relative;
     z-index: 1;
 
-    padding-top: 35.5px;
+    padding: 18px 23px 27px;
 
-    p, h3 {
-      font-size: 0.875rem;
+    background-color: white;
+    border-radius: 0 0 8px 8px;
+
+    p,
+    h3 {
+      font-size: 20px;
       line-height: 1.3125rem;
     }
 
     h3 {
       font-family: var(--font-sans-bold);
-      margin: 0;
+      margin: 0 0 5px;
     }
 
     p {
       margin-bottom: 0;
+      color: var(--color-suva-grey);
     }
   }
 
@@ -51,16 +55,15 @@
     position: relative;
     z-index: 0;
 
-    picture, img {
-      // border-radius: 50% 50%;
-      border-radius: 8px;
+    picture,
+    img {
+      border-radius: 8px 8px 0 0;
 
-      padding: 2px;
       width: 100%;
       height: auto;
       display: block;
     }
-    
+
     svg {
       width: 100%;
       height: 100%;
@@ -98,7 +101,7 @@
       font-size: 33px;
     }
   }
-  
+
   .rightAlignSwiper {
     margin-top: 42px;
   }
@@ -108,7 +111,7 @@
   .carouselWrap {
     padding-top: 18rem;
     margin-bottom: 136px;
-    
+
     h1 {
       font-size: 26px;
     }
@@ -126,7 +129,7 @@
     top: 114px;
     right: 0;
     z-index: 5;
-    
+
     margin-left: auto;
     width: 65%;
   }
