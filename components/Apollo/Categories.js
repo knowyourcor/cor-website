@@ -61,6 +61,12 @@ export default function Categories() {
   
   const categories = data.allBlog_posts.edges;
 
+  category.sort( function( a , b) {
+    if(a > b) return 1;
+    if(a < b) return -1;
+    return category;
+  });
+
   const CategoriesDropdown = () => {
     const currentCategory = categories.map(cat => cat.node.category[0].text);
     setCategory([...new Set(currentCategory)]);
