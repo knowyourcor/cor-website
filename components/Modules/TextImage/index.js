@@ -7,8 +7,7 @@ import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
 import styles from "./textImage.module.scss";
 
-
-const Paragraph = ({ text, variants }) => {
+const Paragraph = ({ content, text, variants }) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
@@ -23,7 +22,7 @@ const Paragraph = ({ text, variants }) => {
       variants={variants}
     >
       <RichText render={text} />
-      <Link href="/"><a className={["btn btn--inverted", styles.invertedLink].join(" ")}>Shop Now</a></Link>
+      <Link href="/"><a className={["btn btn--inverted", styles.invertedLink].join(" ")}>{RichText.asText(content.link_label)}</a></Link>
     </motion.div>
   )
 }
@@ -93,6 +92,7 @@ const TextImage = ({ primary }) => {
             <Paragraph
               {...primary}
               variants={variants}
+              content={primary}
             />
           </Column>
         </Row>
