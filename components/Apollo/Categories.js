@@ -76,6 +76,7 @@ export default function Categories() {
 
   const handleOnClick = (item) => {
     value === item ? setValue('') : setValue(item)
+    setShow(!show)
   }
 
   return (
@@ -83,6 +84,14 @@ export default function Categories() {
       <Container>
         <div className={styles.contentWrapper}>
           <div className={styles.categoryWrapper}>
+            {!!value.length && (
+              <div className={styles.selectedCategory}>
+                <span>{value}</span>
+                <span className={styles.Icon} onClick={() => setValue("")}>
+                  <Image src="/icons/close.svg" height={12} width={12} />
+                </span>
+              </div>
+            )}
             <button
               className={styles.dropdown}
               onClick={CategoriesDropdown}
@@ -96,11 +105,12 @@ export default function Categories() {
             </button>
             {show && (
               <div className={styles.dropdownListWrapper}>
-                <span className={styles.closeCategoriesIcon} onClick={() => setShow(false)}>
-                  <Image src="/icons/close-icon-light-cyan.svg" height={14} width={14} />
-                </span>
-                <h2 className={styles.title}>Categories</h2>
+                <div className={styles.backdrop} onClick={() => setShow(!show)}></div>
                 <div className={styles.List}>
+                  <span className={styles.closeCategoriesIcon} onClick={() => setShow(false)}>
+                    <Image src="/icons/close-icon-light-cyan.svg" height={14} width={14} />
+                  </span>
+                  <h2 className={styles.title}>Categories</h2>
                   {category.map((item, i) => {
                     return (
                       <>
