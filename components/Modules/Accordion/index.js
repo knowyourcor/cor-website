@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { RichText } from "prismic-reactjs";
 import { motion } from "framer-motion";
 import Section from "../../Section";
@@ -7,19 +7,28 @@ import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
 import Item from "./Item";
 
-
 import styles from "./accordion.module.scss";
 
 const HealthMeter = ({ fields, expanded }) => (
   <>
     {fields.map((data, index) => {
-      let isExpanded = `item-${index}` === expanded
+      let isExpanded = `item-${index}` === expanded;
       return (
         <div key={index} className={styles.svgWrap} key={index}>
-          {isExpanded &&
-            <motion.svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg" className={styles.svgPieGraph}>
+          {isExpanded && (
+            <motion.svg
+              viewBox="0 0 148 148"
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.svgPieGraph}
+            >
               <g transform="translate(24 24)" fill="none" fillRule="evenodd">
-                <circle stroke="#E5E0DF" strokeWidth="2" cx="50" cy="50" r="41.75" />
+                <circle
+                  stroke="#E5E0DF"
+                  strokeWidth="2"
+                  cx="50"
+                  cy="50"
+                  r="41.75"
+                />
                 <motion.circle
                   stroke={fields[1].meter_color}
                   strokeWidth="19"
@@ -40,7 +49,7 @@ const HealthMeter = ({ fields, expanded }) => (
                     ease: "anticipate",
                   }}
                 />
-                {fields.length === 4 &&
+                {fields.length === 4 && (
                   <motion.circle
                     stroke={fields[3].meter_color}
                     strokeWidth="19"
@@ -61,7 +70,7 @@ const HealthMeter = ({ fields, expanded }) => (
                       ease: "anticipate",
                     }}
                   />
-                }
+                )}
                 <motion.circle
                   stroke={fields[2].meter_color}
                   strokeWidth="29"
@@ -104,12 +113,12 @@ const HealthMeter = ({ fields, expanded }) => (
                 />
               </g>
             </motion.svg>
-          }
+          )}
         </div>
-      )
+      );
     })}
   </>
-)
+);
 
 export default function Accordion({ primary, fields }) {
   const [expanded, setExpanded] = useState("item-0");
@@ -132,23 +141,24 @@ export default function Accordion({ primary, fields }) {
 
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (
@@ -171,10 +181,7 @@ export default function Accordion({ primary, fields }) {
             <Container>
               <Row align="center">
                 <Column columns={{ xs: 14, sm: 12, md: 6 }} offsets={{ sm: 1 }}>
-                  <HealthMeter
-                    fields={fields}
-                    expanded={expanded}
-                  />
+                  <HealthMeter fields={fields} expanded={expanded} />
                 </Column>
                 <Column columns={{ xs: 14, sm: 12, md: 6 }} offsets={{ sm: 1 }}>
                   <RichText render={primary.headline} />
@@ -196,9 +203,7 @@ export default function Accordion({ primary, fields }) {
             </Container>
           </div>
           <div className={styles.backgroundImage}>
-            {primary.image && (
-              <Picture image={primary.image} />
-            )}
+            {primary.image && <Picture image={primary.image} />}
           </div>
         </motion.div>
       </Section>

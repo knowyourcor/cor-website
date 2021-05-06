@@ -1,16 +1,16 @@
-import { RichText } from "prismic-reactjs"
-import { useInView } from 'react-intersection-observer';
+import { RichText } from "prismic-reactjs";
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
-import Section from "../../Section"
-import { Column, Container, Row } from "../../Grid"
-import Picture from "../../Picture"
+import Section from "../../Section";
+import { Column, Container, Row } from "../../Grid";
+import Picture from "../../Picture";
 
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 
 export default function Index({ primary }) {
   const Actions = ({ sku, price }) => {
-    let priceNonComma = price.replace(/,/g, '')
+    let priceNonComma = price.replace(/,/g, "");
     const tempPrices = {
       [sku]: priceNonComma,
     };
@@ -21,7 +21,9 @@ export default function Index({ primary }) {
           {new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD",
-          }).format(tempPrices[sku]).replace(/\D00(?=\D*$)/, '')}
+          })
+            .format(tempPrices[sku])
+            .replace(/\D00(?=\D*$)/, "")}
         </span>
       </div>
     );
@@ -29,23 +31,24 @@ export default function Index({ primary }) {
 
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (
@@ -59,16 +62,31 @@ export default function Index({ primary }) {
           variants={variants}
         >
           <Row align="center">
-            <Column columns={{ xs: 14, md: 7 }} offsets={{ md: 1 }} justify="center" className="custom__column">
+            <Column
+              columns={{ xs: 14, md: 7 }}
+              offsets={{ md: 1 }}
+              justify="center"
+              className="custom__column"
+            >
               <div className={styles.productImage}>
                 <Picture image={primary.image} classes={styles.image} />
-                <Picture image={primary.overflow_image} classes={styles.overflowImage} />
+                <Picture
+                  image={primary.overflow_image}
+                  classes={styles.overflowImage}
+                />
               </div>
             </Column>
-            <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }} justify="center">
+            <Column
+              columns={{ xs: 14, md: 5 }}
+              offsets={{ md: 1 }}
+              justify="center"
+            >
               <RichText render={primary.product_details} />
               <div className={styles.productPrice}>
-                <Actions sku={primary.product_sku} price={primary.product_price[0].text} />
+                <Actions
+                  sku={primary.product_sku}
+                  price={primary.product_price[0].text}
+                />
                 <div className={styles.discountNote}>
                   <RichText render={primary.product_discount_note} />
                 </div>
@@ -79,5 +97,5 @@ export default function Index({ primary }) {
         </motion.div>
       </Container>
     </Section>
-  )
+  );
 }

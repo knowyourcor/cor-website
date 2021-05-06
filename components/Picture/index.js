@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 import styles from "./picture.module.scss";
@@ -11,23 +11,24 @@ const Picture = ({ image, classes }) => {
   const { ref, inView } = useInView({
     threshold: 0,
     rootMargin: "10px 0px",
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   const breakpointXs = image.xs;

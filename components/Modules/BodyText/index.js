@@ -1,5 +1,5 @@
 import { RichText } from "prismic-reactjs";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { Container } from "../../Grid";
 
@@ -8,23 +8,24 @@ import styles from "./text.module.scss";
 const BodyText = ({ primary }) => {
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (

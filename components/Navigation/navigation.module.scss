@@ -14,13 +14,11 @@
   transition: background-color 0.25s ease-out;
   padding: 0 1rem;
 
-  // TODO: move navigation component into a layout
-  // to prevent nav from rerendering on route change
-  // animation-name: fadeDownIn;
-  // animation-duration: 650ms;
-  // animation-delay: 250ms;
-  // animation-fill-mode: both;
-  // animation-timing-function: ease-out;
+  animation-name: fadeDownIn;
+  animation-duration: 650ms;
+  animation-delay: 250ms;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
 
   @media (min-width: $md) {
     padding: 0 3rem;

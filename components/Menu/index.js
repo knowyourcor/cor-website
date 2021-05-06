@@ -11,17 +11,17 @@ import styles from "./menu.module.scss";
 
 const Menu = ({ active, toggle, mainMenuData }) => {
   const ref = useRef();
-  useEffect(() => {
-    ref.current && ref.current.focus();
+  // useEffect(() => {
+  //   ref.current && ref.current.focus();
 
-    ref.current && active
-      ? disableBodyScroll(ref.current)
-      : enableBodyScroll(ref.current);
+  //   ref.current && active
+  //     ? disableBodyScroll(ref.current)
+  //     : enableBodyScroll(ref.current);
 
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [active]);
+  //   return () => {
+  //     clearAllBodyScrollLocks();
+  //   };
+  // }, [active]);
 
   const isActive = active ? styles["menu--active"] : "";
 

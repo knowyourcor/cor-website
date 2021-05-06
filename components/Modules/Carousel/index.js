@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import { useKeenSlider } from "keen-slider/react";
-import Link from "next/link"
+import Link from "next/link";
 
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
@@ -46,31 +46,32 @@ const Slide = ({ headline, text, image, position }) => {
 };
 
 const Carousel = ({ primary, fields }) => {
-  const [galleryOptions, setGalleryOptions] = useState()
-  const [sliderOptions, setSliderOptions] = useState()
+  const [galleryOptions, setGalleryOptions] = useState();
+  const [sliderOptions, setSliderOptions] = useState();
 
-  const [galleryRef] = useKeenSlider(galleryOptions)
+  const [galleryRef] = useKeenSlider(galleryOptions);
   const [sliderRef] = useKeenSlider(sliderOptions);
 
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   useEffect(() => {
@@ -113,7 +114,7 @@ const Carousel = ({ primary, fields }) => {
             centered: false,
           },
         },
-      })
+      });
 
       setSliderOptions({
         slidesPerView: 2.5,
@@ -153,14 +154,18 @@ const Carousel = ({ primary, fields }) => {
             centered: false,
           },
         },
-      })
-    }, 200)
+      });
+    }, 200);
 
-    return () => clearTimeout(timeout)
-  }, [])
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
-    <Section className={styles.carouselWrap} backgroundColor={primary.background_color} align="center">
+    <Section
+      className={styles.carouselWrap}
+      backgroundColor={primary.background_color}
+      align="center"
+    >
       <motion.div
         ref={ref}
         initial="hidden"
@@ -170,25 +175,43 @@ const Carousel = ({ primary, fields }) => {
       >
         <Container>
           <Row align="center" textAlign={{ xs: "left" }}>
-            <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }} className="custom__column">
-              {primary.headline[0].text && <RichText render={primary.headline} />}
-              {primary.text[0].text && primary.text_alignment === "Left" && <RichText render={primary.text} />}
+            <Column
+              columns={{ xs: 14, md: 5 }}
+              offsets={{ md: 1 }}
+              className="custom__column"
+            >
+              {primary.headline[0].text && (
+                <RichText render={primary.headline} />
+              )}
+              {primary.text[0].text && primary.text_alignment === "Left" && (
+                <RichText render={primary.text} />
+              )}
             </Column>
             {primary.text[0].text && primary.text_alignment === "Right" && (
               <Column columns={{ xs: 14, md: 7 }} offsets={{ md: 1 }}>
                 <RichText render={primary.text} />
-                <Link href="/"><a><RichText render={primary.link_label} /></a></Link>
+                <Link href="/">
+                  <a>
+                    <RichText render={primary.link_label} />
+                  </a>
+                </Link>
               </Column>
             )}
           </Row>
         </Container>
         <div
-          ref={primary.carousel_type === "Right Align Swiper" ? sliderRef : galleryRef}
+          ref={
+            primary.carousel_type === "Right Align Swiper"
+              ? sliderRef
+              : galleryRef
+          }
           className={[
             "keen-slider",
-            primary.carousel_type === "Right Align Swiper" && styles.rightAlignSwiper,
-            primary.carousel_type === "Masonry" && styles.masonry].join(" ")
-          }>
+            primary.carousel_type === "Right Align Swiper" &&
+              styles.rightAlignSwiper,
+            primary.carousel_type === "Masonry" && styles.masonry,
+          ].join(" ")}
+        >
           {fields.map((field, index) => {
             return (
               <div className="keen-slider__slide" key={`slide_${index}`}>

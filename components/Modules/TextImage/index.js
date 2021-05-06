@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { useInView } from 'react-intersection-observer';
+import Link from "next/link";
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import Section from "../../Section";
@@ -11,6 +11,7 @@ const Paragraph = ({ content, text, variants }) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
+    triggerOnce: true,
   });
 
   return (
@@ -22,32 +23,37 @@ const Paragraph = ({ content, text, variants }) => {
       variants={variants}
     >
       <RichText render={text} />
-      <Link href="/"><a className={["btn btn--inverted", styles.invertedLink].join(" ")}>{RichText.asText(content.link_label)}</a></Link>
+      <Link href="/">
+        <a className={["btn btn--inverted", styles.invertedLink].join(" ")}>
+          {RichText.asText(content.link_label)}
+        </a>
+      </Link>
     </motion.div>
-  )
-}
+  );
+};
 
 const TextImage = ({ primary }) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   return (
@@ -55,7 +61,11 @@ const TextImage = ({ primary }) => {
       <Container>
         {primary.headline[0].text && (
           <Row align="center" textAlign={{ xs: "left" }}>
-            <Column columns={{ xs: 14, md: 6 }} offsets={{ md: 1 }} className="custom__column">
+            <Column
+              columns={{ xs: 14, md: 6 }}
+              offsets={{ md: 1 }}
+              className="custom__column"
+            >
               <motion.div
                 ref={ref}
                 initial="hidden"
@@ -71,11 +81,7 @@ const TextImage = ({ primary }) => {
         <Row align="center" textAlign={{ xs: "center" }}>
           <Column
             className={styles.imgWrap}
-            columns={
-              primary.overlap_text_and_image
-                ? { xs: 14 }
-                : { xs: 14 }
-            }
+            columns={primary.overlap_text_and_image ? { xs: 14 } : { xs: 14 }}
             justify="center"
           >
             <Picture {...primary} classes={styles.image} />
@@ -89,11 +95,7 @@ const TextImage = ({ primary }) => {
             justify="center"
             className="custom__column"
           >
-            <Paragraph
-              {...primary}
-              variants={variants}
-              content={primary}
-            />
+            <Paragraph {...primary} variants={variants} content={primary} />
           </Column>
         </Row>
       </Container>

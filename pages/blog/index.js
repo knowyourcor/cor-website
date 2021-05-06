@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import moment from "moment";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import ClientOnly from "../../components/Apollo/ClientOnly";
 import SectionPostCategory from "../../components/Apollo/Categories";
-import Layout from "../../components/Layout";
+import { getLayout } from "../../components/Layout/PageLayout";
 import { Container } from "../../components/Grid";
 
 import styles from "../../styles/blog/blog.module.scss";
@@ -16,23 +16,24 @@ import { getBlogData, getMenuData } from "../../lib/api";
 const BlogPostItem = ({ item, index }) => {
   const { ref, inView } = useInView({
     threshold: 0,
+    triggerOnce: true,
   });
 
   const transition = {
     duration: 0.4,
     delay: 0.2,
-    ease: "easeInOut"
+    ease: "easeInOut",
   };
 
   const variants = {
     hidden: {
       opacity: 0,
-      transition
+      transition,
     },
     show: {
       opacity: 1,
-      transition
-    }
+      transition,
+    },
   };
 
   let date = moment(item.node.date).format("DD MMMM, YYYY");
@@ -74,16 +75,10 @@ const BlogPostItem = ({ item, index }) => {
         {index === 0 && <p>{item.node.excerpt[0].text}</p>}
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default function Blog({
-  preview,
-  pageData,
-  mainMenuData,
-  footerMenuData,
-  tertiaryMenuData,
-}) {
+export default function Blog({ pageData }) {
   const [post, setPost] = useState([]);
 
   const setPostData = () => {
@@ -96,8 +91,8 @@ export default function Blog({
         a.node.featured_post === b.node.featured_post
           ? 0
           : a.node.featured_post
-            ? -1
-            : 1
+          ? -1
+          : 1
       )
     );
   };
@@ -107,35 +102,22 @@ export default function Blog({
   }, []);
 
   return (
-    <Layout
-      classNameVal={styles.blog}
-      title="Blog"
-      preview={preview}
-      mainMenuData={mainMenuData}
-      footerMenuData={footerMenuData}
-      tertiaryMenuData={tertiaryMenuData}
-    >
+    <div className={styles.blog}>
       <div className={styles.sectionPost}>
         <Container>
           <div className={styles.postWrapper}>
             {post.map((item, i) => {
-              return (
-                <BlogPostItem 
-                  item={item}
-                  index={i}
-                  key={i}
-                />
-              );
+              return <BlogPostItem item={item} index={i} key={i} />;
             })}
           </div>
         </Container>
       </div>
-      {post.length < 5 &&
+      {post.length < 5 && (
         <ClientOnly>
           <SectionPostCategory />
         </ClientOnly>
-      }
-    </Layout>
+      )}
+    </div>
   );
 }
 
@@ -155,3 +137,5 @@ export async function getStaticProps({ preview = false, previewData }) {
     revalidate: 1, // In seconds
   };
 }
+
+Blog.getLayout = getLayout;
