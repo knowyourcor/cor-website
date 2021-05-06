@@ -99,10 +99,6 @@
   margin-right: auto;
   width: 441px;
   overflow: hidden;
-
-  & > div {
-    width: 441px;
-  }
 }
 
 .listWrap {
@@ -120,17 +116,14 @@
     & > div:first-child {
       display: none;
     }
-    
-    & > div:nth-child(2) {
-      
-      background-color: var(--font-inverted);
-      border-radius: 15px;
-      box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.03);
-    }
   }
   
   .listContent {
     padding: 75px;
+
+    background-color: var(--font-inverted);
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.03);
   }
 
   p {
@@ -177,11 +170,6 @@
     padding: 0;
   }
 
-  .swiperSlide {
-    height: 366px;
-  }
-  
-  //Target the meter
   .meter__animation {
     & > div {
       display: flex;
@@ -252,16 +240,6 @@
     }
   }
 
-  .detailsWrap {
-    left: 12px;
-
-    width: 34vw;
-
-    & > div {
-      width: 34vw;
-    }
-  }
-
   .listWrap {
     width: 380px;
 
@@ -288,13 +266,8 @@
   }
 
   .meterWrap {
-    .swiperSlide {
-      height: 271px;
-    }
-    
     .meter__animation {
       & > div {
-        width: 34vw;
         height: 271px;
   
         p {
@@ -305,6 +278,22 @@
 
     svg {
       height: 236px;
+    }
+  }
+}
+
+@media (max-width: $lg) {
+  .quadCarousel {
+    .detailsWrap {
+      width: 320px;
+    }
+  }
+}
+
+@media (max-width: $md) {
+  .quadCarousel {
+    .detailsWrap {
+      width: 260px;
     }
   }
 }
@@ -372,19 +361,8 @@
     bottom: 0;
 
     padding-left: 15px;
-    width: auto;
     height: 274px;
     pointer-events: none;
-
-    .card:first-child,
-    .card:first-child .swiper-container {
-      width: 230px;
-    }
-
-    .card:last-child,
-    .card:last-child .swiper-container {
-      width: 169px;
-    }
   }
 
   .listWrap {
@@ -401,7 +379,6 @@
     & > div {
       width: 100%;
       height: 590px;
-      // pointer-events: visible;
 
       & > div:nth-child(1) {
         bottom: 0;
@@ -413,17 +390,12 @@
         
         background-color: #f2f2f2;
       }
-      
-      & > div:nth-child(2) {
-        padding: 0;
-        height: 556px;
-
-        border-radius: 0;
-      }
     }
     
     .listContent {
       padding: 67px 16px 51px;
+
+      border-radius: 0;
     }
 
     p {
@@ -456,13 +428,10 @@
   }
 
   .meterWrap {
-    .swiperSlide {
-      height: 167px;
-    }
+    margin-right: 50px;
     
     .meter__animation {
       & > div {
-        width: 100%;
         height: 167px;
   
         p {

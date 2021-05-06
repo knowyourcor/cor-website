@@ -1,38 +1,12 @@
 @import "../../styles/_variables.scss";
 
 .container {
-  z-index: 0;
   position: absolute;
-  // transform: translate(-50%, -50%); 
-  width: 100%;
-  top: 0;
-  left: 0;
-  transform-origin: center;
-  // @media (min-width: $sm) {
-  //   width: 195%;
-  //   top: 69%;
-  //   left: 109%;
-  // }
-  // @media (min-width: $md) {
-  //   width: 155%;
-  //   top: 61%;
-  //   left: 98%;
-  // }
-  // @media (min-width: $lg) {
-  //   width: 145%;
-  //   top: 69%;
-  //   left: 93%;
-  // }
-  // @media (min-width: $xl) {
-  //   width: 120%;
-  //   top: 65%;
-  //   left: 87%;
-  // }
-  // @media (min-width: $xxl) {
-  //   width: 107%;
-  //   top: 67%;
-  //   left: 83%;
-  // }
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+
+  transform: translate(-50%, -50%);
 }
 
 .roundel {

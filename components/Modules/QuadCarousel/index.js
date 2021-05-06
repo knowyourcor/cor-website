@@ -60,6 +60,7 @@ const DetailsName = ({
       variants={fadeInVariants}
     >
       <motion.div
+        className={styles.card}
         initial={{ opacity: 1 }}
         animate={`item-${index}` === active ? "open" : "closed"}
         transition={{ staggerChildren: 0.2, delayChildren: 0.15 }}
@@ -76,7 +77,14 @@ const DetailsName = ({
   );
 };
 
-const Meter = ({ meter_number, index, active, fadeInVariants }) => {
+const Meter = ({ 
+  meter_number, 
+  index, 
+  active, 
+  fadeInVariants, 
+  childVariants, 
+  parentVariant 
+}) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
@@ -92,9 +100,19 @@ const Meter = ({ meter_number, index, active, fadeInVariants }) => {
       variants={fadeInVariants}
       className={styles.meter__animation}
     >
-      {`item-${index}` === active && (
-        <RoundelMeter className="roundelMeterWrap" score={meter_number} />
-      )}
+      <motion.div
+        className={styles.card}
+        initial={{ opacity: 1 }}
+        animate={`item-${index}` === active ? "open" : "closed"}
+        transition={{ staggerChildren: 0.2, delayChildren: 0.15 }}
+        variants={parentVariant}
+      >
+        <motion.div variants={childVariants}>
+          {`item-${index}` === active && (
+            <RoundelMeter className="roundelMeterWrap" score={meter_number} />
+          )}
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -183,10 +201,24 @@ export default function QuadCarousel({ primary, fields }) {
 
   const parentVariant = {
     open: {
-      transition: { staggerChildren: 0.1, delayChildren: 0.25 },
+      opacity: 1,
+      transition: { 
+        duration: 0.4,
+        delay: 0.2,
+        ease: "easeInOut",
+        staggerChildren: 0.1, 
+        delayChildren: 0.25 
+      },
     },
     closed: {
-      transition: { staggerChildren: 0.05, staggerDirection: -1 },
+      opacity: 0,
+      transition: { 
+        duration: 0.4,
+        delay: 0.2,
+        ease: "easeInOut",
+        staggerChildren: 0.05, 
+        staggerDirection: -1 
+      },
     },
   };
 
@@ -253,7 +285,7 @@ export default function QuadCarousel({ primary, fields }) {
         </div>
         <div className={styles.swiperWrap}>
           <div className={styles.detailsWrap}>
-            <div className={[styles.card, styles.nameWrap].join(" ")}>
+            <div className={[styles.nameWrap].join(" ")}>
               <Swiper
                 {...params}
                 onSwiper={setControlledSwiperOne}
@@ -275,7 +307,7 @@ export default function QuadCarousel({ primary, fields }) {
                 })}
               </Swiper>
             </div>
-            <div className={[styles.card, styles.meterWrap].join(" ")}>
+            <div className={[styles.meterWrap].join(" ")}>
               <Swiper {...params} onSwiper={setControlledSwiperTwo}>
                 {fields.map((item, i) => {
                   return (
