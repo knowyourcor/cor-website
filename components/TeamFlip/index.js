@@ -55,6 +55,7 @@ const TeamList = ({ name, position, description, image }) => {
       >
         <div
           className={[styles.card, activeFlip && styles.isFlipped].join(" ")}
+          onClick={() => setShowInfo(!showInfo)}
         >
           <div
             className={[styles.card__face, styles.card__facefront].join(" ")}
@@ -66,13 +67,18 @@ const TeamList = ({ name, position, description, image }) => {
             <div className={styles.info}>
               <RichText render={name} />
               <RichText render={position} />
-              <span className={styles.moreInfo} onClick={() => setShowInfo(!showInfo)}><Image src="/icons/round-info.svg" height={30} width={30} /></span>
+              <span className={styles.moreInfo}>
+                <Image src="/icons/round-info.svg" height={30} width={30} />
+              </span>
             </div>
           </div>
         </div>
-        {showInfo && 
+        {showInfo && (
           <div className={styles.infoModal}>
-            <div className={styles.backdrop} onClick={() => setShowInfo(!showInfo)}></div>
+            <div
+              className={styles.backdrop}
+              onClick={() => setShowInfo(!showInfo)}
+            ></div>
             <div className={styles.modalWrapper}>
               <div className={styles.modalHeader}>
                 <div className={styles.avatar}>
@@ -82,7 +88,10 @@ const TeamList = ({ name, position, description, image }) => {
                   <RichText render={name} />
                   <RichText render={position} />
                 </div>
-                <span className={styles.closeIcon} onClick={() => setShowInfo(!showInfo)}>
+                <span
+                  className={styles.closeIcon}
+                  onClick={() => setShowInfo(!showInfo)}
+                >
                   <Image src="/icons/close.svg" height={25} width={25} />
                 </span>
               </div>
@@ -91,7 +100,7 @@ const TeamList = ({ name, position, description, image }) => {
               </div>
             </div>
           </div>
-        }
+        )}
       </motion.div>
     </Column>
   );
