@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { RichText } from "prismic-reactjs";
@@ -19,6 +20,7 @@ const CloseIcon = () => (
 
 const TeamList = ({ name, position, description, image }) => {
   const [activeFlip, setActiveFlip] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -50,7 +52,6 @@ const TeamList = ({ name, position, description, image }) => {
         exit="hidden"
         variants={fadeInVariants}
         className={styles.contentWrap}
-        // onClick={() => setActiveFlip(!activeFlip)}
       >
         <div
           className={[styles.card, activeFlip && styles.isFlipped].join(" ")}
@@ -58,8 +59,6 @@ const TeamList = ({ name, position, description, image }) => {
           <div
             className={[styles.card__face, styles.card__facefront].join(" ")}
           >
-            {/* <img src={image.url} /> */}
-
             <div className={styles.portrait}>
               <Picture image={image} className={styles.image} />
             </div>
@@ -67,31 +66,32 @@ const TeamList = ({ name, position, description, image }) => {
             <div className={styles.info}>
               <RichText render={name} />
               <RichText render={position} />
+              <span className={styles.moreInfo} onClick={() => setShowInfo(!showInfo)}><Image src="/icons/round-info.svg" height={30} width={30} /></span>
             </div>
           </div>
-          {/* <div className={[styles.card__face, styles.card__faceback].join(" ")}>
-            <div className={styles.card__flip}>
-              <div className={styles.card__flipHeader}>
-                <div
-                  className={styles.close}
-                  onClick={() => setActiveFlip(!activeFlip)}
-                >
-                  <CloseIcon />
+        </div>
+        {showInfo && 
+          <div className={styles.infoModal}>
+            <div className={styles.backdrop} onClick={() => setShowInfo(!showInfo)}></div>
+            <div className={styles.modalWrapper}>
+              <div className={styles.modalHeader}>
+                <div className={styles.avatar}>
+                  <img src={image.url} />
                 </div>
-                <img src={image.url} />
                 <div className={styles.info}>
                   <RichText render={name} />
                   <RichText render={position} />
                 </div>
+                <span className={styles.closeIcon} onClick={() => setShowInfo(!showInfo)}>
+                  <Image src="/icons/close.svg" height={25} width={25} />
+                </span>
               </div>
-              <div className={styles.card_flipBody}>
+              <div className={styles.modalContent}>
                 <RichText render={description} />
               </div>
             </div>
-          </div> */}
-        </div>
-        {/* {activeFlip && (
-        )} */}
+          </div>
+        }
       </motion.div>
     </Column>
   );
