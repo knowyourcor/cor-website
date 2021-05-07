@@ -8,6 +8,7 @@ import CarouselHero from "./CarouselHero";
 import FullWidthImage from "./FullWidthImage";
 import Profiles from "./Profiles";
 import Quote from "./Quote";
+import Newsletter from "./Newsletter";
 import Shop from "./Shop";
 import ShopAccordion from "./ShopAccordion";
 import ShopTextImage from "./ShopTextImage";
@@ -33,6 +34,7 @@ const moduleDefs = {
   ["full_width_image"]: FullWidthImage,
   ["profiles"]: Profiles,
   ["quote"]: Quote,
+  ["newsletter"]: Newsletter,
   ["shop"]: Shop,
   ["shop_accordion"]: ShopAccordion,
   ["shop_text_image"]: ShopTextImage,

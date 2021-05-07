@@ -5,7 +5,7 @@ import styles from "./emailSignup.module.scss";
 const url =
   "//knowyourcor.us12.list-manage.com/subscribe/post?u=dae943d68d00c841aef8185af&amp;id=6de65e742b";
 
-const CustomForm = ({ status, message, onValidated }) => {
+const CustomForm = (props, { status, message, onValidated }) => {
   const emailRef = useRef();
   const [isValid, setIsValid] = useState(true);
 
@@ -41,21 +41,25 @@ const CustomForm = ({ status, message, onValidated }) => {
     };
   }, []);
 
+  const classes = [styles.form];
+
+  props.props.className ? classes.push(props.props.className) : "";
+
+  console.log(props.props.buttonText, 'me')
+
   return (
     <>
-      <div className={styles.form}>
+      <div className={classes.join(" ")}>
         <div className={styles.inputContainer}>
           <input
             ref={emailRef}
             type="email"
             className={styles.inputEmail}
-            placeholder="Stay in the loop"
+            placeholder={props.props.inputPlaceholder === undefined ? 'Stay in the loop' : props.props.inputPlaceholder}
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
           />
-          <button onClick={handleSubmit} className={styles.buttonSubmit}>
-            Submit
-          </button>
+          <button onClick={handleSubmit} className={styles.buttonSubmit}>{props.props.buttonText === undefined ? 'Submit' : props.props.buttonText}</button>
         </div>
         <div className={styles.messages}>
           {!isValid && (
@@ -85,12 +89,13 @@ const CustomForm = ({ status, message, onValidated }) => {
   );
 };
 
-const EmailSignup = () => (
+const EmailSignup = (props) => (
   <>
     <MailchimpSubscribe
       url={url}
       render={({ subscribe, status, message }) => (
         <CustomForm
+          props={props}
           status={status}
           message={message}
           onValidated={(formData) => subscribe(formData)}
