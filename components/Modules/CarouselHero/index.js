@@ -4,6 +4,7 @@ import { RichText } from "prismic-reactjs";
 import { motion, AnimatePresence } from "framer-motion";
 import Section from "../../Section";
 import Picture from "../../Picture";
+import PlayPauseToggle from "../../PlayPauseToggle";
 import styles from "./carouselHero.module.scss";
 
 const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
@@ -95,8 +96,9 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                 <video id="videoHero" autoPlay muted loop playsInline>
                   <source src={video_source} type="video/mp4" />
                 </video>
-                <button className={styles.btnPause} onClick={handlePause}>
-                  <Image src="/icons/pause-icon.svg" height={35} width={35} />
+
+                <button className={styles.btnPause}>
+                  <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
                 </button>
               </motion.div>
             )}
@@ -116,8 +118,11 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                   <video id="videoHero" autoPlay muted loop playsInline>
                     <source src={video_source} type="video/mp4" />
                   </video>
-                  <button className={styles.btnPause} onClick={handlePause}>
-                    <Image src="/icons/pause-icon.svg" height={35} width={35} />
+                  <button className={styles.btnPause}>
+                    <PlayPauseToggle
+                      isPlaying={playVideo}
+                      toggle={handlePause}
+                    />
                   </button>
                 </motion.div>
               )}
@@ -131,11 +136,10 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                     <video id="videoHero" autoPlay muted loop playsInline>
                       <source src={video_source} type="video/mp4" />
                     </video>
-                    <button className={styles.btnPause} onClick={handlePause}>
-                      <Image
-                        src="/icons/pause-icon.svg"
-                        height={35}
-                        width={35}
+                    <button className={styles.btnPause}>
+                      <PlayPauseToggle
+                        isPlaying={playVideo}
+                        toggle={handlePause}
                       />
                     </button>
                   </>
