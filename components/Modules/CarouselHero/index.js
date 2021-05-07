@@ -62,17 +62,13 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
   };
 
   const handlePause = () => {
-    const iframe = document.getElementById('video');
+    const iframe = document.getElementById('videoHero');
 
     if (playVideo) {
       setPlayVideo(false)
-    } else {
-      setPlayVideo(true)
-    }
-
-    if (!playVideo) {
       iframe.pause();
     } else {
+      setPlayVideo(true)
       iframe.play();
     }
   }
@@ -96,7 +92,7 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                 className={styles.videoBackground}
                 variants={videoItem}
               >
-                <video id="video" autoPlay muted loop playsInline>
+                <video id="videoHero" autoPlay muted loop playsInline>
                   <source src={video_source} type="video/mp4" />
                 </video>
                 <button className={styles.btnPause} onClick={handlePause}>
@@ -116,7 +112,7 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                 className={styles.videoBackground}
                 variants={videoItem}
               >
-                <video id="video" autoPlay muted loop playsInline>
+                <video id="videoHero" autoPlay muted loop playsInline>
                   <source src={video_source} type="video/mp4" />
                 </video>
                 <button className={styles.btnPause} onClick={handlePause}>
@@ -131,7 +127,7 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                 {/* <Picture image={image} /> */}
                 {video_source && (
                   <>
-                    <video id="video" autoPlay muted loop playsInline>
+                    <video id="videoHero" autoPlay muted loop playsInline>
                       <source src={video_source} type="video/mp4" />
                     </video>
                     <button className={styles.btnPause} onClick={handlePause}>

@@ -5,8 +5,6 @@ import EmailSignup from "../../EmailSignup";
 import styles from "./index.module.scss";
 
 export default function Newsletter({ primary }) {
-  console.log(primary)
-
   return (
     <Section className={styles.newsletterSection}>
       <Container>
