@@ -95,6 +95,10 @@
   }
 }
 
+.carouselAnimate {
+  width: 100%;
+}
+
 @media (min-width: 1200px) and (max-width: 1500px) {
   .carouselWrap {
     h1 {
@@ -131,11 +135,41 @@
     z-index: 5;
 
     margin-left: auto;
-    width: 65%;
-  }
+    // width: 100%;
+    width: 62%;
 
+    transition: width .3s ease-in-out;
+
+    .container {
+      picture {
+        // height: 704.7px;
+        // transition: height .3s ease-in-out;
+      }
+    }
+  }
+  
   .container {
     padding: 0 1rem;
+  }
+
+  .isSliderMove {
+    left: 0;
+    width: 100%;
+
+    // .container {
+    //   picture {
+    //     // height: 637px;
+    //     object-fit: cover;
+    //   }
+    // }
+
+    .keen__item {
+      min-width: 30% !important;
+      max-width: 30% !important;
+    }
+    // .container {
+    //   width: 55%
+    // }
   }
 }
 

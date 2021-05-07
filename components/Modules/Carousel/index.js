@@ -48,6 +48,7 @@ const Slide = ({ headline, text, image, position }) => {
 const Carousel = ({ primary, fields }) => {
   const [galleryOptions, setGalleryOptions] = useState();
   const [sliderOptions, setSliderOptions] = useState();
+  const [slideMove, setSlideMove] = useState(false)
 
   const [galleryRef] = useKeenSlider(galleryOptions);
   const [sliderRef] = useKeenSlider(sliderOptions);
@@ -118,8 +119,8 @@ const Carousel = ({ primary, fields }) => {
 
       setSliderOptions({
         slidesPerView: 2.5,
-        mode: "free",
-        loop: true,
+        mode: "free-snap",
+        // loop: true,
         spacing: 20,
         centered: false,
         breakpoints: {
@@ -154,6 +155,13 @@ const Carousel = ({ primary, fields }) => {
             centered: false,
           },
         },
+        dragStart: slider => {
+          console.log(slider.details)
+          setSlideMove(true)
+        },
+        destroyed: () => {
+          setSlideMove(false)
+        }
       });
     }, 200);
 
@@ -172,6 +180,7 @@ const Carousel = ({ primary, fields }) => {
         animate={inView ? "show" : "hidden"}
         exit="hidden"
         variants={variants}
+        className={styles.carouselAnimate}
       >
         <Container>
           <Row align="center" textAlign={{ xs: "left" }}>
@@ -181,8 +190,14 @@ const Carousel = ({ primary, fields }) => {
               className="custom__column"
             >
               {primary.headline[0].text && (
-                <RichText render={primary.headline} />
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: slideMove ? 0 : 1 }}
+                >
+                  <RichText render={primary.headline} />
+                </motion.div>
               )}
+
               {primary.text[0].text && primary.text_alignment === "Left" && (
                 <RichText render={primary.text} />
               )}
@@ -208,13 +223,14 @@ const Carousel = ({ primary, fields }) => {
           className={[
             "keen-slider",
             primary.carousel_type === "Right Align Swiper" &&
-              styles.rightAlignSwiper,
+            styles.rightAlignSwiper,
+            slideMove && styles.isSliderMove,
             primary.carousel_type === "Masonry" && styles.masonry,
           ].join(" ")}
         >
           {fields.map((field, index) => {
             return (
-              <div className="keen-slider__slide" key={`slide_${index}`}>
+              <div className={["keen-slider__slide", styles.keen__item].join(" ")} key={`slide_${index}`}>
                 <Slide {...field} />
               </div>
             );
