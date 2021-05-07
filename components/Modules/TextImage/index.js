@@ -7,6 +7,30 @@ import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
 import styles from "./textImage.module.scss";
 
+export const linkResolver = (doc) => {
+  // URL for a category type
+  if (doc.type === 'category') {
+    return `/category/${doc.uid}`
+  }
+
+  // URL for a product type
+  if (doc.type === 'product') {
+    return `/product/${doc.uid}`
+  }
+
+  // URL for a page type
+  if (doc.type === 'page') {
+    return `/${doc.uid}`
+  }
+
+  if (doc.type === 'shop') {
+    return `/${doc.uid}`
+  }
+
+  // Backup for all other types
+  return '/'
+}
+
 const Paragraph = ({ content, text, variants }) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
@@ -23,11 +47,14 @@ const Paragraph = ({ content, text, variants }) => {
       variants={variants}
     >
       <RichText render={text} />
-      <Link href="/">
+      <div className={styles.invertedLink}>
+        <RichText render={content.link_title} linkResolver={linkResolver} />
+      </div>
+      {/* <Link href="/">
         <a className={["btn btn--inverted", styles.invertedLink].join(" ")}>
-          {RichText.asText(content.link_label)}
+          {RichText.asText(content.link_title)}
         </a>
-      </Link>
+      </Link> */}
     </motion.div>
   );
 };

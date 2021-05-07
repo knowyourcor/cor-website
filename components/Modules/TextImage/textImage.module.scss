@@ -29,6 +29,32 @@
 
 .invertedLink {
   margin-left: 0;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-left: 0;
+    width: 221px;
+    max-width: 100%;
+    height: 65px;
+
+    font-family: var(--font-sans-bold);
+    font-size: 16.5px;
+
+    background-color: transparent;
+    border: solid 1.5px var(--font-primary);
+    border-radius: 33px;
+
+    transition: background-color .3s ease-in-out;
+
+    &:hover, &:active {
+      color: var(--font-inverted);
+      
+      background-color: var(--font-primary);
+    }
+  }
 }
 
 @media (max-width: $xl) {
@@ -52,6 +78,17 @@
     h1 {
       font-size: 34px;
       letter-spacing: -1.02px;
+    }
+  }
+}
+
+@media (max-width: $sm) {
+  .invertedLink {
+    a {
+      width: 170px;
+      height: 45px;
+
+      font-size: 12px;
     }
   }
 }
