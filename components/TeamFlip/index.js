@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
+import ReactDOM from 'react-dom';
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { RichText } from "prismic-reactjs";
+import Modal from 'react-modal';
 import Picture from "../Picture";
 import { Column, Container, Row } from "../Grid";
 
@@ -18,9 +20,15 @@ const CloseIcon = () => (
   </svg>
 );
 
+const customModalInfo = {
+  overlay : {
+    zIndex: '1000',
+  },
+};
+
 const TeamList = ({ name, position, description, image }) => {
   const [activeFlip, setActiveFlip] = useState(false);
-  const [showInfo, setShowInfo] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -43,6 +51,20 @@ const TeamList = ({ name, position, description, image }) => {
     },
   };
 
+  const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      Modal.setAppElement(document.getElementById('#modalInfo'));
+    }
+  }, [])
+
   return (
     <Column columns={{ xs: 14, sm: 4 }}>
       <motion.div
@@ -55,7 +77,7 @@ const TeamList = ({ name, position, description, image }) => {
       >
         <div
           className={[styles.card, activeFlip && styles.isFlipped].join(" ")}
-          onClick={() => setShowInfo(!showInfo)}
+          onClick={openModal}
         >
           <div
             className={[styles.card__face, styles.card__facefront].join(" ")}
@@ -63,7 +85,6 @@ const TeamList = ({ name, position, description, image }) => {
             <div className={styles.portrait}>
               <Picture image={image} className={styles.image} />
             </div>
-
             <div className={styles.info}>
               <RichText render={name} />
               <RichText render={position} />
@@ -73,34 +94,36 @@ const TeamList = ({ name, position, description, image }) => {
             </div>
           </div>
         </div>
-        {showInfo && (
-          <div className={styles.infoModal}>
-            <div
-              className={styles.backdrop}
-              onClick={() => setShowInfo(!showInfo)}
-            ></div>
-            <div className={styles.modalWrapper}>
-              <div className={styles.modalHeader}>
-                <div className={styles.avatar}>
-                  <img src={image.url} />
-                </div>
-                <div className={styles.info}>
-                  <RichText render={name} />
-                  <RichText render={position} />
-                </div>
-                <span
-                  className={styles.closeIcon}
-                  onClick={() => setShowInfo(!showInfo)}
-                >
-                  <Image src="/icons/close.svg" height={25} width={25} />
-                </span>
+        <Modal
+          id="#modalInfo"
+          className={styles.modalInfo}
+          style={customModalInfo}
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Info Modal"
+          ariaHideApp={false}
+        >
+          <div className={styles.modalWrapper}>
+            <div className={styles.modalHeader}>
+              <div className={styles.avatar}>
+                <img src={image.url} />
               </div>
-              <div className={styles.modalContent}>
-                <RichText render={description} />
+              <div className={styles.info}>
+                <RichText render={name} />
+                <RichText render={position} />
               </div>
+              <span
+                className={styles.closeIcon}
+                onClick={closeModal}
+              >
+                <Image src="/icons/close.svg" height={25} width={25} />
+              </span>
+            </div>
+            <div className={styles.modalContent}>
+              <RichText render={description} />
             </div>
           </div>
-        )}
+        </Modal>
       </motion.div>
     </Column>
   );
