@@ -46,6 +46,15 @@
     background-color: var(--font-inverted);
   }
 
+  .btnPause {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    z-index: 1;
+
+    opacity: .3;
+  }
+
   @media (min-width: $md) {
     width: 100%;
     padding-top: 56.25%;

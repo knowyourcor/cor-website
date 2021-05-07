@@ -1,12 +1,14 @@
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-
+import Image from "next/image";
 import { Container, Row, Column } from "../../Grid";
 import Button from "../../Button";
 import Picture from "../../Picture";
 import styles from "./fullWidthImage.module.scss";
+import { useState } from "react";
 
 const FullWidthImage = ({ primary }) => {
+  const [playVideo, setPlayVideo] = useState(true)
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -29,14 +31,35 @@ const FullWidthImage = ({ primary }) => {
     },
   };
 
+  const handlePause = () => {
+    const iframe = document.getElementById('video');
+
+    if (playVideo) {
+      setPlayVideo(false)
+    } else {
+      setPlayVideo(true)
+    }
+
+    if (!playVideo) {
+      iframe.pause();
+    } else {
+      iframe.play();
+    }
+  }
+
   return (
     <section className={styles.section}>
       <div className={styles.backgroundImage}>
         <Picture image={primary.image} />
         {primary.video_source && (
-          <video autoPlay muted loop playsInline>
-            <source src={primary.video_source} type="video/mp4" />
-          </video>
+          <>
+            <video id="video" autoPlay muted loop playsInline>
+              <source src={primary.video_source} type="video/mp4" />
+            </video>
+            <button className={styles.btnPause} onClick={handlePause}>
+              <Image src="/icons/pause-icon.svg" height={35} width={35} />
+            </button>
+          </>
         )}
       </div>
       <div className={styles.content}>

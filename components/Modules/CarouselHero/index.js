@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { RichText } from "prismic-reactjs";
 import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
@@ -8,6 +9,8 @@ import Button from "../../Button";
 import styles from "./carouselHero.module.scss";
 
 const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
+  const [playVideo, setPlayVideo] = useState(true)
+  
   const slideVariant = {
     visible: {
       opacity: 1,
@@ -58,6 +61,22 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
     },
   };
 
+  const handlePause = () => {
+    const iframe = document.getElementById('video');
+
+    if (playVideo) {
+      setPlayVideo(false)
+    } else {
+      setPlayVideo(true)
+    }
+
+    if (!playVideo) {
+      iframe.pause();
+    } else {
+      iframe.play();
+    }
+  }
+
   return (
     <>
       {isOpen && (
@@ -77,9 +96,12 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                 className={styles.videoBackground}
                 variants={videoItem}
               >
-                <video autoPlay muted loop playsInline>
+                <video id="video" autoPlay muted loop playsInline>
                   <source src={video_source} type="video/mp4" />
                 </video>
+                <button className={styles.btnPause} onClick={handlePause}>
+                  <Image src="/icons/pause-icon.svg" height={35} width={35} />
+                </button>
               </motion.div>
             }
           </div>
@@ -94,9 +116,12 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                 className={styles.videoBackground}
                 variants={videoItem}
               >
-                <video autoPlay muted loop playsInline>
+                <video id="video" autoPlay muted loop playsInline>
                   <source src={video_source} type="video/mp4" />
                 </video>
+                <button className={styles.btnPause} onClick={handlePause}>
+                  <Image src="/icons/pause-icon.svg" height={35} width={35} />
+                </button>
               </motion.div>
             )}
           </div>
@@ -105,9 +130,14 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
               <div className={styles.backgroundImage}>
                 {/* <Picture image={image} /> */}
                 {video_source && (
-                  <video autoPlay muted loop playsInline>
-                    <source src={video_source} type="video/mp4" />
-                  </video>
+                  <>
+                    <video id="video" autoPlay muted loop playsInline>
+                      <source src={video_source} type="video/mp4" />
+                    </video>
+                    <button className={styles.btnPause} onClick={handlePause}>
+                      <Image src="/icons/pause-icon.svg" height={35} width={35} />
+                    </button>
+                  </>
                 )}
               </div>
               <div className={styles.content}>
