@@ -331,11 +331,12 @@ p {
   border: solid 1.5px var(--font-primary);
   border-radius: 33px;
 
-  transition: background-color .3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     color: var(--font-inverted);
-    
+
     background-color: var(--font-primary);
   }
 }

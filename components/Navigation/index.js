@@ -68,7 +68,7 @@ const Navigation = ({ mainMenuData }) => {
             </a>
           </Link>
           <Link href="/">
-            <a className={styles.getApp__btn}>Get App</a>
+            <a className={styles.getApp}>Get App</a>
           </Link>
         </div>
       </motion.nav>
