@@ -119,8 +119,8 @@ const Carousel = ({ primary, fields }) => {
 
       setSliderOptions({
         slidesPerView: 2.5,
-        mode: "free",
-        loop: true,
+        mode: "free-snap",
+        // loop: true,
         spacing: 20,
         centered: false,
         breakpoints: {

@@ -138,7 +138,7 @@
     // width: 100%;
     width: 62%;
 
-    // transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
 
     .container {
       picture {
@@ -167,6 +167,9 @@
       min-width: 30% !important;
       max-width: 30% !important;
     }
+    // .container {
+    //   width: 55%
+    // }
   }
 }
 
