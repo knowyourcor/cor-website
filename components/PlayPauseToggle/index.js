@@ -1,4 +1,4 @@
-import styles from "./PlayPauseToggle.module.scss";
+import styles from "./playPauseToggle.module.scss";
 
 export default function PlayPauseToggle({ isPlaying, toggle }) {
   return (
