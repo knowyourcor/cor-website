@@ -44,7 +44,14 @@ const HealthMeter = ({ fields, expanded }) => (
                     // rotate: [180, 250],
                     // rotate: index === 1 && isExpanded ? [170, -110] : [180, 250],
                     // rotate: index === 1 && isExpanded ? [180, 250] : [250, 250],
-                    rotate: index === 1 && isExpanded ? [90, -110] : [250, 250],
+                    // rotate: index === 1 && isExpanded ? [90, -110] : [250, 250],
+                    rotate: index === 1 && isExpanded
+                      ? [-110, -180]
+                      : index === 2 && isExpanded
+                        ? [180, 20]
+                        : index === 3 && isExpanded
+                          ? [20, -40]
+                          : [250, 250],
                     strokeDashoffset: [270, 270],
                   }}
                   transition={{
@@ -69,7 +76,14 @@ const HealthMeter = ({ fields, expanded }) => (
                       // rotate: [180, 395],
                       // rotate: index === 3 && isExpanded ? [190, 35] : [180, 395],
                       // rotate: index === 3 && isExpanded ? [180, 395] : [395, 395],
-                      rotate: index === 3 && isExpanded ? [190, 35] : [395, 395],
+                      // rotate: index === 3 && isExpanded ? [190, 35] : [395, 395],
+                      rotate: index === 3 && isExpanded
+                        ? [-110, -180]
+                        : index === 1 && isExpanded
+                          ? [35, -35]
+                          : index === 2 && isExpanded
+                            ? [-35, -110]
+                            : [395, 395],
                       strokeDashoffset: [270, 270],
                     }}
                     transition={{
@@ -93,7 +107,14 @@ const HealthMeter = ({ fields, expanded }) => (
                     // rotate: [180, 320],
                     // rotate: index === 2 && isExpanded ? [45, -40] : [180, 320],
                     // rotate: index === 2 && isExpanded ? [180, 320] : [320, 320],
-                    rotate: index === 2 && isExpanded ? [45, -40] : [320, 320],
+                    // rotate: index === 2 && isExpanded ? [45, -40] : [320, 320],
+                    rotate: index === 2 && isExpanded
+                      ? [-110, -180]
+                      : index === 1 && isExpanded
+                        ? [-40, -110]
+                        : index === 3 && isExpanded
+                          ? [180, 20]
+                          : [320, 320],
                     strokeDashoffset: [270, 270],
                   }}
                   transition={{
@@ -115,7 +136,16 @@ const HealthMeter = ({ fields, expanded }) => (
                   animate={{
                     // rotate: [170, 180],
                     // rotate: index === 0 && isExpanded ? [90, 180] : [160, 180],
-                    rotate: index === 0 && isExpanded ? [90, 180] : [180, 180],
+                    // rotate: index === 0 && isExpanded ? [90, 180] : [180, 180],
+                    rotate: index === 0 && isExpanded
+                      ? [90, 180]
+                      : index === 1 && isExpanded
+                        ? [180, 30]
+                        : index === 2 && isExpanded
+                          ? [30, -45]
+                          : index === 3 && isExpanded
+                            ? [-45, -110]
+                            : [180, 180],
                     strokeDashoffset: [270, 270],
                   }}
                   transition={{
