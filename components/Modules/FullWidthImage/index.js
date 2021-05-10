@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { Container, Row, Column } from "../../Grid";
 import Button from "../../Button";
+import PlayPauseToggle from "../../PlayPauseToggle";
 import Picture from "../../Picture";
 import styles from "./fullWidthImage.module.scss";
 
@@ -52,8 +52,11 @@ const FullWidthImage = ({ primary }) => {
             <video id="videoFullWidthImage" autoPlay muted loop playsInline>
               <source src={primary.video_source} type="video/mp4" />
             </video>
-            <button className={styles.btnPause} onClick={handlePause}>
-              <Image src="/icons/pause-icon.svg" height={35} width={35} />
+            <button className={styles.btnPause}>
+              <PlayPauseToggle
+                isPlaying={playVideo}
+                toggle={handlePause}
+              />
             </button>
           </>
         )}
