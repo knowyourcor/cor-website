@@ -39,7 +39,7 @@
 }
 
 .scrollContainer {
-  @media (max-width: $sm) {
+  @media (max-width: 767px) {
     z-index: 1;
     width: 100%;
     min-height: 100vh;

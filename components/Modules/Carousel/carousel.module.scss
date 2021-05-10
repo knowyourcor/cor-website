@@ -100,7 +100,13 @@
   width: 100%;
 }
 
-@media (min-width: 1200px) and (max-width: 1500px) {
+.rightAlignSwiper {
+  .content {
+    padding: 18.4px 22.8px;
+  }
+}
+
+@media (max-width: $xxl) {
   .carouselWrap {
     h1 {
       font-size: 33px;
@@ -130,46 +136,18 @@
 @media (min-width: 992px) {
   .rightAlignSwiper {
     position: absolute;
-    // top: 0;
     top: 114px;
     right: 0;
     z-index: 5;
 
+    padding-left: 38vw;
     margin-left: auto;
-    // width: 100%;
-    width: 62%;
-
-    transition: width .3s ease-in-out;
-
-    .container {
-      picture {
-        // height: 704.7px;
-        // transition: height .3s ease-in-out;
-      }
-    }
+    width: 100%;
+    overflow-x: hidden;
   }
   
   .container {
     padding: 0 1rem;
-  }
-
-  .isSliderMove {
-    // width: 100%;
-
-    // .container {
-    //   picture {
-    //     // height: 637px;
-    //     object-fit: cover;
-    //   }
-    // }
-
-    // .keen__item {
-    //   min-width: 30% !important;
-    //   max-width: 30% !important;
-    // }
-    // .container {
-    //   width: 55%
-    // }
   }
 }
 
@@ -184,9 +162,15 @@
 
       font-size: 34px;
     }
+
+    .headingWrap {
+      opacity: 1 !important;
+    }
   }
 
   .rightAlignSwiper {
+    z-index: 50;
+
     padding-left: 15px;
 
     .content {

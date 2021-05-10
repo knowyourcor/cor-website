@@ -156,8 +156,11 @@ const Carousel = ({ primary, fields }) => {
           },
         },
         dragStart: slider => {
-          console.log(slider.details)
           setSlideMove(true)
+        },
+        dragEnd: slider => {
+          console.log(slider.details())
+          if (slider.details().direction === -1 && slider.details().absoluteSlide === 0) setSlideMove(false)
         },
         destroyed: () => {
           setSlideMove(false)
@@ -193,6 +196,7 @@ const Carousel = ({ primary, fields }) => {
                 <motion.div
                   initial={{ opacity: 1 }}
                   animate={{ opacity: slideMove ? 0 : 1 }}
+                  className={styles.headingWrap}
                 >
                   <RichText render={primary.headline} />
                 </motion.div>
