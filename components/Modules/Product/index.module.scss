@@ -61,22 +61,26 @@
 }
 
 .addToCart {
-  padding: 1rem 1.5rem;
   margin-top: 45px;
-  width: 180px;
 
-  font-family: var(--font-sans-bold);
-  font-size: 1rem;
-  line-height: 1;
-  color: var(--font-inverted);
-
-  background-color: var(--font-primary);
-  border-radius:  50px 50px;
+  p a {
+    padding: 1rem 1.5rem;
+    margin-top: 45px;
+    width: 180px;
   
-  transition: background-color 250ms ease-out;
+    font-family: var(--font-sans-bold);
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--font-inverted);
   
-  &:hover {
-    background-color: var(--color-teal-dark);
+    background-color: var(--font-primary);
+    border-radius:  50px 50px;
+    
+    transition: background-color 250ms ease-out;
+    
+    &:hover {
+      background-color: var(--color-teal-dark);
+    }
   }
 }
 
@@ -109,11 +113,14 @@
   }
 
   .addToCart {
-    padding-top: 13px;
-    padding-bottom: 13px;
     margin-top: 35px;
 
-    font-size: 13px;
+    p a {
+      padding-top: 13px;
+      padding-bottom: 13px;
+  
+      font-size: 13px;
+    }
   }
 }
 
@@ -158,11 +165,14 @@
   }
 
   .addToCart {
-    padding-top: 13px;
-    padding-bottom: 13px;
     margin-top: 33.6px;
-
-    font-size: 12px;
+    
+    p a {
+      padding-top: 13px;
+      padding-bottom: 13px;
+  
+      font-size: 12px;
+    }
   }
 }
 

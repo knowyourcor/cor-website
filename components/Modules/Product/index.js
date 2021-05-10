@@ -8,6 +8,30 @@ import Picture from "../../Picture";
 
 import styles from "./index.module.scss";
 
+export const linkResolver = (doc) => {
+  // URL for a category type
+  if (doc.type === 'category') {
+    return `/category/${doc.uid}`
+  }
+
+  // URL for a product type
+  if (doc.type === 'product') {
+    return `/product/${doc.uid}`
+  }
+
+  // URL for a page type
+  if (doc.type === 'page') {
+    return `/${doc.uid}`
+  }
+
+  if (doc.type === 'shop') {
+    return `/${doc.uid}`
+  }
+
+  // Backup for all other types
+  return '/'
+}
+
 export default function Index({ primary }) {
   const Actions = ({ sku, price }) => {
     let priceNonComma = price.replace(/,/g, "");
@@ -91,7 +115,9 @@ export default function Index({ primary }) {
                   <RichText render={primary.product_discount_note} />
                 </div>
               </div>
-              <button className={styles.addToCart}>Buy Now</button>
+              <div className={styles.addToCart}>
+                <RichText render={primary.link} linkResolver={linkResolver} />
+              </div>
             </Column>
           </Row>
         </motion.div>
