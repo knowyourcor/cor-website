@@ -116,7 +116,7 @@
     }
 
     p {
-      margin-top: 184px;
+      margin-top: 15%;
       width: 100%;
 
       font-size: 16px;
@@ -138,7 +138,7 @@
   }
 
   .imageDetailsHolder {
-    margin-top: 103px;
+    margin-top: 12%;
 
     picture {
       width: 58vw;
@@ -154,35 +154,5 @@
 
       width: 43vw;
     }
-  }
-}
-
-@media (max-width: $sm) {
-  .imageDetailsHolder {
-    picture {
-      width: 73vw;
-    }
-  }
-
-  .overflowImage {
-    picture {
-      width: 57vw;
-    }
-  }
-}
-
-@media (max-width: $xs) {
-  .dataProgress {
-    p {
-      margin-top: 112px;
-    }
-  }
-
-  .imageDetailsHolder {
-    margin-top: 62px;
-  }
-
-  .overflowImage {
-    margin-top: 29px;
   }
 }
