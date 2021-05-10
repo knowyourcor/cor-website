@@ -18,8 +18,7 @@
 .programs {
   position: relative;
 
-  margin-top: 120px;
-  padding-bottom: 35px;
+  margin-top: 77px;
 }
 
 .item {
@@ -28,6 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 695px;
 
   h2,
   h3,
@@ -80,7 +80,7 @@
 
 .contentTitle {
   left: 9.5%;
-  bottom: -101px;
+  bottom: -59px;
   
   h2,
   h3,
@@ -100,7 +100,7 @@
 
 .contentProgram {
   right: 9.5%;
-  bottom: -116px;
+  bottom: -72px;
 
   h2,
   h3,
@@ -115,6 +115,8 @@
 }
 
 .imageBox {
+  position: absolute;
+
   margin-left: -120px;
   width: 720px;
 
@@ -210,10 +212,6 @@
 }
 
 @media (max-width: $lg) {
-  .programs {
-    margin-top: 80px;
-  }
-
   .contentTitle {
     left: 0;
 
@@ -252,6 +250,14 @@
     padding-top: 7rem;
   }
 
+  .programs {
+    margin-top: 35px;
+  }
+
+  .item {
+    height: 580px;
+  }
+
   .contentTitle {
     left: 0;
 
@@ -284,7 +290,7 @@
 
   .imageBox {
     margin: auto;
-    width: 80%;
+    width: 610px;
   }
 
   .programChecklist {
@@ -318,12 +324,13 @@
   }
 
   .programs {
-    padding-bottom: 0;
+    margin-top: 75px;
   }
 
   .item {
     flex-wrap: wrap;
     justify-content: flex-end;
+    height: auto;
   }
 
   .contentTitle {
