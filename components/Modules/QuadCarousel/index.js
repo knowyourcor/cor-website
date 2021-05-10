@@ -77,7 +77,6 @@ export default function QuadCarousel({ primary, fields }) {
             </motion.div>
           </Column>
         </Row>
-
         <Row justify="center" textAlign={{ xs: "center" }}>
           <Column columns={{ xs: 14, sm: 12, md: 8 }}>
             <motion.div
@@ -99,7 +98,7 @@ export default function QuadCarousel({ primary, fields }) {
             initial="exit"
             animate="enter"
             exit="exit"
-            className="programs"
+            className={styles.programs}
           >
             {cloneFields.map((props) => (
               <Fragment key={`item_${props.id}`}>

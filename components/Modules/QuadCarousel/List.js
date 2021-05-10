@@ -48,7 +48,7 @@ export default function Item({ list, id }) {
               />
             </svg>
           </div>
-          <span>{item.text}</span>
+          <>{item.text}</>
         </motion.li>
       ))}
     </ul>
