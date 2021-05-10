@@ -65,7 +65,9 @@ export default function Index({ primary }) {
               className="custom__column"
             >
               <div className={styles.imageDetailsHolder}>
-                <Picture image={primary.big_image} />
+                <div className={styles.photo}>
+                  <Picture image={primary.photo} />
+                </div>
                 <motion.div
                   ref={ref}
                   initial="hidden"
@@ -80,8 +82,8 @@ export default function Index({ primary }) {
             </Column>
             <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }}>
               <Heading {...primary} fadeInVariants={fadeInVariants} />
-              <div className={styles.overflowImage}>
-                <Picture image={primary.overflow_image} />
+              <div className={styles.screenshot}>
+                <Picture image={primary.screenshot} />
               </div>
             </Column>
           </Row>
