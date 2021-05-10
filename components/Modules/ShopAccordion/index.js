@@ -82,12 +82,17 @@ export default function ShopAccordion({ primary, fields }) {
       }}
       className={styles.accordionWrap}
     >
-      <Row align="center">
-        <Column
-          columns={{ xs: 14, md: 5, xl: 4 }}
-          offsets={{ md: 1 }}
-          justify="center"
-        >
+      {primary.headline[0].text && (
+        <Row>
+          <Column columns={{ xs: 12 }} offsets={{ md: 1 }}>
+            <div className={styles.headline}>
+              <RichText render={primary.headline} />
+            </div>
+          </Column>
+        </Row>
+      )}
+      <Row>
+        <Column columns={{ xs: 14, md: 5, xl: 4 }} offsets={{ md: 1 }}>
           <motion.div
             ref={ref}
             initial="hidden"
@@ -95,11 +100,6 @@ export default function ShopAccordion({ primary, fields }) {
             exit="hidden"
             variants={variants}
           >
-            {primary.headline[0].text && (
-              <div className={styles.headline}>
-                <RichText render={primary.headline} />
-              </div>
-            )}
             <div className={styles.accordion}>
               <motion.div className={styles.items}>
                 {fields.map((data, index) => (
