@@ -29,8 +29,6 @@
     position: relative;
     z-index: 1;
 
-    padding: 18px 23px 27px;
-
     background-color: white;
     border-radius: 0 0 8px 8px;
 
@@ -89,7 +87,10 @@
     &:nth-child(even) .portrait,
     &:nth-child(even) .portrait picture {
       height: 453px;
-
+    }
+    
+    .portrait,
+    .portrait picture {
       border-radius: 15px;
     }
   }
