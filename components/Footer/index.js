@@ -51,8 +51,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
       <li key={`${link.link?._meta?.uid}_${index}`}>
         <Link
           activeClassName={styles.active}
-          href="/[slug]"
-          as={`/${link.link?._meta?.uid}`}
+          href={`/${link.link?._meta?.uid}`}
         >
           <a>{link.label[0].text}</a>
         </Link>
@@ -135,8 +134,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                         <li key={`${link.link?._meta?.uid}_${index}`}>
                           <Link
                             activeClassName={styles.active}
-                            href="/[slug]"
-                            as={`/${link.link?._meta?.uid}`}
+                            href={`/${link.link?._meta?.uid}`}
                           >
                             <a>{link.label[0].text}</a>
                           </Link>
