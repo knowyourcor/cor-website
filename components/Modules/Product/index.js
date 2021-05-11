@@ -9,6 +9,7 @@ import Picture from "../../Picture";
 import styles from "./index.module.scss";
 
 export const linkResolver = (doc) => {
+  console.log(doc.link_type);
   // URL for a category type
   if (doc.type === "category") {
     return `/category/${doc.uid}`;
@@ -28,30 +29,16 @@ export const linkResolver = (doc) => {
     return `/${doc.uid}`;
   }
 
+  if (doc.link_type === "Document") {
+    return `/${doc.uid}`;
+  }
+
   // Backup for all other types
   return "/";
 };
 
 export default function Index({ primary }) {
-  const Actions = ({ sku, price }) => {
-    let priceNonComma = price.replace(/,/g, "");
-    const tempPrices = {
-      [sku]: priceNonComma,
-    };
-
-    return (
-      <div className={styles.shopActions}>
-        <span>
-          {new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-          })
-            .format(tempPrices[sku])
-            .replace(/\D00(?=\D*$)/, "")}
-        </span>
-      </div>
-    );
-  };
+  console.log(primary.link);
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -106,16 +93,18 @@ export default function Index({ primary }) {
               justify="center"
             >
               <RichText render={primary.product_details} />
-              <div className={styles.productPrice}>
-                <Actions
-                  sku={primary.product_sku}
-                  price={primary.product_price[0].text}
-                />
-                <div className={styles.discountNote}>
-                  <RichText render={primary.product_discount_note} />
+              <div className={styles.productPurchase}>
+                <div className={styles.productPriceLabel}>
+                  <RichText render={primary.product_price_label} />
+                </div>
+                <div className={styles.productPrice}>
+                  <RichText render={primary.product_price} />
+                </div>
+                <div className={styles.productPriceSecondary}>
+                  <RichText render={primary.product_secondary_price} />
                 </div>
               </div>
-              <div className={styles.addToCart}>
+              <div className={styles.button}>
                 <RichText render={primary.link} linkResolver={linkResolver} />
               </div>
             </Column>

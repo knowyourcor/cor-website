@@ -1,23 +1,7 @@
 @import "../../../styles/_variables.scss";
 
-.productSection {
-  h2 {
-    margin-bottom: 40px;
-
-    font-size: 60px;
-    font-weight: normal;
-    line-height: 1.17;
-    letter-spacing: -1.8px;
-  }
-
-  p {
-    font-size: 20px;
-  }
-}
-
 .productImage {
   position: relative;
-
   .screenshot {
     position: absolute;
     top: 0;
@@ -37,42 +21,53 @@
   }
 }
 
-.productPrice {
-  padding: 19.6px 0;
-
-  border-top: 1px solid var(--font-primary);
-  border-bottom: 1px solid var(--font-primary);
-
-  .shopActions span {
-    margin-bottom: 10px;
-
-    font-size: 30px;
-    font-weight: bold;
-  }
-
-  .discountNote {
-    display: flex;
-    align-items: center;
-
-    img {
-      padding-left: 8px;
-      height: 23px;
-    }
-
-    p {
-      font-size: 16.5px;
-      font-weight: normal;
-    }
-  }
-
+.productPurchase {
+  padding: 0.5rem 0;
+  border-top: 0.75px solid var(--font-primary);
+  border-bottom: 0.75px solid var(--font-primary);
   p {
-    margin-bottom: 0;
+    margin: 0;
   }
 }
 
-.addToCart {
-  margin-top: 45px;
+.productPriceLabel {
+  p {
+    font-size: 0.95rem;
+    display: inline;
+  }
+  img {
+    display: inline;
+    padding: 0 0.25rem;
+    height: 24px;
+    transform: translateY(1px);
+  }
+  a {
+    &:link,
+    &:visited {
+      font-size: 0.65rem;
+      text-decoration: underline;
+    }
+  }
+}
 
+.productPrice {
+  p {
+    font-family: var(--font-sans-bold);
+    font-size: 2.75rem;
+    line-height: 1;
+    margin: 0.25rem 0 1rem;
+  }
+}
+
+.productPriceSecondary {
+  margin: 0 0 0.5rem;
+  p {
+    font-size: 0.95rem;
+  }
+}
+
+.button {
+  margin-top: 45px;
   p a {
     padding: 1rem 1.5rem;
     margin-top: 45px;
@@ -94,101 +89,101 @@
   }
 }
 
-@media (max-width: $xl) {
-  .productSection {
-    h2 {
-      font-size: 39px;
-    }
+// @media (max-width: $xl) {
+//   .productSection {
+//     h2 {
+//       font-size: 39px;
+//     }
 
-    p {
-      font-size: 16px;
-    }
-  }
+//     p {
+//       font-size: 16px;
+//     }
+//   }
 
-  .productPrice {
-    .shopActions span {
-      font-size: 21px;
-    }
+//   .productPurchase {
+//     .shopActions span {
+//       font-size: 21px;
+//     }
 
-    .discountNote {
-      img {
-        padding-left: 3px;
-        height: 17px;
-      }
+//     .discountNote {
+//       img {
+//         padding-left: 3px;
+//         height: 17px;
+//       }
 
-      p {
-        font-size: 12px;
-      }
-    }
-  }
+//       p {
+//         font-size: 12px;
+//       }
+//     }
+//   }
 
-  .addToCart {
-    margin-top: 35px;
+//   .addToCart {
+//     margin-top: 35px;
 
-    p a {
-      padding-top: 13px;
-      padding-bottom: 13px;
+//     p a {
+//       padding-top: 13px;
+//       padding-bottom: 13px;
 
-      font-size: 13px;
-    }
-  }
-}
+//       font-size: 13px;
+//     }
+//   }
+// }
 
-@media (max-width: 1023px) {
-  .productSection {
-    padding-top: 100px;
-    padding-bottom: 70px;
-  }
+// @media (max-width: 1023px) {
+//   .productSection {
+//     padding-top: 100px;
+//     padding-bottom: 70px;
+//   }
 
-  .productImage {
-    margin-bottom: 70.2px;
+//   .productImage {
+//     margin-bottom: 70.2px;
 
-    .image {
-      width: 86vw;
-    }
+//     .image {
+//       width: 86vw;
+//     }
 
-    .screenshot {
-      right: 4%;
-      width: 35%;
-    }
-  }
-}
+//     .screenshot {
+//       right: 4%;
+//       width: 35%;
+//     }
+//   }
+// }
 
-@media (max-width: $sm) {
-  .productSection {
-    h2 {
-      font-size: 34px;
-    }
+// @media (max-width: $sm) {
+//   .productSection {
+//     h2 {
+//       font-size: 34px;
+//     }
 
-    p {
-      font-size: 16px;
-    }
-  }
+//     p {
+//       font-size: 16px;
+//     }
+//   }
 
-  .productPrice {
-    padding-top: 12.6px;
+//   .productPurchase {
+//     padding-top: 12.6px;
 
-    .shopActions span {
-      font-size: 24px;
-    }
-  }
+//     .shopActions span {
+//       font-size: 24px;
+//     }
+//   }
 
-  .addToCart {
-    margin-top: 33.6px;
+//   .addToCart {
+//     margin-top: 33.6px;
 
-    p a {
-      padding-top: 13px;
-      padding-bottom: 13px;
+//     p a {
+//       padding-top: 13px;
+//       padding-bottom: 13px;
 
-      font-size: 12px;
-    }
-  }
-}
+//       font-size: 12px;
+//     }
+//   }
+// }
 
-@media (max-width: $xs) {
-  .productImage {
-    .screenshot {
-      right: 5%;
-    }
-  }
-}
+// @media (max-width: $xs) {
+//   .productImage {
+//     .screenshot {
+//       right: 5%;
+//     }
+//   }
+// }
