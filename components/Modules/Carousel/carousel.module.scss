@@ -1,192 +1,64 @@
 @import "../../../styles/_variables.scss";
-
-.carouselWrap {
-  padding-top: 21rem;
-  padding-bottom: 74px;
-  margin-top: -213px;
-  margin-bottom: 384px;
-  overflow: inherit;
-
-  h1 {
-    font-size: 50px;
-  }
-
-  a {
-    font-weight: 500;
-    text-decoration: underline;
+.carousel {
+  max-width: 100%;
+  overflow: hidden;
+  margin: 4rem 0;
+  text-align: center;
+  @media (min-width: $md) {
+    margin: 8rem 0;
   }
 }
 
-.image {
+.contentContainer {
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 50% 50%;
-}
-
-.container {
-  .content {
-    position: relative;
-    z-index: 1;
-
-    background-color: white;
-    border-radius: 0 0 8px 8px;
-
-    p,
-    h3 {
-      font-size: 20px;
-      line-height: 1.3125rem;
-    }
-
-    h3 {
-      font-family: var(--font-sans-bold);
-      margin: 0 0 5px;
-    }
-
-    p {
-      margin-bottom: 0;
-      color: var(--color-suva-grey);
-    }
-  }
-
-  .portrait {
-    position: relative;
-    z-index: 0;
-
-    picture,
-    img {
-      border-radius: 8px 8px 0 0;
-
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    svg {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      path {
-        fill: var(--color-white);
-      }
-    }
-  }
-}
-
-.masonry {
-  margin-top: 132px;
-
-  & > div {
-    border-radius: 15px;
-
-    &:nth-child(even),
-    &:nth-child(even) .portrait,
-    &:nth-child(even) .portrait picture {
-      height: 453px;
-    }
-    
-    .portrait,
-    .portrait picture {
-      border-radius: 15px;
-    }
-  }
-}
-
-.carouselAnimate {
-  width: 100%;
-}
-
-.rightAlignSwiper {
-  .content {
-    padding: 18.4px 22.8px;
-  }
-}
-
-@media (max-width: $xxl) {
-  .carouselWrap {
-    h1 {
-      font-size: 33px;
-    }
-  }
-
-  .rightAlignSwiper {
-    margin-top: 42px;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  .carouselWrap {
-    padding-top: 18rem;
-    margin-bottom: 136px;
-
-    h1 {
-      font-size: 26px;
-    }
-  }
-
-  .rightAlignSwiper {
-    margin-top: 45px;
-  }
-}
-
-@media (min-width: 992px) {
-  .rightAlignSwiper {
-    position: absolute;
-    top: 114px;
-    right: 0;
-    z-index: 5;
-
-    padding-left: 38vw;
-    margin-left: auto;
-    width: 100%;
-    overflow-x: hidden;
-  }
-  
-  .container {
-    padding: 0 1rem;
-  }
-}
-
-@media (max-width: 991px) {
-  .carouselWrap {
-    padding-bottom: 0;
-    // margin-bottom: 118px;
+  p:last-of-type {
     margin-bottom: 0;
+  }
+  p + a {
+    margin-top: 2rem;
+  }
+}
 
-    h1 {
-      margin-bottom: 51px;
-
-      font-size: 34px;
-    }
-
-    .headingWrap {
-      opacity: 1 !important;
+.swiper {
+  > div {
+    width: 100%;
+    max-width: $xxl;
+    padding: 0 1rem;
+    margin: 1rem 0;
+    overflow: visible;
+    @media (min-width: $md) {
+      padding: 0 3rem;
+      margin: 2rem 0;
     }
   }
+}
 
-  .rightAlignSwiper {
-    z-index: 50;
+.slide {
+  position: relative;
+  overflow: hidden;
+  margin: 1rem 0 3rem;
+}
 
-    padding-left: 15px;
-
-    .content {
-      padding-top: 13px;
-    }
+.card {
+  background: #fff;
+  border-radius: 0.75rem;
+  text-align: left;
+  .content {
+    padding: 0.75rem 1.25rem;
+  }
+  p,
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    line-height: 1.3;
   }
 
-  .masonry {
-    margin-top: 55px;
+  h3 {
+    margin: 0 0 0.25rem;
+  }
 
-    & > div:nth-child(odd) .portrait {
-      height: 254.7px;
-
-      picture {
-        height: 254.7px;
-      }
-    }
+  p {
+    margin-bottom: 0;
+    color: var(--color-suva-grey);
   }
 }
