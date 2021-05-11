@@ -229,7 +229,7 @@ const POSTS_QUERY = gql`
                 text
               }
             }
-            ... on Blog_postBodyFull_width_image {
+            ... on Blog_postBodyBlog_full_width_image {
               type
               primary {
                 image
