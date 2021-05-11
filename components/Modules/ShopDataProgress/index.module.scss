@@ -135,9 +135,15 @@
 
       font-size: 16px;
     }
+
+    span {
+      padding-top: 0;
+    }
   }
 
   .contentWrap {
+    margin-top: 0;
+
     & > div {
       flex-direction: column-reverse;
     }

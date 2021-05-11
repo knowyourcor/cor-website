@@ -1,12 +1,13 @@
 @import "../../../styles/_variables.scss";
 
 .checklistWrap {
-  padding-bottom: 770px;
-  
-  & > div {
-    padding-top: 98px;
-  }
+  padding: 202px 0;
+  margin-bottom: 404px;
 
+  > div {
+    margin: 0;
+  }
+  
   h5 {
     font-family: var(--font-sans-headline);
     font-size: 50px;
@@ -17,6 +18,31 @@
 
   p {
     font-size: 20px;
+  }
+}
+
+.contentText {
+  margin-top: 100px;
+  padding: 0;
+
+  > div {
+    padding: 0 16px;
+  }
+}
+
+.cColumn {
+  padding: 0;
+
+  picture {
+    height: 974px;
+
+    border-radius: 10px 0 0 10px;
+  
+    img {
+      height: 100%;
+
+      object-fit: cover;
+    }
   }
 }
 
@@ -34,21 +60,21 @@
 }
 
 .listHolder {
-  position: relative;
-
   .card {
     padding: 18px 19px;
   }
 
   ul {
-    position: absolute;
-    top: 55px;
-    left: 28vw;
+    position: relative;
+    left: 80%;
     z-index: 2;
 
     padding-left: 0;
-
+    margin-bottom: 215px;
+    
     list-style: none;
+
+    transform: translateY(215px);
   }
 
   li {
@@ -235,9 +261,8 @@
 
 @media (max-width: $xl) {
   .checklistWrap {
-    // padding-bottom: 450px;
-    padding-bottom: 1000px;
-
+    padding: 150px 0;
+    
     h2 {
       font-size: 35px;
       line-height: normal;
@@ -248,90 +273,123 @@
     }
   }
 
-  .listHolder ul {
-    // bottom: -394px;
-    top: 2vw;
-    left: 15vw;
+  .cColumn {
+    picture {
+      height: 870px;
+    }
+  }
+
+  .listHolder {
+    ul {
+      margin-bottom: 120px;
+
+      transform: translateY(140px);
+    }
   }
 }
 
 @media (max-width: 1023px) {
   .checklistWrap {
-    padding-bottom: 875px;
+    padding: 150px 0 218px;
+    margin-bottom: 0;
 
+    overflow: initial;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      z-index: 1;
+
+      width: 100%;
+      height: 500px;
+
+      background-color: var(--color-light-grey);
+    }
+  }
+
+  .contentText {
+    margin-top: 0;
+  }
+  
+  .cColumn {
     picture {
       margin-top: 19px;
       margin-left: auto;
       width: 73%;
-    }
-
-    h2,p {
-      padding: 0 1rem;
+      height: 625px;
     }
   }
 
   .listHolder ul {
-    top: 35vw;
-    left: 27px;
+    position: absolute;
+    left: 16px;
+    bottom: -130px;
+
+    margin-bottom: 0;
+    
+    transform: translateY(0);
   }
 }
 
 @media (max-width: $sm) {
   .checklistWrap {
-    padding-bottom: 760px;
-
-    h2 {
-      margin-bottom: 32px;
-    }
+    padding: 100px 0 170px;
   }
 
-  .listHolder {    
-    width: 100%;
+  .cColumn picture {
+    margin-right: 20px;
+    height: 325px;
+    width: 80%;
 
-    ul {
-      top: 45vw;
-      left: 25px;
+    border-radius: 10px;
+  }
 
-      width: 56%;
-    }
+  .listHolder {
+    .card {
+      padding: 10px 35px 10px 15px;
 
-    li {
-      p {
-        padding-left: 12px;
-        margin-top: 0;
-  
-        font-size: 17px;
+      &:not(:last-child) {
+        margin-bottom: 15px;
       }
     }
 
-    img {
-      width: 30px;
-      height: 30px;
+    ul {
+      bottom: -115px;
     }
 
-    .card {
-      padding: 11px 12px;
+    li {
+      width: 355px;
+
+      img {
+        width: 35px;
+      }
+
+      p {
+        padding-left: 10px;
+
+        font-size: 15px;
+      }
     }
   }
 }
 
 @media (max-width: $xs) {
-  .listHolder {  
-    li {
-      &:not(:last-child) {
-        margin-bottom: 9px;
-      }
+  .checklistWrap {
+    padding: 100px 0 140px;
+  }
 
-      p {
-        padding-left: 12px;
-  
-        font-size: 13px;
-      }
+  .cColumn picture {
+    height: 270px;
+  }
+
+  .listHolder {
+    ul {
+      bottom: -100px;
     }
 
-    img {
-      width: 26px;
-      height: 26px;
+    li {
+      width: 100%;
     }
   }
 }

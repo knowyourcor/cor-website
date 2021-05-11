@@ -59,9 +59,9 @@ export default function Checklist({ primary, fields }) {
     >
       <Row align="center">
         <Column
+          className={styles.contentText}
           columns={{ xs: 14, md: 4 }}
           offsets={{ md: 1 }}
-          justify="center"
         >
           <motion.div
             ref={ref}
@@ -82,9 +82,9 @@ export default function Checklist({ primary, fields }) {
           </div>
         </Column>
         <Column
+          className={styles.cColumn}
           columns={{ xs: 14, md: 8 }}
           offsets={{ md: 1 }}
-          className={styles.cColumn}
         >
           <Picture image={primary.image} />
         </Column>
