@@ -27,7 +27,8 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
     );
 
   const WebLink = (link, index) => {
-    const regex = /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)?(?:\.[a-z]+)/;
+    const regex =
+      /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)?(?:\.[a-z]+)/;
     const domain = link.link?.url.match(regex)[1];
     return (
       <li key={`weblink-${index}`}>
@@ -119,7 +120,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
               orders={{ xs: 1, sm: 1 }}
               justify="center"
             >
-              <p>©{new Date().getFullYear()} COR LLC</p>
+              <p>©{new Date().getFullYear()} Nueon Inc.</p>
             </Column>
             <Column
               columns={{ xs: 14, sm: 9, md: 10 }}
