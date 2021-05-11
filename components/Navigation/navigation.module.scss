@@ -105,38 +105,43 @@
   }
 }
 
-.getApp {
+.callToAction {
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  padding: 0.4rem 0.75rem 0.5rem;
-  line-height: 1;
-  text-align: center;
-  color: var(--font-inverted);
-  background-color: var(--color-prussian-blue);
-  border-radius: 2rem;
 
   // Handle iPhone notch
   --safe-area-inset-right: env(safe-area-inset-right);
   right: calc(3.5rem + var(--safe-area-inset-right));
 
-  &:link,
-  &:visited {
-    transition: background-color 150ms ease-in-out 50ms, color 250ms ease-in-out;
-  }
-  &:hover,
-  &:active {
-    color: var(--font-inverted);
-    background-color: var(--color-prussian-blue-hover);
+  a {
+    &:link,
+    &:visited {
+      transition: background-color 150ms ease-in-out 50ms,
+        color 250ms ease-in-out;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      padding: 0.4rem 0.75rem 0.5rem;
+      line-height: 1;
+      text-align: center;
+      color: var(--font-inverted);
+      background-color: var(--color-prussian-blue);
+      border-radius: 2rem;
+      @media (min-width: $sm) {
+        font-size: 0.85rem;
+        padding: 0.6rem 0 0.65rem;
+        min-width: 125px;
+      }
+    }
+    &:hover,
+    &:active {
+      color: var(--font-inverted);
+      background-color: var(--color-prussian-blue-hover);
+    }
   }
   @media (min-width: $sm) {
-    font-size: 0.85rem;
-    padding: 0.6rem 0 0.65rem;
-    min-width: 125px;
     right: 0;
   }
 }
