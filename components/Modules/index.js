@@ -58,7 +58,7 @@ const moduleDefs = {
   ["product"]: Product,
   ["text___downloader"]: TextDownloader,
   ["blog_text"]: BlogBodyText,
-  ["full_width_image"]: BlogFullWidthImage,
+  ["blog_full_width_image"]: BlogFullWidthImage,
   ["blog_quote"]: BlogQuote,
   ["video"]: BlogVideo,
   ["inline_image"]: BlogInlineImage,
