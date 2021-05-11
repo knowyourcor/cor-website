@@ -143,21 +143,23 @@ export default function Post({
   let date = pageData.date;
   let dateFormat = date.replace(/-/g, ".");
 
-  console.log(pageData)
+  console.log(pageData);
 
   return (
     <div
       className={styles.blogPost}
       style={{
-        backgroundColor: `${pageData.background_color === null ? "" : pageData.background_color
-          }`,
+        backgroundColor: `${
+          pageData.background_color === null ? "" : pageData.background_color
+        }`,
       }}
     >
       <div
         className={styles.contentWrapper}
         style={{
-          backgroundColor: `${pageData.background_color === null ? "" : pageData.background_color
-            }`,
+          backgroundColor: `${
+            pageData.background_color === null ? "" : pageData.background_color
+          }`,
         }}
       >
         <Container>

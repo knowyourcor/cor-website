@@ -9,7 +9,6 @@ import Picture from "../../Picture";
 import styles from "./index.module.scss";
 
 export const linkResolver = (doc) => {
-  console.log(doc.link_type);
   // URL for a category type
   if (doc.type === "category") {
     return `/category/${doc.uid}`;
@@ -38,8 +37,6 @@ export const linkResolver = (doc) => {
 };
 
 export default function Index({ primary }) {
-  console.log(primary.link);
-
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,

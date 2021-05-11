@@ -9,8 +9,6 @@ import Pagination from "./Pagination";
 import styles from "./quadCarousel.module.scss";
 
 export default function QuadCarousel({ primary, fields }) {
-  console.log(primary, fields);
-
   // Clone fields and add an ID based on index
   const cloneFields = fields.map((field, index) => {
     const id = { id: index + 1 };

@@ -45,8 +45,6 @@ const CustomForm = (props, { status, message, onValidated }) => {
 
   props.props.className ? classes.push(props.props.className) : "";
 
-  console.log(props.props.buttonText, 'me')
-
   return (
     <>
       <div className={classes.join(" ")}>
@@ -55,11 +53,19 @@ const CustomForm = (props, { status, message, onValidated }) => {
             ref={emailRef}
             type="email"
             className={styles.inputEmail}
-            placeholder={props.props.inputPlaceholder === undefined ? 'Stay in the loop' : props.props.inputPlaceholder}
+            placeholder={
+              props.props.inputPlaceholder === undefined
+                ? "Stay in the loop"
+                : props.props.inputPlaceholder
+            }
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
           />
-          <button onClick={handleSubmit} className={styles.buttonSubmit}>{props.props.buttonText === undefined ? 'Submit' : props.props.buttonText}</button>
+          <button onClick={handleSubmit} className={styles.buttonSubmit}>
+            {props.props.buttonText === undefined
+              ? "Submit"
+              : props.props.buttonText}
+          </button>
         </div>
         <div className={styles.messages}>
           {!isValid && (

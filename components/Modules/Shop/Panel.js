@@ -17,8 +17,6 @@ export default function Panel({ text, image, product_sku }) {
       abc456: "Cartridges",
     };
 
-    console.log(tempPrices)
-
     return (
       <div className={styles.shopActions}>
         <span>{tempVariants[sku]}</span>
