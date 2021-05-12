@@ -10,8 +10,12 @@ export default function Error() {
       <Head title="Error" />
       <section className={styles.error}>
         <Container>
-          <Row align="center" textAlign={{ xs: "center", sm: "left" }}>
-            <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
+          <Row
+            justify={{ xs: "center" }}
+            align={{ xs: "center" }}
+            className={styles.maxHeight}
+          >
+            <Column columns={{ xs: 14, sm: 12 }}>
               <h1>404 - Page Not Found</h1>
             </Column>
           </Row>
