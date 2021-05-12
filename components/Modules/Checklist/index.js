@@ -7,32 +7,60 @@ import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
 
-import styles from "./index.module.scss";
+import styles from "./checklist.module.scss";
 
-const Checkbox = ({
-  type = "checkbox",
-  name,
-  checked = false,
-  onChange,
-  variants,
-}) => {
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-    rootMargin: "25px 0px",
-    triggerOnce: true,
-  });
+// const Checkbox = ({
+//   type = "checkbox",
+//   name,
+//   checked = false,
+//   onChange,
+//   variants,
+// }) => {
+//   const { ref, inView } = useInView({
+//     threshold: 0.5,
+//     rootMargin: "25px 0px",
+//     triggerOnce: true,
+//   });
 
+//   return (
+//     <motion.div
+//       ref={ref}
+//       initial="hidden"
+//       animate={inView ? "show" : "hidden"}
+//       exit="hidden"
+//       variants={variants}
+//     >
+//       <input type={type} name={name} checked={checked} onChange={onChange} />
+//       <span className={styles.checkmark}></span>
+//     </motion.div>
+//   );
+// };
+
+const ListItem = ({ item }) => {
   return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "show" : "hidden"}
-      exit="hidden"
-      variants={variants}
-    >
-      <input type={type} name={name} checked={checked} onChange={onChange} />
-      <span className={styles.checkmark}></span>
-    </motion.div>
+    <li className={styles.item}>
+      <div className={styles.checkmark}>
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 40 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40Z"
+            fill="#6FDA8C"
+          />
+          <path
+            d="M18.8021 26.2805C18.5854 26.2805 18.3713 26.2333 18.1748 26.1421C17.9782 26.0509 17.8039 25.9179 17.664 25.7524L13.273 20.5655C13.1426 20.4166 13.0431 20.2432 12.9803 20.0554C12.9176 19.8677 12.8927 19.6693 12.9074 19.4718C12.9222 19.2744 12.9761 19.0819 13.066 18.9055C13.1559 18.7291 13.2801 18.5724 13.4312 18.4446C13.5824 18.3167 13.7574 18.2201 13.9463 18.1606C14.1351 18.1011 14.3338 18.0799 14.531 18.098C14.7281 18.1161 14.9197 18.1734 15.0945 18.2663C15.2692 18.3593 15.4238 18.4861 15.549 18.6395L18.6971 22.3585L24.372 14.3485C24.4845 14.1868 24.6278 14.0491 24.7938 13.9432C24.9598 13.8373 25.145 13.7652 25.339 13.7313C25.5329 13.6974 25.7316 13.7022 25.9237 13.7455C26.1157 13.7887 26.2973 13.8696 26.458 13.9834C26.6186 14.0973 26.7552 14.2418 26.8597 14.4086C26.9642 14.5755 27.0346 14.7614 27.0669 14.9556C27.0991 15.1498 27.0926 15.3485 27.0477 15.5402C27.0028 15.7319 26.9202 15.9128 26.805 16.0725L20.018 25.6515C19.8866 25.8371 19.7145 25.9901 19.5149 26.099C19.3152 26.2078 19.0933 26.2696 18.8661 26.2795L18.8021 26.2805Z"
+            fill="#23A046"
+          />
+        </svg>
+      </div>
+      <span>
+        <RichText render={item.checklist_item} />
+      </span>
+    </li>
   );
 };
 
@@ -90,16 +118,12 @@ export default function Checklist({ primary, fields }) {
 
   return (
     <Section
-      className={styles.checklistWrap}
+      className={styles.checklistContainer}
       backgroundColor={primary.background_color}
     >
       <Container>
         <Row align="center">
-          <Column
-            columns={{ xs: 14, md: 5 }}
-            offsets={{ md: 1 }}
-            className="custom__column"
-          >
+          <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }}>
             <motion.div
               ref={ref}
               initial="hidden"
@@ -109,74 +133,29 @@ export default function Checklist({ primary, fields }) {
             >
               <RichText render={primary.heading} />
             </motion.div>
-            <div className={styles.listHolder}>
-              <div className={styles.card}>
-                <div className={styles.cardHeader}>
-                  <RichText render={primary.heading3} />
-                  <p>2 Days Left</p>
-                  <h6>Check-in</h6>
-                  <div className={styles.actionHolder}>
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 40 40"
-                      >
-                        <g transform="translate(-1228 -6342)">
-                          <circle
-                            cx="20"
-                            cy="20"
-                            r="20"
-                            fill="#6fda8c"
-                            transform="translate(1228 6342)"
-                          />
-                          <g>
-                            <path
-                              fill="#23a046"
-                              d="M1499.759 458.341a1.49 1.49 0 0 1-1.138-.528l-4.391-5.187a1.491 1.491 0 1 1 2.276-1.926l3.148 3.719 5.675-8.01a1.491 1.491 0 1 1 2.433 1.724l-6.787 9.579a1.491 1.491 0 0 1-1.152.628z"
-                              transform="translate(-252.957 5909.939)"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </span>
-                    <div className={styles.actionDetails}>
-                      <h6>Checked-in</h6>
-                      <p>Next Check-in. Tomorrow</p>
-                    </div>
-                  </div>
+
+            <div className={styles.checklist}>
+              <div className={styles.item}>
+                <div className={styles.listHeader}>
+                  <RichText render={primary.program_name} />
+                  <RichText render={primary.program_description} />
                 </div>
               </div>
-              <form className={styles.cardList}>
+
+              <ul className={styles.checklistItems}>
                 {fields.map((item, i) => (
-                  <div
-                    key={i}
-                    className={[
-                      styles.card,
-                      checkedItems[item.checklist_item[0].text] &&
-                        styles.active,
-                    ].join(" ")}
-                  >
-                    <label>
-                      <RichText render={item.checklist_item} />
-                      <Checkbox
-                        name={item.checklist_item[0].text}
-                        checked={checkedItems[item.checklist_item[0].text]}
-                        onChange={handleChange}
-                        variants={variants}
-                      />
-                    </label>
-                  </div>
+                  <ListItem item={item} />
                 ))}
-              </form>
+              </ul>
             </div>
           </Column>
-          <Column
-            columns={{ xs: 14, md: 8 }}
-            offsets={{ md: 1 }}
-            className={styles.cColumn}
-          >
-            <Picture image={primary.image} />
-            <Paragraph {...primary} variants={variants} />
+          <Column columns={{ xs: 14, md: 6 }} offsets={{ md: 1 }}>
+            <div className={styles.image}>
+              <Picture image={primary.image} />
+            </div>
+            <div className={styles.offsetText}>
+              <Paragraph {...primary} variants={variants} />
+            </div>
           </Column>
         </Row>
       </Container>
