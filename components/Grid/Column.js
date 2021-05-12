@@ -87,7 +87,7 @@
 // TODO: Allow props to be passed in
 // TODO: Allow additional classes to be passed in
 import getConfig from "./config";
-import styles from "./Grid.module.scss";
+import styles from "./grid.module.scss";
 
 // interface Props {
 //   children: React.ReactNode;

@@ -48,7 +48,7 @@
 // TODO: pass class name - scoped or non-scoped
 import React from "react";
 import getConfig from "./config";
-import styles from "./Grid.module.scss";
+import styles from "./grid.module.scss";
 
 // interface Props {
 //   children: React.ReactNode;
