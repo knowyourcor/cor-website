@@ -8,7 +8,6 @@ export default function Index({ pageData }) {
   return (
     <>
       <Head title={pageData.meta_title} />
-
       <Modules pageData={pageData} />
     </>
   );
