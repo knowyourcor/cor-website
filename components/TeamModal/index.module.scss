@@ -77,12 +77,12 @@
       font-size: 30px;
       text-transform: capitalize;
     }
-  
+
     h5 {
       font-family: var(--font-sans-bold);
       line-height: 1.5;
     }
-  
+
     h6 {
       font-weight: 200;
       color: var(--color-suva-grey);
@@ -99,16 +99,16 @@
     &::-webkit-scrollbar {
       width: 8px;
     }
-  
+
     &::-webkit-scrollbar-track {
       background-color: var(--color-gainsboro);
     }
-    
+
     &::-webkit-scrollbar-thumb {
       background-color: var(--font-inverted);
       border-radius: 10px;
     }
-    
+
     p {
       font-size: 20px;
       line-height: 30px;
@@ -167,7 +167,7 @@
 
       width: 14px;
     }
-    
+
     .avatar {
       margin-right: 10px;
       width: 65px;
@@ -186,7 +186,7 @@
 
       p {
         margin-bottom: 10px;
-  
+
         font-size: 17px;
         line-height: 23px;
       }
