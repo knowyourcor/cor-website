@@ -58,7 +58,7 @@ export default function Accordion({ primary, fields }) {
       }}
       className={styles[`theme-${getThemeFromBackground}`]}
     >
-      <Section className={styles.section}>
+      <Section className={styles.accordionContainer}>
         <motion.div
           ref={ref}
           initial="hidden"
@@ -69,7 +69,7 @@ export default function Accordion({ primary, fields }) {
         >
           <div className={styles.contentContainer}>
             <Container>
-              <Row align="center">
+              <Row>
                 {primary.usid === "withRoundel" && (
                   <Column
                     columns={{ xs: 14, sm: 12, md: 6 }}
@@ -80,6 +80,18 @@ export default function Accordion({ primary, fields }) {
                     </div>
                   </Column>
                 )}
+
+                {primary.image && (
+                  <Column
+                    columns={{ xs: 14, sm: 12, md: 6 }}
+                    offsets={{ sm: 1 }}
+                  >
+                    <div className={styles.backgroundImage}>
+                      <Picture image={primary.image} />
+                    </div>
+                  </Column>
+                )}
+
                 <Column columns={{ xs: 14, sm: 12, md: 6 }} offsets={{ sm: 1 }}>
                   <RichText render={primary.headline} />
                   <div className={styles.accordion}>
@@ -98,9 +110,6 @@ export default function Accordion({ primary, fields }) {
                 </Column>
               </Row>
             </Container>
-          </div>
-          <div className={styles.backgroundImage}>
-            {primary.image && <Picture image={primary.image} />}
           </div>
         </motion.div>
       </Section>

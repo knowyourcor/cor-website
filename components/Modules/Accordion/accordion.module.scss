@@ -1,20 +1,30 @@
 @import "../../../styles/_variables.scss";
 
 .section {
-  padding: 8rem 0;
-  h1 {
-    font-family: var(--font-sans-headline);
-    font-size: 50px;
-    letter-spacing: -1.5px;
+}
+
+.accordionContainer {
+  padding: 10rem 0;
+  h2 {
+    font-size: 2.5rem;
+    line-height: 1.25;
     font-weight: normal;
+    font-family: var(--font-sans-headline);
+    margin-bottom: 3rem;
+    padding-right: 20%;
+
+    strong {
+      font-weight: normal;
+      font-family: var(--font-sans-bold);
+    }
   }
 }
 
 .accordion {
-  margin: 2rem;
+  margin: 2rem 0 0;
 }
 
-.accordionHead {
+.accordionLabel {
   display: flex;
   align-items: center;
 }
@@ -148,21 +158,11 @@
 }
 
 .backgroundImage {
-  @media (min-width: $md) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 33%;
-    display: flex;
-    align-items: flex-end;
-  }
-
   picture,
   img {
     width: 100%;
     height: auto;
-    // object-fit: cont;
+    object-fit: cont;
   }
 }
 
