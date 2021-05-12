@@ -59,6 +59,8 @@ export default function Index({ primary }) {
     },
   };
 
+  console.log(primary);
+
   return (
     <Section className={styles.productSection}>
       <Container>
@@ -103,6 +105,9 @@ export default function Index({ primary }) {
               </div>
               <div className={styles.button}>
                 <RichText render={primary.link} linkResolver={linkResolver} />
+              </div>
+              <div className={styles.secondaryDescription}>
+                <RichText render={primary.secondary_description} />
               </div>
             </Column>
           </Row>

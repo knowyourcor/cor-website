@@ -53,7 +53,7 @@
 .productPrice {
   p {
     font-family: var(--font-sans-bold);
-    font-size: 2.75rem;
+    font-size: 2.25rem;
     line-height: 1;
     margin: 0.25rem 0 1rem;
   }
@@ -67,11 +67,13 @@
 }
 
 .button {
-  margin-top: 45px;
-  p a {
+  a {
+    text-align: center;
+    display: inline-block;
     padding: 1rem 1.5rem;
-    margin-top: 45px;
-    width: 180px;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 200px;
 
     font-family: var(--font-sans-bold);
     font-size: 1rem;
@@ -89,101 +91,18 @@
   }
 }
 
-// @media (max-width: $xl) {
-//   .productSection {
-//     h2 {
-//       font-size: 39px;
-//     }
-
-//     p {
-//       font-size: 16px;
-//     }
-//   }
-
-//   .productPurchase {
-//     .shopActions span {
-//       font-size: 21px;
-//     }
-
-//     .discountNote {
-//       img {
-//         padding-left: 3px;
-//         height: 17px;
-//       }
-
-//       p {
-//         font-size: 12px;
-//       }
-//     }
-//   }
-
-//   .addToCart {
-//     margin-top: 35px;
-
-//     p a {
-//       padding-top: 13px;
-//       padding-bottom: 13px;
-
-//       font-size: 13px;
-//     }
-//   }
-// }
-
-// @media (max-width: 1023px) {
-//   .productSection {
-//     padding-top: 100px;
-//     padding-bottom: 70px;
-//   }
-
-//   .productImage {
-//     margin-bottom: 70.2px;
-
-//     .image {
-//       width: 86vw;
-//     }
-
-//     .screenshot {
-//       right: 4%;
-//       width: 35%;
-//     }
-//   }
-// }
-
-// @media (max-width: $sm) {
-//   .productSection {
-//     h2 {
-//       font-size: 34px;
-//     }
-
-//     p {
-//       font-size: 16px;
-//     }
-//   }
-
-//   .productPurchase {
-//     padding-top: 12.6px;
-
-//     .shopActions span {
-//       font-size: 24px;
-//     }
-//   }
-
-//   .addToCart {
-//     margin-top: 33.6px;
-
-//     p a {
-//       padding-top: 13px;
-//       padding-bottom: 13px;
-
-//       font-size: 12px;
-//     }
-//   }
-// }
-
-// @media (max-width: $xs) {
-//   .productImage {
-//     .screenshot {
-//       right: 5%;
-//     }
-//   }
-// }
+.secondaryDescription {
+  margin-top: 1rem;
+  padding-right: 25%;
+  p {
+    font-size: 0.85rem;
+    color: var(--color-gray66);
+    strong {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    &:only-child {
+      margin: 0;
+    }
+  }
+}
