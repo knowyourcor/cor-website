@@ -1,27 +1,24 @@
-import Section from "../../Section"
+import { RichText } from "prismic-reactjs";
 import { Container, Row, Column } from "../../Grid";
 import EmailSignup from "../../EmailSignup";
 
-import styles from "./index.module.scss";
+import styles from "./newsletter.module.scss";
 
 export default function Newsletter({ primary }) {
   return (
-    <Section className={styles.newsletterSection}>
+    <section className={styles.newsletter}>
       <Container>
-        <Row justify="center">
+        <Row align={{ xs: "center" }}>
           <Column
             className={styles.firstCol}
-            columns={{ xs: 14, sm: 12, md: 5 }}
+            columns={{ xs: 14, sm: 12, md: 4 }}
+            offsets={{ md: 2 }}
           >
-            <h2 className={styles.title}>{primary.title[0].text}</h2>
-            <p className={styles.desc}>{primary.description[0].text}</p>
+            <RichText render={primary.title} />
+            <RichText render={primary.description} />
           </Column>
-          <Column
-            columns={{ xs: 14, sm: 12, md: 6 }}
-            justify="center"
-            offsets={{ sm: 0, md: 1 }}
-          >
-            <EmailSignup 
+          <Column columns={{ xs: 14, sm: 12, md: 4 }} offsets={{ md: 2 }}>
+            <EmailSignup
               className={styles.newsletterForm}
               inputPlaceholder={primary.input_placeholder[0].text}
               buttonText={primary.button_name[0].text}
@@ -29,6 +26,6 @@ export default function Newsletter({ primary }) {
           </Column>
         </Row>
       </Container>
-    </Section>
-  )
+    </section>
+  );
 }
