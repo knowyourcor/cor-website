@@ -144,7 +144,7 @@ export default function Checklist({ primary, fields }) {
 
               <ul className={styles.checklistItems}>
                 {fields.map((item, i) => (
-                  <ListItem item={item} />
+                  <ListItem item={item} key={`listitem_${i}`} />
                 ))}
               </ul>
             </div>
