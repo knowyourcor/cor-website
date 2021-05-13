@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Picture from "../../Picture";
 import { RichText } from "prismic-reactjs";
-import Roundel from "../../RoundelMeter";
+import Roundel from "../../Roundel";
 import List from "./List";
 import styles from "./quadCarousel.module.scss";
 

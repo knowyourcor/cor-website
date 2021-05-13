@@ -5,6 +5,7 @@
   margin-bottom: 10rem;
   width: 100%;
   min-height: 100vh;
+  text-align: center;
 }
 
 .container {
@@ -17,17 +18,16 @@
 
 .programs {
   position: relative;
-
-  margin-top: 77px;
+  margin: 2rem 0 4rem;
 }
 
 .item {
   position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
   height: 695px;
+  text-align: left;
 
   h2,
   h3,

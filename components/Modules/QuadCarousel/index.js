@@ -62,7 +62,7 @@ export default function QuadCarousel({ primary, fields }) {
       style={{ backgroundColor: primary.background_color }}
     >
       <Container>
-        <Row justify="center" textAlign={{ xs: "center" }}>
+        <Row justify={{ xs: "center" }}>
           <Column columns={{ xs: 14, sm: 12 }}>
             <motion.div
               ref={ref}
@@ -75,7 +75,7 @@ export default function QuadCarousel({ primary, fields }) {
             </motion.div>
           </Column>
         </Row>
-        <Row justify="center" textAlign={{ xs: "center" }}>
+        <Row justify={{ xs: "center" }}>
           <Column columns={{ xs: 14, sm: 12, md: 8 }}>
             <motion.div
               ref={ref}
