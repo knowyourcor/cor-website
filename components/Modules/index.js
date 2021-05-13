@@ -6,7 +6,6 @@ import Image from "./Image";
 import TextImage from "./TextImage";
 import CarouselHero from "./CarouselHero";
 import FullWidthImage from "./FullWidthImage";
-import Profiles from "./Profiles";
 import Quote from "./Quote";
 import Newsletter from "./Newsletter";
 import Shop from "./Shop";
@@ -14,21 +13,21 @@ import ShopAccordion from "./ShopAccordion";
 import ShopTextImage from "./ShopTextImage";
 import Tabs from "./Tabs";
 import TextAccordion from "./TextAccordion";
-import TextDescriptionImage from "./TextDescriptionImage"
-import DualGrid from "./DualGrid"
-import TextCarousel from "./TextCarousel"
-import Checklist from "./Checklist"
-import QuadCarousel from "./QuadCarousel"
-import ShopTextBackgroundImage from "./ShopTextBackgroundImage"
-import ShopChecklist from "./ShopChecklist"
-import ShopDataProgress from "./ShopDataProgress"
-import Product from "./Product"
-import TextDownloader from "./TextDownloader"
-import BlogBodyText from "./BlogBodyText"
-import BlogFullWidthImage from "./BlogFullWidthImage"
-import BlogQuote from "./BlogQuote"
-import BlogVideo from "./BlogVideo"
-import BlogInlineImage from "./BlogInlineImage"
+import TextDescriptionImage from "./TextDescriptionImage";
+import DualGrid from "./DualGrid";
+import TextCarousel from "./TextCarousel";
+import Checklist from "./Checklist";
+import QuadCarousel from "./QuadCarousel";
+import ShopTextBackgroundImage from "./ShopTextBackgroundImage";
+import ShopChecklist from "./ShopChecklist";
+import ShopDataProgress from "./ShopDataProgress";
+import Product from "./Product";
+import TextDownloader from "./TextDownloader";
+import BlogBodyText from "./BlogBodyText";
+import BlogFullWidthImage from "./BlogFullWidthImage";
+import BlogQuote from "./BlogQuote";
+import BlogVideo from "./BlogVideo";
+import BlogInlineImage from "./BlogInlineImage";
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -37,7 +36,6 @@ const moduleDefs = {
   ["carousel"]: Carousel,
   ["hero_carousel"]: CarouselHero,
   ["full_width_image"]: FullWidthImage,
-  ["profiles"]: Profiles,
   ["quote"]: Quote,
   ["newsletter"]: Newsletter,
   ["shop"]: Shop,
