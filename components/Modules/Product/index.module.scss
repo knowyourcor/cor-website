@@ -67,28 +67,7 @@
 }
 
 .button {
-  a {
-    text-align: center;
-    display: inline-block;
-    padding: 1rem 1.5rem;
-    margin-top: 2rem;
-    width: 100%;
-    max-width: 200px;
-
-    font-family: var(--font-sans-bold);
-    font-size: 1rem;
-    line-height: 1;
-    color: var(--font-inverted);
-
-    background-color: var(--font-primary);
-    border-radius: 50px 50px;
-
-    transition: background-color 250ms ease-out;
-
-    &:hover {
-      background-color: var(--color-teal-dark);
-    }
-  }
+  margin: 1.5rem 0 2rem;
 }
 
 .secondaryDescription {
