@@ -97,9 +97,9 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                   <source src={video_source} type="video/mp4" />
                 </video>
 
-                <button className={styles.btnPause}>
+                <div className={styles.toggle}>
                   <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
-                </button>
+                </div>
               </motion.div>
             )}
           </div>
@@ -118,12 +118,12 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                   <video id="videoHero" autoPlay muted loop playsInline>
                     <source src={video_source} type="video/mp4" />
                   </video>
-                  <button className={styles.btnPause}>
+                  <div className={styles.toggle}>
                     <PlayPauseToggle
                       isPlaying={playVideo}
                       toggle={handlePause}
                     />
-                  </button>
+                  </div>
                 </motion.div>
               )}
           </div>
@@ -136,12 +136,12 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                     <video id="videoHero" autoPlay muted loop playsInline>
                       <source src={video_source} type="video/mp4" />
                     </video>
-                    <button className={styles.btnPause}>
+                    <div className={styles.toggle}>
                       <PlayPauseToggle
                         isPlaying={playVideo}
                         toggle={handlePause}
                       />
-                    </button>
+                    </div>
                   </>
                 )}
               </div>

@@ -8,7 +8,7 @@ import Picture from "../../Picture";
 import styles from "./fullWidthImage.module.scss";
 
 const FullWidthImage = ({ primary }) => {
-  const [playVideo, setPlayVideo] = useState(true)
+  const [playVideo, setPlayVideo] = useState(true);
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -32,16 +32,16 @@ const FullWidthImage = ({ primary }) => {
   };
 
   const handlePause = () => {
-    const iframe = document.getElementById('videoFullWidthImage');
+    const iframe = document.getElementById("videoFullWidthImage");
 
     if (playVideo) {
-      setPlayVideo(false)
+      setPlayVideo(false);
       iframe.pause();
     } else {
-      setPlayVideo(true)
+      setPlayVideo(true);
       iframe.play();
     }
-  }
+  };
 
   return (
     <section className={styles.section}>
@@ -52,18 +52,12 @@ const FullWidthImage = ({ primary }) => {
             <video id="videoFullWidthImage" autoPlay muted loop playsInline>
               <source src={primary.video_source} type="video/mp4" />
             </video>
-            <button className={styles.btnPause}>
-              <PlayPauseToggle
-                isPlaying={playVideo}
-                toggle={handlePause}
-              />
-            </button>
           </>
         )}
       </div>
       <div className={styles.content}>
         <Container>
-          <Row align="center" justify="center" textAlign={{ xs: "center" }}>
+          <Row align={{ xs: "center" }} justify={{ xs: "center" }}>
             <Column columns={{ xs: 14, sm: 10 }}>
               <motion.div
                 ref={ref}
@@ -81,6 +75,11 @@ const FullWidthImage = ({ primary }) => {
             </Column>
           </Row>
         </Container>
+        {primary.video_source && (
+          <div className={styles.toggle}>
+            <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
+          </div>
+        )}
       </div>
     </section>
   );
