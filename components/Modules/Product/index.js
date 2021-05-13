@@ -6,7 +6,7 @@ import { Column, Container, Row } from "../../Grid";
 import Picture from "../../Picture";
 import Button from "../../Button";
 
-import styles from "./index.module.scss";
+import styles from "./product.module.scss";
 
 export default function Index({ primary }) {
   const { ref, inView } = useInView({
