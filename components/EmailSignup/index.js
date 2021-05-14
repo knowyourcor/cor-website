@@ -5,7 +5,7 @@ import styles from "./emailSignup.module.scss";
 const url =
   "//knowyourcor.us12.list-manage.com/subscribe/post?u=dae943d68d00c841aef8185af&amp;id=6de65e742b";
 
-const CustomForm = (props, { status, message, onValidated }) => {
+const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
   const emailRef = useRef();
   const [isValid, setIsValid] = useState(true);
 
@@ -17,7 +17,7 @@ const CustomForm = (props, { status, message, onValidated }) => {
         EMAIL: email.value,
       });
     } else {
-      setIsValid(!isValid);
+      setIsValid(false);
     }
   };
 
@@ -30,6 +30,7 @@ const CustomForm = (props, { status, message, onValidated }) => {
   };
 
   const handleEnter = (e) => {
+    setIsValid(true);
     if (e.key === "Enter") {
       handleSubmit();
     }
@@ -41,70 +42,76 @@ const CustomForm = (props, { status, message, onValidated }) => {
     };
   }, []);
 
-  const classes = [styles.form];
+  useEffect(() => {
+    if (status === "success") {
+      onSuccess(true);
+    }
+  }, [status]);
 
-  props.props.className ? classes.push(props.props.className) : "";
+  const statusMessage = () => {
+    if (!isValid) {
+      return {
+        __html:
+          "<span>&#9888;&nbsp;Hmm, that's not right. Check your email address.</span>",
+      };
+    } else if (isValid && status === "sending") {
+      return {
+        __html: "<div>Sending...</div>",
+      };
+    } else if (isValid && status === "error") {
+      return { __html: message };
+    } else if (isValid && status === "success") {
+      return { __html: message };
+    }
+  };
 
   return (
     <>
-      <div className={classes.join(" ")}>
+      <div
+        className={[styles.form, theme && styles[`theme-${theme}`]].join(" ")}
+      >
         <div className={styles.inputContainer}>
           <input
             ref={emailRef}
             type="email"
-            className={styles.inputEmail}
-            placeholder={
-              props.props.inputPlaceholder === undefined
-                ? "Stay in the loop"
-                : props.props.inputPlaceholder
-            }
+            className={[styles.inputEmail, "focus-input"].join(" ")}
+            placeholder="Enter email address"
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
+            aria-label="Enter email address"
           />
-          <button onClick={handleSubmit} className={styles.buttonSubmit}>
-            {props.props.buttonText === undefined
-              ? "Submit"
-              : props.props.buttonText}
+          <button
+            onClick={handleSubmit}
+            className={styles.button}
+            aria-label="Sign up"
+          >
+            <span>Sign Up</span>
           </button>
         </div>
         <div className={styles.messages}>
-          {!isValid && (
-            <div className={styles.messageSending}>
-              <span>&#9888;</span>
-              <span>Hmm, that's not right. Check your email address.</span>
-            </div>
-          )}
-          {status === "sending" && (
-            <div className={styles.messageSending}>Sending...</div>
-          )}
-          {status === "error" && (
-            <div
-              className={styles.messageError}
-              dangerouslySetInnerHTML={{ __html: message }}
-            />
-          )}
-          {status === "success" && (
-            <div
-              className={styles.messageSuccess}
-              dangerouslySetInnerHTML={{ __html: message }}
-            />
-          )}
+          <div
+            className={styles.message}
+            dangerouslySetInnerHTML={statusMessage()}
+          />
         </div>
       </div>
     </>
   );
 };
 
-const EmailSignup = (props) => (
+const EmailSignup = ({ theme, onSuccess }) => (
   <>
     <MailchimpSubscribe
       url={url}
       render={({ subscribe, status, message }) => (
         <CustomForm
-          props={props}
           status={status}
           message={message}
+          onSuccess={(status) =>
+            typeof onSuccess === "function" && onSuccess(status)
+          }
           onValidated={(formData) => subscribe(formData)}
+          theme={theme}
         />
       )}
     />
