@@ -1,11 +1,12 @@
 .button {
-  padding: 1rem 1.5rem;
+  display: inline-block;
+  padding: 1.25rem 3.25rem;
   background-color: var(--color-teal-dark);
   color: var(--font-inverted);
   font-size: 1rem;
   line-height: 1;
-  font-family: var(--font-sans-bold);
-  border-radius:  50px 50px;
+  font-family: var(--font-sans);
+  border-radius: 50px 50px;
   transition: background-color 250ms ease-out;
   &:hover {
     background-color: darken(#034561, 10%);

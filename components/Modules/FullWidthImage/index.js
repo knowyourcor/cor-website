@@ -1,12 +1,14 @@
+import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-
 import { Container, Row, Column } from "../../Grid";
 import Button from "../../Button";
+import PlayPauseToggle from "../../PlayPauseToggle";
 import Picture from "../../Picture";
 import styles from "./fullWidthImage.module.scss";
 
 const FullWidthImage = ({ primary }) => {
+  const [playVideo, setPlayVideo] = useState(true);
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -29,19 +31,33 @@ const FullWidthImage = ({ primary }) => {
     },
   };
 
+  const handlePause = () => {
+    const iframe = document.getElementById("videoFullWidthImage");
+
+    if (playVideo) {
+      setPlayVideo(false);
+      iframe.pause();
+    } else {
+      setPlayVideo(true);
+      iframe.play();
+    }
+  };
+
   return (
     <section className={styles.section}>
       <div className={styles.backgroundImage}>
         <Picture image={primary.image} />
         {primary.video_source && (
-          <video autoPlay muted loop playsInline>
-            <source src={primary.video_source} type="video/mp4" />
-          </video>
+          <>
+            <video id="videoFullWidthImage" autoPlay muted loop playsInline>
+              <source src={primary.video_source} type="video/mp4" />
+            </video>
+          </>
         )}
       </div>
       <div className={styles.content}>
         <Container>
-          <Row align="center" justify="center" textAlign={{ xs: "center" }}>
+          <Row align={{ xs: "center" }} justify={{ xs: "center" }}>
             <Column columns={{ xs: 14, sm: 10 }}>
               <motion.div
                 ref={ref}
@@ -59,6 +75,11 @@ const FullWidthImage = ({ primary }) => {
             </Column>
           </Row>
         </Container>
+        {primary.video_source && (
+          <div className={styles.toggle}>
+            <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
+          </div>
+        )}
       </div>
     </section>
   );

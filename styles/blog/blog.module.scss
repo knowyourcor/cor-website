@@ -171,6 +171,7 @@
       justify-content: flex-end;
     }
 
+    .selectedCategory,
     .dropdown {
       display: flex;
       align-items: center;
@@ -188,12 +189,13 @@
       }
     }
 
-    .closeCategoriesIcon {
-      position: absolute;
-      top: 36px;
-      right: 55px;
+    .selectedCategory {
+      padding: 0 36px 0 32px;
+      margin-right: 20px;
 
-      cursor: pointer;
+      background-color: var(--color-gainsboro);
+
+      animation: fadeIn .2s ease-in;
     }
 
     .dropdown {
@@ -230,41 +232,31 @@
         right: 0;
         z-index: 1000;
 
-        padding: 91px 55px 30px;
-        
-        width: 430px;
-        height: 100%;
-        
-        font-size: 20px;
-        font-weight: 600;
-        text-align: start;
-        
-        animation: fadeIn 0.2s ease-in;
+        .backdrop {
+          position: relative;
+          
+          &:after {
+            content: '';
 
-        &:before,
-        &:after {
-          content: '';
-
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -2;
+            
+            background-color: var(--font-primary);
+            
+            opacity: .6;
+          }
         }
-        
-        &:before {
+
+        .closeCategoriesIcon {
           position: absolute;
-          z-index: -1;
-          
-          background-color: var(--color-pacific-blue);
-        }
-
-        &:after {
-          position: fixed;
-          z-index: -2;
-          
-          background-color: var(--font-primary);
-          
-          opacity: .6;
+          top: 36px;
+          right: 55px;
+    
+          cursor: pointer;
         }
 
         .title {
@@ -273,6 +265,21 @@
           text-decoration: underline;
         }
       }
+    }
+
+    .List {
+      padding: 91px 55px 30px;
+        
+      width: 430px;
+      height: 100vh;
+      
+      font-size: 20px;
+      font-weight: 600;
+      text-align: start;
+
+      background-color: var(--color-pacific-blue);
+      
+      animation: fadeIn 0.2s ease-in;
     }
 
     .ListItem {
@@ -685,6 +692,15 @@
         justify-content: flex-start;
       }
 
+      .selectedCategory {
+        order: 2;
+        padding: 0 20px;
+        height: 45px;
+
+        font-size: 12px;
+        line-height: 2.5;
+      }
+
       .dropdown {
         padding: 0 56px 0 21px;
         margin: 0 10px 10px 0;
@@ -700,13 +716,15 @@
         }
 
         &ListWrapper {
-          width: 100%;
-          padding: 75px 37px 30px;
+          .closeCategoriesIcon {
+            right: 37px;
+          }
         }
       }
 
-      .closeCategoriesIcon {
-        right: 37px;
+      .List {
+        padding: 75px 37px 30px;
+        width: 100%;
       }
 
       .ListItem {

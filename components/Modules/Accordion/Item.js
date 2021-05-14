@@ -31,8 +31,7 @@ export default function Item({ data, isExpanded, expandItem, index }) {
           className={[styles.label, activeTabClass].join(" ")}
           onClick={expandItem}
         >
-
-          <div className={styles.accordionHead}>
+          <div className={styles.accordionLabel}>
             <span className={styles.itemIndex}>{handleIndex(index)}</span>
             <span className={styles.itemLabel}>{data.title[0].text}</span>
             <div className={styles.cBorder} />

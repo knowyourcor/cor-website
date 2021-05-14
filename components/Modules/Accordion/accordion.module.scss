@@ -1,10 +1,30 @@
 @import "../../../styles/_variables.scss";
 
-.accordion {
-  margin-top: 2rem;
+.section {
 }
 
-.accordionHead {
+.accordionContainer {
+  padding: 10rem 0;
+  h2 {
+    font-size: 2.5rem;
+    line-height: 1.25;
+    font-weight: normal;
+    font-family: var(--font-sans-headline);
+    margin-bottom: 3rem;
+    padding-right: 20%;
+
+    strong {
+      font-weight: normal;
+      font-family: var(--font-sans-bold);
+    }
+  }
+}
+
+.accordion {
+  margin: 2rem 0 0;
+}
+
+.accordionLabel {
   display: flex;
   align-items: center;
 }
@@ -34,14 +54,14 @@
 
   .itemLabel,
   .itemIndex {
-    color: var(--color-suva-grey)
+    color: var(--color-suva-grey);
   }
 
   .itemLabel {
     padding-left: 64px;
 
     font-size: 30px;
-  } 
+  }
 
   .itemIndex {
     font-size: 14px;
@@ -68,7 +88,7 @@
 .activeItem {
   .itemLabel,
   .itemIndex {
-    color: var(--font-primary)
+    color: var(--font-primary);
   }
 
   .cBorder {
@@ -84,10 +104,10 @@
 .theme-light {
   color: #fff;
   .items {
-    border-color:#fff;
+    border-color: #fff;
   }
   .item {
-    border-color:#fff;
+    border-color: #fff;
   }
   .icon {
     stroke: #fff;
@@ -138,100 +158,15 @@
 }
 
 .backgroundImage {
-  @media (min-width: $md) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 33%;
-    display: flex;
-    align-items: flex-end;
-  }
-
-  picture, img {
+  picture,
+  img {
     width: 100%;
     height: auto;
-    // object-fit: cont;
+    object-fit: cont;
   }
 }
 
-.section {
-  padding-bottom: 0;
-
-  h1 {
-    font-family: var(--font-sans-headline);
-    font-size: 50px;
-    letter-spacing: -1.5px;
-    font-weight: normal;
-  }
-}
-
-.svgPieGraph {
-  height: 703px;
-  transform: rotate(92deg);
-}
-
-@media (min-width: $md) {
-  .section {
-    padding-bottom: 10rem;
-  }
-}
-
-@media (max-width: $xl) {
-  .section {
-    h1 {
-      font-size: 36px;
-    }
-  }
-
-  .svgPieGraph {
-    height: 442px;
-  }
-}
-
-@media (max-width: 1023px) { 
-  .section {
-    h1 {
-      position: absolute;
-      top: 0;
-    }
-  }
-}
-
-@media (max-width: $md) {
-  .section {
-    padding-bottom: 70px;
-    
-    h1 {
-      font-size: 34px;
-    }
-  }
-
-  .accordion {
-    .itemLabel {
-      font-size: 24px;
-    }
-
-    .itemIndex {
-      font-size: 12px;
-    }
-
-    .content {
-      padding-bottom: 44px;
-    }
-
-    .item p {
-      font-size: 16px;
-    }
-  }
-
-  .svgWrap {
-    display: flex;
-    justify-content: center;
-  }
-
-  .svgPieGraph {
-    margin-top: 129px;
-    height: 281px;
-  }
+.roundelContainer {
+  margin-top: 2rem;
+  padding: 2rem;
 }

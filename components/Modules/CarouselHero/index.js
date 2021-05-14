@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { RichText } from "prismic-reactjs";
 import { motion, AnimatePresence } from "framer-motion";
-import CountUp from "react-countup";
 import Section from "../../Section";
 import Picture from "../../Picture";
-import Button from "../../Button";
+import PlayPauseToggle from "../../PlayPauseToggle";
 import styles from "./carouselHero.module.scss";
 
 const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
+  const [playVideo, setPlayVideo] = useState(true);
+
   const slideVariant = {
     visible: {
       opacity: 1,
@@ -58,6 +60,18 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
     },
   };
 
+  const handlePause = () => {
+    const iframe = document.getElementById("videoHero");
+
+    if (playVideo) {
+      setPlayVideo(false);
+      iframe.pause();
+    } else {
+      setPlayVideo(true);
+      iframe.play();
+    }
+  };
+
   return (
     <>
       {isOpen && (
@@ -69,19 +83,25 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
           className={styles.slide}
         >
           <div className={styles.slideLeft}>
-            {variant === "Portrait Image(s) + Animated Totem(s)" &&
-              <Picture image={image} />
-            }
-            {variant === "Images / Video + Headline" && video_source &&
+            {variant === "Portrait Image(s) + Animated Totem(s)" && (
+              <div className={styles.image}>
+                <Picture image={image} />
+              </div>
+            )}
+            {variant === "Images / Video + Headline" && video_source && (
               <motion.div
                 className={styles.videoBackground}
                 variants={videoItem}
               >
-                <video autoPlay muted loop playsInline>
+                <video id="videoHero" autoPlay muted loop playsInline>
                   <source src={video_source} type="video/mp4" />
                 </video>
+
+                <div className={styles.toggle}>
+                  <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
+                </div>
               </motion.div>
-            }
+            )}
           </div>
           <div className={styles.slideRight}>
             {variant === "Images / Video + Headline" && (
@@ -89,32 +109,47 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
                 <RichText render={headline} />
               </motion.div>
             )}
-            {variant === "Portrait Image(s) + Animated Totem(s)" && video_source && (
-              <motion.div
-                className={styles.videoBackground}
-                variants={videoItem}
-              >
-                <video autoPlay muted loop playsInline>
-                  <source src={video_source} type="video/mp4" />
-                </video>
-              </motion.div>
-            )}
+            {variant === "Portrait Image(s) + Animated Totem(s)" &&
+              video_source && (
+                <motion.div
+                  className={styles.videoBackground}
+                  variants={videoItem}
+                >
+                  <video id="videoHero" autoPlay muted loop playsInline>
+                    <source src={video_source} type="video/mp4" />
+                  </video>
+                  <div className={styles.toggle}>
+                    <PlayPauseToggle
+                      isPlaying={playVideo}
+                      toggle={handlePause}
+                    />
+                  </div>
+                </motion.div>
+              )}
           </div>
-          {variant === "Full-Bleed Video" &&
+          {variant === "Full-Bleed Video" && (
             <div className={styles.fullWidth}>
               <div className={styles.backgroundImage}>
                 {/* <Picture image={image} /> */}
                 {video_source && (
-                  <video autoPlay muted loop playsInline>
-                    <source src={video_source} type="video/mp4" />
-                  </video>
+                  <>
+                    <video id="videoHero" autoPlay muted loop playsInline>
+                      <source src={video_source} type="video/mp4" />
+                    </video>
+                    <div className={styles.toggle}>
+                      <PlayPauseToggle
+                        isPlaying={playVideo}
+                        toggle={handlePause}
+                      />
+                    </div>
+                  </>
                 )}
               </div>
               <div className={styles.content}>
                 {headline[0].text && <RichText render={headline} />}
               </div>
             </div>
-          }
+          )}
           {variant === "Portrait Image(s) + Animated Totem(s)" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +193,7 @@ const CarouselHero = ({ primary, fields }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setActiveItem(count + 1);
-    }, 80500);
+    }, 8500);
     return () => clearTimeout(timer);
   }, [count]);
 
@@ -166,9 +201,14 @@ const CarouselHero = ({ primary, fields }) => {
     // let findData = fields.find(el => el.variant === "Portrait Image(s) + Animated Totem(s)")
     fields.unshift(
       fields.splice(
-        fields.map(function (e) { return e.variant }).indexOf('Portrait Image(s) + Animated Totem(s)'),
-        1)[0]
-    )
+        fields
+          .map(function (e) {
+            return e.variant;
+          })
+          .indexOf("Portrait Image(s) + Animated Totem(s)"),
+        1
+      )[0]
+    );
   }
 
   return (

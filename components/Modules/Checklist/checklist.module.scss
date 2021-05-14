@@ -1,0 +1,91 @@
+@import "../../../styles/_variables.scss";
+.checklistContainer {
+  background: linear-gradient(
+    180deg,
+    var(--color-light-grey) 60%,
+    var(--color-gainsboro) 60%
+  );
+
+  h2 {
+    margin-top: 30%;
+  }
+}
+
+.image {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.offsetText {
+  padding: 0 0.5rem 0 45%;
+  p {
+    margin: 2rem 0 1rem;
+    font-size: 1rem;
+  }
+}
+
+.checklist {
+  width: 100%;
+  max-width: 450px;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 2;
+  transform: translateX(-80%);
+}
+
+.checklistItems {
+  list-style: none;
+  padding: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    span {
+      display: block;
+      font-size: 1.25rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.item {
+  margin-bottom: 1rem;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  p {
+    margin: 0;
+    strong {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--color-dark-gray);
+    }
+  }
+}
+
+.checkmark {
+  display: block;
+  margin-right: 1rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.listHeader {
+  h3 {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}

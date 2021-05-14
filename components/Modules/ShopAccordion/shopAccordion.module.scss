@@ -1,146 +1,61 @@
 @import "../../../styles/variables.scss";
 
-.accordionWrap {
-  & > div {
-    // align-items: center;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-  }
+.container {
+  overflow: hidden;
 }
 
-.accordion {
-  margin-top: 2rem;
+.contentOffset {
+  margin-top: calc(100vw * 0.08);
 }
 
-.accordionHead {
+.accordionHeader {
   display: flex;
   align-items: center;
 }
 
 .item {
   position: relative;
-
   overflow: hidden;
 
   &:not(:last-child) {
-    padding-bottom: 1rem;
-  }
-
-  &:last-child {
-    .cBorder {
-      top: 50px;
-    }
-  }
-
-  &.activeItem {
-    &:last-child {
-      .cBorder {
-        top: 32px;
-      }
-    }
+    padding-bottom: 1.5rem;
   }
 
   .itemLabel,
   .itemIndex {
-    color: var(--color-suva-grey)
+    color: var(--color-suva-grey);
   }
 
   .itemLabel {
-    padding-left: 64px;
-
-    font-size: 30px;
-  } 
-
-  .itemIndex {
-    font-size: 14px;
+    padding-left: 2rem;
+    font-size: 1.875rem;
   }
 
-  p {
-    padding-left: 96.23px;
-
-    font-size: 20px;
+  .itemIndex {
+    z-index: 5;
     line-height: 1.5;
+    padding: 0.25rem 0;
+    font-size: 0.95rem;
   }
 }
 
-.cBorder {
+.indexLine {
+  z-index: 0;
+  font-size: 0.95rem;
   position: absolute;
-  top: 32px;
-  left: 8px;
-
+  top: 2rem;
+  left: calc(1ch - 1px);
   height: 100%;
-
   border-left: 1px solid var(--color-suva-grey);
 }
 
 .activeItem {
   .itemLabel,
   .itemIndex {
-    color: var(--font-primary)
+    color: var(--font-primary);
   }
-
-  .cBorder {
+  .indexLine {
     border-left: 1px solid var(--font-primary);
-  }
-}
-
-.imageWrap {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
-  // width: 1679px;
-  display: flex;
-  align-items: flex-end;
-  width: 50%;
-  height: 100%;
-
-  picture {
-    margin-left: auto;
-    margin-right: 0;
-    width: 81%;
-  }
-}
-
-.columnPaddingRight {
-  padding-right: 0;
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-}
-
-.theme-light {
-  color: var(--font-primary);
-
-  .items {
-    border-color:var(--font-primary);
-  }
-
-  .item {
-    border-color:var(--font-primary);
-  }
-
-  .icon {
-    stroke: var(--font-primary);
-  }
-}
-
-.theme-dark {
-  color: var(--font-primary);
-
-  .items {
-    border-color: var(--font-primary);
-  }
-
-  .item {
-    border-color: var(--font-primary);
-  }
-
-  .icon {
-    stroke: var(--font-primary);
   }
 }
 
@@ -155,36 +70,15 @@
   span {
     margin-right: 1rem;
   }
-  &.activeTab {
-    // color: red;
-  }
 }
 
 .content {
-  padding: 1rem 0;
+  padding: 1rem 0 1rem 4rem;
+  p {
+    font-size: 0.9rem;
+  }
   p:last-of-type {
     margin-bottom: 0;
-  }
-}
-
-.headline {
-  h2,
-  .h1 {
-    font-size: 2.5rem;
-    line-height: 3.125rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 400;
-    @media (min-width: $sm) {
-      font-size: 3.125rem;
-      line-height: 3.4375rem;
-    
-    }
-    @media (min-width: $md) {
-      font-size: 3.4375rem;
-      line-height: 3.78125rem;
-     
-    }
   }
 }
 
@@ -194,117 +88,14 @@
   height: auto;
 }
 
-.primaryImage {
+.imageContainer {
   position: relative;
-
-  padding-top: 75%;
   width: 100%;
   height: 0;
-
+  padding-top: 75%;
   > div {
     position: absolute;
     top: 0;
     right: 0;
-    bottom: 0;
-    left: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-@media (min-width: $md) {
-  .accordionWrap {
-    & > div {
-      align-items: center;
-    }
-  }
-}
-
-@media (max-width: $xl) {
-  .headline h2 {
-    font-size: 39px;
-  }
-
-  .activeItem {
-    .itemLabel {
-      font-weight: 600;
-    }
-  }
-
-  .item {
-    .itemLabel {
-      padding-left: 36px;
-
-      font-size: 22px;
-      line-height: normal;  
-    }
-
-    .content p {
-      padding-left: 67.23px;
-    }
-  }
-
-  .cBorder {
-    top: 42px;
-  }
-}
-
-@media (max-width: 1023px) {
-  .accordionWrap {
-    & > div {
-      flex-direction: column-reverse;
-    }
-  }
-  
-  .headline {
-    position: absolute;
-    top: 0;
-    left: 8px;
-  
-    h2 {
-      font-size: 34px;
-    }
-  }
-  
-  .item {
-    .itemLabel {
-      padding-left: 64px;
-
-      font-size: 24px;
-    }
-  
-    .content p {
-      padding-left: 96.23px;
-
-      font-size: 16px;
-    }
-  }
-  
-  .primaryImage {
-    padding-top: 0;
-    margin-top: 85px;
-    height: auto;
-
-    & > div {
-      position: relative;
-    }
-  }
-}
-
-@media (max-width: $xs) {
-  .item {
-    .itemLabel {
-      padding-left: 10px;
-    }
-
-    .content p {
-      padding-left: 42.23px;
-    }
-  }
-
-  .cBorder {
-    top: 36px;
   }
 }

@@ -33,34 +33,23 @@
 .row {
   justify-content: space-between;
   margin-right: 0;
-  // margin-bottom: 147px;
   margin-left: 0;
-}
-
-.cardFlip {
-  transform: rotateY(180deg);
 }
 
 .contentWrap {
   width: 100%;
   margin: 3rem 0;
-  perspective: 600px;
 }
 
 .card {
+  position: relative;
   width: 100%;
-  // height: 100%;
   will-change: transform;
   transform: scale(1);
-  transition: transform 350ms ease-in 150ms;
-  transform-style: preserve-3d;
+  transition: transform 350ms ease-out 150ms;
   cursor: pointer;
-  position: relative;
 
-  // &.isFlipped {
-  //   transform: rotateY(180deg);
-  // }
-
+  // Card shadow, shows on hover
   &:after {
     top: 0;
     left: 0;
@@ -72,7 +61,7 @@
     opacity: 0;
     border-radius: 0.5rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.085);
-    transition: opacity 350ms ease-in 150ms;
+    transition: opacity 350ms ease-out 150ms;
   }
 
   &:hover {
@@ -86,8 +75,6 @@
 }
 
 .card__face {
-  // position: absolute;
-
   width: 100%;
   height: 100%;
 
@@ -97,11 +84,18 @@
 
 .card__facefront {
   .info {
-    padding: 1rem 1.25rem;
-    // margin-bottom: 6.5rem;
-    background-color: var(--font-inverted);
+    position: relative;
 
+    padding: 1rem 1.25rem;
+
+    background-color: var(--font-inverted);
     border-radius: 0 0 0.5rem 0.5rem;
+  }
+
+  .moreInfo {
+    position: absolute;
+    right: 18px;
+    top: 32%;
   }
 }
 
@@ -124,12 +118,10 @@
     width: 8px;
   }
 
-  /* Track */
   &::-webkit-scrollbar-track {
     background-color: var(--color-gainsboro);
   }
 
-  /* Handle */
   &::-webkit-scrollbar-thumb {
     background-color: var(--font-inverted);
     border-radius: 10px;
@@ -195,6 +187,102 @@
   }
 }
 
+.ReactModal__Overlay {
+  display: none !important;
+}
+
+.modalInfo {
+  .modalWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    z-index: 1;
+
+    transform: translate(-50%, -50%);
+
+    padding: 33px;
+    width: 1009px;
+    max-width: 100%;
+
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .modalHeader {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    padding-bottom: 33px;
+    margin-bottom: 33px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+
+      width: 100%;
+      height: 2px;
+
+      background-color: var(--font-primary);
+
+      opacity: 0.5;
+    }
+  }
+
+  .avatar {
+    margin-right: 33px;
+    width: 129px;
+    height: 129px;
+
+    border-radius: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      border-radius: 100%;
+    }
+  }
+
+  .closeIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    cursor: pointer;
+  }
+
+  .info {
+    h5,
+    h6 {
+      margin: 0;
+
+      font-size: 30px;
+      text-transform: capitalize;
+    }
+  
+    h5 {
+      font-family: var(--font-sans-bold);
+      line-height: 1.5;
+    }
+  
+    h6 {
+      font-weight: 200;
+      color: var(--color-suva-grey);
+    }
+  
+    .modalContent p {
+      font-size: 20px !important;
+      line-height: 30px !important;
+    }
+  }
+
+}
+
 @media (max-width: $xxl) {
   .teamFlip {
     margin-top: 59px;
@@ -240,6 +328,49 @@
 
   .close .icon__close {
     height: 14px;
+  }
+}
+
+@media (max-width: $lg) {
+  .modalInfo {
+    .modalWrapper {
+      width: 730px;
+    }
+
+    .modalHeader {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    .avatar {
+      margin-right: 15px;
+      width: 100px;
+      height: 100px;
+    }
+
+    .info {
+      h5,
+      h6 {
+        font-size: 25px;
+      }
+    }
+  }
+}
+
+@media (max-width: $md) {
+  .modalInfo {
+    .modalWrapper {
+      width: 600px;
+    }
+  }
+}
+
+@media (max-width: $xs) {
+  .modalInfo {
+    .modalWrapper {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 

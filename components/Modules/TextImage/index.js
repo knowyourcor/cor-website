@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
+import Button from "../../Button";
 import Picture from "../../Picture";
 import styles from "./textImage.module.scss";
 
-const Paragraph = ({ content, text, variants }) => {
+const Paragraph = ({ link, link_label, text, variants }) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
@@ -23,11 +24,8 @@ const Paragraph = ({ content, text, variants }) => {
       variants={variants}
     >
       <RichText render={text} />
-      <Link href="/">
-        <a className={["btn btn--inverted", styles.invertedLink].join(" ")}>
-          {RichText.asText(content.link_label)}
-        </a>
-      </Link>
+
+      {link && <Button linkData={link} labelData={link_label} />}
     </motion.div>
   );
 };
@@ -55,17 +53,12 @@ const TextImage = ({ primary }) => {
       transition,
     },
   };
-
   return (
     <Section className={styles.textImage} align="center">
       <Container>
         {primary.headline[0].text && (
-          <Row align="center" textAlign={{ xs: "left" }}>
-            <Column
-              columns={{ xs: 14, md: 6 }}
-              offsets={{ md: 1 }}
-              className="custom__column"
-            >
+          <Row>
+            <Column columns={{ xs: 14, md: 8 }} offsets={{ md: 1 }}>
               <motion.div
                 ref={ref}
                 initial="hidden"
@@ -78,24 +71,14 @@ const TextImage = ({ primary }) => {
             </Column>
           </Row>
         )}
-        <Row align="center" textAlign={{ xs: "center" }}>
-          <Column
-            className={styles.imgWrap}
-            columns={primary.overlap_text_and_image ? { xs: 14 } : { xs: 14 }}
-            justify="center"
-          >
-            <Picture {...primary} classes={styles.image} />
+        <Row>
+          <Column columns={{ xs: 14, md: 10 }} offsets={{ md: 1 }}>
+            <Picture image={primary.image} classes={styles.image} />
           </Column>
         </Row>
-        <Row align="center" textAlign={{ xs: "left" }}>
-          <Column
-            columns={{ xs: 14, md: 6 }}
-            offsets={{ md: 1 }}
-            overlaps={primary.overlap_text_and_image ? { md: 2 } : ""}
-            justify="center"
-            className="custom__column"
-          >
-            <Paragraph {...primary} variants={variants} content={primary} />
+        <Row>
+          <Column columns={{ xs: 14, md: 6 }} offsets={{ md: 1 }}>
+            <Paragraph {...primary} variants={variants} />
           </Column>
         </Row>
       </Container>

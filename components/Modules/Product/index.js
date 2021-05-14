@@ -1,34 +1,14 @@
 import { RichText } from "prismic-reactjs";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-
 import Section from "../../Section";
 import { Column, Container, Row } from "../../Grid";
 import Picture from "../../Picture";
+import Button from "../../Button";
 
-import styles from "./index.module.scss";
+import styles from "./product.module.scss";
 
 export default function Index({ primary }) {
-  const Actions = ({ sku, price }) => {
-    let priceNonComma = price.replace(/,/g, "");
-    const tempPrices = {
-      [sku]: priceNonComma,
-    };
-
-    return (
-      <div className={styles.shopActions}>
-        <span>
-          {new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-          })
-            .format(tempPrices[sku])
-            .replace(/\D00(?=\D*$)/, "")}
-        </span>
-      </div>
-    );
-  };
-
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -61,37 +41,38 @@ export default function Index({ primary }) {
           exit="hidden"
           variants={variants}
         >
-          <Row align="center">
-            <Column
-              columns={{ xs: 14, md: 7 }}
-              offsets={{ md: 1 }}
-              justify="center"
-              className="custom__column"
-            >
+          <Row alig={{ xs: "center" }}>
+            <Column columns={{ xs: 14, md: 6 }} offsets={{ md: 1 }}>
               <div className={styles.productImage}>
                 <Picture image={primary.image} classes={styles.image} />
                 <Picture
-                  image={primary.overflow_image}
-                  classes={styles.overflowImage}
+                  image={primary.screenshot}
+                  classes={styles.screenshot}
                 />
               </div>
             </Column>
-            <Column
-              columns={{ xs: 14, md: 5 }}
-              offsets={{ md: 1 }}
-              justify="center"
-            >
+            <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }}>
               <RichText render={primary.product_details} />
-              <div className={styles.productPrice}>
-                <Actions
-                  sku={primary.product_sku}
-                  price={primary.product_price[0].text}
-                />
-                <div className={styles.discountNote}>
-                  <RichText render={primary.product_discount_note} />
+              <div className={styles.productPurchase}>
+                <div className={styles.productPriceLabel}>
+                  <RichText render={primary.product_price_label} />
+                </div>
+                <div className={styles.productPrice}>
+                  <RichText render={primary.product_price} />
+                </div>
+                <div className={styles.productPriceSecondary}>
+                  <RichText render={primary.product_secondary_price} />
                 </div>
               </div>
-              <button className={styles.addToCart}>Buy Now</button>
+              <div className={styles.button}>
+                <Button
+                  linkData={primary.link}
+                  labelData={primary.link_label}
+                />
+              </div>
+              <div className={styles.secondaryDescription}>
+                <RichText render={primary.secondary_description} />
+              </div>
             </Column>
           </Row>
         </motion.div>

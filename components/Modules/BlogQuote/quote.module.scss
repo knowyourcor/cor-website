@@ -1,0 +1,36 @@
+@import "../../../styles/_variables.scss";
+
+.quoteText p {
+  margin: 94px 0;
+
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 66px;
+}
+
+@media (max-width: $lg) {
+  .quoteText p {
+    margin: 70px 0;
+
+    font-size: 40px;
+    line-height: 60px;
+  }
+}
+
+@media (max-width: $md) {
+  .quoteText p {
+    margin: 50px 0;
+
+    font-size: 30px;
+    line-height: 45px;
+  }
+}
+
+@media (max-width: $sm) {
+  .quoteText p {
+    margin: 39px 0 60px;
+
+    font-size: 31px;
+    line-height: 45px;
+  }
+}

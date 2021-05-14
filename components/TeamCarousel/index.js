@@ -3,6 +3,7 @@ import { RichText } from "prismic-reactjs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import TeamModal from "../TeamModal";
 
 import styles from "./carousel.module.scss";
 
@@ -23,12 +24,13 @@ const TeamDetails = ({ name, position, description, fadeInVariants }) => {
     >
       <RichText render={name} />
       <RichText render={position} />
-      <RichText render={description} />
     </motion.div>
   );
 };
 
 const Slide = ({ name, position, description, image }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -51,6 +53,14 @@ const Slide = ({ name, position, description, image }) => {
     },
   };
 
+  const openModal = () => {
+    setModalOpen(true);
+  }
+
+  const closeModal = () => {
+    setModalOpen(false);
+  }
+
   return (
     <>
       <motion.div
@@ -60,15 +70,23 @@ const Slide = ({ name, position, description, image }) => {
         exit="hidden"
         variants={fadeInVariants}
         className={styles.portrait}
+        onClick={openModal}
       >
         <img src={image.url} />
       </motion.div>
-
       <TeamDetails
         name={name}
         description={description}
         position={position}
         fadeInVariants={fadeInVariants}
+      />
+      <TeamModal
+        modalIsOpen={modalOpen}
+        close={closeModal}
+        image={image}
+        name={name}
+        position={position}
+        description={description}
       />
     </>
   );

@@ -1,0 +1,403 @@
+@import "../../../styles/_variables.scss";
+
+.quadCarousel {
+  padding: 12rem 0 10rem;
+  margin-bottom: 10rem;
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.container {
+  padding: 0 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: $xxl;
+}
+
+.programs {
+  position: relative;
+  margin: 2rem 0 4rem;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 695px;
+  text-align: left;
+
+  h2,
+  h3,
+  h4 {
+    margin-bottom: 0;
+
+    font-family: var(--font-sans-bold);
+    font-size: 2.5rem;
+    line-height: 1.3;
+  }
+
+  h3 + p {
+    margin-bottom: 0;
+
+    font-size: 0.95rem;
+    color: var(--color-gray66);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.contentBox {
+  position: absolute;
+
+  h2,
+  h3,
+  h4 {
+    margin-bottom: 0;
+
+    line-height: 1.3;
+  }
+
+  > div {
+    color: #000;
+
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.025), 0 2px 2px rgba(0, 0, 0, 0.025),
+      0 4px 4px rgba(0, 0, 0, 0.025), 0 6px 8px rgba(0, 0, 0, 0.025),
+      0 8px 16px rgba(0, 0, 0, 0.025);
+  }
+}
+
+.roundel {
+  width: 100%;
+  height: 100%;
+}
+
+.contentTitle {
+  left: 9.5%;
+  bottom: -59px;
+
+  h2,
+  h3,
+  h4 {
+    font-size: 1.85rem;
+  }
+
+  > div {
+    padding: 19px 29px;
+    width: 352px;
+
+    &:first-child {
+      margin-bottom: 21px;
+    }
+  }
+}
+
+.contentProgram {
+  right: 9.5%;
+  bottom: -72px;
+
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-sans-headline);
+    font-size: 40px;
+  }
+
+  > div {
+    padding: 53px 70px 60px 57px;
+  }
+}
+
+.imageBox {
+  position: absolute;
+
+  margin-left: -120px;
+  width: 720px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    border-radius: 1rem;
+  }
+}
+
+.programChecklist {
+  padding: 0;
+  margin: 50px 0 0;
+
+  list-style-type: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    span {
+      display: block;
+
+      font-size: 1.25rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.checkmark {
+  display: block;
+  margin-right: 1rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 20;
+
+  display: flex;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+
+  cursor: pointer;
+  transform: translateX(-50%);
+
+  li {
+    border-radius: 20px;
+
+    opacity: 0.2;
+    transition: opacity 350ms ease-out;
+
+    &:not(:last-child) {
+      margin-right: 11px;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+
+    span {
+      display: block;
+      width: 12px;
+      height: 12px;
+
+      background-color: #000;
+      border-radius: 100%;
+
+      transform: scale(0.8);
+    }
+  }
+}
+
+@media (max-width: $xl) {
+  .contentTitle {
+    left: 2%;
+  }
+
+  .contentProgram {
+    right: 2.5%;
+  }
+}
+
+@media (max-width: $lg) {
+  .contentTitle {
+    left: 0;
+
+    h2,
+    h3,
+    h4 {
+      font-size: 25px;
+    }
+
+    > div {
+      width: 310px;
+    }
+  }
+
+  .contentProgram {
+    right: 0;
+
+    h2,
+    h3,
+    h4 {
+      font-size: 35px;
+    }
+
+    > div {
+      padding: 40px;
+    }
+  }
+
+  .programChecklist {
+    margin: 25px 0 0;
+  }
+}
+
+@media (max-width: $md) {
+  .quadCarousel {
+    padding-top: 7rem;
+  }
+
+  .programs {
+    margin-top: 35px;
+  }
+
+  .item {
+    height: 580px;
+  }
+
+  .contentTitle {
+    left: 0;
+
+    h2,
+    h3,
+    h4 {
+      font-size: 20px;
+    }
+
+    > div {
+      width: 100%;
+    }
+  }
+
+  .contentProgram {
+    right: 0;
+
+    width: 330px;
+
+    h2,
+    h3,
+    h4 {
+      font-size: 27px;
+    }
+
+    > div {
+      padding: 25px 20px;
+    }
+  }
+
+  .imageBox {
+    margin: auto;
+    width: 610px;
+  }
+
+  .programChecklist {
+    margin: 15px 0 0;
+
+    font-size: 18px;
+
+    li {
+      margin-bottom: 11px;
+
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .checkmark {
+    margin-right: 10px;
+
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (max-width: $sm) {
+  .quadCarousel {
+    padding: 70px 0 0;
+    margin-bottom: 4rem;
+
+    overflow: initial;
+  }
+
+  .programs {
+    margin-top: 75px;
+  }
+
+  .item {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    height: auto;
+  }
+
+  .contentTitle {
+    bottom: initial;
+    top: -65px;
+    z-index: 1;
+
+    width: 40%;
+
+    > div {
+      padding: 15px;
+      width: 100%;
+    }
+  }
+
+  .contentProgram {
+    position: relative;
+    bottom: 0;
+
+    margin-top: -65px;
+    width: 100%;
+
+    > div {
+      padding: 100px 20px 40px;
+      margin: 0 -16px;
+
+      border-radius: 0;
+      box-shadow: initial;
+    }
+  }
+
+  .imageBox {
+    position: relative;
+    right: -1rem;
+    z-index: 1;
+
+    margin: 0;
+    width: 70%;
+  }
+
+  .pagination {
+    bottom: -40px;
+  }
+}
+
+@media (max-width: $xs) {
+  .contentTitle {
+    top: -75px;
+
+    width: auto;
+
+    > div {
+      &:first-child {
+        margin-bottom: 10px;
+      }
+
+      &:nth-child(2) {
+        width: 60%;
+      }
+    }
+  }
+
+  .contentProgram {
+    margin-top: -40px;
+  }
+
+  .imageBox {
+    width: 80%;
+  }
+}

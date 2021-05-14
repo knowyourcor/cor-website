@@ -30,8 +30,7 @@ export default function ShopAccordion({ primary, fields }) {
   }, []);
 
   const transition = {
-    duration: 0.4,
-    delay: 0.2,
+    duration: 0.3,
     ease: "easeInOut",
   };
 
@@ -47,14 +46,8 @@ export default function ShopAccordion({ primary, fields }) {
   };
 
   const imageTransition = {
-    opacity: {
-      duration: 0.45,
-      ease: [0.465, 0.183, 0.153, 0.946],
-    },
-    y: {
-      duration: 0.75,
-      ease: [0.465, 0.183, 0.153, 0.946],
-    },
+    duration: 0.5,
+    ease: "easeOut",
   };
 
   const imageVariant = {
@@ -80,60 +73,49 @@ export default function ShopAccordion({ primary, fields }) {
       style={{
         backgroundColor: backgroundColor,
       }}
-      className={styles.accordionWrap}
+      className={styles.container}
     >
-      <Row align="center">
-        <Column
-          columns={{ xs: 14, md: 5, xl: 4 }}
-          offsets={{ md: 1 }}
-          justify="center"
-        >
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "show" : "hidden"}
-            exit="hidden"
-            variants={variants}
-          >
-            {primary.headline[0].text && (
-              <div className={styles.headline}>
-                <RichText render={primary.headline} />
-              </div>
-            )}
-            <div className={styles.accordion}>
-              <motion.div className={styles.items}>
-                {fields.map((data, index) => (
-                  <Item
-                    key={`item-${index}`}
-                    isExpanded={`item-${index}` === expanded}
-                    expandItem={() => {
-                      setExpanded(`item-${index}`);
-                      handleImageChange(data.image);
-                    }}
-                    data={data}
-                    index={index}
-                    changeImage={handleImageChange}
-                  />
-                ))}
+      <Container>
+        <Row>
+          <Column columns={{ xs: 14, md: 5, xl: 4 }} offsets={{ md: 1 }}>
+            <div className={styles.contentOffset}>
+              <RichText render={primary.headline} />
+              <motion.div
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "show" : "hidden"}
+                exit="hidden"
+                variants={variants}
+              >
+                <div className={styles.accordion}>
+                  <motion.div className={styles.items}>
+                    {fields.map((data, index) => (
+                      <Item
+                        key={`item-${index}`}
+                        isExpanded={`item-${index}` === expanded}
+                        expandItem={() => {
+                          setExpanded(`item-${index}`);
+                          handleImageChange(data.image);
+                        }}
+                        data={data}
+                        index={index}
+                        backgroundColor={backgroundColor}
+                        changeImage={handleImageChange}
+                      />
+                    ))}
+                  </motion.div>
+                </div>
               </motion.div>
             </div>
-          </motion.div>
-        </Column>
-        <Column
-          columns={{ xs: 14, md: 7, xl: 8 }}
-          offsets={{ md: 1 }}
-          className={styles.columnPaddingRight}
-        >
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "show" : "hidden"}
-            exit="hidden"
-            variants={variants}
+          </Column>
+          <Column
+            columns={{ xs: 14, md: 7, xl: 8 }}
+            offsets={{ md: 1 }}
+            className={styles.columnPaddingRight}
           >
-            {imageData && (
-              <div className={styles.primaryImage}>
-                <AnimatePresence initial={false}>
+            <div className={styles.imageContainer}>
+              {imageData && (
+                <AnimatePresence>
                   <motion.div
                     initial="hidden"
                     animate="visible"
@@ -144,11 +126,11 @@ export default function ShopAccordion({ primary, fields }) {
                     <Picture image={imageData} className={styles.image} />
                   </motion.div>
                 </AnimatePresence>
-              </div>
-            )}
-          </motion.div>
-        </Column>
-      </Row>
+              )}
+            </div>
+          </Column>
+        </Row>
+      </Container>
       {/* <Container>
       </Container>
       <div className={styles.imageWrap}>

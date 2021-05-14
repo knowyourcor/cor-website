@@ -4,7 +4,7 @@
   display: block;
   margin-top: 1rem;
   margin-left: -2.5%;
-  width: 105%;
+  width: 105%;  
 }
 
 .inputContainer {
@@ -19,7 +19,7 @@
   margin: 0;
   width: 100%;
   
-  font-family: var(--font-sans-bold);
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--font-primary);
   line-height: 2.14;
@@ -46,8 +46,7 @@
   display: block;
   padding: 15px 9px;
   margin: 28.5px 0;
-  width: 129px;
-  max-width: 100%;
+  width: 180px;
 
   font-size: 14px;
   font-weight: 600;
@@ -94,6 +93,10 @@
 .messageSuccess {
   color:rgba(0,0,0,.45);
 }
+
+// .newsletterForm {
+//   background-color: red;
+// }
 
 @media (min-width: $md) {
   .form {

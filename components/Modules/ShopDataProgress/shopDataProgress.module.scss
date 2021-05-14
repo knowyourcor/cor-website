@@ -1,0 +1,36 @@
+@import "../../../styles/_variables.scss";
+
+.dataProgress {
+  background: linear-gradient(
+    180deg,
+    var(--color-light-grey) 60%,
+    var(--color-gainsboro) 60%
+  );
+}
+
+.headline {
+  margin-top: 5rem;
+}
+
+.content {
+  padding-right: 21.42857142%;
+}
+
+.image {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+
+.screenshot {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  width: 70%;
+  transform: translate(-70%, 20%);
+}
+
+.tag {
+  color: var(--color-suva-grey);
+  font-size: 1rem;
+}

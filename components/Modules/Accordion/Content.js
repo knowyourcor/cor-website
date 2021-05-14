@@ -53,7 +53,6 @@ export default function Content({ text }) {
         exit="exit"
         variants={container}
       >
-
         <motion.div variants={item}>
           <div className={styles.content}>
             <RichText render={text} />

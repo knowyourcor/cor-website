@@ -1,37 +1,14 @@
 import { RichText } from "prismic-reactjs";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-
 import Section from "../../Section";
-import { Row, Column } from "../../Grid";
+import { Row, Column, Container } from "../../Grid";
 import Picture from "../../Picture";
-
 import styles from "./index.module.scss";
-
-const Channel = ({ icon, item, fadeInVariants }) => {
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-    triggerOnce: true,
-  });
-
-  return (
-    <motion.li
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "show" : "hidden"}
-      exit="hidden"
-      variants={fadeInVariants}
-      className={styles.card}
-    >
-      <img src={icon.url} />
-      <RichText render={item} />
-    </motion.li>
-  );
-};
 
 export default function Checklist({ primary, fields }) {
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.2,
     triggerOnce: true,
   });
 
@@ -54,41 +31,56 @@ export default function Checklist({ primary, fields }) {
 
   return (
     <Section
-      className={styles.checklistWrap}
+      className={styles.checklistContainer}
       backgroundColor={primary.background_color}
     >
-      <Row align="center">
-        <Column
-          columns={{ xs: 14, md: 4 }}
-          offsets={{ md: 1 }}
-          justify="center"
-        >
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "show" : "hidden"}
-            exit="hidden"
-            variants={fadeInVariants}
+      <Container ref={ref}>
+        <Row>
+          <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }}>
+            <motion.div
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              variants={fadeInVariants}
+            >
+              <RichText render={primary.headline} />
+              <RichText render={primary.text} />
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              variants={fadeInVariants}
+              className={styles.checklist}
+            >
+              <ul className={styles.checklistItems}>
+                {fields.map((item, i) => (
+                  <li className={styles.item} key={`list_item_${i}`}>
+                    <div className={styles.checkmark}>
+                      <img src={item.icon.url} className={styles.icon} />
+                    </div>
+                    <span>
+                      <RichText render={item.text} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </Column>
+          <Column
+            className={styles.cColumn}
+            columns={{ xs: 14, md: 7 }}
+            offsets={{ md: 1 }}
           >
-            <RichText render={primary.heading} />
-            <RichText render={primary.text} />
-          </motion.div>
-          <div className={styles.listHolder}>
-            <ul>
-              {fields.map((item, i) => (
-                <Channel key={i} {...item} fadeInVariants={fadeInVariants} />
-              ))}
-            </ul>
-          </div>
-        </Column>
-        <Column
-          columns={{ xs: 14, md: 8 }}
-          offsets={{ md: 1 }}
-          className={styles.cColumn}
-        >
-          <Picture image={primary.image} />
-        </Column>
-      </Row>
+            <motion.div
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              variants={fadeInVariants}
+              className={styles.image}
+            >
+              <Picture image={primary.image} />
+            </motion.div>
+          </Column>
+        </Row>
+      </Container>
     </Section>
   );
 }

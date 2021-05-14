@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="53.689" height="53.689" viewBox="0 0 53.689 53.689">
+  <g id="Play_Pause_Button" data-name="Play/Pause Button" transform="translate(12.155 6.655)">
+    <ellipse id="background" cx="26.845" cy="26.845" rx="26.845" ry="26.845" transform="translate(-12.155 -6.655)" fill="rgba(0,0,0,0.25)"/>
+    <path id="play" d="M2.98.267A1.221,1.221,0,0,0,1,1.221L1,25.228a1.221,1.221,0,0,0,1.98.957L17.168,14.928a1.225,1.225,0,0,0,.114-.1,2.212,2.212,0,0,0,0-3.092,1.211,1.211,0,0,0-.11-.1Z" transform="translate(8.779 6.965)" fill="rgba(255,255,255,0.9)" fill-rule="evenodd"/>
+  </g>
+</svg>

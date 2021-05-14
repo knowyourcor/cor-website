@@ -4,6 +4,7 @@ import FocusLock from "react-focus-lock";
 import Link from "../Link";
 import Menu from "../Menu";
 import MenuToggle from "../MenuToggle";
+import Button from "../Button";
 import styles from "./navigation.module.scss";
 
 const Navigation = ({ mainMenuData }) => {
@@ -67,9 +68,12 @@ const Navigation = ({ mainMenuData }) => {
               </svg>
             </a>
           </Link>
-          <Link href="/">
-            <a className={styles.getApp__btn}>Get App</a>
-          </Link>
+          <div className={styles.callToAction}>
+            <Button
+              linkData={mainMenuData.call_to_action_link}
+              labelData={mainMenuData.call_to_action_label}
+            ></Button>
+          </div>
         </div>
       </motion.nav>
     </FocusLock>

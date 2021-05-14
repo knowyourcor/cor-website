@@ -2,7 +2,7 @@
 
 .section {
   max-width: 100%;
-  overflow: hidden;
+  // overflow: hidden;
   padding: 4rem 0 3rem;
   position: relative;
   display: flex;
@@ -12,7 +12,7 @@
   @media (min-width: $md) {
     padding: 10rem 0;
   }
-  
+
   &.noPadding {
     padding: 0;
   }

@@ -1,14 +1,14 @@
 .text {
+  margin-top: 4rem;
   a {
     cursor: pointer;
     &:link,
     &:visited {
       text-decoration: underline;
-      color: var(--color-green)
+      color: var(--color-green);
     }
     &:hover,
     &:active {
-  
     }
   }
 }

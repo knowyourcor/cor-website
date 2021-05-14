@@ -5,25 +5,22 @@ import {
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
-import FocusLock from "react-focus-lock";
 import { motion } from "framer-motion";
 import styles from "./menu.module.scss";
 
 const Menu = ({ active, toggle, mainMenuData }) => {
   const ref = useRef();
-  // useEffect(() => {
-  //   ref.current && ref.current.focus();
+  useEffect(() => {
+    ref.current && ref.current.focus();
 
-  //   ref.current && active
-  //     ? disableBodyScroll(ref.current)
-  //     : enableBodyScroll(ref.current);
+    ref.current && active
+      ? disableBodyScroll(ref.current)
+      : enableBodyScroll(ref.current);
 
-  //   return () => {
-  //     clearAllBodyScrollLocks();
-  //   };
-  // }, [active]);
-
-  const isActive = active ? styles["menu--active"] : "";
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [active]);
 
   const navVariant = {
     open: {
@@ -67,52 +64,60 @@ const Menu = ({ active, toggle, mainMenuData }) => {
   };
 
   return (
-    <motion.nav
-      className={styles.menu}
-      ref={ref}
-      style={{ transform: "translateX(-100%)" }}
-      initial="closed"
-      animate={active ? "open" : "closed"}
-      variants={navVariant}
-    >
-      <motion.ul
-        className={[styles.mainMenu, active && styles.isMenuOpen].join(" ")}
-        variants={navItemsVariants}
+    <>
+      <nav className={styles.menu}>
+        <div className={styles.scrollContainer}>
+          <ul className={styles.menuItems}>
+            {mainMenuData?.menu_links.map((link, index) => {
+              return (
+                <li key={`${link.link._meta.uid}_${index}`}>
+                  <Link
+                    activeClassName={styles.active}
+                    href={`/${link.link._meta.uid}`}
+                  >
+                    <a>{link.label[0].text}</a>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </nav>
+
+      <motion.nav
+        className={[styles.menu, styles.mobile].join(" ")}
+        ref={ref}
+        style={{ transform: "translateX(-100%)" }}
+        initial="closed"
+        animate={active ? "open" : "closed"}
+        variants={navVariant}
       >
-        {mainMenuData?.menu_links.map((link, index) => {
-          return (
-            <motion.li
-              key={`${link.link._meta.uid}_${index}`}
-              variants={navItemVariants}
-            >
-              <Link
-                activeClassName={styles.active}
-                href={`/${link.link._meta.uid}`}
-              >
-                <a onClick={() => toggle()}>{link.label[0].text}</a>
-              </Link>
-            </motion.li>
-          );
-        })}
-      </motion.ul>
-      <motion.ul className={styles.subMenu} variants={navItemsVariants}>
-        <motion.li variants={navItemVariants}>
-          <Link activeClassName={styles.active} href="/">
-            <a onClick={() => toggle()}>Legal</a>
-          </Link>
-        </motion.li>
-        <motion.li variants={navItemVariants}>
-          <Link activeClassName={styles.active} href="/">
-            <a onClick={() => toggle()}>Privacy</a>
-          </Link>
-        </motion.li>
-        <motion.li variants={navItemVariants}>
-          <Link activeClassName={styles.active} href="/">
-            <a onClick={() => toggle()}>Cookies</a>
-          </Link>
-        </motion.li>
-      </motion.ul>
-    </motion.nav>
+        <div className={styles.scrollContainer}>
+          <motion.ul
+            className={[styles.menuItems, active && styles.isMenuOpen].join(
+              " "
+            )}
+            variants={navItemsVariants}
+          >
+            {mainMenuData?.menu_links.map((link, index) => {
+              return (
+                <motion.li
+                  key={`${link.link._meta.uid}_${index}`}
+                  variants={navItemVariants}
+                >
+                  <Link
+                    activeClassName={styles.active}
+                    href={`/${link.link._meta.uid}`}
+                  >
+                    <a onClick={() => toggle()}>{link.label[0].text}</a>
+                  </Link>
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+        </div>
+      </motion.nav>
+    </>
   );
 };
 

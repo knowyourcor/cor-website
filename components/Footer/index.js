@@ -18,22 +18,17 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
     return chunked_arr;
   }
 
-  // All Link.web links to array
-  const externalLinks = footerMenuData?.menu_links.filter(
-    (item) => item.link._linkType === "Link.web"
-  );
-
-  // All Link.document links to array
-  const internalLinks = footerMenuData?.menu_links.filter(
-    (item) => item.link._linkType === "Link.document"
-  );
-
   // Divide internalLinks array into two even arrays
   const internalLinksToColumn =
-    internalLinks && chunk(internalLinks, Math.ceil(internalLinks?.length / 2));
+    footerMenuData?.menu_links &&
+    chunk(
+      footerMenuData?.menu_links,
+      Math.ceil(footerMenuData?.menu_links?.length / 2)
+    );
 
   const WebLink = (link, index) => {
-    const regex = /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)?(?:\.[a-z]+)/;
+    const regex =
+      /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)?(?:\.[a-z]+)/;
     const domain = link.link?.url.match(regex)[1];
     return (
       <li key={`weblink-${index}`}>
@@ -57,8 +52,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
       <li key={`${link.link?._meta?.uid}_${index}`}>
         <Link
           activeClassName={styles.active}
-          href="/[slug]"
-          as={`/${link.link?._meta?.uid}`}
+          href={`/${link.link?._meta?.uid}`}
         >
           <a>{link.label[0].text}</a>
         </Link>
@@ -113,15 +107,6 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                 )}
               </Row>
             </Column>
-            {footerMenuData && (
-              <Column columns={{ xs: 14 }} justify="center" className={styles.socialhideMdup}>
-                <ul className={styles.socialLinks}>
-                  {externalLinks.map((link, index) => {
-                    return WebLink(link, index);
-                  })}
-                </ul>
-              </Column>
-            )}
             <Column columns={{ xs: 14, md: 4 }}>
               <EmailSignup />
             </Column>
@@ -130,10 +115,18 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
 
         <div className={styles.tertiary}>
           <Row align="center">
-            <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 1, sm: 1 }} justify="center">
-              <p>©{new Date().getFullYear()} COR LLC</p>
+            <Column
+              columns={{ xs: 14, sm: 2 }}
+              orders={{ xs: 1, sm: 1 }}
+              justify="center"
+            >
+              <p>©{new Date().getFullYear()} Nueon Inc.</p>
             </Column>
-            <Column columns={{ xs: 14, sm: 9, md: 10 }} orders={{ xs: 2, sm: 2 }} justify="center">
+            <Column
+              columns={{ xs: 14, sm: 9, md: 10 }}
+              orders={{ xs: 2, sm: 2 }}
+              justify="center"
+            >
               <ul className={styles.tertiaryMenu}>
                 {tertiaryMenuData && (
                   <>
@@ -142,8 +135,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                         <li key={`${link.link?._meta?.uid}_${index}`}>
                           <Link
                             activeClassName={styles.active}
-                            href="/[slug]"
-                            as={`/${link.link?._meta?.uid}`}
+                            href={`/${link.link?._meta?.uid}`}
                           >
                             <a>{link.label[0].text}</a>
                           </Link>
@@ -154,15 +146,6 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                 )}
               </ul>
             </Column>
-            {footerMenuData && (
-              <Column columns={{ xs: 14, sm: 2 }} orders={{ xs: 3, sm: 3 }} justify="center" className={styles.socialHideSmDown}>
-                <ul className={styles.socialLinks}>
-                  {externalLinks.map((link, index) => {
-                    return WebLink(link, index);
-                  })}
-                </ul>
-              </Column>
-            )}
           </Row>
         </div>
       </Container>

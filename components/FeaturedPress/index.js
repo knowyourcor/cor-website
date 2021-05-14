@@ -12,6 +12,30 @@ import { Container, Row, Column } from "../Grid";
 
 import styles from "./index.module.scss";
 
+export const linkResolver = (doc) => {
+  // URL for a category type
+  if (doc.type === 'category') {
+    return `/category/${doc.uid}`
+  }
+
+  // URL for a product type
+  if (doc.type === 'product') {
+    return `/product/${doc.uid}`
+  }
+
+  // URL for a page type
+  if (doc.type === 'page') {
+    return `/${doc.uid}`
+  }
+
+  if (doc.type === 'shop') {
+    return `/${doc.uid}`
+  }
+
+  // Backup for all other types
+  return '/'
+}
+
 const POSTS_QUERY = gql`
   query FeaturedPress($after: String) {
     allBlog_posts(
@@ -94,7 +118,7 @@ const FeaturedBlog = ({ item, index, fadeInVariants }) => {
       variants={fadeInVariants}
       className={styles.featuredItem}
     >
-      <Row align="center" textAlign={{ xs: "left" }}>
+      <Row className={styles.featuredRow} align="center" textAlign={{ xs: "left" }}>
         <Column
           columns={{ xs: 14, sm: 6 }}
           offsets={{ sm: 1 }}
@@ -114,7 +138,7 @@ const FeaturedBlog = ({ item, index, fadeInVariants }) => {
               <RichText render={pathNode.title} />
             </a>
           </Link>
-          {pathNodeContent?.link_name && (
+          {pathNodeContent?.link_name &&
             <motion.div
               className={styles.actionWrap}
               onMouseEnter={() => {
@@ -126,29 +150,25 @@ const FeaturedBlog = ({ item, index, fadeInVariants }) => {
                 setActiveItem(`item-${index}`);
               }}
             >
-              <Link href={"/blog/" + pathNode._meta.uid}>
-                <a>
-                  <RichText render={pathNodeContent?.link_name} />
-                  <motion.svg
-                    viewBox="0 0 512 512"
-                    initial={false}
-                    animate={
-                      isHovered && `item-${index}` === activeItem
-                        ? "open"
-                        : "closed"
-                    }
-                    variants={svgVariants}
-                  >
-                    <g>
-                      <g>
-                        <path d="M506.134,241.843c-0.006-0.006-0.011-0.013-0.018-0.019l-104.504-104c-7.829-7.791-20.492-7.762-28.285,0.068 c-7.792,7.829-7.762,20.492,0.067,28.284L443.558,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h423.557 l-70.162,69.824c-7.829,7.792-7.859,20.455-0.067,28.284c7.793,7.831,20.457,7.858,28.285,0.068l104.504-104 c0.006-0.006,0.011-0.013,0.018-0.019C513.968,262.339,513.943,249.635,506.134,241.843z" />
-                      </g>
-                    </g>
-                  </motion.svg>
-                </a>
-              </Link>
+              <RichText render={pathNodeContent?.link_name} linkResolver={linkResolver} />
+              <motion.svg
+                viewBox="0 0 512 512"
+                initial={false}
+                animate={
+                  isHovered && `item-${index}` === activeItem
+                    ? "open"
+                    : "closed"
+                }
+                variants={svgVariants}
+              >
+                <g>
+                  <g>
+                    <path d="M506.134,241.843c-0.006-0.006-0.011-0.013-0.018-0.019l-104.504-104c-7.829-7.791-20.492-7.762-28.285,0.068 c-7.792,7.829-7.762,20.492,0.067,28.284L443.558,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h423.557 l-70.162,69.824c-7.829,7.792-7.859,20.455-0.067,28.284c7.793,7.831,20.457,7.858,28.285,0.068l104.504-104 c0.006-0.006,0.011-0.013,0.018-0.019C513.968,262.339,513.943,249.635,506.134,241.843z" />
+                  </g>
+                </g>
+              </motion.svg>
             </motion.div>
-          )}
+          }
         </Column>
       </Row>
     </motion.div>
@@ -242,17 +262,13 @@ export default function Index() {
             );
           })}
         </div>
-        {data.allBlog_posts.pageInfo.hasNextPage ? (
+        {data.allBlog_posts.pageInfo.hasNextPage &&
           <div className={styles.buttonHolder}>
             <button className="btn btn--inverted" onClick={handleShowMore}>
               Show More
             </button>
           </div>
-        ) : (
-          <Link href="/blog">
-            <a className="btn btn--inverted">View More Blogs</a>
-          </Link>
-        )}
+        }
       </Container>
     </Section>
   );

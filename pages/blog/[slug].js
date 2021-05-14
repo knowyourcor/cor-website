@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { getLayout } from "../../components/Layout/PageLayout";
 import Layout from "../../components/Layout";
 import { Container } from "../../components/Grid";
+import Modules from "../../components/Modules";
 
 import styles from "../../styles/blog/blog-post.module.scss";
 
@@ -142,6 +143,8 @@ export default function Post({
   let date = pageData.date;
   let dateFormat = date.replace(/-/g, ".");
 
+  console.log(pageData);
+
   return (
     <div
       className={styles.blogPost}
@@ -190,6 +193,7 @@ export default function Post({
             })}
           </div>
         </Container>
+        {pageData?.body && <Modules pageData={pageData} />}
       </div>
     </div>
   );
@@ -217,6 +221,40 @@ const POSTS_QUERY = gql`
             heading
             paragraph
             quote
+          }
+          body {
+            ... on Blog_postBodyBlog_text {
+              type
+              primary {
+                text
+              }
+            }
+            ... on Blog_postBodyBlog_full_width_image {
+              type
+              primary {
+                image
+              }
+            }
+            ... on Blog_postBodyBlog_quote {
+              type
+              primary {
+                quote
+              }
+            }
+            ... on Blog_postBodyVideo {
+              type
+              primary {
+                embed_media
+              }
+            }
+            ... on Blog_postBodyInline_image {
+              type
+              primary {
+                image
+                heading
+                body_text
+              }
+            }
           }
         }
         cursor
