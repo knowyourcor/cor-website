@@ -32,37 +32,32 @@ const TextImage = ({ primary }) => {
 
   return (
     <Section
-      className={styles.section}
+      className={[styles.textImage, styles[primary.usid]].join(" ")}
       style={{ backgroundColor: primary.background_color }}
-      align="center"
     >
-      <Container>
+      <Container ref={ref}>
         <motion.div
-          ref={ref}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          exit="hidden"
           variants={fadeInVariants}
         >
-          {primary.headline[0].text && (
-            <Row align="center" textAlign={{ xs: "left" }}>
-              <Column
-                columns={{ xs: 14, md: 8 }}
-                offsets={{ md: 2 }}
-                className="custom__column"
-              >
-                <RichText render={primary.headline} />
-              </Column>
-              <Column columns={{ xs: 14, md: 4 }}>
-                <RichText render={primary.text} />
-              </Column>
-            </Row>
-          )}
+          <Row>
+            <Column columns={{ xs: 14, md: 7 }} offsets={{ md: 1 }}>
+              <RichText render={primary.headline} />
+            </Column>
+            <Column columns={{ xs: 14, md: 4 }}>
+              <RichText render={primary.text} />
+            </Column>
+          </Row>
+          <Row>
+            <Column columns={{ xs: 14, md: 11 }} offsets={{ md: 3 }}>
+              <div className={styles.image}>
+                <Picture image={primary.image} />
+              </div>
+            </Column>
+          </Row>
         </motion.div>
       </Container>
-      <div className={styles.imageWrap}>
-        <Picture {...primary} classes={styles.image} />
-      </div>
     </Section>
   );
 };
