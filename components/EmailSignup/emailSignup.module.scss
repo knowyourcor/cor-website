@@ -1,6 +1,7 @@
 @import "../../styles/_variables.scss";
 
 .form {
+  position: relative;
   display: block;
   width: 100%;
 }
@@ -70,14 +71,19 @@
 }
 
 .messages {
-  padding: 1rem 1.5rem 1rem;
+  font-size: 0.85rem;
+  padding: 1rem 1rem 1rem;
   text-align: center;
   width: 100%;
   display: flex;
   justify-content: center;
+  opacity: 0.75;
 
   @media (min-width: $md) {
-    padding: 1rem 4rem 1rem;
+    padding: 1rem 2rem 1rem;
+
+    position: absolute;
+    top: 3rem;
   }
 }
 
