@@ -9,7 +9,6 @@ import TeamModal from "../TeamModal";
 
 import styles from "./index.module.scss";
 
-
 const TeamList = ({ name, position, description, image }) => {
   const [activeFlip, setActiveFlip] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -37,11 +36,11 @@ const TeamList = ({ name, position, description, image }) => {
 
   const openModal = () => {
     setModalOpen(true);
-  }
+  };
 
   const closeModal = () => {
     setModalOpen(false);
-  }
+  };
 
   return (
     <Column columns={{ xs: 14, sm: 4 }}>
