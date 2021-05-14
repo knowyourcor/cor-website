@@ -15,7 +15,7 @@ import Tabs from "./Tabs";
 import TextAccordion from "./TextAccordion";
 import TextDescriptionImage from "./TextDescriptionImage";
 import DualGrid from "./DualGrid";
-import TextCarousel from "./TextCarousel";
+import Team from "./Team";
 import Checklist from "./Checklist";
 import QuadCarousel from "./QuadCarousel";
 import ShopTextBackgroundImage from "./ShopTextBackgroundImage";
@@ -47,7 +47,7 @@ const moduleDefs = {
   ["text_accordion"]: TextAccordion,
   ["text_description_image"]: TextDescriptionImage,
   ["dual_grid"]: DualGrid,
-  ["text___carousel"]: TextCarousel,
+  ["team"]: Team,
   ["checklist"]: Checklist,
   ["quadcarousel"]: QuadCarousel,
   ["text___background_image"]: ShopTextBackgroundImage,
@@ -63,7 +63,6 @@ const moduleDefs = {
 };
 
 const Modules = ({ pageData }) => {
-  // console.log("pageData: ", pageData);
   return (
     <>
       {(() => {

@@ -1,14 +1,12 @@
 import { RichText } from "prismic-reactjs";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-
-import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
+import Section from "../../Section";
 import Picture from "../../Picture";
+import styles from "./dualGrid.module.scss";
 
-import styles from "./index.module.scss";
-
-export default function Index({ primary }) {
+export default function DualGrid({ primary }) {
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -33,29 +31,25 @@ export default function Index({ primary }) {
 
   return (
     <Section className={styles.dualGrid}>
-      <Container>
-        <Row align="center" textAlign={{ xs: "left" }}>
-          <Column
-            className="custom__column"
-            columns={{ xs: 14, sm: 6 }}
-            offsets={{ sm: 1 }}
-            justify="center"
-          >
-            <Picture image={primary.image} />
-          </Column>
-          <Column
-            columns={{ xs: 14, sm: 6 }}
-            offsets={{ sm: 1 }}
-            justify="center"
-          >
+      <Container ref={ref}>
+        <Row align={{ md: "center" }}>
+          <Column columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }}>
             <motion.div
-              ref={ref}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              exit="hidden"
+              variants={variants}
+              className={styles.image}
+            >
+              <Picture image={primary.image} />
+            </motion.div>
+          </Column>
+          <Column columns={{ xs: 14, sm: 5 }} offsets={{ sm: 1 }}>
+            <motion.div
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
               variants={variants}
             >
-              <RichText render={primary.heading} />
+              <RichText render={primary.headline} />
               <RichText render={primary.description} />
             </motion.div>
           </Column>

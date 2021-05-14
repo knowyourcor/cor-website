@@ -5,7 +5,6 @@ import { Container, Row, Column } from "../../Grid";
 import styles from "./text.module.scss";
 
 const Text = ({ primary }) => {
-  console.log(primary)
   return (
     <Section align="center">
       <Container>

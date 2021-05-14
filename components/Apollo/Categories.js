@@ -27,57 +27,57 @@ export default function Categories() {
   const [show, setShow] = useState();
   const [value, setValue] = useState("");
   const [category, setCategory] = useState([]);
-  
+
   const { data, loading, error, fetchMore } = useQuery(CATEGORIES_QUERY, {
     variables: {
-      after: null
-    }
+      after: null,
+    },
   });
 
   if (loading) {
     return <> </>;
   }
-  
+
   if (error) {
     console.error(error);
     return null;
   }
-  
+
   if (data.allBlog_posts.pageInfo.hasNextPage) {
     const { endCursor } = data.allBlog_posts.pageInfo;
-    
+
     fetchMore({
       variables: { after: endCursor, offset: 0 },
-      
+
       updateQuery: (prevResult, { fetchMoreResult }) => {
         fetchMoreResult.allBlog_posts.edges = [
           ...prevResult.allBlog_posts.edges,
-          ...fetchMoreResult.allBlog_posts.edges
+          ...fetchMoreResult.allBlog_posts.edges,
         ];
         return fetchMoreResult;
-      }
+      },
     });
   }
-  
+
   const categories = data.allBlog_posts.edges;
 
-  category.sort( function( a , b) {
-    if(a > b) return 1;
-    if(a < b) return -1;
+  category.sort(function (a, b) {
+    if (a > b) return 1;
+    if (a < b) return -1;
     return category;
   });
 
   const CategoriesDropdown = () => {
-    const currentCategory = categories.map(cat => cat.node.category[0].text);
+    const currentCategory = categories.map((cat) => cat.node.category[0].text);
     setCategory([...new Set(currentCategory)]);
 
-    setShow(!show)
+    setShow(!show);
   };
 
   const handleOnClick = (item) => {
-    value === item ? setValue('') : setValue(item)
-    setShow(!show)
-  }
+    value === item ? setValue("") : setValue(item);
+    setShow(!show);
+  };
 
   return (
     <div className={styles.sectionPostCategory}>
@@ -92,11 +92,12 @@ export default function Categories() {
                 </span>
               </div>
             )}
-            <button
-              className={styles.dropdown}
-              onClick={CategoriesDropdown}
-            >
-              <div className={`${styles.dropdownName} ${show && styles.openDropdown}`}>
+            <button className={styles.dropdown} onClick={CategoriesDropdown}>
+              <div
+                className={`${styles.dropdownName} ${
+                  show && styles.openDropdown
+                }`}
+              >
                 Category
                 <span className={styles.Icon}>
                   <Image src="/icons/down-arrow.svg" height={13} width={13} />
@@ -105,10 +106,20 @@ export default function Categories() {
             </button>
             {show && (
               <div className={styles.dropdownListWrapper}>
-                <div className={styles.backdrop} onClick={() => setShow(!show)}></div>
+                <div
+                  className={styles.backdrop}
+                  onClick={() => setShow(!show)}
+                ></div>
                 <div className={styles.List}>
-                  <span className={styles.closeCategoriesIcon} onClick={() => setShow(false)}>
-                    <Image src="/icons/close-icon-light-cyan.svg" height={14} width={14} />
+                  <span
+                    className={styles.closeCategoriesIcon}
+                    onClick={() => setShow(false)}
+                  >
+                    <Image
+                      src="/icons/close-icon-light-cyan.svg"
+                      height={14}
+                      width={14}
+                    />
                   </span>
                   <h2 className={styles.title}>Categories</h2>
                   {category.map((item, i) => {
@@ -116,13 +127,19 @@ export default function Categories() {
                       <>
                         <div
                           key={i}
-                          className={`${styles.ListItem} ${value === item ? styles.selected : ''}`}
+                          className={`${styles.ListItem} ${
+                            value === item ? styles.selected : ""
+                          }`}
                           value="Category"
                           onClick={() => handleOnClick(item)}
                         >
                           {value === item && (
                             <span>
-                              <Image src="/icons/close-icon-v2.svg" height={14} width={14} />
+                              <Image
+                                src="/icons/close-icon-v2.svg"
+                                height={14}
+                                width={14}
+                              />
                             </span>
                           )}
                           {item}

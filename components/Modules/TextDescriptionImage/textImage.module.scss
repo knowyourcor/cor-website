@@ -1,0 +1,18 @@
+@import "../../../styles/variables";
+
+.textImage {
+  h2 {
+    font-size: 1.25rem;
+    color: var(--color-suva-grey);
+    margin: 0;
+  }
+}
+
+.image {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  margin: 1rem 0 1.75rem;
+  @media (min-width: $lg) {
+    margin: 2rem 0 3rem;
+  }
+}

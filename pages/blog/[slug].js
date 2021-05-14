@@ -143,8 +143,6 @@ export default function Post({
   let date = pageData.date;
   let dateFormat = date.replace(/-/g, ".");
 
-  console.log(pageData);
-
   return (
     <div
       className={styles.blogPost}
