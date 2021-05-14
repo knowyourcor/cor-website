@@ -61,10 +61,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     margin-right: auto;
     margin-left: auto;
     width: 100%;
     max-width: $xxl;
+
+    --safe-area-inset-left: env(safe-area-inset-left);
+    --safe-area-inset-right: env(safe-area-inset-right);
+    padding-left: calc(1rem + var(--safe-area-inset-left));
+    padding-right: calc(1rem + var(--safe-area-inset-right));
+
     &:after {
       @media (max-width: $sm) {
         pointer-events: none;
