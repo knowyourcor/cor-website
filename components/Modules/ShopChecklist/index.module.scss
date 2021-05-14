@@ -1,395 +1,71 @@
 @import "../../../styles/_variables.scss";
 
-.checklistWrap {
-  padding: 202px 0;
-  margin-bottom: 404px;
-
-  > div {
-    margin: 0;
-  }
-  
-  h5 {
-    font-family: var(--font-sans-headline);
-    font-size: 50px;
-    line-height: 1.3;
-    letter-spacing: -1.5px;
-    text-transform: initial;
-  }
-
-  p {
-    font-size: 20px;
-  }
+.checklist {
+  width: 100%;
+  max-width: 450px;
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  z-index: 2;
+  transform: translateX(-80%);
 }
 
-.contentText {
-  margin-top: 100px;
+.checklistItems {
+  list-style: none;
   padding: 0;
-
-  > div {
-    padding: 0 16px;
-  }
-}
-
-.cColumn {
-  padding: 0;
-
-  picture {
-    height: 974px;
-
-    border-radius: 10px 0 0 10px;
-  
-    img {
-      height: 100%;
-
-      object-fit: cover;
-    }
-  }
-}
-
-.card {
-  padding: 30px 36px;
-
-  background-color: var(--font-inverted);
-  border-radius: 15px;
-  box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.03);
-
-  p {
-    margin-top: 0;
-    margin-bottom: 16px;
-  }
-}
-
-.listHolder {
-  .card {
-    padding: 18px 19px;
-  }
-
-  ul {
-    position: relative;
-    left: 80%;
-    z-index: 2;
-
-    padding-left: 0;
-    margin-bottom: 215px;
-    
-    list-style: none;
-
-    transform: translateY(215px);
-  }
-
+  margin: 0;
   li {
     display: flex;
     align-items: center;
-    width: 420px;
-    max-width: 100%;
-
-    &:not(:last-child) {
-      margin-bottom: 20px;
+    span {
+      display: block;
+      font-size: 1.25rem;
     }
 
-    p {
-      padding-left: 28px;
+    &:last-of-type {
       margin-bottom: 0;
-
-      font-size: 24px;
-      font-weight: 500;
     }
   }
 }
 
-.cardHeader {
+.image {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+.item {
+  margin-bottom: 1rem;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  p {
+    margin: 0;
+    strong {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--color-dark-gray);
+    }
+  }
+}
+
+.icon {
+  display: block;
+  margin-right: 1rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.listHeader {
   h3 {
-    margin-bottom: 0;
-
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 2rem;
+    line-height: 1.3;
+    margin: 0;
   }
 
-  h6 {
-    padding-top: 16px;
-    margin-top: 0;
-    margin-bottom: 11.5px;
-
-    font-size: 20px;
-
-    border-top: 1px solid var(--font-primary);
-  }
-
-  p {
-    padding-left: 0;
-    width: 100%;
-
-    font-size: 16px;
-  }
-}
-
-.cardList {
-  padding-left: 0;
-  margin-top: 25px;
-  height: 335px;
-  overflow-y: auto;
-
-  border-radius: 15px;
-
-  list-style: none;
-
-  &::-webkit-scrollbar {
-    width: 0;
-  }
-
-  .card {
-    opacity: .5;
-    transition: opacity .3s ease-in-out;
-
-    &:first-child {
-      opacity: 1;
-    }
-    
-    &:not(:last-child) {
-      margin-bottom: 25px;
-    }
-  }
-
-  .active {
-    opacity: 1;
-  }
-
-  label {
-    position: relative;
-
-    display: block;
-    padding-left: 35px;
-
-    font-size: 22px;
-
-    cursor: pointer;
-    user-select: none;
-
-    &:hover {
-      input ~ .checkmark {
-        background-color: var(--color-pastel-green);
-        border-color: var(--color-pastel-green);
-      }
-    }
-
-    input {
-      position: absolute;
-
-      height: 0;
-      width: 0;
-
-      opacity: 0;
-      cursor: pointer;
-
-      &:checked ~ .checkmark {
-        background-color: var(--color-pastel-green);
-        border-color: var(--color-pastel-green);
-      }
-
-      &:checked ~ .checkmark:after {
-        display: block;
-      }
-    }
-
-    .checkmark {
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      width: 40px;
-      height: 40px;
-
-      background-color: transparent;
-      border: 1px solid var(--font-primary);
-      border-radius: 50%;
-
-      transition: background-color .3s ease-in;
-
-      &:after {
-        content: "";
-
-        position: absolute;
-        left: 50%;
-        top: 45%;
-
-        display: none;
-        width: 5px;
-        height: 10px;
-
-        border: solid var(--color-forest-green);
-        border-width: 0 3px 3px 0;
-
-        transform: translate(-50%, -50%) rotate(45deg);
-      }
-    }
-  }
-
-  p {
-    padding-top: 5px;
-    padding-left: 15px;
-    margin-bottom: 0;
-  }
-}
-
-.actionHolder {
-  display: flex;
-  align-items: center;
-
-  h6 {
-    padding-top: 0;
-    margin-bottom: 0;
-
-    font-weight: normal;
-
-    border-top: 0;
-  }
-
-  p {
-    margin-bottom: 0;
-
-    color: var(--color-dark-gray);
-  }
-
-  svg {
-    height: 40px;
-  }
-}
-
-.actionDetails {
-  padding-left: 10px;
-}
-
-@media (max-width: $xl) {
-  .checklistWrap {
-    padding: 150px 0;
-    
-    h2 {
-      font-size: 35px;
-      line-height: normal;
-    }
-
-    p {
-      font-size: 17px;
-    }
-  }
-
-  .cColumn {
-    picture {
-      height: 870px;
-    }
-  }
-
-  .listHolder {
-    ul {
-      margin-bottom: 120px;
-
-      transform: translateY(140px);
-    }
-  }
-}
-
-@media (max-width: 1023px) {
-  .checklistWrap {
-    padding: 150px 0 218px;
-    margin-bottom: 0;
-
-    overflow: initial;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      z-index: 1;
-
-      width: 100%;
-      height: 500px;
-
-      background-color: var(--color-light-grey);
-    }
-  }
-
-  .contentText {
-    margin-top: 0;
-  }
-  
-  .cColumn {
-    picture {
-      margin-top: 19px;
-      margin-left: auto;
-      width: 73%;
-      height: 625px;
-    }
-  }
-
-  .listHolder ul {
-    position: absolute;
-    left: 16px;
-    bottom: -130px;
-
-    margin-bottom: 0;
-    
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: $sm) {
-  .checklistWrap {
-    padding: 100px 0 170px;
-  }
-
-  .cColumn picture {
-    margin-right: 20px;
-    height: 325px;
-    width: 80%;
-
-    border-radius: 10px;
-  }
-
-  .listHolder {
-    .card {
-      padding: 10px 35px 10px 15px;
-
-      &:not(:last-child) {
-        margin-bottom: 15px;
-      }
-    }
-
-    ul {
-      bottom: -115px;
-    }
-
-    li {
-      width: 355px;
-
-      img {
-        width: 35px;
-      }
-
-      p {
-        padding-left: 10px;
-
-        font-size: 15px;
-      }
-    }
-  }
-}
-
-@media (max-width: $xs) {
-  .checklistWrap {
-    padding: 100px 0 140px;
-  }
-
-  .cColumn picture {
-    height: 270px;
-  }
-
-  .listHolder {
-    ul {
-      bottom: -100px;
-    }
-
-    li {
-      width: 100%;
-    }
+  h4 {
+    font-size: 1.5rem;
+    margin: 0;
   }
 }
