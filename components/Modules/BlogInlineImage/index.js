@@ -5,7 +5,6 @@ import Picture from "../../Picture";
 import styles from "./inlineimage.module.scss";
 
 const Index = ({ primary }) => {
-  console.log(primary)
   return (
     <Container>
       {primary.image && <Picture image={primary.image} />}
@@ -18,7 +17,7 @@ const Index = ({ primary }) => {
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
