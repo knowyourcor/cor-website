@@ -1,36 +1,15 @@
 import { RichText } from "prismic-reactjs";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { Column, Container, Row } from "../../Grid";
+import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
 import Section from "../../Section";
 
-import styles from "./index.module.scss";
-
-const Heading = ({ tag, heading, fadeInVariants }) => {
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-    triggerOnce: true,
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "show" : "hidden"}
-      exit="hidden"
-      variants={fadeInVariants}
-      className={styles.heading}
-    >
-      <span>{tag}</span>
-      <RichText render={heading} />
-    </motion.div>
-  );
-};
+import styles from "./shopDataProgress.module.scss";
 
 export default function Index({ primary }) {
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.2,
     triggerOnce: true,
   });
 
@@ -53,41 +32,55 @@ export default function Index({ primary }) {
 
   return (
     <Section
-      style={{ backgroundColor: primary.background_color }}
+      style={{
+        background: `linear-gradient(
+        180deg,
+        transparent 37%,
+        ${primary.background_color} 37%
+      )`,
+      }}
       className={styles.dataProgress}
     >
-      <Container>
-        <div className={styles.contentWrap}>
-          <Row align="center">
-            <Column
-              columns={{ xs: 14, md: 7 }}
-              offsets={{ md: 1 }}
-              className="custom__column"
+      <Container ref={ref}>
+        <Row>
+          <Column columns={{ xs: 14, md: 7 }} offsets={{ md: 1 }}>
+            <motion.div
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              variants={fadeInVariants}
+              className={styles.image}
             >
-              <div className={styles.imageDetailsHolder}>
-                <div className={styles.photo}>
-                  <Picture image={primary.photo} />
-                </div>
-                <motion.div
-                  ref={ref}
-                  initial="hidden"
-                  animate={inView ? "show" : "hidden"}
-                  exit="hidden"
-                  variants={fadeInVariants}
-                >
-                  <RichText render={primary.text_heading} />
-                  <RichText render={primary.text} />
-                </motion.div>
-              </div>
-            </Column>
-            <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }}>
-              <Heading {...primary} fadeInVariants={fadeInVariants} />
-              <div className={styles.screenshot}>
-                <Picture image={primary.screenshot} />
-              </div>
-            </Column>
-          </Row>
-        </div>
+              <Picture image={primary.image} />
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              variants={fadeInVariants}
+              className={styles.content}
+            >
+              <RichText render={primary.text} />
+            </motion.div>
+          </Column>
+          <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }}>
+            <motion.div
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              variants={fadeInVariants}
+              className={styles.headline}
+            >
+              <p className={styles.tag}>{primary.tag}</p>
+              <RichText render={primary.headline} />
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              variants={fadeInVariants}
+              className={styles.screenshot}
+            >
+              <Picture image={primary.screenshot} />
+            </motion.div>
+          </Column>
+        </Row>
       </Container>
     </Section>
   );
