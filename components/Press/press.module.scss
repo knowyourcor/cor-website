@@ -1,0 +1,100 @@
+.pressPosts {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.post {
+  flex: 0 1 29.75857143%;
+  margin-bottom: 3.57142857%;
+}
+
+.card {
+  position: relative;
+  background: #fff;
+  border-radius: var(--border-radius);
+  text-align: left;
+  will-change: transform;
+  transform: scale(1);
+  transition: transform 350ms ease-out 150ms;
+  cursor: pointer;
+  padding: 0;
+
+  // Card shadow, shows on hover
+  &:after {
+    top: 0;
+    left: 0;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: opacity 350ms ease-out 150ms;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 650ms ease-out 80ms;
+    &:after {
+      transition: opacity 650ms ease-out 80ms;
+      opacity: 1;
+    }
+  }
+
+  .borderRadius {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+
+  .cardContent {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+.borderBottom {
+  width: 100%;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--font-primary);
+}
+
+.post {
+  padding: 3rem 0;
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  p {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+  a {
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    &:link,
+    &:visited {
+      font-size: 1rem;
+      text-decoration: none;
+      opacity: 1;
+      transition: opacity 250ms ease-out;
+    }
+    &:hover,
+    &:active {
+      opacity: 0.45;
+    }
+  }
+}
+
+p.date {
+  margin: 0.75rem 0 0;
+  color: var(--color-suva-grey);
+}

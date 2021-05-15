@@ -21,7 +21,6 @@ export default function Page({ pageData }) {
       {router.isFallback ? (
         <>
           <Head title="Loading..." />
-
           <Section>
             <Container>
               <Row>
@@ -37,8 +36,8 @@ export default function Page({ pageData }) {
         </>
       ) : (
         <>
+          <Head title={pageData?.meta_title} />
           <Modules pageData={pageData} />
-          {pageData?.featured_press && <FeaturedPress />}
         </>
       )}
     </>
