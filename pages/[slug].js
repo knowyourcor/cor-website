@@ -6,16 +6,12 @@ import Section from "../components/Section";
 import { Container, Row, Column } from "../components/Grid";
 import Modules from "../components/Modules";
 import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
-import FeaturedPress from "../components/FeaturedPress";
 
 export default function Page({ pageData }) {
   const router = useRouter();
   if (!router.isFallback && !pageData?._meta?.uid) {
     return <ErrorPage statusCode={404} />;
   }
-
-  let title = pageData?.meta_title?.toLowerCase();
-
   return (
     <>
       {router.isFallback ? (
