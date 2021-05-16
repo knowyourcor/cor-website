@@ -6,22 +6,17 @@ import Section from "../components/Section";
 import { Container, Row, Column } from "../components/Grid";
 import Modules from "../components/Modules";
 import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
-import FeaturedPress from "../components/FeaturedPress";
 
 export default function Page({ pageData }) {
   const router = useRouter();
   if (!router.isFallback && !pageData?._meta?.uid) {
     return <ErrorPage statusCode={404} />;
   }
-
-  let title = pageData?.meta_title?.toLowerCase();
-
   return (
     <>
       {router.isFallback ? (
         <>
           <Head title="Loading..." />
-
           <Section>
             <Container>
               <Row>
@@ -37,8 +32,8 @@ export default function Page({ pageData }) {
         </>
       ) : (
         <>
+          <Head title={pageData?.meta_title} />
           <Modules pageData={pageData} />
-          {pageData?.featured_press && <FeaturedPress />}
         </>
       )}
     </>
@@ -47,7 +42,19 @@ export default function Page({ pageData }) {
 
 export async function getStaticPaths() {
   const allPages = await getAllPagesWithSlug();
-  const allPaths = allPages?.map(({ node }) => `/${node._meta.uid}`);
+
+  // If a page has a template, e.g. a page called about.js,
+  // add the name to the array
+  const hasPageTemplate = ["about"];
+
+  // Remove pages that have a template from static paths
+  const filterOutTemplates = allPages.filter(
+    ({ node }) => !hasPageTemplate.includes(node?._meta?.uid)
+  );
+
+  // Create an array of paths to pass to static paths
+  const allPaths = filterOutTemplates?.map(({ node }) => `/${node._meta.uid}`);
+
   return {
     paths: allPaths || [],
     fallback: false,

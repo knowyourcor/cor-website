@@ -1,0 +1,248 @@
+@import "../../../styles/variables";
+
+.textDownloader {
+  a {
+    &:link,
+    &:visited {
+      color: var(--color-pacific-blue);
+    }
+    &:hover,
+    &:active {
+      color: var(--font-primary);
+    }
+  }
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin: 4rem 0 2rem;
+  & > div {
+    flex: 0 1 50%;
+  }
+}
+
+.logo {
+  width: 100%;
+  background-color: var(--color-light-cyan);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    display: block;
+    width: 220px;
+    height: auto;
+  }
+}
+
+.content {
+  width: 100%;
+  padding: 3rem 7.14285714%;
+  background-color: var(--color-gainsboro);
+
+  p:last-child {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    color: var(--color-suva-grey);
+  }
+}
+
+// .textDownloader {
+//   padding-bottom: 12.25rem;
+
+//   h5 {
+//     font-family: var(--font-sans-headline);
+//     font-size: 60px;
+//     line-height: 0.92;
+//     letter-spacing: -1.8px;
+//     color: var(--font-primary);
+//   }
+
+//   p, a {
+//     margin-bottom: 0;
+
+//     font-family: var(--font-sans);
+//     font-size: 30px;
+//     font-weight: normal;
+//     line-height: 1.6;
+//     letter-spacing: normal;
+//     text-align: left;
+//     color: var(--font-primary);
+//   }
+
+//   a {
+//     color: var(--color-pacific-blue);
+//   }
+// }
+
+// .card__wrap {
+//   margin-top: 150px;
+//   margin-left: 0;
+//   margin-right: 0;
+
+//   & > div {
+//     &:first-child {
+//       display: flex;
+//       align-items: center;
+
+//       background-color: var(--color-light-cyan);
+//     }
+
+//     &:last-child {
+//       padding: 50px 57px 50px 136px;
+
+//       background-color: var(--color-gainsboro);
+//     }
+//   }
+
+//   h2, h3, h4, h5, h6 {
+//     margin-top: 0;
+//     margin-bottom: 25px;
+
+//     font-family: var(--font-sans);
+//     font-size: 30px;
+//     font-weight: 600;
+//     line-height: 2.34;
+//     letter-spacing: normal;
+//     color: var(--font-primary);
+//   }
+
+//   p {
+//     font-size: 20px;
+//     line-height: 1.5;
+//   }
+
+//   a {
+//     display: flex;
+//     align-items: center;
+//     margin-top: 41.5px;
+//     margin-bottom: 101.8px;
+
+//     font-family: var(--font-sans-bold);
+//     font-size: 20px;
+//     font-weight: bold;
+//     line-height: 1.5;
+//     letter-spacing: normal;
+//     text-align: left;
+//     color: var(--color-pacific-blue);
+
+//     transition: color .3s ease-in-out;
+
+//     &:hover {
+//       color: var(--font-primary);
+
+//       .icon__downloader path {
+//         fill: var(--font-primary);
+//       }
+//     }
+//   }
+
+//   .icon__downloader {
+//     margin-right: 15.5px;
+//     height: 25px;
+
+//     path {
+//       fill: var(--color-pacific-blue);
+
+//       transition: fill .3s ease-in-out;
+//     }
+//   }
+// }
+
+// .textNote {
+//   p {
+//     font-size: 14px;
+//     font-weight: normal;
+//     font-stretch: normal;
+//     font-style: normal;
+//     line-height: 2.14;
+//     letter-spacing: normal;
+//     text-align: left;
+//     color: var(--color-suva-grey);
+//   }
+// }
+
+// @media (max-width: $xxl) {
+//   .textDownloader {
+//     p,a {
+//       font-size: 22px;
+//     }
+//   }
+
+//   .card__wrap {
+//     & > div {
+//       &:last-child {
+//         padding-left: 75px
+//       }
+//     }
+
+//     h2, h3, h4, h5, h6 {
+//       font-size: 25px;
+//       line-height: 1.5;
+//     }
+
+//     p {
+//       font-size: 18px;
+//     }
+
+//     a {
+//       margin-bottom: 72.8px;
+//     }
+//   }
+
+//   .textNote p {
+//     font-size: 16px;
+//     line-height: 1.5;
+//   }
+// }
+
+// @media (max-width: 1023px) {
+//   .textDownloader {
+//     padding-bottom: 5.25rem;
+
+//     p, a {
+//       font-size: 16px;
+//     }
+//   }
+
+//   .card__wrap {
+//     margin-top: 90px;
+
+//     & > div {
+//       &:first-child {
+//         height: 204px;
+//       }
+
+//       &:last-child {
+//         padding: 15px;
+//       }
+//     }
+
+//     h2, h3, h4, h5, h6 {
+//       margin-bottom: 14px;
+
+//       font-size: 19px;
+//       line-height: 1.3;
+//     }
+
+//     p, a {
+//       font-size: 14px;
+//     }
+
+//     a {
+//       margin-top: 30.5px;
+//       margin-bottom: 47.8px;
+//     }
+//   }
+
+//   .icon__logo {
+//     height: 60px;
+//   }
+
+//   .textNote p {
+//     font-size: 13px;
+//     line-height: 1.4;
+//   }
+// }
