@@ -42,7 +42,19 @@ export default function Page({ pageData }) {
 
 export async function getStaticPaths() {
   const allPages = await getAllPagesWithSlug();
-  const allPaths = allPages?.map(({ node }) => `/${node._meta.uid}`);
+
+  // If a page has a template, e.g. a page called about.js,
+  // add the name to the array
+  const hasPageTemplate = ["about"];
+
+  // Remove pages that have a template from static paths
+  const filterOutTemplates = allPages.filter(
+    ({ node }) => !hasPageTemplate.includes(node?._meta?.uid)
+  );
+
+  // Create an array of paths to pass to static paths
+  const allPaths = filterOutTemplates?.map(({ node }) => `/${node._meta.uid}`);
+
   return {
     paths: allPaths || [],
     fallback: false,
