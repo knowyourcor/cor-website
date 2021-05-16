@@ -1,6 +1,6 @@
 import { RichText, Date } from "prismic-reactjs";
 import Section from "../Section";
-import { Column, Container, Row } from "../Grid";
+import { Container, Row, Column } from "../Grid";
 import Picture from "../Picture";
 import styles from "./press.module.scss";
 
