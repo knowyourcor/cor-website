@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const Title = ({ title }) => {
+const Title = ({ title, description }) => {
   return (
     <Head>
       <title>{title ? `${title} | COR` : "COR"}</title>
@@ -12,7 +12,11 @@ const Title = ({ title }) => {
       <link rel="icon" href="/favicon.ico" />
       <meta
         name="Description"
-        content="There’s more to health than steps & weight"
+        content={
+          description
+            ? description
+            : "There’s more to health than steps & weight"
+        }
       />
       <meta name="title" property="og:title" content={`${title} | COR`} />
       <meta name="theme-color" content="#f2f2f2" />
