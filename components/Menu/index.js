@@ -68,17 +68,19 @@ const Menu = ({ active, toggle, mainMenuData }) => {
       <nav className={styles.menu}>
         <div className={styles.scrollContainer}>
           <ul className={styles.menuItems}>
-            {mainMenuData?.menu_links.map((link, index) => {
-              return (
-                <li key={`${link.link._meta.uid}_${index}`}>
-                  <Link
-                    activeClassName={styles.active}
-                    href={`/${link.link._meta.uid}`}
-                  >
-                    <a>{link.label[0].text}</a>
-                  </Link>
-                </li>
-              );
+            {mainMenuData?.menu_links.map((item, index) => {
+              if (item.link) {
+                return (
+                  <li key={`${item.link._meta.uid}_${index}`}>
+                    <Link
+                      activeClassName={styles.active}
+                      href={`/${item.link._meta.uid}`}
+                    >
+                      <a>{item.label[0].text}</a>
+                    </Link>
+                  </li>
+                );
+              }
             })}
           </ul>
         </div>
@@ -99,20 +101,22 @@ const Menu = ({ active, toggle, mainMenuData }) => {
             )}
             variants={navItemsVariants}
           >
-            {mainMenuData?.menu_links.map((link, index) => {
-              return (
-                <motion.li
-                  key={`${link.link._meta.uid}_${index}`}
-                  variants={navItemVariants}
-                >
-                  <Link
-                    activeClassName={styles.active}
-                    href={`/${link.link._meta.uid}`}
+            {mainMenuData?.menu_links.map((item, index) => {
+              if (item.link) {
+                return (
+                  <motion.li
+                    key={`${item.link._meta.uid}_${index}`}
+                    variants={navItemVariants}
                   >
-                    <a onClick={() => toggle()}>{link.label[0].text}</a>
-                  </Link>
-                </motion.li>
-              );
+                    <Link
+                      activeClassName={styles.active}
+                      href={`/${item.link._meta.uid}`}
+                    >
+                      <a onClick={() => toggle()}>{item.label[0].text}</a>
+                    </Link>
+                  </motion.li>
+                );
+              }
             })}
           </motion.ul>
         </div>

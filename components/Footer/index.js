@@ -97,7 +97,9 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                         >
                           <ul>
                             {set.map((link, index) => {
-                              return PageLink(link, index);
+                              if (link.link) {
+                                return PageLink(link, index);
+                              }
                             })}
                           </ul>
                         </Column>
