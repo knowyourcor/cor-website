@@ -1,0 +1,10 @@
+@import "./variables";
+
+.container {
+  min-height: 100vh;
+  padding: 4rem 0 3rem;
+
+  @media (min-width: $md) {
+    padding: 10rem 0;
+  }
+}

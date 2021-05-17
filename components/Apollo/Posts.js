@@ -22,26 +22,22 @@ const POSTS_QUERY = gql`
       }
       edges {
         node {
-          featured_post
-          title
-          category
-          date
-          excerpt
           _meta {
             uid
+            tags
           }
-          content {
-            image
-            heading
-            paragraph
-            quote
-          }
+          title
+          date
+          excerpt
+          cover_image
         }
         cursor
       }
     }
   }
 `;
+
+// console.log(POSTS_QUERY);
 
 const PostItem = ({ item, index }) => {
   const { ref, inView } = useInView({

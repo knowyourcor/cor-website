@@ -23,11 +23,6 @@ import ShopChecklist from "./ShopChecklist";
 import ShopDataProgress from "./ShopDataProgress";
 import Product from "./Product";
 import TextDownloader from "./TextDownloader";
-import BlogBodyText from "./BlogBodyText";
-import BlogFullWidthImage from "./BlogFullWidthImage";
-import BlogQuote from "./BlogQuote";
-import BlogVideo from "./BlogVideo";
-import BlogInlineImage from "./BlogInlineImage";
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -55,11 +50,6 @@ const moduleDefs = {
   ["dualdatagrid"]: ShopDataProgress,
   ["product"]: Product,
   ["text___downloader"]: TextDownloader,
-  ["blog_text"]: BlogBodyText,
-  ["blog_full_width_image"]: BlogFullWidthImage,
-  ["blog_quote"]: BlogQuote,
-  ["video"]: BlogVideo,
-  ["inline_image"]: BlogInlineImage,
 };
 
 const Modules = ({ pageData }) => {
