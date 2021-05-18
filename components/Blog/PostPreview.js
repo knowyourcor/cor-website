@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { RichText, Date } from "prismic-reactjs";
+import slugify from "slugify";
 import Picture from "../Picture";
 import styles from "./blog.module.scss";
 
@@ -14,28 +15,7 @@ export default function PostPreview({ node }) {
     day: "2-digit",
   }).format(timestamp);
 
-  const tagToCategorySlug = (tag) => tag?.toLowerCase().replace(" ", "-");
-
   return (
-    //   <a
-    //   href={post?.link?.url}
-    //   target={post?.link?.target}
-    //   className={styles.post}
-    // >
-    //   <div className={styles.card}>
-    //     <div className={styles.borderRadius}>
-    //       <div className={styles.image}>
-    //         <Picture image={post.cover_image} />
-    //       </div>
-    //       <div className={styles.cardContent}>
-    //         <RichText render={post.publisher} />
-    //         <RichText render={post.title} />
-    //         <p className={styles.date}>{formattedDate}</p>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </a>
-
     <Link href={`/blog/${_meta.uid}`}>
       <a className={styles.postPreview}>
         <div className={styles.card}>
