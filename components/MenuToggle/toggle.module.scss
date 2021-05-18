@@ -14,7 +14,7 @@
 
   // Handle iPhone notch
   --safe-area-inset-right: env(safe-area-inset-right);
-  right: calc(1rem + var(--safe-area-inset-right));
+  right: calc(0.5rem + var(--safe-area-inset-right));
 
   @media (min-width: $md) {
     display: none;
