@@ -47,13 +47,13 @@ export default function TextDownloader({ primary }) {
     >
       <Container>
         <Row>
-          <Column columns={{ xs: 14, md: 5 }} offsets={{ sm: 1 }}>
+          <Column columns={{ xs: 14, sm: 10, md: 5 }} offsets={{ md: 1 }}>
             <RichText render={primary.headline} />
             <RichText render={primary.text} />
           </Column>
         </Row>
         <Row align={{ xs: "center" }}>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ sm: 1 }}>
+          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
             <div className={styles.card}>
               <div className={styles.logo}>
                 <svg
