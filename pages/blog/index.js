@@ -45,6 +45,25 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     postsByTagData && setAllPosts(postsByTagData);
   };
 
+  // TODO: hook up show more pagination
+  // const handleShowMore = () => {
+  //   if (data.allBlog_posts.pageInfo.hasNextPage) {
+  //     const { endCursor } = data.allBlog_posts.pageInfo;
+
+  //     fetchMore({
+  //       variables: { after: endCursor, offset: 0, limit: 6 },
+
+  //       updateQuery: (prevResult, { fetchMoreResult }) => {
+  //         fetchMoreResult.allBlog_posts.edges = [
+  //           ...prevResult.allBlog_posts.edges,
+  //           ...fetchMoreResult.allBlog_posts.edges,
+  //         ];
+  //         return fetchMoreResult;
+  //       },
+  //     });
+  //   }
+  // };
+
   return (
     <>
       <Head title={meta_title} description={meta_description} />
