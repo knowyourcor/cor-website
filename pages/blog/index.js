@@ -7,6 +7,7 @@ import Error from "../../components/Error";
 import Loading from "../../components/Loading";
 import PostPinned from "../../components/Blog/PostPinned";
 import PostPreview from "../../components/Blog/PostPreview";
+import Filter from "../../components/Blog/Filter";
 
 // Apollo
 import { useQuery } from "@apollo/client";
@@ -14,12 +15,12 @@ import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
 import client from "../../lib/ApolloClient";
 
 // Prismic
-import { getBlogData, getMenuData } from "../../lib/api";
+import { getBlogData, getMenuData, getBlogPostTags } from "../../lib/api";
 
 // Styles
 import styles from "../../styles/Blog.module.scss";
 
-export default function Blog({ pageData, allBlogPosts }) {
+export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
   const { meta_title, meta_description, pinned_blog_post } = pageData[0].node;
 
   const pinnedPostUID = pinned_blog_post?._meta.uid;
@@ -62,6 +63,11 @@ export default function Blog({ pageData, allBlogPosts }) {
         <Container>
           <Row>
             <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
+              <Filter filters={allPostsTags} />
+            </Column>
+          </Row>
+          <Row>
+            <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
               <div className={styles.blogPosts}>
                 {filterOutPinnedPost &&
                   filterOutPinnedPost.map((post) => (
@@ -82,6 +88,7 @@ export async function getStaticProps({ preview = false, previewData }) {
   });
 
   const pageData = await getBlogData(previewData);
+  const allPostsTags = await getBlogPostTags();
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
@@ -89,6 +96,7 @@ export async function getStaticProps({ preview = false, previewData }) {
     props: {
       preview,
       pageData,
+      allPostsTags,
       allBlogPosts,
       mainMenuData,
       footerMenuData,
