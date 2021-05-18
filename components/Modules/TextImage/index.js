@@ -31,7 +31,6 @@ const Paragraph = ({ link, link_label, text, variants }) => {
 };
 
 const TextImage = ({ primary }) => {
-  console.log(primary);
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
