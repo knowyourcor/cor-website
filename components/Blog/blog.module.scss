@@ -1,11 +1,11 @@
-// post preview
+// post pinned
 
-.postPreview {
+.postPinned {
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   align-items: center;
-  margin: 3rem 0;
+  margin: 4rem 0;
   width: 100%;
   .image {
     width: 100%;
@@ -42,6 +42,71 @@
   }
 }
 
+// post preview
+
+.postPreview {
+  display: block;
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    will-change: transform;
+  }
+  p {
+    margin: 0;
+    font-size: 0.85rem;
+    will-change: transform;
+  }
+}
+
+.card {
+  height: 100%;
+  position: relative;
+  background: #fff;
+  border-radius: var(--border-radius);
+  text-align: left;
+  will-change: transform;
+  transform: scale(1);
+  transition: transform 350ms ease-out 50ms;
+  cursor: pointer;
+  padding: 0;
+
+  // Card shadow, shows on hover
+  &:after {
+    top: 0;
+    left: 0;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: opacity 350ms ease-out 50ms;
+  }
+
+  &:hover {
+    transform: scale(1.025);
+    transition: transform 450ms ease-out 30ms;
+    &:after {
+      transition: opacity 450ms ease-out 30ms;
+      opacity: 1;
+    }
+  }
+
+  .borderRadius {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+
+  .content {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
 // post
 
 .blogPost {
@@ -56,16 +121,20 @@
   p {
     margin: 0;
     font-size: 1rem;
+    margin-right: 1rem;
     &.date {
       margin: 0;
       color: var(--color-suva-grey);
     }
   }
+}
+
+// filter
+.filter {
   a {
-    font-size: 1rem;
-    line-height: 1.5;
-    display: block;
     margin-right: 1rem;
-    text-decoration: underline;
+  }
+  .label {
+    margin-right: 1rem;
   }
 }

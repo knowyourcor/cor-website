@@ -1,0 +1,18 @@
+@import "./variables";
+
+.blog {
+  max-width: 100%;
+  padding: 4rem 0 3rem;
+  @media (min-width: $md) {
+    padding: 4rem 0;
+  }
+}
+
+.blogPosts {
+  margin-top: 3rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 1.5em;
+}
