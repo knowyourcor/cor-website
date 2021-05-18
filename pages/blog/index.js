@@ -2,23 +2,36 @@ import React from "react";
 import ClientOnly from "../../components/Apollo/ClientOnly";
 import { getLayout } from "../../components/Layout/PageLayout";
 import { Container, Row, Column } from "../../components/Grid";
+import Head from "../../components/Head";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
+import PostPinned from "../../components/Blog/PostPinned";
+import PostPreview from "../../components/Blog/PostPreview";
 
 // Apollo
 import { useQuery } from "@apollo/client";
 import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
 import client from "../../lib/ApolloClient";
-import PostPreview from "../../components/Blog/PostPreview";
 
 // Prismic
-import { getMenuData } from "../../lib/api";
+import { getBlogData, getMenuData } from "../../lib/api";
 
 // Styles
 import styles from "../../styles/Blog.module.scss";
 
-export default function Blog({ allBlogPosts }) {
-  console.log(allBlogPosts);
+export default function Blog({ pageData, allBlogPosts }) {
+  const { meta_title, meta_description, pinned_blog_post } = pageData[0].node;
+
+  const pinnedPostUID = pinned_blog_post?._meta.uid;
+
+  const pinnedPostData = {
+    node: { ...pinned_blog_post },
+  };
+
+  const filterOutPinnedPost = allBlogPosts?.allBlog_posts?.edges.filter(
+    (post) => post.node._meta.uid !== pinnedPostUID
+  );
+
   // const {
   //   data: allPosts,
   //   loading: allPostsLoading,
@@ -35,18 +48,31 @@ export default function Blog({ allBlogPosts }) {
   // if (allPostsLoading) return <Loading />;
 
   return (
-    <div className={styles.blog}>
-      <Container>
-        <Row>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
-            {allBlogPosts &&
-              allBlogPosts.allBlog_posts.edges.map((post) => (
-                <PostPreview {...post} key={post.node._meta.uid} />
-              ))}
-          </Column>
-        </Row>
-      </Container>
-    </div>
+    <>
+      <Head title={meta_title} description={meta_description} />
+      <div className={styles.blog}>
+        <Container>
+          <Row>
+            <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
+              <PostPinned {...pinnedPostData} />
+            </Column>
+          </Row>
+        </Container>
+
+        <Container>
+          <Row>
+            <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
+              <div className={styles.blogPosts}>
+                {filterOutPinnedPost &&
+                  filterOutPinnedPost.map((post) => (
+                    <PostPreview {...post} key={post.node._meta.uid} />
+                  ))}
+              </div>
+            </Column>
+          </Row>
+        </Container>
+      </div>
+    </>
   );
 }
 
@@ -55,12 +81,14 @@ export async function getStaticProps({ preview = false, previewData }) {
     query: ALL_BLOG_POSTS_QUERY,
   });
 
+  const pageData = await getBlogData(previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
   return {
     props: {
       preview,
+      pageData,
       allBlogPosts,
       mainMenuData,
       footerMenuData,

@@ -17,30 +17,43 @@ export default function PostPreview({ node }) {
   const tagToCategorySlug = (tag) => tag?.toLowerCase().replace(" ", "-");
 
   return (
-    <div className={styles.postPreview}>
-      <div className={styles.image}>
-        <Link href={`/blog/${_meta.uid}`}>
-          <a>
-            <Picture image={cover_image} />
-          </a>
-        </Link>
-      </div>
-      <div className={styles.content}>
-        <div className={styles.meta}>
-          {_meta.tags[0] && (
-            <Link href={`/blog/category/${tagToCategorySlug(_meta.tags[0])}`}>
-              <a>{_meta.tags[0]}</a>
-            </Link>
-          )}
-          <p className={styles.date}>{formattedDate}</p>
+    //   <a
+    //   href={post?.link?.url}
+    //   target={post?.link?.target}
+    //   className={styles.post}
+    // >
+    //   <div className={styles.card}>
+    //     <div className={styles.borderRadius}>
+    //       <div className={styles.image}>
+    //         <Picture image={post.cover_image} />
+    //       </div>
+    //       <div className={styles.cardContent}>
+    //         <RichText render={post.publisher} />
+    //         <RichText render={post.title} />
+    //         <p className={styles.date}>{formattedDate}</p>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </a>
+
+    <Link href={`/blog/${_meta.uid}`}>
+      <a className={styles.postPreview}>
+        <div className={styles.card}>
+          <div className={styles.borderRadius}>
+            <div className={styles.image}>
+              <Picture image={cover_image} />
+            </div>
+            <div className={styles.content}>
+              <div className={styles.meta}>
+                <p className={styles.tags}>{_meta.tags[0]}</p>
+                <p className={styles.date}>{formattedDate}</p>
+              </div>
+              <h2>{title[0]?.text}</h2>
+              <RichText render={excerpt} />
+            </div>
+          </div>
         </div>
-        <Link href={`/blog/${_meta.uid}`}>
-          <a>
-            <h2>{title[0]?.text}</h2>
-          </a>
-        </Link>
-        <RichText render={excerpt} />
-      </div>
-    </div>
+      </a>
+    </Link>
   );
 }
