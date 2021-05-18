@@ -31,6 +31,7 @@ const Paragraph = ({ link, link_label, text, variants }) => {
 };
 
 const TextImage = ({ primary }) => {
+  console.log(primary);
   const { ref, inView } = useInView({
     threshold: 0.5,
     rootMargin: "25px 0px",
@@ -54,7 +55,10 @@ const TextImage = ({ primary }) => {
     },
   };
   return (
-    <Section className={styles.textImage} align="center">
+    <Section
+      className={styles.textImage}
+      backgroundColor={primary.background_color}
+    >
       <Container>
         {primary.headline[0].text && (
           <Row>
