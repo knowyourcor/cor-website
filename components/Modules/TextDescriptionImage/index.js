@@ -33,7 +33,7 @@ export default function TextImage({ primary }) {
     <Section className={styles.textImage}>
       <Container ref={ref}>
         <Row>
-          <Column columns={{ xs: 14, md: 6, lg: 5 }} offsets={{ md: 1 }}>
+          <Column columns={{ xs: 14, md: 6, lg: 6 }} offsets={{ md: 1 }}>
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}

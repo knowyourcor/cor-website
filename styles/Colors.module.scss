@@ -1,0 +1,14 @@
+.colors {
+  color: #fff;
+  > div {
+    padding: 2rem 1rem;
+    text-align: center;
+    font-family: var(--font-sans-bold);
+
+    span {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+  }
+}

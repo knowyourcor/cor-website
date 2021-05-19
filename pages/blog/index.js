@@ -141,7 +141,9 @@ export async function getStaticProps({ preview = false, previewData }) {
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
 
-  const allTags = allPostsTagsData.map((tag) => tag.node._meta?.tags[0]);
+  const allTags = allPostsTagsData
+    .map((tag) => tag.node._meta?.tags[0])
+    .filter((item) => !!item);
   const removeTagDuplicates = [...new Set(allTags)];
   const allPostsTags = removeTagDuplicates.map((tag) => ({
     name: tag,

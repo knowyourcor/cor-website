@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { Container, Row, Column } from "../Grid";
 import EmailSignup from "../EmailSignup";
@@ -25,27 +26,6 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
       footerMenuData?.menu_links,
       Math.ceil(footerMenuData?.menu_links?.length / 2)
     );
-
-  const WebLink = (link, index) => {
-    const regex =
-      /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)?(?:\.[a-z]+)/;
-    const domain = link.link?.url.match(regex)[1];
-    return (
-      <li key={`weblink-${index}`}>
-        <a
-          href={link.link?.url}
-          title={link.label[0].text}
-          target={link.link?.target}
-          rel="noopener noreferrer"
-        >
-          <img
-            src={`/icons/${domain.toLowerCase()}.svg`}
-            alt={link.label[0].text}
-          />
-        </a>
-      </li>
-    );
-  };
 
   const PageLink = (link, index) => {
     return (
@@ -90,12 +70,12 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                 <>
                   {internalLinksToColumn.map((set, index) => {
                     return (
-                      <ul>
-                        {set.map((link, index) => {
-                          if (link.link) {
-                            return PageLink(link, index);
-                          }
-                        })}
+                      <ul key={`colum_${index}`}>
+                        {set.map((link, index) => (
+                          <Fragment key={`link_${index}`}>
+                            {link.link && PageLink(link, index)}
+                          </Fragment>
+                        ))}
                       </ul>
                     );
                   })}

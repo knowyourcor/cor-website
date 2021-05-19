@@ -23,8 +23,8 @@
 
 .productPurchase {
   padding: 0.5rem 0;
-  border-top: 0.75px solid var(--font-primary);
-  border-bottom: 0.75px solid var(--font-primary);
+  border-top: 0.75px solid var(--text-color-primary);
+  border-bottom: 0.75px solid var(--text-color-primary);
   p {
     margin: 0;
   }
@@ -75,7 +75,7 @@
   padding-right: 25%;
   p {
     font-size: 0.85rem;
-    color: var(--color-gray66);
+    color: var(--gray-3066);
     strong {
       font-size: 1rem;
       font-weight: 400;

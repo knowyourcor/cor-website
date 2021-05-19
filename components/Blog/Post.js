@@ -23,8 +23,8 @@ export default function Post({ data }) {
           <Column columns={{ xs: 14, md: 12 }} offsets={{ sm: 1 }}>
             {/* Post meta - date & category */}
             <div className={styles.meta}>
-              <p>
-                {_meta?.tags[0] && (
+              {_meta?.tags[0] && (
+                <p>
                   <Link
                     href={`/blog/?filter=${slugify(_meta?.tags[0], {
                       lower: true,
@@ -32,8 +32,8 @@ export default function Post({ data }) {
                   >
                     <a>{_meta?.tags[0]}</a>
                   </Link>
-                )}
-              </p>
+                </p>
+              )}
               <p className={styles.date}>{formattedDate}</p>
             </div>
             {/* Post title */}

@@ -1,11 +1,7 @@
 @import "../../../styles/_variables.scss";
 
 .dataProgress {
-  background: linear-gradient(
-    180deg,
-    var(--color-light-grey) 60%,
-    var(--color-gainsboro) 60%
-  );
+  background: linear-gradient(180deg, var(--gray-10) 60%, var(--gray-20) 60%);
 }
 
 .headline {
@@ -31,6 +27,6 @@
 }
 
 .tag {
-  color: var(--color-suva-grey);
+  color: var(--gray-50);
   font-size: 1rem;
 }

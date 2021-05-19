@@ -26,9 +26,9 @@
   display: block;
   width: 100%;
   height: 100%;
-  stroke: var(--font-primary);
+  stroke: var(--text-color-primary);
   transform: translate(0, 1);
   path {
-    stroke: var(--font-primary);
+    stroke: var(--text-color-primary);
   }
 }

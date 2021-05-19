@@ -29,9 +29,9 @@
     overflow-y: scroll;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    background-color: var(--color-white);
-    color: var(--font-inverted);
-    background-color: var(--color-pastel-green);
+    background-color: var(--gray-10);
+    color: var(--text-color-secondary);
+    background-color: var(--green-primary);
     @media (min-width: $sm) {
       display: none;
     }
@@ -72,7 +72,7 @@
       &:visited {
         font-family: var(--font-sans);
         font-size: 1rem;
-        color: var(--font-primary);
+        color: var(--text-color-primary);
         line-height: 1;
         text-decoration: none;
         display: inline-block;
@@ -80,10 +80,10 @@
         border-radius: 48px;
       }
       &:hover {
-        color: var(--color-prussian-blue);
+        color: var(--blue-primary);
       }
       &.active {
-        color: var(--color-dark-gray);
+        color: var(--gray-50);
       }
     }
   }
@@ -103,7 +103,7 @@
       &:visited {
         font-family: var(--font-sans-bold);
         font-size: 2.5rem;
-        color: var(--font-primary);
+        color: var(--text-color-primary);
         line-height: 1;
         text-decoration: none;
         display: inline-block;
@@ -130,7 +130,7 @@
     &:visited {
       font-family: var(--font-sans-bold);
       font-size: 0.85rem;
-      color: var(--font-primary);
+      color: var(--text-color-primary);
       line-height: 1.35;
       text-decoration: none;
       display: inline-block;

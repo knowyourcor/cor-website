@@ -61,12 +61,12 @@
 
 .addToCart {
   padding: 1rem 1.5rem;
-  background-color: var(--color-teal-dark);
-  color: var(--font-inverted);
+  background-color: var(--blue-primary);
+  color: var(--text-color-secondary);
   font-size: 1rem;
   line-height: 1;
   font-family: var(--font-sans-bold);
-  border-radius:  50px 50px;
+  border-radius: 50px 50px;
   transition: background-color 250ms ease-out;
   &:hover {
     background-color: darken(#034561, 10%);
