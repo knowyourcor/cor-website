@@ -54,7 +54,7 @@
 
   .itemLabel,
   .itemIndex {
-    color: var(--color-suva-grey);
+    color: var(--gray-50);
   }
 
   .itemLabel {
@@ -82,17 +82,17 @@
 
   height: 100%;
 
-  border-left: 1px solid var(--color-suva-grey);
+  border-left: 1px solid var(--gray-50);
 }
 
 .activeItem {
   .itemLabel,
   .itemIndex {
-    color: var(--font-primary);
+    color: var(--text-color-primary);
   }
 
   .cBorder {
-    border-left: 1px solid var(--font-primary);
+    border-left: 1px solid var(--text-color-primary);
   }
 }
 

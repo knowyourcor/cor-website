@@ -13,10 +13,10 @@ export default function Roundel({ index = 0, score }) {
   const transition = { duration: 4, ease: "anticipate" };
 
   const scaleUp = useAnimation();
-  const red = useAnimation();
+  const orange = useAnimation();
   const green = useAnimation();
   const blue = useAnimation();
-  const teal = useAnimation();
+  const cyan = useAnimation();
 
   // Set positions on intital load
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Roundel({ index = 0, score }) {
       opacity: 0,
     });
 
-    red.set({
+    orange.set({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
     });
@@ -40,7 +40,7 @@ export default function Roundel({ index = 0, score }) {
       strokeDashoffset: getRandomInt(220, 300),
     });
 
-    teal.set({
+    cyan.set({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
     });
@@ -54,7 +54,7 @@ export default function Roundel({ index = 0, score }) {
       transition: { delay: 2, duration: 0.5, ease: "easeOut" },
     });
 
-    red.start({
+    orange.start({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
       transition: transition,
@@ -72,7 +72,7 @@ export default function Roundel({ index = 0, score }) {
       transition: transition,
     });
 
-    teal.start({
+    cyan.start({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
       transition: transition,
@@ -83,11 +83,11 @@ export default function Roundel({ index = 0, score }) {
       <svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(24 24)" fill="none" fillRule="evenodd">
           {/* Gray */}
-          <circle stroke="#E5E0DF" strokeWidth="2" cx="50" cy="50" r="41.75" />
+          <circle stroke="#e0e0e0" strokeWidth="2" cx="50" cy="50" r="41.75" />
 
           {/* Blue */}
           <motion.circle
-            stroke="#034069"
+            stroke="#034561"
             strokeWidth="29"
             cx="50"
             cy="50"
@@ -98,14 +98,14 @@ export default function Roundel({ index = 0, score }) {
             }}
           />
 
-          {/* Teal */}
+          {/* Cyan */}
           <motion.circle
-            stroke="#80DEEB"
+            stroke="#80deeb"
             strokeWidth="29"
             cx="50"
             cy="50"
             r="55.242"
-            animate={teal}
+            animate={cyan}
             style={{
               strokeDasharray: 360,
             }}
@@ -124,14 +124,14 @@ export default function Roundel({ index = 0, score }) {
             }}
           />
 
-          {/* Red */}
+          {/* Orange */}
           <motion.circle
-            stroke="#FF7050"
+            stroke="#ff704f"
             strokeWidth="19"
             cx="50"
             cy="50"
             r="50.242"
-            animate={red}
+            animate={orange}
             style={{
               strokeDasharray: 360,
             }}

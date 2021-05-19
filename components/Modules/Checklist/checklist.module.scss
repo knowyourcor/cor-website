@@ -1,10 +1,6 @@
 @import "../../../styles/_variables.scss";
 .checklistContainer {
-  background: linear-gradient(
-    180deg,
-    var(--color-light-grey) 60%,
-    var(--color-gainsboro) 60%
-  );
+  background: linear-gradient(180deg, var(--gray-10) 60%, var(--gray-20) 60%);
 
   h2 {
     margin-top: 30%;
@@ -65,7 +61,7 @@
       font-family: var(--font-sans);
       font-size: 0.85rem;
       font-weight: 400;
-      color: var(--color-dark-gray);
+      color: var(--gray-50);
     }
   }
 }

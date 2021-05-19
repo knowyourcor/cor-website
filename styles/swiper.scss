@@ -1,19 +1,22 @@
 @import "./variables";
 
-.swiper-pagination-bullet  {
-  background-color: var(--color-gray66);
+.swiper-pagination-bullet {
+  background-color: var(--gray-3066);
 
   opacity: 1;
 
   &.swiper-pagination-bullet-active {
-    background-color: var(--font-primary);
+    background-color: var(--text-color-primary);
   }
 }
 
 //About: Team Carousel
 .swiper--slides__visibility {
-  img, p, h5, h6 {
-    transition: transform .3s ease-in;
+  img,
+  p,
+  h5,
+  h6 {
+    transition: transform 0.3s ease-in;
   }
 
   img {
@@ -22,7 +25,7 @@
 
     object-fit: cover;
   }
-  
+
   p {
     visibility: hidden;
     opacity: 0;
@@ -74,7 +77,8 @@
     }
 
     .swiper-slide-active {
-      h5, h6 {
+      h5,
+      h6 {
         visibility: visible;
         opacity: 1;
       }
@@ -84,7 +88,8 @@
       }
     }
 
-    h5, h6 {
+    h5,
+    h6 {
       visibility: hidden;
       opacity: 0;
     }
@@ -95,5 +100,3 @@
     }
   }
 }
-
-

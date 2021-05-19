@@ -33,30 +33,30 @@
 }
 
 .backgroundTransparent {
-  color: var(--font-primary);
+  color: var(--text-color-primary);
   background-color: transparent;
 }
 .backgroundOffWhite {
-  color: var(--font-primary);
-  background-color: var(--color-white);
+  color: var(--text-color-primary);
+  background-color: var(--gray-10);
 }
 .backgroundGray {
-  color: var(--font-primary);
-  background-color: var(--color-gray);
+  color: var(--text-color-primary);
+  background-color: var(--gray-30);
 }
 .backgroundTeal {
-  color: var(--color-teal-dark);
-  background-color: var(--color-teal);
+  color: var(--blue-primary);
+  background-color: var(--blue-tint);
 }
 .backgroundDarkTeal {
-  color: var(--color-white-bright);
-  background-color: var(--color-teal-dark);
+  color: var(--gray-10);
+  background-color: var(--blue-primary);
 }
 .backgroundGreen {
-  color: var(--font-primary);
-  background-color: var(--color-green);
+  color: var(--text-color-primary);
+  background-color: var(--green-primary);
 }
 .backgroundWhite {
-  color: var(--font-primary);
-  background-color: var(--color-white-bright);
+  color: var(--text-color-primary);
+  background-color: var(--gray-10);
 }
