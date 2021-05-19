@@ -8,3 +8,32 @@
     padding: 10rem 0;
   }
 }
+
+.theme-default {
+  background-color: var(--background);
+  color: var(--text-color-primary);
+}
+.theme-taupe {
+  --taupe-tint: #6e6665;
+  background-color: var(--taupe-accent);
+  color: var(--taupe-tint);
+}
+.theme-blue {
+  background-color: var(--blue-tint);
+  color: var(--blue-primary);
+}
+.theme-green {
+  --green-tint: #135425;
+  background-color: var(--green-accent);
+  color: var(--green-tint);
+}
+.theme-orange {
+  --orange-primary: #99432f;
+  background-color: var(--orange-tint);
+  color: var(--orange-primary);
+}
+.theme-cyan {
+  --cyan-tint: #005159;
+  background-color: var(--cyan-accent);
+  color: var(--cyan-tint);
+}
