@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { RichText, Date } from "prismic-reactjs";
+import slugify from "slugify";
 import { Container, Row, Column } from "../Grid";
 import Modules from "../Modules/Blog";
 import styles from "./blog.module.scss";
@@ -15,8 +16,6 @@ export default function Post({ data }) {
     day: "2-digit",
   }).format(timestamp);
 
-  const tagToCategorySlug = (tag) => tag?.toLowerCase().replace(" ", "-");
-
   return (
     <div className={styles.blogPost}>
       <Container>
@@ -24,13 +23,17 @@ export default function Post({ data }) {
           <Column columns={{ xs: 14, md: 12 }} offsets={{ sm: 1 }}>
             {/* Post meta - date & category */}
             <div className={styles.meta}>
-              {_meta.tags[0] && (
-                <Link
-                  href={`/blog/category/${tagToCategorySlug(_meta.tags[0])}`}
-                >
-                  <a>{_meta.tags[0]}</a>
-                </Link>
-              )}
+              <p>
+                {_meta?.tags[0] && (
+                  <Link
+                    href={`/blog/?filter=${slugify(_meta?.tags[0], {
+                      lower: true,
+                    })}`}
+                  >
+                    <a>{_meta?.tags[0]}</a>
+                  </Link>
+                )}
+              </p>
               <p className={styles.date}>{formattedDate}</p>
             </div>
             {/* Post title */}

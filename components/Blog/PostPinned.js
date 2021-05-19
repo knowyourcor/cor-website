@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { RichText, Date } from "prismic-reactjs";
+import slugify from "slugify";
 import Picture from "../Picture";
 import styles from "./blog.module.scss";
 
@@ -14,8 +15,6 @@ export default function PostPinned({ node }) {
     day: "2-digit",
   }).format(timestamp);
 
-  const tagToCategorySlug = (tag) => tag?.toLowerCase().replace(" ", "-");
-
   return (
     <div className={styles.postPinned}>
       <div className={styles.image}>
@@ -28,7 +27,9 @@ export default function PostPinned({ node }) {
       <div className={styles.content}>
         <div className={styles.meta}>
           {_meta.tags[0] && (
-            <Link href={`/blog/category/${tagToCategorySlug(_meta.tags[0])}`}>
+            <Link
+              href={`/blog/?filter=${slugify(_meta?.tags[0], { lower: true })}`}
+            >
               <a>{_meta.tags[0]}</a>
             </Link>
           )}

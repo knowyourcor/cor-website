@@ -33,7 +33,7 @@ export default function DualGrid({ primary }) {
     <Section className={styles.dualGrid}>
       <Container ref={ref}>
         <Row align={{ md: "center" }}>
-          <Column columns={{ xs: 14, sm: 6 }} offsets={{ sm: 1 }}>
+          <Column columns={{ xs: 14, sm: 6 }} offsets={{ md: 1 }}>
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -43,7 +43,7 @@ export default function DualGrid({ primary }) {
               <Picture image={primary.image} />
             </motion.div>
           </Column>
-          <Column columns={{ xs: 14, sm: 5 }} offsets={{ sm: 1 }}>
+          <Column columns={{ xs: 14, sm: 6, md: 5 }} offsets={{ sm: 1 }}>
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}

@@ -1,13 +1,21 @@
+@import "../../styles/variables";
+
 .pressPosts {
+  margin-top: 4rem;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 1.5em;
+  @media (min-width: $sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: $lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .post {
-  flex: 0 1 29.75857143%;
-  margin-bottom: 3.57142857%;
 }
 
 .card {
@@ -62,8 +70,6 @@
 }
 
 .post {
-  padding: 3rem 0;
-
   h3 {
     font-size: 1.25rem;
     line-height: 1.4;

@@ -54,7 +54,10 @@ const TextImage = ({ primary }) => {
     },
   };
   return (
-    <Section className={styles.textImage} align="center">
+    <Section
+      className={styles.textImage}
+      backgroundColor={primary.background_color}
+    >
       <Container>
         {primary.headline[0].text && (
           <Row>

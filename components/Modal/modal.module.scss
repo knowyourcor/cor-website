@@ -1,11 +1,4 @@
-// .modal {
-//   top: 50%;
-//   left: 50%;
-//   right: auto;
-//   bottom: auto;
-//   margin-right: -50%;
-//   transform: translate(-50%, -50%);
-// }
+@import "../../styles/variables";
 
 .modal-container {
   z-index: 1005;
@@ -18,23 +11,33 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
+
+  padding: 1rem;
 }
 
 .modal-content {
-  width: 80%;
-  max-width: 80ch;
-  height: 80%;
   position: relative;
   display: flex;
   flex-direction: column;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-longer);
   background-color: #fff;
+  width: 100%;
+  max-width: 80ch;
+  height: 100%;
+  @media (min-width: $md) {
+    width: 80%;
+    max-width: 80ch;
+    height: 80%;
+  }
 }
 
 .modal-header {
-  padding: 1.5rem 3rem;
   position: relative;
+  padding: 1rem 1.5rem;
+  @media (min-width: $md) {
+    padding: 1.5rem 3rem;
+  }
   > div {
     display: flex;
     align-items: center;
@@ -47,20 +50,31 @@
   background: transparent;
   border: 0;
   position: absolute;
-  top: 2rem;
-  right: 3rem;
   font-weight: bold;
   cursor: pointer;
   width: 30px;
   height: 30px;
   padding: 5px;
   border-radius: 100%;
+
+  top: 1rem;
+  right: 1.5rem;
+  @media (min-width: $md) {
+    top: 2rem;
+    right: 3rem;
+  }
 }
 
 .modal-body {
   flex-grow: 1;
   border-top: solid 1px #000;
-  padding: 2rem 0;
-  margin: 0 3rem;
+
   overflow: auto;
+
+  padding: 1rem 0;
+  margin: 0 1.5rem;
+  @media (min-width: $md) {
+    padding: 2rem 0;
+    margin: 0 3rem;
+  }
 }

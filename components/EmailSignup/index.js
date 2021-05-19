@@ -75,7 +75,7 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
             ref={emailRef}
             type="email"
             className={[styles.inputEmail, "focus-input"].join(" ")}
-            placeholder="Enter email address"
+            placeholder="Stay in the loop"
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
             aria-label="Enter email address"

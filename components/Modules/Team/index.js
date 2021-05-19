@@ -83,7 +83,10 @@ export default function Team({ primary, fields }) {
     >
       <Container ref={ref}>
         <Row>
-          <Column columns={{ xs: 14, md: 6 }} offsets={{ sm: 1 }}>
+          <Column
+            columns={{ xs: 14, sm: 14, md: 6, lg: 6 }}
+            offsets={{ md: 1 }}
+          >
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -92,7 +95,10 @@ export default function Team({ primary, fields }) {
               <RichText render={primary.headline} />
             </motion.div>
           </Column>
-          <Column columns={{ xs: 14, md: 5 }} offsets={{ sm: 1 }}>
+          <Column
+            columns={{ xs: 14, sm: 10, md: 6, lg: 5 }}
+            offsets={{ lg: 1 }}
+          >
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -104,7 +110,7 @@ export default function Team({ primary, fields }) {
         </Row>
 
         <Row>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ sm: 1 }}>
+          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
             <div className={styles.teamProfiles}>
               {fields.map((field, index) => (
                 <motion.div

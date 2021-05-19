@@ -40,14 +40,14 @@ export default function Press({ pressData }) {
     <Section className={styles.press}>
       <Container>
         <Row>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ sm: 1 }}>
+          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
             <div className={styles.borderBottom}>
               <h2>Featured Press</h2>
             </div>
           </Column>
         </Row>
         <Row align={{ xs: "center" }}>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ sm: 1 }}>
+          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
             <div className={styles.pressPosts}>
               {pressData.map((post) => (
                 <Post post={post.node} key={post.node._meta.uid} />
