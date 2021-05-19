@@ -25,7 +25,9 @@ export default function PostPreview({ node }) {
             </div>
             <div className={styles.content}>
               <div className={styles.meta}>
-                <p className={styles.tags}>{_meta.tags[0]}</p>
+                {_meta.tags[0] && (
+                  <p className={styles.tags}>{_meta.tags[0]}</p>
+                )}
                 <p className={styles.date}>{formattedDate}</p>
               </div>
               <h2>{title[0]?.text}</h2>
