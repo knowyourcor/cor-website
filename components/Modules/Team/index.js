@@ -34,9 +34,12 @@ export default function Team({ primary, fields }) {
   const Profile = ({ description, image, name, job_title }) => {
     const [modalActive, setModalActive] = useState(false);
     const ref = useRef();
-    useEffect(() => {
-      !modalActive && ref.current.focus();
-    }, [modalActive]);
+
+    const handelModalClose = () => {
+      setModalActive(false);
+      ref.current.focus();
+    };
+
     return (
       <>
         <button
@@ -54,7 +57,7 @@ export default function Team({ primary, fields }) {
             </div>
           </div>
         </button>
-        <Modal isActive={modalActive} closeModal={() => setModalActive(false)}>
+        <Modal isActive={modalActive} closeModal={handelModalClose}>
           <ModalHeader>
             <div className={styles.profileContent}>
               <div className={styles.avatar}>
