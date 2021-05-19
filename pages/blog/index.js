@@ -45,6 +45,9 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     postsByTagData && setAllPosts(postsByTagData);
   };
 
+  // Tags menu toggle
+  const [tagsMenuActive, setTagsMenuActive] = useState(false);
+
   // TODO: hook up show more pagination
   // const handleShowMore = () => {
   //   if (data.allBlog_posts.pageInfo.hasNextPage) {
@@ -79,13 +82,24 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
         <Container>
           <Row>
             <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
-              <ClientOnly>
-                <PostTags
-                  allPostsTags={allPostsTags}
-                  filterByData={handelPostsDataUpdate}
-                  filterBy={tagFilter}
-                />
-              </ClientOnly>
+              <div className={styles.categories}>
+                <button
+                  className={[styles.button, styles.buttonDark].join(" ")}
+                  onClick={() => setTagsMenuActive(!tagsMenuActive)}
+                >
+                  <span>Select Category</span>
+                  <svg
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 24 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={styles.downArrow}
+                  >
+                    <path d="M-0.000488281 1.51664L1.51632 7.09126e-05L11.9986 10.484L22.4829 0L23.9995 1.51671L11.9984 13.5174L-0.000488281 1.51664Z" />
+                  </svg>
+                </button>
+              </div>
             </Column>
           </Row>
           <Row>
@@ -102,6 +116,16 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
           </Row>
         </Container>
       </div>
+
+      <ClientOnly>
+        <PostTags
+          isOpen={tagsMenuActive}
+          toggleTagsMenu={() => setTagsMenuActive(!tagsMenuActive)}
+          allPostsTags={allPostsTags}
+          filterByData={handelPostsDataUpdate}
+          filterBy={tagFilter}
+        />
+      </ClientOnly>
     </>
   );
 }

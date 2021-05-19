@@ -23,3 +23,40 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.categories {
+  margin: 2.5rem 0 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem 3.25rem;
+  background-color: var(--font-primary);
+  color: var(--font-inverted);
+  font-size: 0.9rem;
+  line-height: 1;
+  font-family: var(--font-sans-bold);
+  border-radius: 50px 50px;
+  transition: background-color 250ms ease-out;
+  &:hover {
+    background-color: darken(#034561, 10%);
+  }
+  span {
+    display: block;
+  }
+}
+
+.downArrow {
+  display: block;
+  width: 11px;
+  height: auto;
+  fill: #fff;
+  margin-left: 0.75rem;
+  transform: translateY(0);
+  display: none;
+}
