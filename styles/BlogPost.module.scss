@@ -14,26 +14,22 @@
   color: var(--text-color-primary);
 }
 .theme-taupe {
-  --taupe-tint: #6e6665;
-  background-color: var(--taupe-accent);
-  color: var(--taupe-tint);
+  background-color: var(--taupe-background);
+  color: var(--taupe-text);
 }
 .theme-blue {
-  background-color: var(--blue-tint);
-  color: var(--blue-primary);
+  background-color: var(--blue-background);
+  color: var(--blue-text);
 }
 .theme-green {
-  --green-tint: #135425;
-  background-color: var(--green-accent);
-  color: var(--green-tint);
+  background-color: var(--green-background);
+  color: var(--green-text);
 }
 .theme-orange {
-  --orange-primary: #99432f;
-  background-color: var(--orange-tint);
-  color: var(--orange-primary);
+  background-color: var(--orange-background);
+  color: var(--orange-text);
 }
 .theme-cyan {
-  --cyan-tint: #005159;
-  background-color: var(--cyan-accent);
-  color: var(--cyan-tint);
+  background-color: var(--cyan-background);
+  color: var(--cyan-text);
 }
