@@ -60,3 +60,28 @@
   color: var(--text-color-primary);
   background-color: var(--gray-10-bright);
 }
+
+.backgroundblue {
+  background-color: var(--blue-background);
+  color: var(--blue-text);
+}
+.backgroundgreen {
+  background-color: var(--green-background);
+  color: var(--green-text);
+}
+.backgroundorange {
+  background-color: var(--orange-background);
+  color: var(--orange-text);
+}
+.backgroundcyan {
+  background-color: var(--cyan-background);
+  color: var(--cyan-text);
+}
+.backgroundtaupe {
+  background-color: var(--taupe-background);
+  color: var(--taupe-text);
+}
+.backgroundgray {
+  background-color: var(--background);
+  color: var(--text-color-primary);
+}
