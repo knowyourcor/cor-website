@@ -6,18 +6,28 @@
   --taupe-primary: #e5e0de;
   --taupe-tint: #baadab;
   --taupe-accent: #f2f0ee;
+  --taupe-text: #6e6665;
+  --taupe-background: var(--taupe-accent);
   --blue-primary: #034561;
   --blue-tint: #baebfa;
   --blue-accent: #0a75b5;
+  --blue-text: var(--blue-primary);
+  --blue-background: var(--blue-tint);
   --green-primary: #70db8c;
   --green-tint: #24a147;
   --green-accent: #defae5;
+  --green-text: #135425;
+  --green-background: var(--green-accent);
   --orange-primary: #ff704f;
   --orange-tint: #ffccbd;
   --orange-accent: #e54a1a;
+  --orange-text: #99432f;
+  --orange-background: var(--orange-tint);
   --cyan-primary: #80deeb;
   --cyan-tint: #0096a6;
   --cyan-accent: #e0f7fa;
+  --cyan-text: #005159;
+  --cyan-background: var(--cyan-accent);
   --black: #000000;
   --white: #ffffff;
   --gray-90: #262626;
@@ -131,7 +141,8 @@ h6,
 
 h1,
 .h1 {
-  font-size: 2.5rem;
+  font-size: 2.15rem;
+  line-height: 1.1;
   // line-height: 3.125rem;
   margin-top: 0;
   // margin-bottom: 1rem;
