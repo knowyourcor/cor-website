@@ -98,7 +98,13 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
     return (
       <>
         <div className={styles.fullWidth}>
-          <video id="videoHero" autoPlay muted loop playsInline>
+          <video
+            className={styles.videoFullscreen}
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
             <source src={video_source} type="video/mp4" />
           </video>
           <div className={styles.toggle}>
@@ -164,7 +170,13 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
   const FullscreenVideo = () => {
     return (
       <div className={styles.fullScreen}>
-        <video id="videoHero" autoPlay muted loop playsInline>
+        <video
+          className={styles.videoFullscreen}
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
           <source src={video_source} type="video/mp4" />
         </video>
         <div className={styles.toggle}>
