@@ -3,17 +3,10 @@ import Content from "./Content";
 
 import styles from "./accordion.module.scss";
 
-export default function Item({ data, isExpanded, expandItem, index }) {
+export default function Item({ data, bullet, isExpanded, expandItem, index }) {
   const activeTabClass = isExpanded ? styles.activeTab : "";
 
-  const line = {
-    initial: { y1: 0, y2: 20 },
-    minus: { y1: 10, y2: 10 },
-    plus: {
-      y1: 0,
-      y2: 20,
-    },
-  };
+  console.log(bullet);
 
   const handleIndex = (index) => {
     const number = index + 1;
@@ -24,6 +17,8 @@ export default function Item({ data, isExpanded, expandItem, index }) {
     }
   };
 
+  const bulletStyle = bullet === "disc" ? "•" : handleIndex(index);
+
   return (
     <>
       <div className={[styles.item, isExpanded && styles.activeItem].join(" ")}>
@@ -32,7 +27,7 @@ export default function Item({ data, isExpanded, expandItem, index }) {
           onClick={expandItem}
         >
           <div className={styles.accordionLabel}>
-            <span className={styles.itemIndex}>{handleIndex(index)}</span>
+            <span className={styles.itemIndex}>{bulletStyle}</span>
             <span className={styles.itemLabel}>{data.title[0].text}</span>
             <div className={styles.cBorder} />
           </div>

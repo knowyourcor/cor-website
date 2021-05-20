@@ -6,20 +6,17 @@
     padding: 10rem 0;
   }
 
-  h2 {
-    font-size: 1.75rem;
-    line-height: 1.2;
-    font-weight: normal;
-    font-family: var(--font-sans-headline);
-    margin-bottom: 3rem;
-    @media (min-width: $md) {
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-    }
-    strong {
-      font-weight: normal;
-      font-family: var(--font-sans-bold);
-    }
+  & > div {
+    width: 100%;
+  }
+
+  h2,
+  h3 {
+    font-size: 2.75rem;
+    line-height: 1.3;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
   }
 }
 
@@ -64,19 +61,21 @@
     padding-left: 0.5rem;
     font-size: 1.25rem;
     @media (min-width: $md) {
-      padding-left: 2rem;
+      padding-left: 1rem;
     }
   }
 
   .itemIndex {
     font-size: 1rem;
+    min-width: 2ch;
+    text-align: center;
   }
 
   p {
     padding-left: 2.5rem;
     font-size: 1.25rem;
     @media (min-width: $md) {
-      padding-left: 4rem;
+      padding-left: 3.25rem;
     }
     &::last-of-type {
       margin-bottom: 0;
