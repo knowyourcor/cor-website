@@ -75,12 +75,12 @@ const FullWidthImage = ({ primary }) => {
             </Column>
           </Row>
         </Container>
-        {primary.video_source && (
-          <div className={styles.toggle}>
-            <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
-          </div>
-        )}
       </div>
+      {primary.video_source && (
+        <div className={styles.toggle}>
+          <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
+        </div>
+      )}
     </section>
   );
 };

@@ -4,26 +4,38 @@ import { motion, useViewportScroll, useTransform } from "framer-motion";
 import styles from "./accordion.module.scss";
 
 export default function Content({ text }) {
-  const contentTransition = {
+  const containerTransition = {
     duration: 0.75,
     ease: [0.465, 0.183, 0.153, 0.946],
+  };
+
+  const contentTransition = {
+    y: {
+      duration: 0.75,
+      ease: [0.465, 0.183, 0.153, 0.946],
+    },
+    opacity: {
+      delay: 0.25,
+      duration: 0.75,
+      ease: [0.465, 0.183, 0.153, 0.946],
+    },
   };
 
   const container = {
     visible: {
       opacity: 1,
       height: "auto",
-      transition: contentTransition,
+      transition: containerTransition,
     },
     hidden: {
       opacity: 0,
       height: 0,
-      transition: contentTransition,
+      transition: containerTransition,
     },
     exit: {
       opacity: 0,
       height: 0,
-      transition: contentTransition,
+      transition: containerTransition,
     },
   };
 

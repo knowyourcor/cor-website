@@ -61,7 +61,7 @@ const TextImage = ({ primary }) => {
       <Container>
         {primary.headline[0].text && (
           <Row>
-            <Column columns={{ xs: 14, md: 10 }} offsets={{ md: 1 }}>
+            <Column columns={{ xs: 14, md: 8 }} offsets={{ md: 1 }}>
               <motion.div
                 ref={ref}
                 initial="hidden"

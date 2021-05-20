@@ -92,7 +92,7 @@ export default function Accordion({ primary, fields }) {
                   </Column>
                 )}
 
-                <Column columns={{ xs: 14, sm: 12, md: 6 }} offsets={{ sm: 1 }}>
+                <Column columns={{ xs: 14, sm: 12, md: 5 }} offsets={{ sm: 1 }}>
                   <RichText render={primary.text} />
                   <div className={styles.accordion}>
                     <motion.div className={styles.items}>

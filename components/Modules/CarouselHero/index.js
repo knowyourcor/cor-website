@@ -7,7 +7,7 @@ import Picture from "../../Picture";
 import PlayPauseToggle from "../../PlayPauseToggle";
 import styles from "./carouselHero.module.scss";
 
-const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
+const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
   const [playVideo, setPlayVideo] = useState(true);
 
   const slideVariant = {
@@ -72,9 +72,133 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
     }
   };
 
+  const HeadlineWithVideo = () => {
+    return (
+      <>
+        <div className={styles.slidePanel}>
+          <div className={styles.videoBackground}>
+            <video id="videoHero" autoPlay muted loop playsInline>
+              <source src={video_source} type="video/mp4" />
+            </video>
+            <div className={styles.toggle}>
+              <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
+            </div>
+          </div>
+        </div>
+        <div className={styles.slidePanel}>
+          <div className={styles.headline}>
+            <RichText render={headline} />
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const HeadlineWithVideoFullscreen = () => {
+    return (
+      <>
+        <div className={styles.fullWidth}>
+          <video
+            className={styles.videoFullscreen}
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src={video_source} type="video/mp4" />
+          </video>
+          <div className={styles.toggle}>
+            <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
+          </div>
+          <div className={styles.content}>
+            <RichText render={headline} />
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const HeadlineWithImage = () => {
+    return (
+      <>
+        <div className={styles.slidePanel}>
+          <div className={styles.image}>
+            <Picture image={image} />
+          </div>
+        </div>
+        <div className={styles.slidePanel}>
+          <div className={styles.headline}>
+            <RichText render={headline} />
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const ImageVideo = () => {
+    return (
+      <>
+        <div className={styles.slidePanel}>
+          <div className={styles.videoBackground}>
+            <video id="videoHero" autoPlay muted loop playsInline>
+              <source src={video_source} type="video/mp4" />
+            </video>
+            <div className={styles.toggle}>
+              <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
+            </div>
+          </div>
+        </div>
+        <div className={styles.slidePanel}>
+          <div className={styles.image}>
+            <Picture image={image} />
+          </div>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+          viewBox="0 0 22.393 22.393"
+          className={styles.corMark}
+        >
+          <path d="M19.36 8.544a8.584 8.584 0 11-8.164-5.931V.003a11.194 11.194 0 1010.649 7.736z" />
+          <path d="M16.875 9.35l2.485-.807a8.586 8.586 0 00-8.164-5.935V5.22a5.973 5.973 0 015.679 4.126" />
+        </svg>
+      </>
+    );
+  };
+
+  const FullscreenVideo = () => {
+    return (
+      <div className={styles.fullScreen}>
+        <video
+          className={styles.videoFullscreen}
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src={video_source} type="video/mp4" />
+        </video>
+        <div className={styles.toggle}>
+          <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
+        </div>
+      </div>
+    );
+  };
+
+  const isHeadlineWithVideo =
+    (video_source && headline && variant === "split-screen") ||
+    (video_source && image && headline && variant === "split-screen");
+  const isHeadlineWithVideoFullscreen =
+    (video_source && headline && variant === "full-screen") ||
+    (video_source && image && headline && variant === "full-screen");
+  const isHeadlineWithImage = image && headline && !video_source;
+  const isImageVideo = video_source && image && !headline;
+  const isFullscreenVideo = video_source && !headline && !image;
+
   return (
     <>
-      {isOpen && (
+      {currentSlide && (
         <motion.div
           initial="hidden"
           animate="visible"
@@ -82,90 +206,11 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
           variants={slideVariant}
           className={styles.slide}
         >
-          <div className={styles.slideLeft}>
-            {variant === "Portrait Image(s) + Animated Totem(s)" && (
-              <div className={styles.image}>
-                <Picture image={image} />
-              </div>
-            )}
-            {variant === "Images / Video + Headline" && video_source && (
-              <motion.div
-                className={styles.videoBackground}
-                variants={videoItem}
-              >
-                <video id="videoHero" autoPlay muted loop playsInline>
-                  <source src={video_source} type="video/mp4" />
-                </video>
-
-                <div className={styles.toggle}>
-                  <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
-                </div>
-              </motion.div>
-            )}
-          </div>
-          <div className={styles.slideRight}>
-            {variant === "Images / Video + Headline" && (
-              <motion.div variants={headlineItem} className={styles.headline}>
-                <RichText render={headline} />
-              </motion.div>
-            )}
-            {variant === "Portrait Image(s) + Animated Totem(s)" &&
-              video_source && (
-                <motion.div
-                  className={styles.videoBackground}
-                  variants={videoItem}
-                >
-                  <video id="videoHero" autoPlay muted loop playsInline>
-                    <source src={video_source} type="video/mp4" />
-                  </video>
-                  <div className={styles.toggle}>
-                    <PlayPauseToggle
-                      isPlaying={playVideo}
-                      toggle={handlePause}
-                    />
-                  </div>
-                </motion.div>
-              )}
-          </div>
-          {variant === "Full-Bleed Video" && (
-            <div className={styles.fullWidth}>
-              <div className={styles.backgroundImage}>
-                {/* <Picture image={image} /> */}
-                {video_source && (
-                  <>
-                    <video id="videoHero" autoPlay muted loop playsInline>
-                      <source src={video_source} type="video/mp4" />
-                    </video>
-                    <div className={styles.toggle}>
-                      <PlayPauseToggle
-                        isPlaying={playVideo}
-                        toggle={handlePause}
-                      />
-                    </div>
-                  </>
-                )}
-              </div>
-              <div className={styles.content}>
-                {headline[0].text && <RichText render={headline} />}
-              </div>
-            </div>
-          )}
-          {variant === "Portrait Image(s) + Animated Totem(s)" && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 22.393 22.393"
-              className={styles.svgWrap}
-            >
-              <path
-                data-name="Path 40"
-                d="M19.36 8.544a8.584 8.584 0 11-8.164-5.931V.003a11.194 11.194 0 1010.649 7.736z"
-              />
-              <path
-                data-name="Path 41"
-                d="M16.875 9.35l2.485-.807a8.586 8.586 0 00-8.164-5.935V5.22a5.973 5.973 0 015.679 4.126"
-              />
-            </svg>
-          )}
+          {isHeadlineWithVideo && <HeadlineWithVideo />}
+          {isHeadlineWithVideoFullscreen && <HeadlineWithVideoFullscreen />}
+          {isHeadlineWithImage && <HeadlineWithImage />}
+          {isImageVideo && <ImageVideo />}
+          {isFullscreenVideo && <FullscreenVideo />}
         </motion.div>
       )}
     </>
@@ -173,10 +218,8 @@ const Slide = ({ isOpen, variant, image, headline, number, video_source }) => {
 };
 
 const CarouselHero = ({ primary, fields }) => {
-  // Simple counter
   const [count, setCount] = useState(0);
 
-  // Set Active Item
   const setActiveItem = (number) => {
     if (number > fields.length - 1) {
       // Loop from the end to the start
@@ -191,25 +234,13 @@ const CarouselHero = ({ primary, fields }) => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setActiveItem(count + 1);
-    }, 8500);
+    const timer =
+      fields.length > 1 &&
+      setTimeout(() => {
+        setActiveItem(count + 1);
+      }, 8500);
     return () => clearTimeout(timer);
   }, [count]);
-
-  if (fields[0].variant !== "Portrait Image(s) + Animated Totem(s)") {
-    // let findData = fields.find(el => el.variant === "Portrait Image(s) + Animated Totem(s)")
-    fields.unshift(
-      fields.splice(
-        fields
-          .map(function (e) {
-            return e.variant;
-          })
-          .indexOf("Portrait Image(s) + Animated Totem(s)"),
-        1
-      )[0]
-    );
-  }
 
   return (
     <Section
@@ -218,22 +249,19 @@ const CarouselHero = ({ primary, fields }) => {
       align="center"
       noPadding
     >
-      <AnimatePresence>
-        {fields.map((field, index) => {
-          return (
-            <Slide
-              {...field}
-              key={`slide-${index}`}
-              isOpen={`slide-${index}` === `slide-${count}`}
-            />
-          );
-        })}
-      </AnimatePresence>
-
-      {/* <div className={styles.cta}>
-        <Button linkData={primary.link} labelData={primary.link_label} />
-      </div> */}
-
+      <div className={styles.carouselHero}>
+        <AnimatePresence>
+          {fields.map((field, index) => {
+            return (
+              <Slide
+                {...field}
+                key={`slide-${index}`}
+                currentSlide={`slide-${index}` === `slide-${count}`}
+              />
+            );
+          })}
+        </AnimatePresence>
+      </div>
       {/* <div className={styles.buttons}>
         <button onClick={() => setActiveItem(count - 1)}>Previous</button>
         <button onClick={() => setActiveItem(count + 1)}>Next</button>
