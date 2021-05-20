@@ -99,8 +99,9 @@ export default function Carousel({ primary, fields }) {
           pagination={{
             clickable: true,
           }}
+          watchOverflow={true}
           navigation={false}
-          centeredSlides={true}
+          centerInsufficientSlides={true}
           breakpoints={{
             640: {
               slidesPerView: 1.5,
