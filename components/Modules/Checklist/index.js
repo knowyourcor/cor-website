@@ -9,33 +9,6 @@ import Picture from "../../Picture";
 
 import styles from "./checklist.module.scss";
 
-// const Checkbox = ({
-//   type = "checkbox",
-//   name,
-//   checked = false,
-//   onChange,
-//   variants,
-// }) => {
-//   const { ref, inView } = useInView({
-//     threshold: 0.5,
-//     rootMargin: "25px 0px",
-//     triggerOnce: true,
-//   });
-
-//   return (
-//     <motion.div
-//       ref={ref}
-//       initial="hidden"
-//       animate={inView ? "show" : "hidden"}
-//       exit="hidden"
-//       variants={variants}
-//     >
-//       <input type={type} name={name} checked={checked} onChange={onChange} />
-//       <span className={styles.checkmark}></span>
-//     </motion.div>
-//   );
-// };
-
 const ListItem = ({ item }) => {
   return (
     <li className={styles.item}>
@@ -123,7 +96,11 @@ export default function Checklist({ primary, fields }) {
     >
       <Container>
         <Row align="center">
-          <Column columns={{ xs: 14, md: 5 }} offsets={{ md: 1 }}>
+          <Column
+            columns={{ xs: 14, md: 5 }}
+            offsets={{ md: 1 }}
+            ordering={{ xs: 2, md: 1 }}
+          >
             <motion.div
               ref={ref}
               initial="hidden"
@@ -149,7 +126,11 @@ export default function Checklist({ primary, fields }) {
               </ul>
             </div>
           </Column>
-          <Column columns={{ xs: 14, md: 6 }} offsets={{ md: 1 }}>
+          <Column
+            columns={{ xs: 14, md: 6 }}
+            offsets={{ md: 1 }}
+            ordering={{ xs: 1, md: 2 }}
+          >
             <div className={styles.image}>
               <Picture image={primary.image} />
             </div>
