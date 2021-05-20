@@ -16,7 +16,7 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.33);
   }
   @media (min-width: $md) {
     width: 100%;
@@ -32,6 +32,9 @@
 }
 
 .content {
+  padding: 0 2rem;
+  max-width: 890px;
+  margin: auto;
   text-align: center;
   z-index: 10;
   position: absolute;
@@ -41,7 +44,7 @@
   left: 0;
   display: flex;
   align-items: center;
-  color: var(--gray-10-bright);
+  color: var(--white);
 }
 
 .backgroundImage {
