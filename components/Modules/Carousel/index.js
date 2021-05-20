@@ -100,7 +100,7 @@ export default function Carousel({ primary, fields }) {
             clickable: true,
           }}
           navigation={false}
-          centeredSlides={false}
+          centeredSlides={true}
           breakpoints={{
             640: {
               slidesPerView: 1.5,

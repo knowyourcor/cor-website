@@ -7,6 +7,7 @@ import Head from "../../components/Head";
 import PostPinned from "../../components/Blog/PostPinned";
 import PostPreview from "../../components/Blog/PostPreview";
 import PostTags from "../../components/Blog/PostTags";
+import LoadMorePosts from "../../components/Blog/LoadMorePosts";
 
 // Apollo
 import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
@@ -45,27 +46,13 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     postsByTagData && setAllPosts(postsByTagData);
   };
 
+  // Handel data updates when filtered by tag
+  const handelPostsDataMerge = (postsData) => {
+    postsData && setAllPosts(postsData);
+  };
+
   // Tags menu toggle
   const [tagsMenuActive, setTagsMenuActive] = useState(false);
-
-  // TODO: hook up show more pagination
-  // const handleShowMore = () => {
-  //   if (data.allBlog_posts.pageInfo.hasNextPage) {
-  //     const { endCursor } = data.allBlog_posts.pageInfo;
-
-  //     fetchMore({
-  //       variables: { after: endCursor, offset: 0, limit: 6 },
-
-  //       updateQuery: (prevResult, { fetchMoreResult }) => {
-  //         fetchMoreResult.allBlog_posts.edges = [
-  //           ...prevResult.allBlog_posts.edges,
-  //           ...fetchMoreResult.allBlog_posts.edges,
-  //         ];
-  //         return fetchMoreResult;
-  //       },
-  //     });
-  //   }
-  // };
 
   return (
     <>
@@ -125,6 +112,11 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
           filterByData={handelPostsDataUpdate}
           filterBy={tagFilter}
         />
+        {/* <LoadMorePosts
+          allPostsData={allPosts}
+          paginatedPostsData={handelPostsDataMerge}
+          filterBy={tagFilter}
+        /> */}
       </ClientOnly>
     </>
   );
@@ -133,6 +125,7 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
 export async function getStaticProps({ preview = false, previewData }) {
   const { data: allBlogPosts } = await client.query({
     query: ALL_BLOG_POSTS_QUERY,
+    variables: null,
   });
 
   const pageData = await getBlogData(previewData);

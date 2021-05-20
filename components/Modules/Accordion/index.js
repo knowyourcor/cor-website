@@ -65,7 +65,6 @@ export default function Accordion({ primary, fields }) {
           animate={inView ? "show" : "hidden"}
           exit="hidden"
           variants={variants}
-          className={styles.svgWrap}
         >
           <div className={styles.contentContainer}>
             <Container>
@@ -103,6 +102,7 @@ export default function Accordion({ primary, fields }) {
                           expandItem={() => setExpanded(`item-${index}`)}
                           data={data}
                           index={index}
+                          bullet={primary.bullet_style}
                         />
                       ))}
                     </motion.div>

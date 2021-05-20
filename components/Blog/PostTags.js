@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
-import { POSTS_BY_TAG_QUERY } from "../../lib/ApolloQueries";
+import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
 import { motion } from "framer-motion";
 import styles from "./blog.module.scss";
 
@@ -21,7 +21,7 @@ export default function PostTags({
     loading: postsByTagLoading,
     error: postsByTagError,
     fetchMore,
-  } = useQuery(POSTS_BY_TAG_QUERY, {
+  } = useQuery(ALL_BLOG_POSTS_QUERY, {
     variables: {
       tag: activeTag === "reset" ? null : activeTag,
       after: null,
