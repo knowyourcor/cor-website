@@ -6,6 +6,8 @@
   width: 100%;
   max-width: 500px;
   margin-top: 3rem;
+  width: 106%;
+  transform: translateX(-3%);
   @media (min-width: $sm) {
     margin-top: 1rem;
   }
