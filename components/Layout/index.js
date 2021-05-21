@@ -5,12 +5,12 @@ import Footer from "../Footer";
 
 export default function Layout({ children, preview }) {
   const childProps = React.Children.map(
-    children.props.children.props.children,
+    children?.props?.children?.props?.children,
     (child) => {
       return {
-        mainMenuData: child.props.mainMenuData,
-        footerMenuData: child.props.footerMenuData,
-        tertiaryMenuData: child.props.tertiaryMenuData,
+        mainMenuData: child?.props?.mainMenuData,
+        footerMenuData: child?.props?.footerMenuData,
+        tertiaryMenuData: child?.props?.tertiaryMenuData,
       };
     }
   );

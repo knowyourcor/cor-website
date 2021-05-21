@@ -21,12 +21,12 @@ export default function PostTags({
   // data && console.log(data);
 
   useEffect(() => {
-    console.log("init data", data);
+    // console.log("init data", data);
     setCurrentCursor(data?.allBlog_posts.pageInfo.endCursor);
   }, [data]);
 
   const loadMorePosts = () => {
-    console.log("load more");
+    // console.log("load more");
     if (data.allBlog_posts.pageInfo) {
       // const { endCursor } = data.allBlog_posts.pageInfo;
       // console.log("endCursor: ", endCursor);
