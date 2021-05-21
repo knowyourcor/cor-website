@@ -161,7 +161,7 @@
   display: flex;
   align-items: center;
   padding: 4rem 2rem;
-  color: #fff;
+  color: var(--cyan-background);
   background-color: var(--cyan-tint);
   transform: translateX(80%);
   p {
@@ -171,7 +171,7 @@
 }
 
 .tagName {
-  color: #fff;
+  color: var(--cyan-background);
   display: block;
   font-size: 2.25rem;
   line-height: 1.3;
@@ -179,7 +179,6 @@
   padding: 0;
   margin: 1rem 0;
   font-family: var(--font-sans-bold);
-
   &.activeFilter {
     color: var(--cyan-text);
   }
