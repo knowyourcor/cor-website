@@ -30,7 +30,7 @@
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
 
-    color: var(--blue-text);
+    color: var(--blue-primary);
     background-color: var(--blue-background);
     @media (min-width: $sm) {
       display: none;
@@ -80,10 +80,10 @@
         border-radius: 48px;
       }
       &:hover {
-        color: var(--blue-accent);
+        color: var(--gray-60);
       }
       &.active {
-        color: var(--gray-60);
+        color: var(--blue-accent);
       }
     }
   }
@@ -102,7 +102,7 @@
       &:link,
       &:visited {
         display: inline-block;
-        color: var(--blue-text);
+        color: var(--blue-primary);
         display: block;
         font-size: 2.25rem;
         line-height: 1;
@@ -113,35 +113,8 @@
         font-family: var(--font-sans-bold);
       }
       &.active {
-        color: var(--text-color-primary);
+        color: var(--blue-accent);
       }
     }
-  }
-}
-
-.subMenuItems {
-  margin: 0;
-  padding: 0;
-  margin-left: 0;
-  li {
-    text-align: left;
-    display: block;
-  }
-  a {
-    &:link,
-    &:visited {
-      font-family: var(--font-sans-bold);
-      font-size: 0.85rem;
-      color: var(--text-color-primary);
-      line-height: 1.35;
-      text-decoration: none;
-      display: inline-block;
-    }
-    &.active {
-      color: #315b3c;
-    }
-  }
-  @media (min-width: $sm) {
-    display: none;
   }
 }

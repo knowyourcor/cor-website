@@ -1,8 +1,12 @@
 @import "../../styles/variables";
 
 .main {
-  // z-index: 0;
-  // position: relative;
+  z-index: 0;
+  position: relative;
   min-height: 100vh;
-  // margin-top: 56px;
+  margin-top: 3rem;
+}
+
+.page-homepage {
+  margin-top: 0;
 }
