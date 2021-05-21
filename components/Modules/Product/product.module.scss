@@ -2,11 +2,16 @@
 
 .productImage {
   position: relative;
+  margin: 3rem 0 4rem;
+  @media (min-width: $md) {
+    margin: 0;
+  }
   .screenshot {
     position: absolute;
     top: 0;
     right: 0;
     width: 40%;
+
     // Screenshot treatment
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.06),
       0 4px 8px rgba(0, 0, 0, 0.06), 0 8px 16px rgba(0, 0, 0, 0.06),

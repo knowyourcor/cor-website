@@ -11,8 +11,8 @@
   --blue-primary: #034561;
   --blue-tint: #baebfa;
   --blue-accent: #0a75b5;
-  --blue-text: var(--blue-primary);
-  --blue-background: var(--blue-tint);
+  --blue-text: #0a75b5;
+  --blue-background: #e5f7fd;
   --green-primary: #70db8c;
   --green-tint: #24a147;
   --green-accent: #defae5;
@@ -26,7 +26,7 @@
   --cyan-primary: #80deeb;
   --cyan-tint: #0096a6;
   --cyan-accent: #e0f7fa;
-  --cyan-text: #005159;
+  --cyan-text: #007b88;
   --cyan-background: var(--cyan-accent);
   --black: #000000;
   --white: #ffffff;
@@ -171,8 +171,8 @@ h1,
 
 h2,
 .h2 {
-  font-size: 2.5rem;
-  line-height: 2.75rem;
+  font-size: 2.1rem;
+  line-height: 1.3;
   margin-top: 0;
   margin-bottom: 1.5rem;
   font-weight: 400;
@@ -297,79 +297,11 @@ button {
 // Prismc styles
 p {
   span.larger {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     line-height: 1.5;
+    @media (min-width: $md) {
+      font-size: 1.5rem;
+      line-height: 1.5;
+    }
   }
 }
-
-// p {
-//   font-family: var(--font-sans);
-//   font-size: 20px;
-//   line-height: 1.5;
-//   color: var(--text-color-primary);
-//   @media (max-width: $xl) {
-//     font-size: 17px;
-//   }
-// }
-
-// .custom__column {
-//   margin-left: 0 !important;
-// }
-
-// .btn {
-//   justify-content: center;
-//   margin: 0 auto;
-//   width: 221px;
-//   max-width: 100%;
-//   height: 65px;
-
-//   font-family: var(--font-sans-bold);
-//   font-size: 16.5px;
-// }
-
-// .btn--inverted {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   background-color: transparent;
-//   border: solid 1.5px var(--text-color-primary);
-//   border-radius: 33px;
-
-//   transition: background-color 0.3s ease-in-out;
-
-//   &:hover,
-//   &:active {
-//     color: var(--text-color-secondary);
-
-//     background-color: var(--text-color-primary);
-//   }
-// }
-
-// .page__layout {
-//   // padding-top: 10rem;
-//   padding-top: 300px;
-
-//   section:first-of-type {
-//     padding-top: 0;
-//   }
-// }
-
-// @media (max-width: $sm) {
-//   p {
-//     font-size: 16px;
-//   }
-
-//   .btn {
-//     width: 170px;
-//     height: 45px;
-
-//     font-size: 12px;
-//   }
-// }
-
-// @media (max-width: $md) {
-//   .page__layout {
-//     padding-top: 122px;
-//   }
-// }

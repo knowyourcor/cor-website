@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Section from "../../Section";
 import { Row, Column, Container } from "../../Grid";
 import Picture from "../../Picture";
-import styles from "./index.module.scss";
+import styles from "./checklist.module.scss";
 
 export default function Checklist({ primary, fields }) {
   const { ref, inView } = useInView({
@@ -36,7 +36,11 @@ export default function Checklist({ primary, fields }) {
     >
       <Container ref={ref}>
         <Row>
-          <Column columns={{ xs: 14, md: 4 }} offsets={{ md: 1 }}>
+          <Column
+            columns={{ xs: 14, md: 4 }}
+            offsets={{ md: 1 }}
+            ordering={{ xs: 2, md: 1 }}
+          >
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -69,6 +73,7 @@ export default function Checklist({ primary, fields }) {
             className={styles.cColumn}
             columns={{ xs: 14, md: 7 }}
             offsets={{ md: 1 }}
+            ordering={{ xs: 1, md: 2 }}
           >
             <motion.div
               initial="hidden"

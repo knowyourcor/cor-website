@@ -73,11 +73,18 @@ export default function ShopAccordion({ primary, fields }) {
       style={{
         backgroundColor: backgroundColor,
       }}
-      className={styles.container}
+      className={[
+        styles.container,
+        primary.usid ? styles[primary.usid] : "",
+      ].join(" ")}
     >
       <Container>
         <Row>
-          <Column columns={{ xs: 14, md: 5, xl: 4 }} offsets={{ md: 1 }}>
+          <Column
+            columns={{ xs: 14, md: 5, xl: 4 }}
+            offsets={{ md: 1 }}
+            ordering={{ xs: 2, md: 1 }}
+          >
             <div className={styles.contentOffset}>
               <RichText render={primary.headline} />
               <motion.div
@@ -111,9 +118,14 @@ export default function ShopAccordion({ primary, fields }) {
           <Column
             columns={{ xs: 14, md: 7, xl: 8 }}
             offsets={{ md: 1 }}
+            ordering={{ xs: 1, md: 2 }}
             className={styles.columnPaddingRight}
           >
-            <div className={styles.imageContainer}>
+            <div
+              className={[styles.imageContainer, styles[`${expanded}`]].join(
+                " "
+              )}
+            >
               {imageData && (
                 <AnimatePresence>
                   <motion.div
@@ -131,25 +143,6 @@ export default function ShopAccordion({ primary, fields }) {
           </Column>
         </Row>
       </Container>
-      {/* <Container>
-      </Container>
-      <div className={styles.imageWrap}>
-        {imageData && (
-          <div className={styles.primaryImage}>
-            <AnimatePresence initial={false}>
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                variants={imageVariant}
-                key={imageData.url}
-              >
-                <Picture image={imageData} className={styles.image} />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        )}
-      </div> */}
     </Section>
   );
 }

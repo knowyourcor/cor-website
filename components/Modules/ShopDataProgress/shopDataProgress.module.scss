@@ -1,7 +1,18 @@
 @import "../../../styles/_variables.scss";
 
 .dataProgress {
-  background: linear-gradient(180deg, var(--gray-10) 60%, var(--gray-20) 60%);
+  background: linear-gradient(
+    180deg,
+    var(--gray-10) 14%,
+    var(--orange-tint) 14%
+  );
+  @media (min-width: $md) {
+    background: linear-gradient(
+      180deg,
+      var(--gray-10) 37%,
+      var(--orange-tint) 37%
+    );
+  }
 }
 
 .headline {
@@ -9,7 +20,9 @@
 }
 
 .content {
-  padding-right: 21.42857142%;
+  @media (min-width: $md) {
+    padding-right: 21.42857142%;
+  }
 }
 
 .image {
@@ -23,7 +36,12 @@
   overflow: hidden;
   box-shadow: var(--shadow-soft);
   width: 70%;
-  transform: translate(-70%, 20%);
+  margin: 4rem auto;
+  @media (min-width: $md) {
+    margin: 0;
+    width: 70%;
+    transform: translate(-70%, 20%);
+  }
 }
 
 .tag {

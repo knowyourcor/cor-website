@@ -32,13 +32,13 @@ export default function Index({ primary }) {
 
   return (
     <Section
-      style={{
-        background: `linear-gradient(
-        180deg,
-        transparent 37%,
-        ${primary.background_color} 37%
-      )`,
-      }}
+      // style={{
+      //   background: `linear-gradient(
+      //   180deg,
+      //   transparent 37%,
+      //   ${primary.background_color} 37%
+      // )`,
+      // }}
       className={styles.dataProgress}
     >
       <Container ref={ref}>
