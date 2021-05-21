@@ -8,12 +8,14 @@ import styles from "./blog.module.scss";
 export default function PostTags({
   allPostsTags,
   filterByData,
-  filterBy,
+  filterByQuery,
   isOpen,
   toggleTagsMenu,
+  selectedFilter,
+  resetFilter,
 }) {
   const router = useRouter();
-  const [activeTag, setActiveTag] = useState(null);
+  const [activeFilter, setActiveFilter] = useState(null);
   const ref = useRef();
 
   const {
@@ -23,24 +25,28 @@ export default function PostTags({
     fetchMore,
   } = useQuery(ALL_BLOG_POSTS_QUERY, {
     variables: {
-      tag: activeTag === "reset" ? null : activeTag,
+      tag: activeFilter === "reset" ? null : activeFilter,
       after: null,
     },
   });
 
   // Filter by page query on initial load
   useEffect(() => {
-    const matchTag = allPostsTags.find((obj) => obj.slug === filterBy);
-    filterBy && setActiveTag(matchTag.name);
-  }, [filterBy]);
+    const matchTag = allPostsTags.find((obj) => obj.slug === filterByQuery);
+    filterByQuery && setActiveFilter(matchTag.name);
+  }, [filterByQuery]);
 
   useEffect(() => {
-    activeTag && filterByData(postsByTagData);
-  }, [postsByTagData, activeTag]);
+    activeFilter && filterByData(postsByTagData);
+  }, [postsByTagData, activeFilter]);
+
+  useEffect(() => {
+    resetFilter && handelTagUpdate({ name: "reset" });
+  }, [resetFilter]);
 
   const handelTagUpdate = (tag) => {
-    setActiveTag(tag.name);
-
+    setActiveFilter(tag.name);
+    selectedFilter(tag);
     if (tag.name === "reset") {
       // Shallow update of URL
       router.push(`/blog`, undefined, {
@@ -53,7 +59,7 @@ export default function PostTags({
       });
     }
 
-    toggleTagsMenu();
+    isOpen && toggleTagsMenu();
   };
 
   const navVariant = {
@@ -115,7 +121,7 @@ export default function PostTags({
                 onClick={() => handelTagUpdate(tag)}
                 className={[
                   styles.tagName,
-                  activeTag === tag.name && styles.activeTag,
+                  activeFilter === tag.name && styles.activeFilter,
                 ].join(" ")}
               >
                 {tag.name}
