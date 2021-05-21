@@ -6,8 +6,6 @@ import styles from "./accordion.module.scss";
 export default function Item({ data, bullet, isExpanded, expandItem, index }) {
   const activeTabClass = isExpanded ? styles.activeTab : "";
 
-  console.log(bullet);
-
   const handleIndex = (index) => {
     const number = index + 1;
     if (number < 9) {
