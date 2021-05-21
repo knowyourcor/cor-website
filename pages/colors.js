@@ -28,10 +28,10 @@ export default function Colors() {
         <span>blue-accent: #0a75b5</span>
       </div>
       <div style={{ backgroundColor: "var(--blue-text)" }}>
-        <span>blue-text: #034561</span>
+        <span>blue-text: #0a75b5</span>
       </div>
       <div style={{ backgroundColor: "var(--blue-background)" }}>
-        <span>blue-background: #baebfa</span>
+        <span>blue-background: #e5f7fd</span>
       </div>
 
       <div style={{ backgroundColor: "var(--green-primary)" }}>
@@ -76,7 +76,7 @@ export default function Colors() {
         <span>cyan-accent: #e0f7fa</span>
       </div>
       <div style={{ backgroundColor: "var(--cyan-text)" }}>
-        <span>cyan-text: #005159</span>
+        <span>cyan-text: #007b88</span>
       </div>
       <div style={{ backgroundColor: "var(--cyan-background)" }}>
         <span>cyan-background: #e0f7fa</span>

@@ -29,9 +29,9 @@
     overflow-y: scroll;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    background-color: var(--gray-10);
-    color: var(--text-color-secondary);
-    background-color: var(--green-primary);
+
+    color: var(--blue-text);
+    background-color: var(--blue-background);
     @media (min-width: $sm) {
       display: none;
     }
@@ -43,15 +43,15 @@
     z-index: 1;
     width: 100%;
     min-height: 100vh;
-    padding: 1rem;
+    padding: 1rem 0;
     position: absolute;
     top: 0;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
+    // display: flex;
+    // flex-direction: column;
+    // align-content: center;
+    // justify-content: center;
     @media (orientation: landscape) {
-      padding: 5rem 1rem 6rem;
+      padding: 1rem 1rem 6rem;
     }
   }
 }
@@ -65,12 +65,12 @@
     li {
       text-align: left;
       display: block;
-      margin: 0 0.5rem;
+      margin: 0 0.25rem;
     }
     a {
       &:link,
       &:visited {
-        font-family: var(--font-sans);
+        font-family: var(--font-sans-bold);
         font-size: 1rem;
         color: var(--text-color-primary);
         line-height: 1;
@@ -80,10 +80,10 @@
         border-radius: 48px;
       }
       &:hover {
-        color: var(--blue-primary);
+        color: var(--blue-accent);
       }
       &.active {
-        color: var(--gray-50);
+        color: var(--gray-60);
       }
     }
   }
@@ -92,26 +92,28 @@
     display: block;
     margin: 0;
     padding: 0;
-    margin-left: -1.5rem;
+    margin: 6rem 0 2rem;
     li {
       text-align: left;
       display: block;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
     }
     a {
       &:link,
       &:visited {
-        font-family: var(--font-sans-bold);
-        font-size: 2.5rem;
-        color: var(--text-color-primary);
-        line-height: 1;
-        text-decoration: none;
         display: inline-block;
+        color: var(--blue-text);
+        display: block;
+        font-size: 2.25rem;
+        line-height: 1;
+        margin-top: 0;
+        padding: 0.25rem 1rem;
+        margin: 1.5rem 0;
         border-radius: 48px;
-        padding: 0.25rem 1.5rem;
+        font-family: var(--font-sans-bold);
       }
       &.active {
-        color: #315b3c;
+        color: var(--text-color-primary);
       }
     }
   }

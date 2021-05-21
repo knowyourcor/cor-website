@@ -16,7 +16,7 @@ export const Toggle = ({ toggle, isOpen }) => {
     <>
       <button
         onClick={toggle}
-        className={styles.toggle}
+        className={[styles.toggle, isOpen ? styles.isOpen : ""].join(" ")}
         aria-label={!isOpen ? "Open main menu" : "Close main menu"}
         title={!isOpen ? "Open main menu" : "Close main menu"}
         tabIndex="0"
