@@ -50,9 +50,15 @@ const Title = ({ title, description }) => {
             : "There’s more to health than steps & weight"
         }
       />
-      <meta name="twitter:image" content="//thecor.com/images/preview.jpg" />
+      <meta
+        name="twitter:image"
+        content="https://thecor.com/images/preview.jpg"
+      />
       {/* Search results preview image */}
-      <meta name="thumbnail" content="//thecor.com/images/thumbnail.jpg" />
+      <meta
+        name="thumbnail"
+        content="https://thecor.com/images/thumbnail.jpg"
+      />
     </Head>
   );
 };
