@@ -11,6 +11,12 @@ export default function Colors() {
       <div style={{ backgroundColor: "var(--taupe-accent)" }}>
         <span>taupe-accent: #f2f0ee</span>
       </div>
+      <div style={{ backgroundColor: "var(--taupe-text)" }}>
+        <span>taupe-text: #6e6665</span>
+      </div>
+      <div style={{ backgroundColor: "var(--taupe-background)" }}>
+        <span>taupe-background: #f2f0ee</span>
+      </div>
 
       <div style={{ backgroundColor: "var(--blue-primary)" }}>
         <span>blue-primary: #034561</span>
@@ -20,6 +26,12 @@ export default function Colors() {
       </div>
       <div style={{ backgroundColor: "var(--blue-accent)" }}>
         <span>blue-accent: #0a75b5</span>
+      </div>
+      <div style={{ backgroundColor: "var(--blue-text)" }}>
+        <span>blue-text: #034561</span>
+      </div>
+      <div style={{ backgroundColor: "var(--blue-background)" }}>
+        <span>blue-background: #baebfa</span>
       </div>
 
       <div style={{ backgroundColor: "var(--green-primary)" }}>
@@ -31,6 +43,12 @@ export default function Colors() {
       <div style={{ backgroundColor: "var(--green-accent)" }}>
         <span>green-accent: #defae5</span>
       </div>
+      <div style={{ backgroundColor: "var(--green-text)" }}>
+        <span>green-text: #135425</span>
+      </div>
+      <div style={{ backgroundColor: "var(--green-background)" }}>
+        <span>green-background: #defae5</span>
+      </div>
 
       <div style={{ backgroundColor: "var(--orange-primary)" }}>
         <span>orange-primary: #ff704f</span>
@@ -41,6 +59,12 @@ export default function Colors() {
       <div style={{ backgroundColor: "var(--orange-accent)" }}>
         <span>orange-accent: #e54a1a</span>
       </div>
+      <div style={{ backgroundColor: "var(--orange-text)" }}>
+        <span>orange-text: #99432f</span>
+      </div>
+      <div style={{ backgroundColor: "var(--orange-background)" }}>
+        <span>orange-background: #ffccbd"</span>
+      </div>
 
       <div style={{ backgroundColor: "var(--cyan-primary)" }}>
         <span>cyan-primary: #80deeb</span>
@@ -50,6 +74,12 @@ export default function Colors() {
       </div>
       <div style={{ backgroundColor: "var(--cyan-accent)" }}>
         <span>cyan-accent: #e0f7fa</span>
+      </div>
+      <div style={{ backgroundColor: "var(--cyan-text)" }}>
+        <span>cyan-text: #005159</span>
+      </div>
+      <div style={{ backgroundColor: "var(--cyan-background)" }}>
+        <span>cyan-background: #e0f7fa</span>
       </div>
 
       <div style={{ backgroundColor: "var(--black)" }}>
