@@ -2,12 +2,14 @@
 
 .checklist {
   width: 100%;
-  max-width: 450px;
-  position: absolute;
-  left: 50%;
-  bottom: 10%;
-  z-index: 2;
-  transform: translateX(-80%);
+  @media (min-width: $md) {
+    max-width: 450px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 2;
+    transform: translateX(-80%);
+  }
 }
 
 .checklistItems {
@@ -31,13 +33,20 @@
 .image {
   border-radius: var(--border-radius);
   overflow: hidden;
+  margin: 1rem 0 3rem;
+  @media (min-width: $md) {
+    margin: 0;
+  }
 }
 .item {
   margin-bottom: 1rem;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.25rem;
   background-color: #fff;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-soft);
+  @media (min-width: $md) {
+    padding: 1.5rem 2rem;
+  }
   p {
     margin: 0;
     strong {

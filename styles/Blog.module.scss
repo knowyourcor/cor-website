@@ -29,14 +29,19 @@
   padding-top: 1rem;
   border-top: 1px solid #000;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column-reverse;
+  justify-content: center;
+
+  @media (min-width: $md) {
+    justify-content: flex-end;
+  }
 }
 
 .button {
   position: relative;
   display: flex;
+  justify-content: center;
   padding: 0.9rem 3rem;
-  margin-left: 1rem;
   background-color: var(--blue-primary);
   color: var(--text-color-secondary);
   font-size: 1rem;
@@ -45,6 +50,12 @@
   border-radius: 50px 50px;
   transition: background-color 300ms ease-in-out;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  margin-left: 0;
+  margin-bottom: 1rem;
+  @media (min-width: $md) {
+    margin-left: 1rem;
+    margin-bottom: 0;
+  }
   &:hover,
   &:active {
     color: var(--text-color-secondary);
@@ -70,11 +81,15 @@
   position: absolute;
   top: 50%;
   right: 1.5rem;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   padding: 0.25rem;
   border-radius: 100%;
   transform: translate(0, -45%);
+  @media (min-width: $md) {
+    width: 18px;
+    height: 18px;
+  }
 }
 .iconClose {
   display: block;

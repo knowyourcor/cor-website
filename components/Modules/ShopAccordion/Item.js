@@ -22,7 +22,13 @@ export default function Item({
   };
 
   return (
-    <div className={[styles.item, isExpanded && styles.activeItem].join(" ")}>
+    <div
+      className={[
+        styles.item,
+        isExpanded && styles.activeItem,
+        styles[`item_${index}`],
+      ].join(" ")}
+    >
       <div
         className={[styles.label, activeTabClass].join(" ")}
         onClick={expandItem}
