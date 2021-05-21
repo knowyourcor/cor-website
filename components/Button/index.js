@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./button.module.scss";
 
 const Button = ({ linkData, labelData }) => {
+  console.log(linkData);
   const WebLink = (link, label) => {
     return (
       <a
@@ -18,7 +19,7 @@ const Button = ({ linkData, labelData }) => {
 
   const PageLink = (link, label) => {
     return (
-      <Link href="/[slug]" as={`/${link?._meta?.uid}`}>
+      <Link href={`/${link?._meta?.uid}`}>
         <a className={styles.button}>{label[0]?.text}</a>
       </Link>
     );
