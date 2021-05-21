@@ -52,8 +52,8 @@ export default function Team({ primary, fields }) {
             <div
               className={[styles.profileContent, styles.cardContent].join(" ")}
             >
-              <RichText render={name} />
-              <RichText render={job_title} />
+              {name && <RichText render={name} />}
+              {job_title && <RichText render={job_title} />}
             </div>
           </div>
         </button>
@@ -61,11 +61,11 @@ export default function Team({ primary, fields }) {
           <ModalHeader>
             <div className={styles.profileContent}>
               <div className={styles.avatar}>
-                <img src={image?.xs?.url} alt={name[0].text} />
+                <img src={image?.xs?.url} alt={name && name[0].text} />
               </div>
               <div>
-                <RichText render={name} />
-                <RichText render={job_title} />
+                {name && <RichText render={name} />}
+                {job_title && <RichText render={job_title} />}
               </div>
             </div>
           </ModalHeader>
@@ -121,7 +121,7 @@ export default function Team({ primary, fields }) {
                   animate={inView ? "show" : "hidden"}
                   variants={variants}
                   className={styles.profile}
-                  key={`${field?.name[0]?.text}_${index}`}
+                  key={`profile_${index}`}
                 >
                   <Profile {...field} />
                 </motion.div>
