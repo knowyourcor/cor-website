@@ -136,7 +136,9 @@
       text-align: center;
       color: var(--text-color-secondary);
       background-color: var(--blue-primary);
-      border-radius: 2rem;
+      border-radius: 50px 50px;
+      transition: background-color 300ms ease-in-out;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
       @media (min-width: $sm) {
         font-size: 0.85rem;
         padding: 0.6rem 0 0.65rem;
@@ -146,7 +148,7 @@
     &:hover,
     &:active {
       color: var(--text-color-secondary);
-      background-color: var(--blue-primary-hover);
+      background-color: var(--blue-accent);
     }
   }
   @media (min-width: $sm) {

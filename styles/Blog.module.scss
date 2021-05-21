@@ -33,19 +33,22 @@
 }
 
 .button {
+  position: relative;
   display: flex;
-  align-items: center;
-  padding: 0.8rem 3rem;
-  background-color: var(--text-color-primary);
-  color: var(--text-color-secondary);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  font-family: var(--font-sans-bold);
-  border-radius: 50px 50px;
-  transition: background-color 250ms ease-out;
+  padding: 0.9rem 3rem;
   margin-left: 1rem;
-  &:hover {
-    background-color: darken(#034561, 10%);
+  background-color: var(--blue-primary);
+  color: var(--text-color-secondary);
+  font-size: 1rem;
+  line-height: 1;
+  font-family: var(--font-sans);
+  border-radius: 50px 50px;
+  transition: background-color 300ms ease-in-out;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  &:hover,
+  &:active {
+    color: var(--text-color-secondary);
+    background-color: var(--blue-accent);
   }
   span {
     display: block;
@@ -53,14 +56,25 @@
   &.colorGray {
     background-color: var(--gray-30);
     color: var(--text-color);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0);
+
+    &:hover,
+    &:active {
+      background-color: var(--gray-30);
+      color: var(--text-color);
+    }
   }
 }
+
 .removeFilter {
-  width: 19px;
-  height: 19px;
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  width: 18px;
+  height: 18px;
   padding: 0.25rem;
   border-radius: 100%;
-  transform: translate(0.5rem, 1px);
+  transform: translate(0, -45%);
 }
 .iconClose {
   display: block;
