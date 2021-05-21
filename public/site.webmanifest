@@ -2,7 +2,7 @@
   "name": "COR",
   "short_name": "COR",
   "start_url": "/",
-  "theme_color": "#F2F2F2",
-  "background_color": "#F2F2F2",
+  "theme_color": "#f4f4f4",
+  "background_color": "#f4f4f4",
   "display": "standalone"
 }
