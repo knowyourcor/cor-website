@@ -35,28 +35,36 @@
 .button {
   display: flex;
   align-items: center;
-  padding: 1.25rem 3.25rem;
+  padding: 0.8rem 3rem;
   background-color: var(--text-color-primary);
   color: var(--text-color-secondary);
   font-size: 0.9rem;
-  line-height: 1;
+  line-height: 1.5;
   font-family: var(--font-sans-bold);
   border-radius: 50px 50px;
   transition: background-color 250ms ease-out;
+  margin-left: 1rem;
   &:hover {
     background-color: darken(#034561, 10%);
   }
   span {
     display: block;
   }
+  &.colorGray {
+    background-color: var(--gray-30);
+    color: var(--text-color);
+  }
 }
-
-.downArrow {
+.removeFilter {
+  width: 19px;
+  height: 19px;
+  padding: 0.25rem;
+  border-radius: 100%;
+  transform: translate(0.5rem, 1px);
+}
+.iconClose {
   display: block;
-  width: 11px;
-  height: auto;
-  fill: #fff;
-  margin-left: 0.75rem;
-  transform: translateY(0);
-  display: none;
+  path {
+    fill: var(--black);
+  }
 }

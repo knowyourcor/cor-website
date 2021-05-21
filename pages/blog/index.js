@@ -24,12 +24,15 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
   const router = useRouter();
   const { meta_title, meta_description, pinned_blog_post } = pageData[0].node;
 
-  // Tag filter
-  const [tagFilter, setTagFilter] = useState(null);
-
   // Check if a filter is being passed on initial load
+  const [queryFilter, setQueryFilter] = useState(null);
   useEffect(() => {
-    setTagFilter(router.query?.filter);
+    setQueryFilter(router.query?.filter);
+
+    const matchTag = allPostsTags.find(
+      (obj) => obj.slug === router.query?.filter
+    );
+    router.query?.filter && setCurrentFilter(matchTag.name);
   }, [router.query]);
 
   // Pinned post
@@ -42,7 +45,8 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
   const [allPosts, setAllPosts] = useState(allBlogPosts);
 
   // Handel data updates when filtered by tag
-  const handelPostsDataUpdate = (postsByTagData) => {
+  const handlePostsDataUpdate = (postsByTagData) => {
+    postsByTagData && setResetFilter(false);
     postsByTagData && setAllPosts(postsByTagData);
   };
 
@@ -53,6 +57,22 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
 
   // Tags menu toggle
   const [tagsMenuActive, setTagsMenuActive] = useState(false);
+
+  const [currentFilter, setCurrentFilter] = useState(null);
+  const handleCurrentFilter = (tag) => {
+    if (tag.name === "reset") {
+      setCurrentFilter(null);
+    } else {
+      setCurrentFilter(tag.name);
+    }
+  };
+
+  // Filter reset
+  const [resetFilter, setResetFilter] = useState(false);
+  const onFilterReset = () => {
+    setCurrentFilter(null);
+    setResetFilter(true);
+  };
 
   return (
     <>
@@ -70,21 +90,39 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
           <Row>
             <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
               <div className={styles.categories}>
+                {currentFilter && (
+                  <div className={[styles.button, styles.colorGray].join(" ")}>
+                    <span>{currentFilter}</span>
+
+                    <button
+                      onClick={onFilterReset}
+                      title="remove filter"
+                      className={styles.removeFilter}
+                    >
+                      <svg
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 50 50"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={styles.iconClose}
+                      >
+                        <path d="M50 5L45 0L25 20L5 0L0 5L20 25L0 45L5 50L25 30L45 50L50 45L30 25L50 5Z" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
+
                 <button
                   className={[styles.button, styles.buttonDark].join(" ")}
-                  onClick={() => setTagsMenuActive(!tagsMenuActive)}
+                  onClick={() => {
+                    setTagsMenuActive(!tagsMenuActive);
+                  }}
+                  role="button"
+                  tabIndex="0"
+                  title="Select category"
                 >
                   <span>Select Category</span>
-                  <svg
-                    width="100%"
-                    height="100%"
-                    viewBox="0 0 24 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={styles.downArrow}
-                  >
-                    <path d="M-0.000488281 1.51664L1.51632 7.09126e-05L11.9986 10.484L22.4829 0L23.9995 1.51671L11.9984 13.5174L-0.000488281 1.51664Z" />
-                  </svg>
                 </button>
               </div>
             </Column>
@@ -109,8 +147,10 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
           isOpen={tagsMenuActive}
           toggleTagsMenu={() => setTagsMenuActive(!tagsMenuActive)}
           allPostsTags={allPostsTags}
-          filterByData={handelPostsDataUpdate}
-          filterBy={tagFilter}
+          filterByData={handlePostsDataUpdate}
+          filterByQuery={queryFilter}
+          selectedFilter={handleCurrentFilter}
+          resetFilter={resetFilter}
         />
         {/* <LoadMorePosts
           allPostsData={allPosts}

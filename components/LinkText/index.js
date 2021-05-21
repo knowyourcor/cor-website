@@ -16,7 +16,7 @@ const LinkText = ({ linkData, labelData }) => {
 
   const PageLink = (link, label) => {
     return (
-      <Link href="/[slug]" as={`/${link?._meta?.uid}`}>
+      <Link href={`/${link?._meta?.uid}`}>
         <a>{label[0]?.text}</a>
       </Link>
     );
