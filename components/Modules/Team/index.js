@@ -61,7 +61,10 @@ export default function Team({ primary, fields }) {
           <ModalHeader>
             <div className={styles.profileContent}>
               <div className={styles.avatar}>
-                <img src={image?.xs?.url} alt={name && name[0].text} />
+                <img
+                  src="/images/quotes-thumbnail.jpg"
+                  alt={name && name[0].text}
+                />
               </div>
               <div>
                 {name && <RichText render={name} />}
