@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import slugify from "slugify";
 import { getLayout } from "../../components/Layout/PageLayout";
@@ -23,6 +23,8 @@ import styles from "../../styles/Blog.module.scss";
 export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
   const router = useRouter();
   const { meta_title, meta_description, pinned_blog_post } = pageData[0].node;
+
+  const categoryButtonRef = useRef();
 
   // Check if a filter is being passed on initial load
   const [queryFilter, setQueryFilter] = useState(null);
@@ -74,6 +76,10 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     setResetFilter(true);
   };
 
+  useEffect(() => {
+    tagsMenuActive && categoryButtonRef.current.focus();
+  }, [tagsMenuActive]);
+
   return (
     <>
       <Head title={meta_title} description={meta_description} />
@@ -121,6 +127,7 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
                   role="button"
                   tabIndex="0"
                   title="Select category"
+                  ref={categoryButtonRef}
                 >
                   <span>Select Category</span>
                 </button>

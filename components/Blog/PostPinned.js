@@ -35,11 +35,11 @@ export default function PostPinned({ node }) {
           )}
           <p className={styles.date}>{formattedDate}</p>
         </div>
-        <Link href={`/blog/${_meta.uid}`}>
-          <a>
-            <h2>{title[0]?.text}</h2>
-          </a>
-        </Link>
+        <h2>
+          <Link href={`/blog/${_meta.uid}`}>
+            <a>{title[0]?.text}</a>
+          </Link>
+        </h2>
         <RichText render={excerpt} />
       </div>
     </div>
