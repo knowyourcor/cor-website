@@ -130,6 +130,7 @@ export default function PostTags({
           <button
             onClick={() => handelTagUpdate({ name: "reset" })}
             className={styles.tagName}
+            tabIndex={isOpen ? "0" : "-1"}
           >
             All posts
           </button>
@@ -142,6 +143,7 @@ export default function PostTags({
                   styles.tagName,
                   activeFilter === tag.name && styles.activeFilter,
                 ].join(" ")}
+                tabIndex={isOpen ? "0" : "-1"}
               >
                 {tag.name}
               </button>
@@ -156,6 +158,7 @@ export default function PostTags({
         animate={isOpen ? "open" : "closed"}
         variants={maskVariant}
         onClick={toggleTagsMenu}
+        tabIndex="-1"
       ></motion.nav>
     </FocusLock>
   );

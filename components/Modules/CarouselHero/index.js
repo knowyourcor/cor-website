@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { RichText } from "prismic-reactjs";
 import { motion, AnimatePresence } from "framer-motion";
@@ -60,16 +60,26 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
     },
   };
 
-  const handlePause = () => {
-    const iframe = document.getElementById("videoHero");
+  const VideoPlayer = ({ source, className }) => {
+    const ref = useRef();
+    const [playing, setPlaying] = useState(true);
 
-    if (playVideo) {
-      setPlayVideo(false);
-      iframe.pause();
-    } else {
-      setPlayVideo(true);
-      iframe.play();
-    }
+    useEffect(() => {
+      playing ? ref.current.play() : ref.current.pause();
+    }, [playing]);
+    return (
+      <>
+        <video ref={ref} className={className} autoPlay muted loop playsInline>
+          <source src={source} type="video/mp4" />
+        </video>
+        <div className={styles.toggle}>
+          <PlayPauseToggle
+            isPlaying={playing}
+            toggle={() => setPlaying(!playing)}
+          />
+        </div>
+      </>
+    );
   };
 
   const HeadlineWithVideo = () => {
@@ -77,12 +87,7 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
       <>
         <div className={styles.slidePanel}>
           <div className={styles.videoBackground}>
-            <video id="videoHero" autoPlay muted loop playsInline>
-              <source src={video_source} type="video/mp4" />
-            </video>
-            <div className={styles.toggle}>
-              <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
-            </div>
+            <VideoPlayer source={video_source} />
           </div>
         </div>
         <div className={styles.slidePanel}>
@@ -98,18 +103,11 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
     return (
       <>
         <div className={styles.fullWidth}>
-          <video
+          <VideoPlayer
+            source={video_source}
             className={styles.videoFullscreen}
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src={video_source} type="video/mp4" />
-          </video>
-          <div className={styles.toggle}>
-            <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
-          </div>
+            playing={playVideo}
+          />
           <div className={styles.content}>
             <RichText render={headline} />
           </div>
@@ -136,16 +134,12 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
   };
 
   const ImageVideo = () => {
+    const [playing, setPlaying] = useState(true);
     return (
       <>
         <div className={styles.slidePanel}>
           <div className={styles.videoBackground}>
-            <video id="videoHero" autoPlay muted loop playsInline>
-              <source src={video_source} type="video/mp4" />
-            </video>
-            <div className={styles.toggle}>
-              <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
-            </div>
+            <VideoPlayer source={video_source} />
           </div>
         </div>
         <div className={styles.slidePanel}>
@@ -170,18 +164,11 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
   const FullscreenVideo = () => {
     return (
       <div className={styles.fullScreen}>
-        <video
+        <VideoPlayer
+          source={video_source}
+          playing={playVideo}
           className={styles.videoFullscreen}
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src={video_source} type="video/mp4" />
-        </video>
-        <div className={styles.toggle}>
-          <PlayPauseToggle isPlaying={playVideo} toggle={handlePause} />
-        </div>
+        />
       </div>
     );
   };

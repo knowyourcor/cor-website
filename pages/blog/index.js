@@ -58,7 +58,7 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
   };
 
   // Tags menu toggle
-  const [tagsMenuActive, setTagsMenuActive] = useState(false);
+  const [tagsMenuActive, setTagsMenuActive] = useState(null);
 
   const [currentFilter, setCurrentFilter] = useState(null);
   const handleCurrentFilter = (tag) => {
@@ -77,7 +77,10 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
   };
 
   useEffect(() => {
-    tagsMenuActive && categoryButtonRef.current.focus();
+    !tagsMenuActive && tagsMenuActive !== null && console.log("tagsMenuActive");
+    !tagsMenuActive &&
+      tagsMenuActive !== null &&
+      categoryButtonRef.current.focus();
   }, [tagsMenuActive]);
 
   return (
