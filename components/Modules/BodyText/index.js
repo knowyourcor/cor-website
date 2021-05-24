@@ -1,5 +1,6 @@
 import { RichText } from "prismic-reactjs";
 import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 import { Container, Row, Column } from "../../Grid";
 import { fadeIn } from "../../../lib/variants";
 import styles from "./text.module.scss";
