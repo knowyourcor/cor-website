@@ -4,31 +4,14 @@ import { motion } from "framer-motion";
 import Picture from "../../Picture";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
-
+import { fadeIn } from "../../../lib/variants";
 import styles from "./shopTextBackgroundImage.module.scss";
 
 export default function ShopTextBackgroundImage({ primary }) {
   const { ref, inView } = useInView({
-    threshold: 0,
+    threshold: 0.2,
     triggerOnce: true,
   });
-
-  const transition = {
-    duration: 0.4,
-    delay: 0.2,
-    ease: "easeInOut",
-  };
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      transition,
-    },
-    show: {
-      opacity: 1,
-      transition,
-    },
-  };
 
   return (
     <Section
@@ -41,8 +24,7 @@ export default function ShopTextBackgroundImage({ primary }) {
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              exit="hidden"
-              variants={variants}
+              variants={fadeIn}
               className={styles.content}
             >
               <RichText render={primary.headline} />
@@ -53,8 +35,7 @@ export default function ShopTextBackgroundImage({ primary }) {
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              exit="hidden"
-              variants={variants}
+              variants={fadeIn}
               className={styles.image}
             >
               <Picture image={primary.image} />

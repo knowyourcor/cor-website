@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
+import { fadeIn } from "../../../lib/variants";
 import styles from "./textImage.module.scss";
 
 export default function TextImage({ primary }) {
@@ -11,23 +12,6 @@ export default function TextImage({ primary }) {
     threshold: 0.2,
     triggerOnce: true,
   });
-
-  const transition = {
-    duration: 0.4,
-    delay: 0.2,
-    ease: "easeInOut",
-  };
-
-  const fadeInVariants = {
-    hidden: {
-      opacity: 0,
-      transition,
-    },
-    show: {
-      opacity: 1,
-      transition,
-    },
-  };
 
   return (
     <Section className={styles.textImage}>
@@ -37,7 +21,7 @@ export default function TextImage({ primary }) {
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              variants={fadeInVariants}
+              variants={fadeIn}
             >
               <RichText render={primary.label} />
               <RichText render={primary.headline} />
@@ -50,7 +34,7 @@ export default function TextImage({ primary }) {
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              variants={fadeInVariants}
+              variants={fadeIn}
               className={styles.image}
             >
               <Picture image={primary.image} />
@@ -62,7 +46,7 @@ export default function TextImage({ primary }) {
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              variants={fadeInVariants}
+              variants={fadeIn}
             >
               <RichText render={primary.description} />
             </motion.div>

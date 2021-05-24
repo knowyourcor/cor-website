@@ -2,10 +2,10 @@ import { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
+import { fadeIn } from "../../../lib/variants";
 
 import styles from "./checklist.module.scss";
 
@@ -37,10 +37,9 @@ const ListItem = ({ item }) => {
   );
 };
 
-const Paragraph = ({ text, variants }) => {
+const Paragraph = ({ text }) => {
   const { ref, inView } = useInView({
-    threshold: 0.5,
-    rootMargin: "25px 0px",
+    threshold: 0.2,
     triggerOnce: true,
   });
 
@@ -49,8 +48,7 @@ const Paragraph = ({ text, variants }) => {
       ref={ref}
       initial="hidden"
       animate={inView ? "show" : "hidden"}
-      exit="hidden"
-      variants={variants}
+      variants={fadeIn}
     >
       <RichText render={text} />
     </motion.div>
@@ -60,27 +58,9 @@ const Paragraph = ({ text, variants }) => {
 export default function Checklist({ primary, fields }) {
   const [checkedItems, setCheckedItems] = useState({});
   const { ref, inView } = useInView({
-    threshold: 0.5,
-    rootMargin: "25px 0px",
+    threshold: 0.2,
     triggerOnce: true,
   });
-
-  const transition = {
-    duration: 0.4,
-    delay: 0.2,
-    ease: "easeInOut",
-  };
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      transition,
-    },
-    show: {
-      opacity: 1,
-      transition,
-    },
-  };
 
   const handleChange = (event) => {
     setCheckedItems({
@@ -94,7 +74,7 @@ export default function Checklist({ primary, fields }) {
       className={styles.checklistContainer}
       backgroundColor={primary.background_color}
     >
-      <Container>
+      <Container ref={ref}>
         <Row align="center">
           <Column
             columns={{ xs: 14, md: 5 }}
@@ -102,11 +82,9 @@ export default function Checklist({ primary, fields }) {
             ordering={{ xs: 2, md: 1 }}
           >
             <motion.div
-              ref={ref}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              exit="hidden"
-              variants={variants}
+              variants={fadeIn}
             >
               <RichText render={primary.heading} />
             </motion.div>
@@ -135,7 +113,7 @@ export default function Checklist({ primary, fields }) {
               <Picture image={primary.image} />
             </div>
             <div className={styles.offsetText}>
-              <Paragraph {...primary} variants={variants} />
+              <Paragraph {...primary} />
             </div>
           </Column>
         </Row>

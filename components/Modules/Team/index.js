@@ -6,30 +6,14 @@ import Picture from "../../Picture";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Modal, { ModalHeader, ModalBody } from "../../Modal";
+import { fadeIn } from "../../../lib/variants";
 import styles from "./team.module.scss";
 
 export default function Team({ primary, fields }) {
   const { ref, inView } = useInView({
-    threshold: 0,
+    threshold: 0.2,
     triggerOnce: true,
   });
-
-  const transition = {
-    duration: 0.4,
-    delay: 0.2,
-    ease: "easeInOut",
-  };
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      transition,
-    },
-    show: {
-      opacity: 1,
-      transition,
-    },
-  };
 
   const Profile = ({ description, image, name, job_title }) => {
     const [modalActive, setModalActive] = useState(false);
@@ -93,7 +77,7 @@ export default function Team({ primary, fields }) {
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              variants={variants}
+              variants={fadeIn}
             >
               <RichText render={primary.headline} />
             </motion.div>
@@ -102,7 +86,7 @@ export default function Team({ primary, fields }) {
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              variants={variants}
+              variants={fadeIn}
             >
               <RichText render={primary.text} />
             </motion.div>
@@ -116,7 +100,7 @@ export default function Team({ primary, fields }) {
                 <motion.div
                   initial="hidden"
                   animate={inView ? "show" : "hidden"}
-                  variants={variants}
+                  variants={fadeIn}
                   className={styles.profile}
                   key={`profile_${index}`}
                 >

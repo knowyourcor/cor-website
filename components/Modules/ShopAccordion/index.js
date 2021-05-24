@@ -6,6 +6,7 @@ import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
 import Item from "./Item";
+import { fadeIn } from "../../../lib/variants";
 
 import styles from "./shopAccordion.module.scss";
 
@@ -13,7 +14,7 @@ export default function ShopAccordion({ primary, fields }) {
   const [expanded, setExpanded] = useState("item-0");
   const [imageData, setImageData] = useState();
   const { ref, inView } = useInView({
-    threshold: 0,
+    threshold: 0.2,
     triggerOnce: true,
   });
 
@@ -28,22 +29,6 @@ export default function ShopAccordion({ primary, fields }) {
   useEffect(() => {
     setImageData(fields[0]?.image);
   }, []);
-
-  const transition = {
-    duration: 0.3,
-    ease: "easeInOut",
-  };
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      transition,
-    },
-    show: {
-      opacity: 1,
-      transition,
-    },
-  };
 
   const imageTransition = {
     duration: 0.5,
@@ -78,7 +63,7 @@ export default function ShopAccordion({ primary, fields }) {
         primary.usid ? styles[primary.usid] : "",
       ].join(" ")}
     >
-      <Container>
+      <Container ref={ref}>
         <Row>
           <Column
             columns={{ xs: 14, md: 5, xl: 4 }}
@@ -88,11 +73,10 @@ export default function ShopAccordion({ primary, fields }) {
             <div className={styles.contentOffset}>
               <RichText render={primary.headline} />
               <motion.div
-                ref={ref}
                 initial="hidden"
                 animate={inView ? "show" : "hidden"}
                 exit="hidden"
-                variants={variants}
+                variants={fadeIn}
               >
                 <div className={styles.accordion}>
                   <motion.div className={styles.items}>

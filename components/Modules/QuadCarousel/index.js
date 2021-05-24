@@ -6,6 +6,7 @@ import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Item from "./Item";
 import Pagination from "./Pagination";
+import { fadeIn } from "../../../lib/variants";
 import styles from "./quadCarousel.module.scss";
 
 export default function QuadCarousel({ primary, fields }) {
@@ -16,7 +17,7 @@ export default function QuadCarousel({ primary, fields }) {
   });
 
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.2,
     triggerOnce: true,
   });
 
@@ -38,38 +39,20 @@ export default function QuadCarousel({ primary, fields }) {
     },
   };
 
-  const transition = {
-    duration: 0.4,
-    delay: 0.2,
-    ease: "easeInOut",
-  };
-
-  const fadeInVariants = {
-    hidden: {
-      opacity: 0,
-      transition,
-    },
-    show: {
-      opacity: 1,
-      transition,
-    },
-  };
-
   return (
     <Section
       className={styles.quadCarousel}
       align="center"
       style={{ backgroundColor: primary.background_color }}
     >
-      <Container>
+      <Container ref={ref}>
         <Row justify={{ xs: "center" }}>
           <Column columns={{ xs: 14, sm: 12 }}>
             <motion.div
-              ref={ref}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
               exit="hidden"
-              variants={fadeInVariants}
+              variants={fadeIn}
             >
               <RichText render={primary.heading} />
             </motion.div>
@@ -78,11 +61,10 @@ export default function QuadCarousel({ primary, fields }) {
         <Row justify={{ xs: "center" }}>
           <Column columns={{ xs: 14, sm: 12, md: 8 }}>
             <motion.div
-              ref={ref}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
               exit="hidden"
-              variants={fadeInVariants}
+              variants={fadeIn}
             >
               <RichText render={primary.text} />
             </motion.div>
