@@ -209,3 +209,36 @@
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
 }
+
+.button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 0.9rem 3rem;
+  background-color: var(--blue-primary);
+  color: var(--text-color-secondary);
+  font-size: 1rem;
+  line-height: 1;
+  font-family: var(--font-sans);
+  border-radius: 50px 50px;
+  transition: background-color 300ms ease-in-out;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  margin: 1rem auto;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    color: var(--text-color-secondary);
+    background-color: var(--blue-accent);
+  }
+  span {
+    display: block;
+  }
+  &:disabled {
+    opacity: 0.75;
+    background-color: var(--gray-20);
+    color: var(--gray-40);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0);
+    cursor: not-allowed;
+  }
+}

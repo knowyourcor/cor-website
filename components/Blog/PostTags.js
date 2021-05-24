@@ -23,8 +23,8 @@ export default function PostTags({
     data: postsByTagData,
     loading: postsByTagLoading,
     error: postsByTagError,
-    fetchMore,
   } = useQuery(ALL_BLOG_POSTS_QUERY, {
+    fetchPolicy: "cache-and-network",
     variables: {
       tag: activeFilter === "reset" ? null : activeFilter,
       after: null,

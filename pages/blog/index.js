@@ -9,12 +9,12 @@ import PostPreview from "../../components/Blog/PostPreview";
 import PostTags from "../../components/Blog/PostTags";
 import LoadMorePosts from "../../components/Blog/LoadMorePosts";
 
-// Apollo
+// Apollo for dynamic data, filtering, pagination
 import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
 import client from "../../lib/ApolloClient";
 import ClientOnly from "../../lib/ClientOnly";
 
-// Prismic
+// Prismic data for getStaticProps
 import { getBlogData, getMenuData, getBlogPostTags } from "../../lib/api";
 
 // Styles
@@ -24,20 +24,23 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
   const router = useRouter();
   const { meta_title, meta_description, pinned_blog_post } = pageData[0].node;
 
+  // Tags menu toggle
+  const [tagsMenuActive, setTagsMenuActive] = useState(null);
+
+  // Used to set focus on menu close
   const categoryButtonRef = useRef();
 
   // Check if a filter is being passed on initial load
   const [queryFilter, setQueryFilter] = useState(null);
   useEffect(() => {
     setQueryFilter(router.query?.filter);
-
     const matchTag = allPostsTags.find(
       (obj) => obj.slug === router.query?.filter
     );
     router.query?.filter && setCurrentFilter(matchTag.name);
   }, [router.query]);
 
-  // Pinned post
+  // Pinned post data
   const pinnedPostUID = pinned_blog_post?._meta.uid;
   const pinnedPostData = {
     node: { ...pinned_blog_post },
@@ -52,14 +55,12 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     postsByTagData && setAllPosts(postsByTagData);
   };
 
-  // Handel data updates when filtered by tag
+  // Handel data updates when paginating
   const handelPostsDataMerge = (postsData) => {
     postsData && setAllPosts(postsData);
   };
 
-  // Tags menu toggle
-  const [tagsMenuActive, setTagsMenuActive] = useState(null);
-
+  // Filtering
   const [currentFilter, setCurrentFilter] = useState(null);
   const handleCurrentFilter = (tag) => {
     if (tag.name === "reset") {
@@ -76,8 +77,8 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     setResetFilter(true);
   };
 
+  // Handle focus of categoryButtonRef on close of tagMenu
   useEffect(() => {
-    !tagsMenuActive && tagsMenuActive !== null && console.log("tagsMenuActive");
     !tagsMenuActive &&
       tagsMenuActive !== null &&
       categoryButtonRef.current.focus();
@@ -153,6 +154,16 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
       </div>
 
       <ClientOnly>
+        <div className={styles.pagination}>
+          <LoadMorePosts
+            allPostsData={allPosts}
+            paginatedPostsData={handelPostsDataMerge}
+            filterBy={currentFilter}
+          />
+        </div>
+      </ClientOnly>
+
+      <ClientOnly>
         <PostTags
           isOpen={tagsMenuActive}
           toggleTagsMenu={() => setTagsMenuActive(!tagsMenuActive)}
@@ -162,11 +173,6 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
           selectedFilter={handleCurrentFilter}
           resetFilter={resetFilter}
         />
-        {/* <LoadMorePosts
-          allPostsData={allPosts}
-          paginatedPostsData={handelPostsDataMerge}
-          filterBy={tagFilter}
-        /> */}
       </ClientOnly>
     </>
   );
