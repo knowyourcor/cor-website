@@ -1,44 +1,24 @@
-import {
-  useState,
-  createContext,
-  createRef,
-  useEffect,
-  useContext,
-  useRef,
-} from "react";
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from "body-scroll-lock";
+import { createContext, createRef, useEffect, useContext } from "react";
+import { FocusOn } from "react-focus-on";
 import { createPortal } from "react-dom";
 
 import styles from "./modal.module.scss";
 
 export default function ModalComponent({ isActive, children, closeModal }) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current && ref.current.focus();
-
-    ref.current && isActive
-      ? disableBodyScroll(ref.current)
-      : enableBodyScroll(ref.current);
-
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [isActive]);
-
   return (
-    <div ref={ref}>
-      {isActive && <Modal onModalClose={() => closeModal()}>{children}</Modal>}
-    </div>
+    <>
+      {isActive && (
+        <Modal onModalClose={() => closeModal()} isActive={isActive}>
+          {children}
+        </Modal>
+      )}
+    </>
   );
 }
 
 const modalContext = createContext();
 
-function Modal({ children, onModalClose }) {
+function Modal({ children, onModalClose, isActive }) {
   useEffect(() => {
     function keyListener(e) {
       const listener = keyListenersMap.get(e.keyCode);
@@ -75,18 +55,20 @@ function Modal({ children, onModalClose }) {
   ]);
 
   return createPortal(
-    <div
-      className={styles["modal-container"]}
-      role="dialog"
-      aria-modal="true"
-      onClick={onModalClose}
-    >
-      <div className={styles["modal-content"]} ref={modalRef}>
-        <modalContext.Provider value={{ onModalClose }}>
-          {children}
-        </modalContext.Provider>
+    <FocusOn enabled={isActive}>
+      <div
+        className={styles["modal-container"]}
+        role="dialog"
+        aria-modal="true"
+        onClick={onModalClose}
+      >
+        <div className={styles["modal-content"]} ref={modalRef}>
+          <modalContext.Provider value={{ onModalClose }}>
+            {children}
+          </modalContext.Provider>
+        </div>
       </div>
-    </div>,
+    </FocusOn>,
     document.body
   );
 }

@@ -3,12 +3,7 @@ import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
 import { motion } from "framer-motion";
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from "body-scroll-lock";
-import FocusLock from "react-focus-lock";
+import { FocusOn } from "react-focus-on";
 import styles from "./blog.module.scss";
 
 export default function PostTags({
@@ -35,18 +30,6 @@ export default function PostTags({
       after: null,
     },
   });
-
-  useEffect(() => {
-    ref.current && ref.current.focus();
-
-    ref.current && isOpen
-      ? disableBodyScroll(ref.current)
-      : enableBodyScroll(ref.current);
-
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [isOpen]);
 
   // Filter by page query on initial load
   useEffect(() => {
@@ -115,7 +98,7 @@ export default function PostTags({
   };
 
   return (
-    <FocusLock disabled={!isOpen}>
+    <FocusOn enabled={isOpen}>
       <motion.nav
         className={styles.postTags}
         ref={ref}
@@ -160,6 +143,6 @@ export default function PostTags({
         onClick={toggleTagsMenu}
         tabIndex="-1"
       ></motion.nav>
-    </FocusLock>
+    </FocusOn>
   );
 }

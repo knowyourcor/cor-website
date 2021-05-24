@@ -1,27 +1,8 @@
-import { useRef, useEffect } from "react";
 import Link from "../Link";
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from "body-scroll-lock";
 import { motion } from "framer-motion";
 import styles from "./menu.module.scss";
 
 const Menu = ({ active, toggle, mainMenuData }) => {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current && ref.current.focus();
-
-    ref.current && active
-      ? disableBodyScroll(ref.current)
-      : enableBodyScroll(ref.current);
-
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [active]);
-
   const navVariant = {
     open: {
       x: 0,
@@ -88,11 +69,12 @@ const Menu = ({ active, toggle, mainMenuData }) => {
 
       <motion.nav
         className={[styles.menu, styles.mobile].join(" ")}
-        ref={ref}
         style={{ transform: "translateX(-100%)" }}
         initial="closed"
         animate={active ? "open" : "closed"}
         variants={navVariant}
+        tabIndex={active ? "0" : "-1"}
+        aria-hidden={active ? "false" : "true"}
       >
         <div className={styles.scrollContainer}>
           <motion.ul
