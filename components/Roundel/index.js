@@ -102,19 +102,6 @@ export default function Roundel({ index = 0, score }) {
             }}
           />
 
-          {/* Orange */}
-          <motion.circle
-            stroke="#ff704f"
-            strokeWidth="14"
-            cx="50"
-            cy="50"
-            r="47.85"
-            animate={orange}
-            style={{
-              strokeDasharray: 360,
-            }}
-          />
-
           {/* Blue */}
           <motion.circle
             stroke="#034561"
@@ -128,13 +115,26 @@ export default function Roundel({ index = 0, score }) {
             }}
           />
 
+          {/* Orange */}
+          <motion.circle
+            stroke="#ff704f"
+            strokeWidth="14"
+            cx="50"
+            cy="50"
+            r="47.85"
+            animate={orange}
+            style={{
+              strokeDasharray: 360,
+            }}
+          />
+
           {/* Green */}
           <motion.circle
             stroke="#70DB8C"
             strokeWidth="28"
             cx="50"
             cy="50"
-            r="54.75"
+            r="54.8"
             animate={green}
             style={{
               strokeDasharray: 360,
