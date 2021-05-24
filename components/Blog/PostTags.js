@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
 import { motion } from "framer-motion";
+import { FocusOn } from "react-focus-on";
 import styles from "./blog.module.scss";
 
 export default function PostTags({
@@ -97,7 +98,7 @@ export default function PostTags({
   };
 
   return (
-    <>
+    <FocusOn enabled={isOpen}>
       <motion.nav
         className={styles.postTags}
         ref={ref}
@@ -105,12 +106,14 @@ export default function PostTags({
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={navVariant}
+        tabIndex="-1"
       >
         <div>
           <p>Categories</p>
           <button
             onClick={() => handelTagUpdate({ name: "reset" })}
             className={styles.tagName}
+            tabIndex={isOpen ? "0" : "-1"}
           >
             All posts
           </button>
@@ -123,6 +126,7 @@ export default function PostTags({
                   styles.tagName,
                   activeFilter === tag.name && styles.activeFilter,
                 ].join(" ")}
+                tabIndex={isOpen ? "0" : "-1"}
               >
                 {tag.name}
               </button>
@@ -137,7 +141,8 @@ export default function PostTags({
         animate={isOpen ? "open" : "closed"}
         variants={maskVariant}
         onClick={toggleTagsMenu}
+        tabIndex="-1"
       ></motion.nav>
-    </>
+    </FocusOn>
   );
 }

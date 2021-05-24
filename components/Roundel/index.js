@@ -80,7 +80,11 @@ export default function Roundel({ index = 0, score }) {
   }, [index]);
   return (
     <>
-      <svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        viewBox="0 0 148 148"
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.roundel}
+      >
         <g transform="translate(24 24)" fill="none" fillRule="evenodd">
           {/* Gray */}
           <circle stroke="#e0e0e0" strokeWidth="2" cx="50" cy="50" r="41.75" />

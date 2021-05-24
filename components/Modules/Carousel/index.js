@@ -6,6 +6,7 @@ import { Container, Row, Column } from "../../Grid";
 import Picture from "../../Picture";
 import styles from "./carousel.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { fadeIn } from "../../../lib/variants";
 
 // Import Swiper styles
 import "swiper/swiper.min.css";
@@ -43,26 +44,9 @@ const Slide = ({ headline, text, image }) => {
 
 export default function Carousel({ primary, fields }) {
   const { ref, inView } = useInView({
-    threshold: 0,
+    threshold: 0.2,
     triggerOnce: true,
   });
-
-  const transition = {
-    duration: 0.4,
-    delay: 0.2,
-    ease: "easeInOut",
-  };
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      transition,
-    },
-    show: {
-      opacity: 1,
-      transition,
-    },
-  };
 
   return (
     <motion.section
@@ -72,7 +56,7 @@ export default function Carousel({ primary, fields }) {
       initial="hidden"
       animate={inView ? "show" : "hidden"}
       exit="hidden"
-      variants={variants}
+      variants={fadeIn}
     >
       <div className={styles.contentContainer}>
         <Container>

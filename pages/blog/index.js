@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import slugify from "slugify";
 import { getLayout } from "../../components/Layout/PageLayout";
@@ -23,6 +23,8 @@ import styles from "../../styles/Blog.module.scss";
 export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
   const router = useRouter();
   const { meta_title, meta_description, pinned_blog_post } = pageData[0].node;
+
+  const categoryButtonRef = useRef();
 
   // Check if a filter is being passed on initial load
   const [queryFilter, setQueryFilter] = useState(null);
@@ -56,7 +58,7 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
   };
 
   // Tags menu toggle
-  const [tagsMenuActive, setTagsMenuActive] = useState(false);
+  const [tagsMenuActive, setTagsMenuActive] = useState(null);
 
   const [currentFilter, setCurrentFilter] = useState(null);
   const handleCurrentFilter = (tag) => {
@@ -73,6 +75,13 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     setCurrentFilter(null);
     setResetFilter(true);
   };
+
+  useEffect(() => {
+    !tagsMenuActive && tagsMenuActive !== null && console.log("tagsMenuActive");
+    !tagsMenuActive &&
+      tagsMenuActive !== null &&
+      categoryButtonRef.current.focus();
+  }, [tagsMenuActive]);
 
   return (
     <>
@@ -121,6 +130,7 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
                   role="button"
                   tabIndex="0"
                   title="Select category"
+                  ref={categoryButtonRef}
                 >
                   <span>Select Category</span>
                 </button>

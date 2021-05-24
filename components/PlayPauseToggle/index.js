@@ -2,7 +2,11 @@ import styles from "./playPauseToggle.module.scss";
 
 export default function PlayPauseToggle({ isPlaying, toggle }) {
   return (
-    <button onClick={toggle} className={styles.toggle}>
+    <button
+      onClick={toggle}
+      className={styles.toggle}
+      aria-label={isPlaying ? "Pause video" : "Play video"}
+    >
       <svg
         width="100%"
         height="100%"

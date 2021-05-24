@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Container, Row, Column } from "../../Grid";
 import Section from "../../Section";
 import Picture from "../../Picture";
+import { fadeIn } from "../../../lib/variants";
 import styles from "./dualGrid.module.scss";
 
 export default function DualGrid({ primary }) {
@@ -11,23 +12,6 @@ export default function DualGrid({ primary }) {
     threshold: 0,
     triggerOnce: true,
   });
-
-  const transition = {
-    duration: 0.4,
-    delay: 0.2,
-    ease: "easeInOut",
-  };
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      transition,
-    },
-    show: {
-      opacity: 1,
-      transition,
-    },
-  };
 
   return (
     <Section className={styles.dualGrid}>
@@ -37,7 +21,7 @@ export default function DualGrid({ primary }) {
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              variants={variants}
+              variants={fadeIn}
               className={styles.image}
             >
               <Picture image={primary.image} />
@@ -47,7 +31,7 @@ export default function DualGrid({ primary }) {
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              variants={variants}
+              variants={fadeIn}
             >
               <RichText render={primary.headline} />
               <RichText render={primary.description} />

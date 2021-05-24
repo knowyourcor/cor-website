@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import FocusLock from "react-focus-lock";
+import { FocusOn } from "react-focus-on";
 import Link from "../Link";
 import Menu from "../Menu";
 import MenuToggle from "../MenuToggle";
@@ -17,7 +17,7 @@ const Navigation = ({ mainMenuData }) => {
   };
 
   return (
-    <FocusLock disabled={!isMenuOpen}>
+    <FocusOn enabled={isMenuOpen}>
       <motion.nav
         className={[
           styles.navigation,
@@ -54,10 +54,7 @@ const Navigation = ({ mainMenuData }) => {
               className={[styles.logo, isMenuOpen && styles.menuOpenLogo].join(
                 " "
               )}
-              aria-expanded="false"
-              aria-label="Main menu"
-              role="button"
-              tabIndex="0"
+              aria-label="Return to homepage"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +73,7 @@ const Navigation = ({ mainMenuData }) => {
           </div>
         </div>
       </motion.nav>
-    </FocusLock>
+    </FocusOn>
   );
 };
 

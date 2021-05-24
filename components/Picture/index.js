@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
 
 import styles from "./picture.module.scss";
 
@@ -8,28 +6,6 @@ const Picture = ({ image, classes }) => {
   const [loaded, setLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const imageRef = useRef();
-  const { ref, inView } = useInView({
-    threshold: 0,
-    rootMargin: "10px 0px",
-    triggerOnce: true,
-  });
-
-  const transition = {
-    duration: 0.4,
-    delay: 0.2,
-    ease: "easeInOut",
-  };
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      transition,
-    },
-    show: {
-      opacity: 1,
-      transition,
-    },
-  };
 
   // Device Pixel Ratios
   const drp = ["1", "2", "3"];
@@ -75,13 +51,7 @@ const Picture = ({ image, classes }) => {
   }, []);
 
   return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "show" : "hidden"}
-      exit="hidden"
-      variants={variants}
-    >
+    <>
       {image && (
         <picture
           className={[
@@ -121,7 +91,7 @@ const Picture = ({ image, classes }) => {
           />
         </picture>
       )}
-    </motion.div>
+    </>
   );
 };
 

@@ -1,11 +1,3 @@
-// .picture {
-//   img {
-//     width: 100%;
-//     height: auto;
-//     display: block;
-//   }
-// }
-
 @import "../../styles/_variables.scss";
 
 .picture {
@@ -14,7 +6,7 @@
   // opacity: 0;
   transition: opacity 300ms ease-out;
 
-  &.loading {  
+  &.loading {
     opacity: 0;
   }
 
