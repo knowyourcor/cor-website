@@ -25,7 +25,9 @@ export default function Item({ data, bullet, isExpanded, expandItem, index }) {
           onClick={expandItem}
         >
           <div className={styles.accordionLabel}>
-            <span className={styles.itemIndex}>{bulletStyle}</span>
+            <span className={styles.itemIndex} aria-hidden="true">
+              {bulletStyle}
+            </span>
             <span className={styles.itemLabel}>{data.title[0].text}</span>
             <div className={styles.cBorder} />
           </div>

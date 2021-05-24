@@ -58,7 +58,7 @@ export default function Checklist({ primary, fields }) {
               <ul className={styles.checklistItems}>
                 {fields.map((item, i) => (
                   <li className={styles.item} key={`list_item_${i}`}>
-                    <div className={styles.checkmark}>
+                    <div className={styles.checkmark} aria-hidden="true">
                       <img src={item.icon.url} className={styles.icon} />
                     </div>
                     <span>
