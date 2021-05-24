@@ -89,40 +89,14 @@ export default function Roundel({ index = 0, score }) {
           {/* Gray */}
           <circle stroke="#e0e0e0" strokeWidth="2" cx="50" cy="50" r="41.75" />
 
-          {/* Blue */}
-          <motion.circle
-            stroke="#034561"
-            strokeWidth="29"
-            cx="50"
-            cy="50"
-            r="55.242"
-            animate={blue}
-            style={{
-              strokeDasharray: 360,
-            }}
-          />
-
           {/* Cyan */}
           <motion.circle
             stroke="#80deeb"
-            strokeWidth="29"
+            strokeWidth="14"
             cx="50"
             cy="50"
-            r="55.242"
+            r="47.85"
             animate={cyan}
-            style={{
-              strokeDasharray: 360,
-            }}
-          />
-
-          {/* Green */}
-          <motion.circle
-            stroke="#70DB8C"
-            strokeWidth="19"
-            cx="50"
-            cy="50"
-            r="50.242"
-            animate={green}
             style={{
               strokeDasharray: 360,
             }}
@@ -131,11 +105,37 @@ export default function Roundel({ index = 0, score }) {
           {/* Orange */}
           <motion.circle
             stroke="#ff704f"
-            strokeWidth="19"
+            strokeWidth="14"
             cx="50"
             cy="50"
-            r="50.242"
+            r="47.85"
             animate={orange}
+            style={{
+              strokeDasharray: 360,
+            }}
+          />
+
+          {/* Blue */}
+          <motion.circle
+            stroke="#034561"
+            strokeWidth="14"
+            cx="50"
+            cy="50"
+            r="47.85"
+            animate={blue}
+            style={{
+              strokeDasharray: 360,
+            }}
+          />
+
+          {/* Green */}
+          <motion.circle
+            stroke="#70DB8C"
+            strokeWidth="28"
+            cx="50"
+            cy="50"
+            r="54.75"
+            animate={green}
             style={{
               strokeDasharray: 360,
             }}
