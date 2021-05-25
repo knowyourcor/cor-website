@@ -2,6 +2,7 @@ import { useState, Fragment } from "react";
 import { useInView } from "react-intersection-observer";
 import { RichText } from "prismic-reactjs";
 import { AnimatePresence, motion } from "framer-motion";
+import { useSwipeable } from "react-swipeable";
 import Section from "../../Section";
 import { Container, Row, Column } from "../../Grid";
 import Item from "./Item";
@@ -22,11 +23,20 @@ export default function QuadCarousel({ primary, fields }) {
   });
 
   const [active, setActive] = useState(1);
+
   const handleNext = () => {
     if (active < cloneFields.length) {
       setActive((prev) => prev + 1);
     } else {
       setActive(1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (active === 1) {
+      setActive(cloneFields.length - 1);
+    } else {
+      setActive((prev) => prev - 1);
     }
   };
 
@@ -38,6 +48,12 @@ export default function QuadCarousel({ primary, fields }) {
       transition: { staggerChildren: 0.5 },
     },
   };
+
+  const handlers = useSwipeable({
+    onSwipedRight: (eventData) => handlePrevious(),
+    onSwipedLeft: (eventData) => handleNext(),
+    onTap: (event) => handleNext(),
+  });
 
   return (
     <Section
@@ -71,7 +87,7 @@ export default function QuadCarousel({ primary, fields }) {
           </Column>
         </Row>
       </Container>
-      <div className={styles.container}>
+      <div className={styles.container} {...handlers}>
         <AnimatePresence>
           <motion.div
             variants={variants}
