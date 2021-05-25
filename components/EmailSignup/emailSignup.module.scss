@@ -38,6 +38,9 @@
     color: rgba(0, 0, 0, 0.5);
   }
   @media (min-width: $md) {
+    padding: 1rem 34% 1rem 1.5rem;
+  }
+  @media (min-width: $lg) {
     padding: 1rem 32% 1rem 1.5rem;
   }
 }
