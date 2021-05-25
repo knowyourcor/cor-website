@@ -107,6 +107,7 @@ export default function PostTags({
         animate={isOpen ? "open" : "closed"}
         variants={navVariant}
         tabIndex="-1"
+        aria-hidden={isOpen ? "false" : "true"}
       >
         <div>
           <p>Categories</p>
