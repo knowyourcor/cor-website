@@ -59,7 +59,8 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
         __html: "<div>Sending...</div>",
       };
     } else if (isValid && status === "error") {
-      return { __html: message };
+      console.log(message);
+      return { __html: message.replace("0 - ", "").replace("@: )", "@)") };
     } else if (isValid && status === "success") {
       return { __html: message };
     }
