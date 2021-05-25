@@ -29,6 +29,9 @@ export default function Item({
         styles[`item_${index}`],
       ].join(" ")}
     >
+      <div className={styles.itemIndicator}>
+        <div className={styles.indexLine} />
+      </div>
       <button
         className={[styles.label, activeTabClass].join(" ")}
         onClick={expandItem}
@@ -38,18 +41,42 @@ export default function Item({
             : `Expand ${data.title[0].text} content`
         }
       >
-        <span
-          className={styles.itemIndex}
-          style={{ backgroundColor: backgroundColor }}
-        >
-          {handleIndex(index)}
-        </span>
+        <span className={styles.itemIndex}>{handleIndex(index)}</span>
+
         <span className={styles.itemLabel}>{data.title[0].text}</span>
-        <div className={styles.indexLine} />
       </button>
       <AnimatePresence initial={false}>
         {isExpanded && <Content {...data} />}
       </AnimatePresence>
     </div>
+
+    // <div className={[styles.item, isExpanded && styles.activeItem].join(" ")}>
+    // <div className={styles.itemIndicator}>
+    //   <div className={styles.indexLine} />
+    // </div>
+    // <button
+    //   className={[styles.label, activeTabClass].join(" ")}
+    //   onClick={expandItem}
+    //   aria-label={
+    //     isExpanded
+    //       ? `${data.title[0].text} content expanded`
+    //       : `Expand ${data.title[0].text} content`
+    //   }
+    // >
+    //   <span
+    //     className={[
+    //       styles.itemIndex,
+    //       bullet === "disc" ? styles.itemIndexDisc : "",
+    //     ].join(" ")}
+    //     aria-hidden="true"
+    //   >
+    //     {bulletStyle}
+    //   </span>
+    //   <span className={styles.itemLabel}>{data.title[0].text}</span>
+    // </button>
+    // <AnimatePresence initial={false}>
+    //   {isExpanded && <Content {...data} />}
+    // </AnimatePresence>
+    // </div>
   );
 }

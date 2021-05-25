@@ -15,11 +15,19 @@ export default function Item({ data, bullet, isExpanded, expandItem, index }) {
     }
   };
 
-  const bulletStyle = bullet === "disc" ? "•" : handleIndex(index);
+  const bulletStyle = bullet !== "disc" ? handleIndex(index) : "";
 
   return (
     <>
       <div className={[styles.item, isExpanded && styles.activeItem].join(" ")}>
+        <div className={styles.itemIndicator}>
+          <div
+            className={[
+              styles.indexLine,
+              bullet === "disc" ? styles.indexLineDisc : "",
+            ].join(" ")}
+          />
+        </div>
         <button
           className={[styles.label, activeTabClass].join(" ")}
           onClick={expandItem}
@@ -29,11 +37,16 @@ export default function Item({ data, bullet, isExpanded, expandItem, index }) {
               : `Expand ${data.title[0].text} content`
           }
         >
-          <span className={styles.itemIndex} aria-hidden="true">
+          <span
+            className={[
+              styles.itemIndex,
+              bullet === "disc" ? styles.itemIndexDisc : "",
+            ].join(" ")}
+            aria-hidden="true"
+          >
             {bulletStyle}
           </span>
           <span className={styles.itemLabel}>{data.title[0].text}</span>
-          <div className={styles.indexLine} />
         </button>
         <AnimatePresence initial={false}>
           {isExpanded && <Content {...data} />}
