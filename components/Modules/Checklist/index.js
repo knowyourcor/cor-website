@@ -39,7 +39,7 @@ const ListItem = ({ item }) => {
 
 const Paragraph = ({ text }) => {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 
@@ -58,7 +58,7 @@ const Paragraph = ({ text }) => {
 export default function Checklist({ primary, fields }) {
   const [checkedItems, setCheckedItems] = useState({});
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 

@@ -12,7 +12,7 @@ const FullWidthImage = ({ primary }) => {
   const videoRef = useRef();
   const [playVideo, setPlayVideo] = useState(true);
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 

@@ -9,7 +9,7 @@ import styles from "./shopTextImage.module.scss";
 
 const TextImage = ({ primary }) => {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 

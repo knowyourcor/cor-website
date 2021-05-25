@@ -18,7 +18,7 @@ export default function QuadCarousel({ primary, fields }) {
   });
 
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 

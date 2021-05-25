@@ -11,7 +11,7 @@ import styles from "./product.module.scss";
 
 export default function Index({ primary }) {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 

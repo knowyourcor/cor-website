@@ -11,7 +11,7 @@ import styles from "./team.module.scss";
 
 export default function Team({ primary, fields }) {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 
