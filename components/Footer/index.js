@@ -27,15 +27,25 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
       Math.ceil(footerMenuData?.menu_links?.length / 2)
     );
 
-  const PageLink = (link, index) => {
+  const PageLink = (link) => {
     return (
-      <li key={`${link.link?._meta?.uid}_${index}`}>
+      <li>
         <Link
           activeClassName={styles.active}
           href={`/${link.link?._meta?.uid}`}
         >
           <a>{link.label[0].text}</a>
         </Link>
+      </li>
+    );
+  };
+
+  const WebLink = (item) => {
+    return (
+      <li>
+        <a href={`${item?.link.url}`} target={`/${item?.link.target}`}>
+          {item.label[0].text}
+        </a>
       </li>
     );
   };
@@ -71,9 +81,12 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                   {internalLinksToColumn.map((set, index) => {
                     return (
                       <ul key={`colum_${index}`}>
-                        {set.map((link, index) => (
+                        {set.map((item, index) => (
                           <Fragment key={`link_${index}`}>
-                            {link.link && PageLink(link, index)}
+                            {item.link._linkType === "Link.web" &&
+                              WebLink(item, index)}
+                            {item.link._linkType === "Link.document" &&
+                              PageLink(item, index)}
                           </Fragment>
                         ))}
                       </ul>
