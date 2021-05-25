@@ -108,6 +108,7 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
                       onClick={onFilterReset}
                       title="remove filter"
                       className={styles.removeFilter}
+                      aria-label={`Remove ${currentFilter} filter`}
                     >
                       <svg
                         width="100%"
