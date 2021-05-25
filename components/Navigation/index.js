@@ -22,13 +22,13 @@ const Navigation = ({ mainMenuData }) => {
         className={[
           styles.navigation,
           styles.withBG,
-          isMenuOpen && styles.isOpen,
+          isMenuOpen ? styles.isOpen : "",
           styles.onScroll,
         ].join(" ")}
         initial={false}
         animate={isMenuOpen ? "open" : "closed"}
       >
-        <motion.div className={styles.boxShadow} />
+        <motion.div className={styles.boxShadow} aria-hidden="true" />
         <div className={styles.container}>
           <a
             className={styles.skipToContentLink}
@@ -37,11 +37,6 @@ const Navigation = ({ mainMenuData }) => {
           >
             Skip to Content
           </a>
-
-          <MenuToggle
-            toggle={() => setMenuOpen(!isMenuOpen)}
-            isOpen={isMenuOpen}
-          />
 
           <Menu
             mainMenuData={mainMenuData}
@@ -72,6 +67,10 @@ const Navigation = ({ mainMenuData }) => {
               labelData={mainMenuData.call_to_action_label}
             ></Button>
           </div>
+          <MenuToggle
+            toggle={() => setMenuOpen(!isMenuOpen)}
+            isOpen={isMenuOpen}
+          />
         </div>
       </motion.nav>
     </FocusOn>
