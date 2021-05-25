@@ -20,18 +20,21 @@ export default function Item({ data, bullet, isExpanded, expandItem, index }) {
   return (
     <>
       <div className={[styles.item, isExpanded && styles.activeItem].join(" ")}>
-        <div
+        <button
           className={[styles.label, activeTabClass].join(" ")}
           onClick={expandItem}
+          aria-label={
+            isExpanded
+              ? `${data.title[0].text} content expanded`
+              : `Expand ${data.title[0].text} content`
+          }
         >
-          <div className={styles.accordionLabel}>
-            <span className={styles.itemIndex} aria-hidden="true">
-              {bulletStyle}
-            </span>
-            <span className={styles.itemLabel}>{data.title[0].text}</span>
-            <div className={styles.cBorder} />
-          </div>
-        </div>
+          <span className={styles.itemIndex} aria-hidden="true">
+            {bulletStyle}
+          </span>
+          <span className={styles.itemLabel}>{data.title[0].text}</span>
+          <div className={styles.indexLine} />
+        </button>
         <AnimatePresence initial={false}>
           {isExpanded && <Content {...data} />}
         </AnimatePresence>

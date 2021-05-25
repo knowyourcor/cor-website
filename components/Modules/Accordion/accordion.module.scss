@@ -24,11 +24,6 @@
   margin: 2rem 0 0;
 }
 
-.accordionLabel {
-  display: flex;
-  align-items: center;
-}
-
 .item {
   position: relative;
 
@@ -39,15 +34,15 @@
   }
 
   &:last-child {
-    .cBorder {
-      top: 50px;
+    .indexLine {
+      top: 4rem;
     }
   }
 
   &.activeItem {
     &:last-child {
-      .cBorder {
-        top: 32px;
+      .indexLine {
+        top: 2rem;
       }
     }
   }
@@ -83,14 +78,14 @@
   }
 }
 
-.cBorder {
+.indexLine {
   position: absolute;
   top: 2rem;
-  left: 1ch;
+  left: calc(1ch - 1px);
   font-size: 1rem;
   height: 100%;
-
   border-left: 1px solid var(--gray-50);
+  transition: top 650ms ease-out;
 }
 
 .activeItem {
@@ -99,7 +94,7 @@
     color: var(--text-color-primary);
   }
 
-  .cBorder {
+  .indexLine {
     border-left: 1px solid var(--text-color-primary);
   }
 }
@@ -136,6 +131,7 @@
 }
 
 .label {
+  padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
