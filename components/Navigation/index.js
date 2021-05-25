@@ -55,6 +55,7 @@ const Navigation = ({ mainMenuData }) => {
                 " "
               )}
               aria-label="Return to homepage"
+              onClick={() => setMenuOpen(!isMenuOpen)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
