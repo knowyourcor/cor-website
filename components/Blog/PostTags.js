@@ -106,33 +106,38 @@ export default function PostTags({
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={navVariant}
-        tabIndex="-1"
+        // tabIndex="-1"
         aria-hidden={isOpen ? "false" : "true"}
       >
         <div>
           <p>Categories</p>
-          <button
-            onClick={() => handelTagUpdate({ name: "reset" })}
-            className={styles.tagName}
-            tabIndex={isOpen ? "0" : "-1"}
-          >
-            All posts
-          </button>
-          {allPostsTags.map((tag) => {
-            return (
+          <ul>
+            <li>
               <button
-                key={tag.slug}
-                onClick={() => handelTagUpdate(tag)}
-                className={[
-                  styles.tagName,
-                  activeFilter === tag.name && styles.activeFilter,
-                ].join(" ")}
+                onClick={() => handelTagUpdate({ name: "reset" })}
+                className={styles.tagName}
                 tabIndex={isOpen ? "0" : "-1"}
               >
-                {tag.name}
+                All posts
               </button>
-            );
-          })}
+            </li>
+            {allPostsTags.map((tag) => {
+              return (
+                <li key={tag.slug}>
+                  <button
+                    onClick={() => handelTagUpdate(tag)}
+                    className={[
+                      styles.tagName,
+                      activeFilter === tag.name && styles.activeFilter,
+                    ].join(" ")}
+                    tabIndex={isOpen ? "0" : "-1"}
+                  >
+                    {tag.name}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </motion.nav>
       <motion.nav
