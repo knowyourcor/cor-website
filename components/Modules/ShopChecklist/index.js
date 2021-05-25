@@ -21,7 +21,7 @@ export default function Checklist({ primary, fields }) {
       <Container ref={ref}>
         <Row>
           <Column
-            columns={{ xs: 14, md: 4 }}
+            columns={{ xs: 14, md: 5, lg: 4 }}
             offsets={{ md: 1 }}
             ordering={{ xs: 2, md: 1 }}
           >
@@ -55,7 +55,7 @@ export default function Checklist({ primary, fields }) {
           </Column>
           <Column
             className={styles.cColumn}
-            columns={{ xs: 14, md: 7 }}
+            columns={{ xs: 14, md: 6, lg: 7 }}
             offsets={{ md: 1 }}
             ordering={{ xs: 1, md: 2 }}
           >
