@@ -56,7 +56,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
           <Column columns={{ xs: 14, sm: 8, md: 8, lg: 10 }}>
             <div className={styles.secondary}>
               <Link href="/">
-                <a>
+                <a aria-label="Return to homepage">
                   <svg
                     width="100%"
                     height="100%"
