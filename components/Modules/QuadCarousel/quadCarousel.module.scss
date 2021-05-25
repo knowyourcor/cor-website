@@ -205,243 +205,36 @@
 
 .pagination {
   position: absolute;
-  bottom: 0;
+  bottom: -1rem;
   left: 50%;
+  transform: translateX(-50%);
   z-index: 20;
-
   display: flex;
   padding: 0;
   margin: 0;
-
   list-style: none;
-
   cursor: pointer;
-  transform: translateX(-50%);
-
+  @media (min-width: $md) {
+    bottom: 1rem;
+  }
   li {
+    &:not(:last-child) {
+      margin-right: 0.25rem;
+    }
+  }
+  button {
     border-radius: 20px;
-
     opacity: 0.2;
     transition: opacity 350ms ease-out;
-
-    &:not(:last-child) {
-      margin-right: 11px;
-    }
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #000;
+    border-radius: 100%;
+    transform: scale(0.8);
 
     &.active {
       opacity: 1;
     }
-
-    span {
-      display: block;
-      width: 12px;
-      height: 12px;
-
-      background-color: #000;
-      border-radius: 100%;
-
-      transform: scale(0.8);
-    }
   }
 }
-
-// @media (max-width: $xl) {
-//   .contentTitle {
-//     left: 2%;
-//   }
-
-//   .contentProgram {
-//     right: 2.5%;
-//   }
-// }
-
-// @media (max-width: $lg) {
-//   .contentTitle {
-//     left: 0;
-
-//     h2,
-//     h3,
-//     h4 {
-//       font-size: 25px;
-//     }
-
-//     > div {
-//       width: 310px;
-//     }
-//   }
-
-//   .contentProgram {
-//     right: 0;
-
-//     h2,
-//     h3,
-//     h4 {
-//       font-size: 35px;
-//     }
-
-//     > div {
-//       padding: 40px;
-//     }
-//   }
-
-//   .programChecklist {
-//     margin: 25px 0 0;
-//   }
-// }
-
-// @media (max-width: $md) {
-//   .quadCarousel {
-//     padding-top: 7rem;
-//   }
-
-//   .programs {
-//     margin-top: 35px;
-//   }
-
-//   .item {
-//     height: 580px;
-//   }
-
-//   .contentTitle {
-//     left: 0;
-
-//     h2,
-//     h3,
-//     h4 {
-//       font-size: 20px;
-//     }
-
-//     > div {
-//       width: 100%;
-//     }
-//   }
-
-//   .contentProgram {
-//     right: 0;
-
-//     width: 330px;
-
-//     h2,
-//     h3,
-//     h4 {
-//       font-size: 27px;
-//     }
-
-//     > div {
-//       padding: 25px 20px;
-//     }
-//   }
-
-//   .imageBox {
-//     margin: auto;
-//     width: 610px;
-//   }
-
-//   .programChecklist {
-//     margin: 15px 0 0;
-
-//     font-size: 18px;
-
-//     li {
-//       margin-bottom: 11px;
-
-//       span {
-//         font-size: 18px;
-//       }
-//     }
-//   }
-
-//   .checkmark {
-//     margin-right: 10px;
-
-//     width: 25px;
-//     height: 25px;
-//   }
-// }
-
-// @media (max-width: $sm) {
-//   .quadCarousel {
-//     padding: 70px 0 0;
-//     margin-bottom: 4rem;
-
-//     overflow: initial;
-//   }
-
-//   .programs {
-//     margin-top: 75px;
-//   }
-
-//   .item {
-//     flex-wrap: wrap;
-//     justify-content: flex-end;
-//     height: auto;
-//   }
-
-//   .contentTitle {
-//     bottom: initial;
-//     top: -65px;
-//     z-index: 1;
-
-//     width: 40%;
-
-//     > div {
-//       padding: 15px;
-//       width: 100%;
-//     }
-//   }
-
-//   .contentProgram {
-//     position: relative;
-//     bottom: 0;
-
-//     margin-top: -65px;
-//     width: 100%;
-
-//     > div {
-//       padding: 100px 20px 40px;
-//       margin: 0 -16px;
-
-//       border-radius: 0;
-//       box-shadow: initial;
-//     }
-//   }
-
-//   .imageBox {
-//     position: relative;
-//     right: -1rem;
-//     z-index: 1;
-
-//     margin: 0;
-//     width: 70%;
-//   }
-
-//   .pagination {
-//     bottom: -40px;
-//   }
-// }
-
-// @media (max-width: $xs) {
-//   .contentTitle {
-//     top: -75px;
-
-//     width: auto;
-
-//     > div {
-//       &:first-child {
-//         margin-bottom: 10px;
-//       }
-
-//       &:nth-child(2) {
-//         width: 60%;
-//       }
-//     }
-//   }
-
-//   .contentProgram {
-//     margin-top: -40px;
-//   }
-
-//   .imageBox {
-//     width: 80%;
-//   }
-// }
