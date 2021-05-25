@@ -42,7 +42,7 @@ export default function Index({ primary }) {
               variants={fadeIn}
               className={styles.headline}
             >
-              <p className={styles.tag}>{primary.tag}</p>
+              <h2 className={styles.tag}>{primary.tag}</h2>
               <RichText render={primary.headline} />
             </motion.div>
             <div className={styles.screenshot}>
