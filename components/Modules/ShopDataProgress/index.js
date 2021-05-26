@@ -9,7 +9,7 @@ import styles from "./shopDataProgress.module.scss";
 
 export default function Index({ primary }) {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 
@@ -42,7 +42,7 @@ export default function Index({ primary }) {
               variants={fadeIn}
               className={styles.headline}
             >
-              <p className={styles.tag}>{primary.tag}</p>
+              <h2 className={styles.tag}>{primary.tag}</h2>
               <RichText render={primary.headline} />
             </motion.div>
             <div className={styles.screenshot}>

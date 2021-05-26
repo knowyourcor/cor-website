@@ -3,12 +3,14 @@
 .checklist {
   width: 100%;
   @media (min-width: $md) {
-    max-width: 450px;
-    position: absolute;
-    left: 50%;
-    bottom: 0;
+    position: relative;
     z-index: 2;
-    transform: translateX(-80%);
+    transform: translate(50%, 2rem);
+  }
+  @media (min-width: $lg) {
+    position: relative;
+    z-index: 2;
+    transform: translate(80%, 2rem);
   }
 }
 
@@ -45,7 +47,7 @@
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-soft);
   @media (min-width: $md) {
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem;
   }
   p {
     margin: 0;

@@ -9,7 +9,7 @@ import styles from "./shopTextBackgroundImage.module.scss";
 
 export default function ShopTextBackgroundImage({ primary }) {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 

@@ -68,13 +68,7 @@
   .headline {
     padding: 0 2rem;
     max-width: 890px;
-    text-align: center;
-    h1 {
-      transform: translateY(24px);
-      @media (min-width: $md) {
-        transform: translateY(0);
-      }
-    }
+    text-align: left;
   }
 
   picture,
@@ -110,7 +104,7 @@
 .corMark {
   display: none;
   position: absolute;
-  top: calc(50%);
+  top: 50%;
   left: 50%;
   z-index: 50;
   width: 100%;

@@ -20,7 +20,7 @@ export default function Post({ data }) {
     <div className={styles.blogPost}>
       <Container>
         <Row>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ sm: 1 }}>
+          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
             {/* Post meta - date & category */}
             <div className={styles.meta}>
               {_meta?.tags[0] && (

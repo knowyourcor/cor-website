@@ -12,7 +12,7 @@
   min-height: 48px;
   background: #fff;
   transition: background-color 0.25s ease-out;
-  animation-name: fadeDownIn;
+  animation-name: fadeIn;
   animation-duration: 650ms;
   animation-delay: 250ms;
   animation-fill-mode: both;
@@ -21,28 +21,6 @@
   @media (min-width: $sm) {
     padding: 0 2rem;
   }
-  // @media (min-width: $md) {
-  //   padding: 0 3rem;
-  // }
-
-  // &.isOpen {
-  //   .container::after {
-  //     opacity: 1;
-  //     transition: opacity 450ms ease-out 150ms;
-  //   }
-  //   .logo {
-  //     svg {
-  //       fill: var(--blue-text);
-  //     }
-  //   }
-  //   .callToAction {
-  //     a {
-  //       &:link {
-  //         background-color: var(--blue-text);
-  //       }
-  //     }
-  //   }
-  // }
 
   a {
     display: flex;
@@ -147,7 +125,7 @@
       text-align: center;
       color: var(--text-color-secondary);
       background-color: var(--blue-primary);
-      border-radius: 50px 50px;
+      border-radius: 50px;
       text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
       @media (min-width: $sm) {
         font-size: 0.85rem;
@@ -223,14 +201,12 @@
   }
 }
 
-@keyframes fadeDownIn {
+@keyframes fadeIn {
   from {
-    transform: translateY(-50%);
     opacity: 0;
   }
 
   to {
-    transform: translateY(0%);
     opacity: 1;
   }
 }

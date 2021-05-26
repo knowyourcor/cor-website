@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Link from "../Link";
 import { motion } from "framer-motion";
 import styles from "./menu.module.scss";
@@ -44,30 +45,36 @@ const Menu = ({ active, toggle, mainMenuData }) => {
     },
   };
 
+  const ref = useRef();
+  useEffect(() => {
+    active ? ref.current.focus() : ref.current.blur();
+    return () => {
+      ref.current.blur();
+    };
+  }, [active]);
+
   return (
     <>
-      <nav className={styles.menu}>
-        <div className={styles.scrollContainer}>
-          <ul className={styles.menuItems}>
-            {mainMenuData?.menu_links.map((item, index) => {
-              if (item.link) {
-                return (
-                  <li key={`${item.link._meta.uid}_${index}`}>
-                    <Link
-                      activeClassName={styles.active}
-                      href={`/${item.link._meta.uid}`}
-                    >
-                      <a>{item.label[0].text}</a>
-                    </Link>
-                  </li>
-                );
-              }
-            })}
-          </ul>
-        </div>
-      </nav>
+      <div className={styles.menu}>
+        <ul className={styles.menuItems}>
+          {mainMenuData?.menu_links.map((item, index) => {
+            if (item.link) {
+              return (
+                <li key={`${item.link._meta.uid}_${index}`}>
+                  <Link
+                    activeClassName={styles.active}
+                    href={`/${item.link._meta.uid}`}
+                  >
+                    <a>{item.label[0].text}</a>
+                  </Link>
+                </li>
+              );
+            }
+          })}
+        </ul>
+      </div>
 
-      <motion.nav
+      <motion.div
         className={[styles.menu, styles.mobile].join(" ")}
         style={{ transform: "translateX(-100%)" }}
         initial="closed"
@@ -81,6 +88,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
             className={[styles.menuItems, active && styles.isMenuOpen].join(
               " "
             )}
+            aria-hidden={active ? "false" : "true"}
             variants={navItemsVariants}
           >
             {mainMenuData?.menu_links.map((item, index) => {
@@ -94,7 +102,14 @@ const Menu = ({ active, toggle, mainMenuData }) => {
                       activeClassName={styles.active}
                       href={`/${item.link._meta.uid}`}
                     >
-                      <a onClick={() => toggle()}>{item.label[0].text}</a>
+                      <a
+                        onClick={() => toggle()}
+                        tabIndex={active ? "0" : "-1"}
+                        aria-hidden={active ? "false" : "true"}
+                        ref={index === 0 ? ref : null}
+                      >
+                        {item.label[0].text}
+                      </a>
                     </Link>
                   </motion.li>
                 );
@@ -102,7 +117,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
             })}
           </motion.ul>
         </div>
-      </motion.nav>
+      </motion.div>
     </>
   );
 };

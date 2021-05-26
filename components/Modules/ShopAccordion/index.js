@@ -14,7 +14,7 @@ export default function ShopAccordion({ primary, fields }) {
   const [expanded, setExpanded] = useState("item-0");
   const [imageData, setImageData] = useState();
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 

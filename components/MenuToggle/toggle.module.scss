@@ -16,7 +16,7 @@
   --safe-area-inset-right: env(safe-area-inset-right);
   right: calc(0.5rem + var(--safe-area-inset-right));
 
-  @media (min-width: $md) {
+  @media (min-width: $sm) {
     display: none;
   }
 }
@@ -32,11 +32,3 @@
     stroke: var(--text-color-primary);
   }
 }
-
-// .isOpen {
-//   .icon {
-//     path {
-//       stroke: var(--blue-text);
-//     }
-//   }
-// }

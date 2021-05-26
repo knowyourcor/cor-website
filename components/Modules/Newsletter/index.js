@@ -11,13 +11,16 @@ export default function Newsletter({ primary }) {
         <Row align={{ xs: "center" }}>
           <Column
             className={styles.firstCol}
-            columns={{ xs: 14, sm: 12, md: 4 }}
+            columns={{ xs: 14, sm: 12, md: 5, lg: 4 }}
             offsets={{ md: 2 }}
           >
             <RichText render={primary.title} />
             <RichText render={primary.description} />
           </Column>
-          <Column columns={{ xs: 14, sm: 12, md: 4 }} offsets={{ md: 2 }}>
+          <Column
+            columns={{ xs: 14, sm: 12, md: 5, lg: 4 }}
+            offsets={{ md: 1 }}
+          >
             <EmailSignup
               className={styles.newsletterForm}
               inputPlaceholder={primary.input_placeholder[0].text}

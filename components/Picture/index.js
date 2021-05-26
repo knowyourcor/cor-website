@@ -2,33 +2,51 @@ import React, { useState, useRef, useEffect } from "react";
 
 import styles from "./picture.module.scss";
 
-const Picture = ({ image, classes }) => {
+const Picture = ({ image: prismicImageData, classes }) => {
   const [loaded, setLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const imageRef = useRef();
 
-  // Device Pixel Ratios
-  const drp = ["1", "2", "3"];
+  // define breakpoint names used in Primsic
+  const breakpoints = ["xxl", "xl", "lg", "md", "sm", "xs", "xxs"];
 
-  // Breakpoints
-  const breakpointXs = drp.map(
-    (density) => `${image?.xs?.url}&dpr=${density} ${density}x`
-  );
-  const breakpointSm = drp.map(
-    (density) => `${image?.sm?.url}&dpr=${density} ${density}x`
-  );
-  const breakpointMd = drp.map(
-    (density) => `${image?.md?.url}&dpr=${density} ${density}x`
-  );
-  const breakpointLg = drp.map(
-    (density) => `${image?.lg?.url}&dpr=${density} ${density}x`
-  );
-  const breakpointXl = drp.map(
-    (density) => `${image?.xl?.url}&dpr=${density} ${density}x`
-  );
-  const breakpointXxl = drp.map(
-    (density) => `${image?.xxl?.url}&dpr=${density} ${density}x`
-  );
+  // define breakpoint min-widths
+  const minWidth = [1680, 1440, 1280, 1024, 768, 512, 0];
+
+  // Define base image breakpoint data
+  // Prismic flattens the base image without a key,
+  // we'll use breakpoints[0] as our key
+  const baseImageBreakpoint = {
+    [breakpoints[breakpoints.length - 1]]: {
+      dimensions: prismicImageData.dimensions,
+      alt: prismicImageData.alt,
+      copyright: prismicImageData.copyright,
+      url: prismicImageData.url,
+    },
+  };
+
+  // Get all breakpoints from {prismicImageData} based on our [breakpoints]
+  const imageBreakpoints = Object.keys(prismicImageData)
+    .filter((key) => breakpoints.includes(key))
+    .reduce((obj, key) => {
+      obj[key] = prismicImageData[key];
+      return obj;
+    }, {});
+
+  // Merge imageBreakpoints and baseImageBreakpoint
+  const imageData = { ...imageBreakpoints, ...baseImageBreakpoint };
+
+  // Device Pixel Ratios
+  const dpr = ["1", "2", "3"];
+
+  // Create srcset based on [dpr]
+  const handleSrcSet = (breakpoint) =>
+    dpr
+      .map(
+        (density) =>
+          `${imageData?.[breakpoint]?.url}&dpr=${density} ${density}x`
+      )
+      .toString();
 
   function handleImageLoaded() {
     const image = imageRef.current;
@@ -52,7 +70,7 @@ const Picture = ({ image, classes }) => {
 
   return (
     <>
-      {image && (
+      {prismicImageData && (
         <picture
           className={[
             styles.picture,
@@ -61,32 +79,20 @@ const Picture = ({ image, classes }) => {
             loading && styles.loading,
           ].join(" ")}
         >
-          <source
-            media="(min-width: 1680px)"
-            srcSet={breakpointXxl?.toString()}
-          />
-          <source
-            media="(min-width: 1440px)"
-            srcSet={breakpointXl?.toString()}
-          />
-          <source
-            media="(min-width: 1280px)"
-            srcSet={breakpointLg?.toString()}
-          />
-          <source
-            media="(min-width: 1024px)"
-            srcSet={breakpointMd?.toString()}
-          />
-          <source
-            media="(min-width: 768px)"
-            srcSet={breakpointSm?.toString()}
-          />
-          <source srcSet={breakpointXs} />
+          {breakpoints.map((breakpoint, index) => (
+            <source
+              key={index}
+              media={`(min-width: ${minWidth[index]}px)`}
+              srcSet={handleSrcSet(breakpoint)}
+              width={imageData[breakpoint].dimensions.width}
+              height={imageData[breakpoint].dimensions.height}
+            />
+          ))}
           <img
             ref={imageRef}
             onLoad={handleImageLoaded}
-            src={breakpointXs[0]?.toString()}
-            alt={image.alt}
+            src={imageData["xxs"].url}
+            alt={imageData["xxs"].alt}
             loading="lazy"
           />
         </picture>

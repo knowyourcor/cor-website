@@ -7,7 +7,7 @@ import styles from "./image.module.scss";
 
 const Image = ({ primary }) => {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 

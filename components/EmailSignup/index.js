@@ -8,6 +8,7 @@ const url =
 const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
   const emailRef = useRef();
   const [isValid, setIsValid] = useState(true);
+  const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = () => {
     const email = emailRef.current;
@@ -38,6 +39,7 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
 
   useEffect(() => {
     return () => {
+      setInputValue("");
       window.removeEventListener("keypress", handleInputFocus);
     };
   }, []);
@@ -59,7 +61,8 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
         __html: "<div>Sending...</div>",
       };
     } else if (isValid && status === "error") {
-      return { __html: message };
+      console.log(message);
+      return { __html: message.replace("0 - ", "").replace("@: )", "@)") };
     } else if (isValid && status === "success") {
       return { __html: message };
     }
@@ -79,6 +82,8 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
             aria-label="Enter email address"
+            onChange={(e) => setInputValue(e.currentTarget.value)}
+            value={inputValue}
           />
           <button
             onClick={handleSubmit}

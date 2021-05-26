@@ -9,7 +9,7 @@ import styles from "./textImage.module.scss";
 
 export default function TextImage({ primary }) {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
   });
 
