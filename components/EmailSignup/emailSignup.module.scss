@@ -35,7 +35,7 @@
   font-size: 1.1rem;
   &::placeholder {
     font-size: 1rem;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--gray-60);
   }
   @media (min-width: $md) {
     padding: 1rem 34% 1rem 1.5rem;
