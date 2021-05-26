@@ -135,6 +135,10 @@
   h1 {
     margin-bottom: 0;
   }
+  a {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
 }
 
 .meta {

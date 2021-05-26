@@ -6,10 +6,17 @@ export default function Pagination({ items, active, setActive }) {
       {items.map((item, index) => (
         <li key={`item_${item.id}`}>
           <button
-            className={active === index + 1 ? styles.active : ""}
+            tabIndex="0"
+            role="button"
+            className={[
+              styles.bullet,
+              active === index + 1 ? styles.active : "",
+            ].join(" ")}
             onClick={() => setActive(index + 1)}
             aria-label={`Select item number ${index + 1}`}
-          ></button>
+          >
+            <span></span>
+          </button>
         </li>
       ))}
     </ul>
