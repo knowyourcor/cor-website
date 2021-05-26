@@ -4,16 +4,15 @@ import styles from "./alert.module.scss";
 export default function Alert({ children }) {
   const { isPreview } = useRouter();
   return (
-    <div className={styles.alert}>
-      {children}
+    <>
       {isPreview ? (
-        <>
-          <p>You're viewing a preview of this page</p>
+        <div className={styles.alert}>
+          {children ? children : <p>You're viewing a preview of this page</p>}
           <a href="/api/exit-preview" className={styles.button}>
             Exit Preview
           </a>
-        </>
+        </div>
       ) : null}
-    </div>
+    </>
   );
 }
