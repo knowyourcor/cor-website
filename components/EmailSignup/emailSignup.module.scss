@@ -83,7 +83,13 @@
   display: flex;
   justify-content: center;
   opacity: 0.75;
-
+  a {
+    &:link,
+    &:visited {
+      font-size: 0.85rem;
+      text-decoration: underline;
+    }
+  }
   @media (min-width: $md) {
     padding: 1rem 2rem 1rem;
 

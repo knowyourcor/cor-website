@@ -1,16 +1,18 @@
+import { useRouter } from "next/router";
 import styles from "./alert.module.scss";
 
-export default function Alert({ preview }) {
+export default function Alert({ children }) {
+  const { isPreview } = useRouter();
   return (
     <>
-      {preview && (
+      {isPreview ? (
         <div className={styles.alert}>
-          <p>
-            This is page is a preview.{" "}
-            <a href="/api/exit-preview">Click here</a> to exit preview mode.
-          </p>
+          {children ? children : <p>You're viewing a preview of this page</p>}
+          <a href="/api/exit-preview" className={styles.button}>
+            Exit Preview
+          </a>
         </div>
-      )}
+      ) : null}
     </>
   );
 }

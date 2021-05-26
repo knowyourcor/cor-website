@@ -6,19 +6,37 @@
   z-index: 2000;
 
   width: 100%;
-  height: 40px;
+  height: 60px;
+  padding: 0.5rem 1rem;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   font-weight: normal;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.85);
-
-  a {
+  color: var(--text-color-secondary);
+  background-color: rgba(0, 0, 0, 0.75);
+  p {
     margin-bottom: 0;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-family: var(--font-sans-bold);
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.45rem 1.5rem;
+  background-color: var(--gray-60);
+  color: var(--text-color-secondary);
+  font-size: 0.65rem;
+  line-height: 1;
+  font-family: var(--font-sans-bold);
+  border-radius: 50px 50px;
+  transition: background-color 300ms ease-in-out;
+  white-space: nowrap;
+  &:hover,
+  &:active {
+    color: var(--text-color-secondary);
+    background-color: var(--blue-accent);
   }
 }

@@ -2,6 +2,14 @@ import { PrismicClient } from "../../lib/api";
 
 function linkResolver(doc) {
   // Pretty URLs for known types
+  if (doc.type === "blog") {
+    return `/blog`;
+  }
+
+  if (doc.type === "blog_post") {
+    return `/blog/${doc.uid}`;
+  }
+
   if (doc.type === "homepage") {
     return `/`;
   }

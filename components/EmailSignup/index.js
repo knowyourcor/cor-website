@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Fragment } from "react";
+import { useRouter } from "next/router";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import styles from "./emailSignup.module.scss";
 
@@ -9,6 +10,7 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
   const emailRef = useRef();
   const [isValid, setIsValid] = useState(true);
   const [inputValue, setInputValue] = useState("");
+  const [statusMessage, setStatusMessage] = useState(null);
 
   const handleSubmit = () => {
     const email = emailRef.current;
@@ -18,7 +20,7 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
         EMAIL: email.value,
       });
     } else {
-      setIsValid(false);
+      setIsValid("invalid");
     }
   };
 
@@ -39,8 +41,9 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
 
   useEffect(() => {
     return () => {
-      setInputValue("");
+      window.removeEventListener("keypress", handleInputBlur);
       window.removeEventListener("keypress", handleInputFocus);
+      window.removeEventListener("keypress", handleEnter);
     };
   }, []);
 
@@ -50,23 +53,28 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
     }
   }, [status]);
 
-  const statusMessage = () => {
-    if (!isValid) {
-      return {
+  useEffect(() => {
+    if (isValid === "invalid") {
+      setStatusMessage({
         __html:
           "<span>&#9888;&nbsp;Hmm, that's not right. Check your email address.</span>",
-      };
+      });
+    } else if (isValid === "clear") {
+      setStatusMessage({
+        __html: "<span></span>",
+      });
     } else if (isValid && status === "sending") {
-      return {
+      setStatusMessage({
         __html: "<div>Sending...</div>",
-      };
+      });
     } else if (isValid && status === "error") {
-      console.log(message);
-      return { __html: message.replace("0 - ", "").replace("@: )", "@)") };
+      setStatusMessage({
+        __html: message.replace("0 - ", "").replace("@: )", "@)"),
+      });
     } else if (isValid && status === "success") {
-      return { __html: message };
+      setStatusMessage({ __html: message });
     }
-  };
+  }, [isValid, status]);
 
   return (
     <>
@@ -93,34 +101,40 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
             <span>Sign Up</span>
           </button>
         </div>
-        <div className={styles.messages}>
-          <div
-            className={styles.message}
-            dangerouslySetInnerHTML={statusMessage()}
-          />
-        </div>
+        {statusMessage && (
+          <div className={styles.messages}>
+            <div
+              className={styles.message}
+              dangerouslySetInnerHTML={statusMessage}
+            />
+          </div>
+        )}
       </div>
     </>
   );
 };
 
-const EmailSignup = ({ theme, onSuccess }) => (
-  <>
-    <MailchimpSubscribe
-      url={url}
-      render={({ subscribe, status, message }) => (
-        <CustomForm
-          status={status}
-          message={message}
-          onSuccess={(status) =>
-            typeof onSuccess === "function" && onSuccess(status)
-          }
-          onValidated={(formData) => subscribe(formData)}
-          theme={theme}
-        />
-      )}
-    />
-  </>
-);
+const EmailSignup = ({ theme, onSuccess }) => {
+  const router = useRouter();
+  // Use router.route as a key to reset form on route change
+  return (
+    <Fragment key={router.route}>
+      <MailchimpSubscribe
+        url={url}
+        render={({ subscribe, status, message }) => (
+          <CustomForm
+            status={status}
+            message={message}
+            onSuccess={(status) =>
+              typeof onSuccess === "function" && onSuccess(status)
+            }
+            onValidated={(formData) => subscribe(formData)}
+            theme={theme}
+          />
+        )}
+      />
+    </Fragment>
+  );
+};
 
 export default EmailSignup;

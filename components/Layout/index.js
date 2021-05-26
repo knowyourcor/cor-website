@@ -11,6 +11,7 @@ export default function Layout({ children, preview }) {
         mainMenuData: child?.props?.mainMenuData,
         footerMenuData: child?.props?.footerMenuData,
         tertiaryMenuData: child?.props?.tertiaryMenuData,
+        preview: child?.props?.preview,
       };
     }
   );
