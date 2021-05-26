@@ -64,8 +64,8 @@ export default function Item({
     <>
       <motion.div variants={containerVariants} className={styles.item}>
         <div className={styles.imageBox}>
-          <motion.div alt="Placeholder" variants={imageVariants}>
-            <Picture image={image} alt="Placeholder" />
+          <motion.div variants={imageVariants}>
+            <Picture image={image} />
           </motion.div>
         </div>
 
