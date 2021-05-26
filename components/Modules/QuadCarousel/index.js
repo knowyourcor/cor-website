@@ -49,10 +49,15 @@ export default function QuadCarousel({ primary, fields }) {
     },
   };
 
+  const swipeablConfig = {
+    trackMouse: true, // track mouse input
+  };
+
   const handlers = useSwipeable({
     onSwipedRight: (eventData) => handlePrevious(),
     onSwipedLeft: (eventData) => handleNext(),
     onTap: (event) => handleNext(),
+    ...swipeablConfig,
   });
 
   return (
