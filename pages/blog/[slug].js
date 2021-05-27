@@ -4,26 +4,25 @@ import Post from "../../components/Blog/Post.js";
 
 // Apollo
 import client from "../../lib/ApolloClient";
-import { ALL_BLOG_POSTS_UID, BLOG_POST_QUERY } from "../../lib/ApolloQueries";
+import { ALL_BLOG_POSTS_UID } from "../../lib/ApolloQueries";
 
 //  Prismic
-import { getMenuData } from "../../lib/api";
+import { getBlogPostData, getMenuData } from "../../lib/api";
 
 // Styles
 import styles from "../../styles/BlogPost.module.scss";
 
 export default function BlogPost({ blogPostData }) {
-  const { title } = blogPostData?.allBlog_posts.edges[0].node;
+  const { title } = blogPostData;
 
   const postTheme =
-    styles[`theme-${blogPostData?.allBlog_posts.edges[0].node.theme}`] ||
-    styles["theme-default"];
+    styles[`theme-${blogPostData?.theme}`] || styles["theme-default"];
 
   return (
     <>
       <Head title={title[0].text} />
       <div className={[styles.container, postTheme].join(" ")}>
-        <Post data={blogPostData?.allBlog_posts.edges[0].node} />
+        <Post data={blogPostData} />
       </div>
     </>
   );
@@ -47,11 +46,12 @@ export const getStaticPaths = async (previewData) => {
 };
 
 export async function getStaticProps({ preview = false, previewData, params }) {
-  const { data: blogPostData } = await client.query({
-    query: BLOG_POST_QUERY,
-    variables: { slug: params.slug },
-  });
+  // const { data: blogPostData } = await client.query({
+  //   query: BLOG_POST_QUERY,
+  //   variables: { slug: params.slug },
+  // });
 
+  const blogPostData = await getBlogPostData(params.slug, previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
