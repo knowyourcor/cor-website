@@ -9,7 +9,7 @@ const Text = ({ primary }) => {
     <Section align="center">
       <Container>
         <Row align="center">
-          <Column columns={{ xs: 14, sm: 12 }} offsets={{ sm: 1 }}>
+          <Column columns={{ xs: 14, sm: 8 }} offsets={{ sm: 1 }}>
             <div className={styles.text}>
               <RichText render={primary.text} />
             </div>

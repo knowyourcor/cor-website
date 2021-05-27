@@ -10,6 +10,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.19",
     "@prismicio/client": "^4.0.0",
+    "@react-hook/debounce": "^3.0.0",
     "apollo-link-prismic": "^1.0.8",
     "focus-visible": "^5.2.0",
     "framer-motion": "4.1.17",

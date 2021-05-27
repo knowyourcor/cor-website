@@ -86,7 +86,7 @@ export default function Checklist({ primary, fields }) {
               animate={inView ? "show" : "hidden"}
               variants={fadeIn}
             >
-              <RichText render={primary.heading} />
+              <RichText render={primary.headline} />
             </motion.div>
 
             <div className={styles.checklist}>

@@ -26,13 +26,10 @@ export default function Item({ data, isExpanded, expandItem, index }) {
 
   return (
     <div className={styles.item}>
-      <div
-        className={[styles.label, activeTabClass].join(" ")}
-        onClick={expandItem}
-      >
-        <div>
+      <div className={[styles.label, activeTabClass].join(" ")}>
+        <button onClick={expandItem}>
           <span>{handleIndex(index)}</span> {data.title[0].text}
-        </div>
+        </button>
         <AnimatePresence initial={false}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

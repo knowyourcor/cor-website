@@ -4,7 +4,7 @@ import Modules from "../components/Modules";
 
 import { getHomepageData, getMenuData } from "../lib/api";
 
-export default function Index({ pageData }) {
+export default function Homepage({ pageData }) {
   return (
     <>
       <Head title={pageData.meta_title} />
@@ -30,4 +30,4 @@ export async function getStaticProps({ preview = false, previewData }) {
   };
 }
 
-Index.getLayout = getLayout;
+Homepage.getLayout = getLayout;

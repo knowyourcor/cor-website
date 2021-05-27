@@ -1,0 +1,17 @@
+.image {
+  margin: 4rem 0;
+}
+
+.container {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.caption {
+  text-align: center;
+  p {
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+    color: var(--gray-60);
+  }
+}
