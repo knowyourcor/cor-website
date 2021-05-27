@@ -23,6 +23,7 @@ import ShopChecklist from "./ShopChecklist";
 import ShopDataProgress from "./ShopDataProgress";
 import Product from "./Product";
 import TextDownloader from "./TextDownloader";
+import PdfViewer from "./PdfViewer";
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -50,6 +51,7 @@ const moduleDefs = {
   ["dualdatagrid"]: ShopDataProgress,
   ["product"]: Product,
   ["text___downloader"]: TextDownloader,
+  ["pdf_viewer"]: PdfViewer,
 };
 
 const Modules = ({ pageData }) => {
@@ -57,6 +59,7 @@ const Modules = ({ pageData }) => {
     <>
       {(() => {
         return pageData.body.map((module, index) => {
+          console.log(module?.type);
           const Module = moduleDefs[module?.type];
           return (
             Module && <Module key={`${index}_${module.type}`} {...module} />
