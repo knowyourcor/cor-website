@@ -6,7 +6,10 @@ import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
 export default function Page({ pageData }) {
   return (
     <>
-      <Head title={pageData?.meta_title} />
+      <Head
+        title={pageData?.meta_title}
+        description={pageData?.meta_description}
+      />
       <Modules pageData={pageData} />
     </>
   );

@@ -7,7 +7,10 @@ import Press from "../components/Press";
 export default function About({ pageData, pressData }) {
   return (
     <>
-      <Head title={pageData?.meta_title} />
+      <Head
+        title={pageData?.meta_title}
+        description={pageData?.meta_description}
+      />
       <Modules pageData={pageData} />
       <Press pressData={pressData} />
     </>

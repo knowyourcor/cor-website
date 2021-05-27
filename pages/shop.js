@@ -6,7 +6,10 @@ import { getShopData, getMenuData } from "../lib/api";
 export default function Shop({ pageData }) {
   return (
     <>
-      <Head title={pageData.meta_title} />
+      <Head
+        title={pageData?.meta_title}
+        description={pageData?.meta_description}
+      />
       <Modules pageData={pageData} />
     </>
   );

@@ -15,12 +15,19 @@ import styles from "../../styles/BlogPost.module.scss";
 export default function BlogPost({ blogPostData }) {
   const { title } = blogPostData;
 
+  console.log(blogPostData);
+
   const postTheme =
     styles[`theme-${blogPostData?.theme}`] || styles["theme-default"];
 
   return (
     <>
-      <Head title={title[0].text} />
+      <Head
+        title={
+          blogPostData.meta_title ? blogPostData.meta_title : title[0].text
+        }
+        description={blogPostData.meta_description}
+      />
       <div className={[styles.container, postTheme].join(" ")}>
         <Post data={blogPostData} />
       </div>
