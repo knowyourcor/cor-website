@@ -14,8 +14,7 @@ export default function Newsletter({ primary }) {
             columns={{ xs: 14, sm: 12, md: 5, lg: 4 }}
             offsets={{ md: 2 }}
           >
-            <RichText render={primary.title} />
-            <RichText render={primary.description} />
+            <RichText render={primary.text} />
           </Column>
           <Column
             columns={{ xs: 14, sm: 12, md: 5, lg: 4 }}
@@ -24,7 +23,7 @@ export default function Newsletter({ primary }) {
             <EmailSignup
               className={styles.newsletterForm}
               inputPlaceholder={primary.input_placeholder[0].text}
-              buttonText={primary.button_name[0].text}
+              buttonText={primary.button_label[0].text}
             />
           </Column>
         </Row>

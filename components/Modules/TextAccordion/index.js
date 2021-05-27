@@ -21,11 +21,8 @@ export default function TextAccordion({ primary, fields }) {
       }}
     >
       <Container>
-        <Row>
-          <Column
-            columns={{ xs: 14, sm: 12, lg: 10 }}
-            offsets={{ sm: 1, lg: 2 }}
-          >
+        <Row justify={{ xs: "center" }}>
+          <Column columns={{ xs: 14, sm: 12, lg: 8 }}>
             <div className={styles.accordion}>
               <motion.div className={styles.items}>
                 {fields.map((data, index) => (

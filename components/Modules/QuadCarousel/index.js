@@ -75,7 +75,7 @@ export default function QuadCarousel({ primary, fields }) {
               exit="hidden"
               variants={fadeIn}
             >
-              <RichText render={primary.heading} />
+              <RichText render={primary.headline} />
             </motion.div>
           </Column>
         </Row>

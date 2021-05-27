@@ -2,16 +2,13 @@ import Accordion from "./Accordion";
 import BodyText from "./BodyText";
 import Carousel from "./Carousel";
 import Text from "./Text";
-import Image from "./Image";
+import BodyImage from "./BodyImage";
 import TextImage from "./TextImage";
 import CarouselHero from "./CarouselHero";
 import FullWidthImage from "./FullWidthImage";
-import Quote from "./Quote";
 import Newsletter from "./Newsletter";
-import Shop from "./Shop";
 import ShopAccordion from "./ShopAccordion";
 import ShopTextImage from "./ShopTextImage";
-import Tabs from "./Tabs";
 import TextAccordion from "./TextAccordion";
 import TextDescriptionImage from "./TextDescriptionImage";
 import DualGrid from "./DualGrid";
@@ -28,44 +25,39 @@ import PdfViewer from "./PdfViewer";
 const moduleDefs = {
   ["accordion"]: Accordion,
   ["body_text"]: BodyText,
-  ["body_image"]: Image,
+  ["body_image"]: BodyImage,
   ["carousel"]: Carousel,
-  ["hero_carousel"]: CarouselHero,
-  ["full_width_image"]: FullWidthImage,
-  ["quote"]: Quote,
-  ["newsletter"]: Newsletter,
-  ["shop"]: Shop,
-  ["shop_accordion"]: ShopAccordion,
-  ["shop_text_image"]: ShopTextImage,
-  ["tabs"]: Tabs,
-  ["text"]: Text,
-  ["text_image"]: TextImage,
-  ["text_accordion"]: TextAccordion,
-  ["text_description_image"]: TextDescriptionImage,
-  ["dual_grid"]: DualGrid,
-  ["team"]: Team,
   ["checklist"]: Checklist,
-  ["quadcarousel"]: QuadCarousel,
-  ["text___background_image"]: ShopTextBackgroundImage,
-  ["shop_checklist"]: ShopChecklist,
   ["dualdatagrid"]: ShopDataProgress,
-  ["product"]: Product,
-  ["text___downloader"]: TextDownloader,
+  ["dual_grid"]: DualGrid,
+  ["full_width_image"]: FullWidthImage,
+  ["hero_carousel"]: CarouselHero,
+  ["newsletter"]: Newsletter,
   ["pdf_viewer"]: PdfViewer,
+  ["product"]: Product,
+  ["quadcarousel"]: QuadCarousel,
+  ["shop_accordion"]: ShopAccordion,
+  ["shop_checklist"]: ShopChecklist,
+  ["shop_text_image"]: ShopTextImage,
+  ["team"]: Team,
+  ["text"]: Text,
+  ["text_accordion"]: TextAccordion,
+  ["text___background_image"]: ShopTextBackgroundImage,
+  ["text___downloader"]: TextDownloader,
+  ["text_description_image"]: TextDescriptionImage,
+  ["text_image"]: TextImage,
 };
 
 const Modules = ({ pageData }) => {
   return (
     <>
       {pageData &&
-        (() => {
-          return pageData.body.map((module, index) => {
-            const Module = moduleDefs[module?.type];
-            return (
-              Module && <Module key={`${index}_${module.type}`} {...module} />
-            );
-          });
-        })()}
+        pageData.body.map((module, index) => {
+          const Module = moduleDefs[module?.type];
+          return (
+            Module && <Module key={`${index}_${module.type}`} {...module} />
+          );
+        })}
     </>
   );
 };
