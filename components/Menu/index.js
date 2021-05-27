@@ -49,7 +49,7 @@ const Menu = ({ active, toggle, mainMenuData }) => {
   useEffect(() => {
     active ? ref.current?.focus() : ref.current?.blur();
     return () => {
-      ref.current.blur();
+      ref.current?.blur();
     };
   }, [active]);
 
