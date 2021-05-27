@@ -8,8 +8,6 @@ export default function PageLayout({ children }) {
   const route = router.route === "/" ? "homepage" : router.route;
   const pageName = slugify(route, { lower: true });
 
-  console.log();
-
   return (
     <>
       <main

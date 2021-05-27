@@ -59,7 +59,6 @@ const Modules = ({ pageData }) => {
     <>
       {(() => {
         return pageData.body.map((module, index) => {
-          console.log(module?.type);
           const Module = moduleDefs[module?.type];
           return (
             Module && <Module key={`${index}_${module.type}`} {...module} />
