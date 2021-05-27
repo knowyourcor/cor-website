@@ -285,6 +285,20 @@ a {
   }
 }
 
+p {
+  a {
+    cursor: pointer;
+    &:link,
+    &:visited {
+      color: var(--blue-accent);
+      text-decoration: underline;
+    }
+    &:hover,
+    &:active {
+    }
+  }
+}
+
 button {
   appearance: none;
   border: none;
