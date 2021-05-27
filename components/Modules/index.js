@@ -57,14 +57,15 @@ const moduleDefs = {
 const Modules = ({ pageData }) => {
   return (
     <>
-      {(() => {
-        return pageData.body.map((module, index) => {
-          const Module = moduleDefs[module?.type];
-          return (
-            Module && <Module key={`${index}_${module.type}`} {...module} />
-          );
-        });
-      })()}
+      {pageData &&
+        (() => {
+          return pageData.body.map((module, index) => {
+            const Module = moduleDefs[module?.type];
+            return (
+              Module && <Module key={`${index}_${module.type}`} {...module} />
+            );
+          });
+        })()}
     </>
   );
 };
