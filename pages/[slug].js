@@ -1,41 +1,13 @@
-import { useRouter } from "next/router";
-import { getLayout } from "../components/Layout/PageLayout";
-import ErrorPage from "next/error";
 import Head from "../components/Head";
-import Section from "../components/Section";
-import { Container, Row, Column } from "../components/Grid";
+import { getLayout } from "../components/Layout/PageLayout";
 import Modules from "../components/Modules";
 import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
 
 export default function Page({ pageData }) {
-  const router = useRouter();
-  if (!router.isFallback && !pageData?._meta?.uid) {
-    return <ErrorPage statusCode={404} />;
-  }
   return (
     <>
-      {router.isFallback ? (
-        <>
-          <Head title="Loading..." />
-          <Section>
-            <Container>
-              <Row>
-                <Column
-                  columns={{ xs: 14, sm: 12, md: 10 }}
-                  offsets={{ sm: 1, md: 2 }}
-                >
-                  <h2>Loading…</h2>
-                </Column>
-              </Row>
-            </Container>
-          </Section>
-        </>
-      ) : (
-        <>
-          <Head title={pageData?.meta_title} />
-          <Modules pageData={pageData} />
-        </>
-      )}
+      <Head title={pageData?.meta_title} />
+      <Modules pageData={pageData} />
     </>
   );
 }

@@ -1,0 +1,30 @@
+.pdfViewer {
+  margin: 4.5rem 0 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  font-family: var(--font-sans-bold);
+  color: var(--gray-60);
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+.download {
+  margin: 1rem 0 3rem;
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--text-color-secondary);
+  font-size: 1rem;
+  line-height: 1;
+  font-family: var(--font-sans-bold);
+  border-radius: 50px 50px;
+  transition: background-color 300ms ease-in-out;
+
+  &:hover,
+  &:active {
+    color: var(--text-color-secondary);
+    background-color: var(--blue-accent);
+  }
+}
