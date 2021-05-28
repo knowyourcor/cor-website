@@ -292,6 +292,8 @@ p {
     &:visited {
       color: var(--blue-accent);
       text-decoration: underline;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
     }
     &:hover,
     &:active {
