@@ -7,17 +7,21 @@ export default function Video({ primary }) {
     "<iframe title='Video'"
   );
   return (
-    <div className={styles.video}>
-      <Container>
-        <Row>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
-            <div
-              className={styles.container}
-              dangerouslySetInnerHTML={{ __html: a11yIframe }}
-            />
-          </Column>
-        </Row>
-      </Container>
-    </div>
+    <>
+      {primary.video && (
+        <div className={styles.video}>
+          <Container>
+            <Row>
+              <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
+                <div
+                  className={styles.container}
+                  dangerouslySetInnerHTML={{ __html: a11yIframe }}
+                />
+              </Column>
+            </Row>
+          </Container>
+        </div>
+      )}
+    </>
   );
 }
