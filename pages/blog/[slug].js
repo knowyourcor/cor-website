@@ -38,14 +38,14 @@ export const getStaticPaths = async () => {
     query: ALL_BLOG_POSTS_UID,
   });
 
-  const paths = data.allBlog_posts.edges.map((id) => {
+  const paths = data?.allBlog_posts?.edges.map((id) => {
     return {
       params: { slug: id.node._meta.uid },
     };
   });
 
   return {
-    paths,
+    paths: paths || [],
     fallback: "blocking",
   };
 };
