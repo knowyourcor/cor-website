@@ -5,7 +5,6 @@ import "focus-visible";
 import TagManager from "react-gtm-module";
 import Layout from "../components/Layout";
 import "../styles/globals.scss";
-import "../styles/pages.scss";
 import "swiper/swiper.scss";
 import "swiper/components/pagination/pagination.scss";
 import "../styles/swiper.scss";
