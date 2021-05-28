@@ -54,7 +54,7 @@ export default function Colors() {
         <span>orange-primary: #ff704f</span>
       </div>
       <div style={{ backgroundColor: "var(--orange-tint)" }}>
-        <span>orange-tint: #ffccbd"</span>
+        <span>orange-tint: #ffccbd</span>
       </div>
       <div style={{ backgroundColor: "var(--orange-accent)" }}>
         <span>orange-accent: #e54a1a</span>

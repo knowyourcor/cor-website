@@ -88,14 +88,15 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     <>
       <Head title={meta_title} description={meta_description} />
       <div className={styles.blog}>
-        <Container>
-          <Row>
-            <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
-              <PostPinned {...pinnedPostData} />
-            </Column>
-          </Row>
-        </Container>
-
+        {pinnedPostData.node.length > 0 && (
+          <Container>
+            <Row>
+              <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
+                <PostPinned {...pinnedPostData} />
+              </Column>
+            </Row>
+          </Container>
+        )}
         <Container>
           <Row>
             <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
