@@ -23,7 +23,7 @@ export async function getStaticPaths() {
   const hasPageTemplate = ["about"];
 
   // Remove pages that have a template from static paths
-  const filterOutTemplates = allPages.filter(
+  const filterOutTemplates = allPages?.filter(
     ({ node }) => !hasPageTemplate.includes(node?._meta?.uid)
   );
 
