@@ -8,7 +8,6 @@ import Button from "../Button";
 import styles from "./navigation.module.scss";
 
 const Navigation = ({ mainMenuData }) => {
-  // Menu state
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const skipToContentProps = {

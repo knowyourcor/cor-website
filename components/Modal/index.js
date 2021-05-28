@@ -103,19 +103,3 @@ export function ModalHeader(props) {
 export function ModalBody(props) {
   return <div className={styles["modal-body"]}>{props.children}</div>;
 }
-
-// Modal.Footer = function ModalFooter(props) {
-//   return <div className={styles["modal-footer"]}>{props.children}</div>;
-// };
-
-// Modal.Footer.CloseBtn = function CloseBtn(props) {
-//   const { onModalClose } = useContext(modalContext);
-//   return (
-//     <button
-//       {...props}
-//       className={styles["close-btn"]}
-//       title="close modal"
-//       onClick={onModalClose}
-//     />
-//   );
-// };

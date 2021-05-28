@@ -1,5 +1,5 @@
 import { RichText } from "prismic-reactjs";
-import { motion, useViewportScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 import styles from "./accordion.module.scss";
 

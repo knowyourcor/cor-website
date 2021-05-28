@@ -15,8 +15,6 @@ import styles from "../../styles/BlogPost.module.scss";
 export default function BlogPost({ blogPostData }) {
   const { title } = blogPostData;
 
-  console.log(blogPostData);
-
   const postTheme =
     styles[`theme-${blogPostData?.theme}`] || styles["theme-default"];
 
