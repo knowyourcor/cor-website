@@ -33,7 +33,7 @@ export default function Error() {
               <h3>We can't find that page.</h3>
               <p>
                 If you have any questions please contact us at{" "}
-                <a href="mailto:support@thecor.com">support@thecor.com</a>.
+                <a href="mailto:help@thecor.com">help@thecor.com</a>.
               </p>
             </Column>
           </Row>
