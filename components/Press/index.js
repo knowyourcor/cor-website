@@ -37,25 +37,29 @@ const Post = ({ post }) => {
 
 export default function Press({ pressData }) {
   return (
-    <Section className={styles.press}>
-      <Container>
-        <Row>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
-            <div className={styles.borderBottom}>
-              <h2>Featured Press</h2>
-            </div>
-          </Column>
-        </Row>
-        <Row align={{ xs: "center" }}>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
-            <div className={styles.pressPosts}>
-              {pressData.map((post) => (
-                <Post post={post.node} key={post.node._meta.uid} />
-              ))}
-            </div>
-          </Column>
-        </Row>
-      </Container>
-    </Section>
+    <>
+      {pressData.length > 0 && (
+        <Section className={styles.press}>
+          <Container>
+            <Row>
+              <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
+                <div className={styles.borderBottom}>
+                  <h2>Featured Press</h2>
+                </div>
+              </Column>
+            </Row>
+            <Row align={{ xs: "center" }}>
+              <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
+                <div className={styles.pressPosts}>
+                  {pressData.map((post) => (
+                    <Post post={post.node} key={post.node._meta.uid} />
+                  ))}
+                </div>
+              </Column>
+            </Row>
+          </Container>
+        </Section>
+      )}
+    </>
   );
 }
