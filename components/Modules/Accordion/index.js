@@ -58,7 +58,10 @@ export default function Accordion({ primary, fields }) {
                     offsets={{ sm: 1 }}
                   >
                     <div className={styles.roundelContainer}>
-                      <Roundel index={expanded} />
+                      <Roundel
+                        index={expanded}
+                        colors={["#70db8c", "#70db8c", "#70db8c", "#70db8c"]}
+                      />
                     </div>
                   </Column>
                 )}

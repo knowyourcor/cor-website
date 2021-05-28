@@ -12,6 +12,7 @@ export default function Item({
   program_description,
   list,
   meter_number,
+  roundel_theme,
   image,
   id,
 }) {
@@ -60,6 +61,14 @@ export default function Item({
     },
   };
 
+  const roundelThemes = {
+    multicolored: ["#80deeb", "#034561", "#ff704f", "#70DB8C"],
+    blue: ["#034561", "#034561", "#034561", "#034561"],
+    green: ["#70db8c", "#70db8c", "#70db8c", "#70db8c"],
+    orange: ["#ff704f", "#ff704f", "#ff704f", "#ff704f"],
+    cyan: ["#80deeb", "#80deeb", "#80deeb", "#80deeb"],
+  };
+
   return (
     <>
       <motion.div variants={containerVariants} className={styles.item}>
@@ -76,7 +85,10 @@ export default function Item({
           </motion.div>
           <motion.div variants={itemVariants}>
             <div className={styles.roundel}>
-              <Roundel score={meter_number} />
+              <Roundel
+                score={meter_number}
+                colors={roundelThemes[roundel_theme]}
+              />
             </div>
           </motion.div>
         </div>

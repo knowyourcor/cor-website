@@ -84,7 +84,6 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
       categoryButtonRef.current.focus();
   }, [tagsMenuActive]);
 
-  console.log();
   return (
     <>
       <Head title={meta_title} description={meta_description} />

@@ -3,7 +3,9 @@ import { RichText } from "prismic-reactjs";
 import { motion, useAnimation } from "framer-motion";
 import styles from "./roundel.module.scss";
 
-export default function Roundel({ index = 0, score }) {
+const defaultColors = ["#80deeb", "#034561", "#ff704f", "#70DB8C"];
+
+export default function Roundel({ index = 0, colors = defaultColors, score }) {
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -13,34 +15,34 @@ export default function Roundel({ index = 0, score }) {
   const transition = { duration: 4, ease: "anticipate" };
 
   const scaleUp = useAnimation();
-  const orange = useAnimation();
-  const green = useAnimation();
-  const blue = useAnimation();
-  const cyan = useAnimation();
+  const circleThree = useAnimation();
+  const circleFour = useAnimation();
+  const circleTwo = useAnimation();
+  const circleOne = useAnimation();
 
-  // Set positions on intital load
+  // Set positions on initital load
   useEffect(() => {
     scaleUp.set({
       scale: 0.35,
       opacity: 0,
     });
 
-    orange.set({
+    circleThree.set({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
     });
 
-    green.set({
+    circleFour.set({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
     });
 
-    blue.set({
+    circleTwo.set({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
     });
 
-    cyan.set({
+    circleOne.set({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
     });
@@ -54,25 +56,25 @@ export default function Roundel({ index = 0, score }) {
       transition: { delay: 2, duration: 0.5, ease: "easeOut" },
     });
 
-    orange.start({
+    circleThree.start({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
       transition: transition,
     });
 
-    green.start({
+    circleFour.start({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
       transition: transition,
     });
 
-    blue.start({
+    circleTwo.start({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
       transition: transition,
     });
 
-    cyan.start({
+    circleOne.start({
       rotate: getRandomInt(0, 360),
       strokeDashoffset: getRandomInt(220, 300),
       transition: transition,
@@ -86,56 +88,51 @@ export default function Roundel({ index = 0, score }) {
         className={styles.roundel}
       >
         <g transform="translate(24 24)" fill="none" fillRule="evenodd">
-          {/* Gray */}
           <circle stroke="#e0e0e0" strokeWidth="2" cx="50" cy="50" r="41.75" />
 
-          {/* Cyan */}
           <motion.circle
-            stroke="#80deeb"
+            stroke={colors[0]}
             strokeWidth="14"
             cx="50"
             cy="50"
             r="47.85"
-            animate={cyan}
+            animate={circleOne}
             style={{
               strokeDasharray: 360,
             }}
           />
 
-          {/* Blue */}
           <motion.circle
-            stroke="#034561"
+            stroke={colors[1]}
             strokeWidth="14"
             cx="50"
             cy="50"
             r="47.85"
-            animate={blue}
+            animate={circleTwo}
             style={{
               strokeDasharray: 360,
             }}
           />
 
-          {/* Orange */}
           <motion.circle
-            stroke="#ff704f"
+            stroke={colors[2]}
             strokeWidth="14"
             cx="50"
             cy="50"
             r="47.85"
-            animate={orange}
+            animate={circleThree}
             style={{
               strokeDasharray: 360,
             }}
           />
 
-          {/* Green */}
           <motion.circle
-            stroke="#70DB8C"
+            stroke={colors[3]}
             strokeWidth="28"
             cx="50"
             cy="50"
             r="54.8"
-            animate={green}
+            animate={circleFour}
             style={{
               strokeDasharray: 360,
             }}
