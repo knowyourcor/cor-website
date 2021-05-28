@@ -11,23 +11,59 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
   const [playVideo, setPlayVideo] = useState(true);
 
   const slideVariant = {
-    visible: {
+    initial: { opacity: 0 },
+    enter: {
       opacity: 1,
-      transition: { duration: 0.75, ease: "easeOut" },
+      transition: {
+        duration: 0.75,
+        ease: "easeOut",
+        staggerChildren: 0.5,
+        delayChildren: 0.2,
+      },
     },
-    hidden: { opacity: 0 },
     exit: {
       opacity: 0,
-      transition: { duration: 0.75, ease: "easeOut" },
+      transition: {
+        duration: 0.75,
+        ease: "easeOut",
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const scaleVariants = {
+    initial: { opacity: 0, scale: 1.085 },
+    enter: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.95, ease: "easeOut" },
+    },
+    exit: {
+      opacity: 0,
+      scale: 1.085,
+      transition: { duration: 0.95, ease: "easeOut" },
+    },
+  };
+
+  const textVariants = {
+    initial: { opacity: 0 },
+    enter: {
+      opacity: 1,
+      transition: { delay: 0.25, duration: 0.65, ease: "easeOut" },
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.65, ease: "easeOut" },
     },
   };
 
   const imageItem = {
-    visible: {
+    enter: {
       scale: 1.035,
       transition: { duration: 1.5, ease: "easeOut" },
     },
-    hidden: { scale: 1 },
+    initial: { scale: 1 },
     exit: {
       scale: 1,
       transition: { duration: 0.5, ease: "easeOut" },
@@ -35,11 +71,11 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
   };
 
   const videoItem = {
-    visible: {
+    enter: {
       opacity: 1,
       transition: { duration: 1.5, ease: "easeOut" },
     },
-    hidden: { opacity: 0 },
+    initial: { opacity: 0 },
     exit: {
       opacity: 0,
       transition: { duration: 0.5, ease: "easeOut" },
@@ -47,12 +83,12 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
   };
 
   const headlineItem = {
-    visible: {
+    enter: {
       opacity: 1,
       scale: 1,
       transition: { duration: 1.5, ease: "easeOut" },
     },
-    hidden: { opacity: 0, scale: 0.985 },
+    initial: { opacity: 0, scale: 0.985 },
     exit: {
       opacity: 1,
       scale: 0.985,
@@ -85,15 +121,22 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
   const HeadlineWithVideo = () => {
     return (
       <>
-        <div className={styles.slidePanel}>
-          <div className={styles.videoBackground}>
+        <div className={[styles.slidePanel, styles.background].join(" ")}>
+          <motion.div
+            variants={scaleVariants}
+            className={styles.videoBackground}
+          >
             <VideoPlayer source={video_source} />
-          </div>
+          </motion.div>
         </div>
-        <div className={styles.slidePanel}>
-          <div className={styles.headline}>
+        <div
+          className={[styles.slidePanel, styles.contain, styles.right].join(
+            " "
+          )}
+        >
+          <motion.div variants={textVariants} className={styles.headline}>
             <RichText render={headline} />
-          </div>
+          </motion.div>
         </div>
       </>
     );
@@ -108,9 +151,9 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
             className={styles.videoFullscreen}
             playing={playVideo}
           />
-          <div className={styles.content}>
+          <motion.div variants={textVariants} className={styles.content}>
             <RichText render={headline} />
-          </div>
+          </motion.div>
         </div>
       </>
     );
@@ -119,15 +162,17 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
   const HeadlineWithImage = () => {
     return (
       <>
-        <div className={styles.slidePanel}>
-          <div className={styles.image}>
-            <Picture image={image} />
-          </div>
-        </div>
-        <div className={styles.slidePanel}>
-          <div className={styles.headline}>
+        <div
+          className={[styles.slidePanel, styles.contain, styles.left].join(" ")}
+        >
+          <motion.div variants={textVariants} className={styles.headline}>
             <RichText render={headline} />
-          </div>
+          </motion.div>
+        </div>
+        <div className={[styles.slidePanel, styles.background].join(" ")}>
+          <motion.div variants={scaleVariants} className={styles.image}>
+            <Picture image={image} />
+          </motion.div>
         </div>
       </>
     );
@@ -137,15 +182,18 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
     const [playing, setPlaying] = useState(true);
     return (
       <>
-        <div className={styles.slidePanel}>
-          <div className={styles.videoBackground}>
+        <div className={[styles.slidePanel, styles.background].join(" ")}>
+          <motion.div
+            variants={scaleVariants}
+            className={styles.videoBackground}
+          >
             <VideoPlayer source={video_source} />
-          </div>
+          </motion.div>
         </div>
-        <div className={styles.slidePanel}>
-          <div className={styles.image}>
+        <div className={[styles.slidePanel, styles.background].join(" ")}>
+          <motion.div variants={scaleVariants} className={styles.image}>
             <Picture image={image} />
-          </div>
+          </motion.div>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -187,8 +235,8 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
     <>
       {currentSlide && (
         <motion.div
-          initial="hidden"
-          animate="visible"
+          initial="initial"
+          animate="enter"
           exit="exit"
           variants={slideVariant}
           className={styles.slide}
@@ -225,7 +273,7 @@ const CarouselHero = ({ primary, fields }) => {
       fields.length > 1 &&
       setTimeout(() => {
         setActiveItem(count + 1);
-      }, 8500);
+      }, 6500);
     return () => clearTimeout(timer);
   }, [count]);
 
