@@ -3,6 +3,9 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./picture.module.scss";
 
 const Picture = ({ image: prismicImageData, classes }) => {
+  // Prevent errors when prismicImageData doesn't contain an image
+  if (!prismicImageData) return <></>;
+
   const [loaded, setLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const imageRef = useRef();

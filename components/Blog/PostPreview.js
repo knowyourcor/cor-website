@@ -21,14 +21,14 @@ export default function PostPreview({ node }) {
         <div className={styles.card}>
           <div className={styles.borderRadius}>
             <div className={styles.image}>
-              <Picture image={cover_image} />
+              {cover_image && <Picture image={cover_image} />}
             </div>
             <div className={styles.content}>
               <div className={styles.meta}>
-                {_meta.tags[0] && (
+                {_meta?.tags[0] && (
                   <p className={styles.tags}>{_meta.tags[0]}</p>
                 )}
-                <p className={styles.date}>{formattedDate}</p>
+                {date && <p className={styles.date}>{formattedDate}</p>}
               </div>
               <h2>{title[0]?.text}</h2>
               <RichText render={excerpt} />
