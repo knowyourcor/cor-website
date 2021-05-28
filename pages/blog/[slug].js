@@ -33,7 +33,7 @@ export default function BlogPost({ blogPostData }) {
   );
 }
 
-export const getStaticPaths = async (previewData) => {
+export const getStaticPaths = async () => {
   const { data } = await client.query({
     query: ALL_BLOG_POSTS_UID,
   });
@@ -46,16 +46,11 @@ export const getStaticPaths = async (previewData) => {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
 export async function getStaticProps({ preview = false, previewData, params }) {
-  // const { data: blogPostData } = await client.query({
-  //   query: BLOG_POST_QUERY,
-  //   variables: { slug: params.slug },
-  // });
-
   const blogPostData = await getBlogPostData(params.slug, previewData);
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
