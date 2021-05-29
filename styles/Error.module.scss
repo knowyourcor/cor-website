@@ -5,6 +5,21 @@
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
+  animation-name: fadeIn;
+  animation-duration: 650ms;
+  animation-delay: 250ms;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .roundelButton {

@@ -1,9 +1,18 @@
+import { useRouter } from "next/router";
+import Loading from "../components/Loading";
 import Head from "../components/Head";
 import { getLayout } from "../components/Layout/PageLayout";
 import Modules from "../components/Modules";
 import { getPageData, getAllPagesWithSlug, getMenuData } from "../lib/api";
 
 export default function Page({ pageData }) {
+  const router = useRouter();
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <Loading />;
+  }
+
   return (
     <>
       <Head
@@ -32,7 +41,7 @@ export async function getStaticPaths() {
 
   return {
     paths: allPaths || [],
-    fallback: "blocking",
+    fallback: true,
   };
 }
 
@@ -41,6 +50,13 @@ export async function getStaticProps({ preview = false, previewData, params }) {
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
+
+  if (!pageData) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       preview,

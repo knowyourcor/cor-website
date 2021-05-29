@@ -62,8 +62,8 @@ const Navigation = ({ mainMenuData }) => {
           </Link>
           <div className={styles.callToAction}>
             <Button
-              linkData={mainMenuData.call_to_action_link}
-              labelData={mainMenuData.call_to_action_label}
+              linkData={mainMenuData?.call_to_action_link}
+              labelData={mainMenuData?.call_to_action_label}
             ></Button>
           </div>
           <MenuToggle

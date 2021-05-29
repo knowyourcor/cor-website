@@ -88,7 +88,7 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     <>
       <Head title={meta_title} description={meta_description} />
       <div className={styles.blog}>
-        {pinnedPostData.node.length > 0 && (
+        {pinnedPostData.node !== undefined && (
           <Container>
             <Row>
               <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>

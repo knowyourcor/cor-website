@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Head from "../components/Head";
-import Link from "next/link";
 import { getLayout } from "../components/Layout/PageLayout";
 import { Container, Row, Column } from "../components/Grid";
 import { getMenuData } from "../lib/api";
-import Button from "../components/Button";
 import RoundelContainer from "../components/RoundelContainer";
 import { useDebounceCallback } from "@react-hook/debounce";
 import styles from "../styles/Error.module.scss";
@@ -33,7 +31,7 @@ export default function Error() {
               <h3>We can't find that page.</h3>
               <p>
                 If you have any questions please contact us at{" "}
-                <a href="mailto:support@thecor.com">support@thecor.com</a>.
+                <a href="mailto:help@thecor.com">help@thecor.com</a>.
               </p>
             </Column>
           </Row>
