@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Head from "../components/Head";
-import Link from "next/link";
 import { getLayout } from "../components/Layout/PageLayout";
 import { Container, Row, Column } from "../components/Grid";
 import { getMenuData } from "../lib/api";
-import Button from "../components/Button";
 import RoundelContainer from "../components/RoundelContainer";
 import { useDebounceCallback } from "@react-hook/debounce";
 import styles from "../styles/Error.module.scss";

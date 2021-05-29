@@ -1,4 +1,6 @@
 import { getLayout } from "../../components/Layout/PageLayout";
+import { useRouter } from "next/router";
+import Loading from "../../components/Loading";
 import Head from "../../components/Head";
 import Post from "../../components/Blog/Post.js";
 
@@ -13,6 +15,13 @@ import { getBlogPostData, getMenuData } from "../../lib/api";
 import styles from "../../styles/BlogPost.module.scss";
 
 export default function BlogPost({ blogPostData }) {
+  const router = useRouter();
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <Loading />;
+  }
+
   const { title } = blogPostData;
 
   const postTheme =
@@ -46,7 +55,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: paths || [],
-    fallback: "blocking",
+    fallback: true,
   };
 };
 
@@ -55,6 +64,12 @@ export async function getStaticProps({ preview = false, previewData, params }) {
   const mainMenuData = await getMenuData("main-menu");
   const footerMenuData = await getMenuData("footer-menu");
   const tertiaryMenuData = await getMenuData("tertiary-menu");
+
+  if (!blogPostData) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
