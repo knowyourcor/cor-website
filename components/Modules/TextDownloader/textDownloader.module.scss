@@ -4,6 +4,7 @@
   a {
     &:link,
     &:visited {
+      text-decoration: none;
       color: var(--cyan-tint);
     }
     &:hover,

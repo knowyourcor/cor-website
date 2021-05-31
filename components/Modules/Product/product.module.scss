@@ -49,6 +49,7 @@
   a {
     &:link,
     &:visited {
+      color: var(--text-color-primary);
       font-size: 0.65rem;
       text-decoration: underline;
     }
