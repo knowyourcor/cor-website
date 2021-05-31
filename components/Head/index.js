@@ -4,13 +4,17 @@ const Title = ({ title, description }) => {
   return (
     <Head>
       {/* General Meta Tags */}
-      <title>{title ? `${title} - COR` : "COR"}</title>
+      <title>
+        {title
+          ? `${title} - COR`
+          : "Learn how your body responds to lifestyle - COR"}
+      </title>
       <meta
         name="description"
         content={
           description
             ? description
-            : "There’s more to health than steps & weight"
+            : "COR helps you discover and do functional lifestyle programs with never-before-possible feedback on your body’s response. Access is limited - Apply today."
         }
       />
       <meta
@@ -26,13 +30,20 @@ const Title = ({ title, description }) => {
       {/* Facebook Meta Tags */}
       <meta property="og:url" content="https://thecor.com/" />
       <meta property="og:type" content="website" />
-      <meta property="og:title" content={title ? `${title} - COR` : "COR"} />
+      <meta
+        property="og:title"
+        content={
+          title
+            ? `${title} - COR`
+            : "Learn how your body responds to lifestyle - COR"
+        }
+      />
       <meta
         property="og:description"
         content={
           description
             ? description
-            : "There’s more to health than steps & weight"
+            : "COR helps you discover and do functional lifestyle programs with never-before-possible feedback on your body’s response. Access is limited - Apply today."
         }
       />
       <meta property="og:image" content="//thecor.com/images/preview.png" />
@@ -41,13 +52,20 @@ const Title = ({ title, description }) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="thecor.com" />
       <meta property="twitter:url" content="https://thecor.com/" />
-      <meta name="twitter:title" content={title ? `${title} - COR` : "COR"} />
+      <meta
+        name="twitter:title"
+        content={
+          title
+            ? `${title} - COR`
+            : "Learn how your body responds to lifestyle - COR"
+        }
+      />
       <meta
         name="twitter:description"
         content={
           description
             ? description
-            : "There’s more to health than steps & weight"
+            : "COR helps you discover and do functional lifestyle programs with never-before-possible feedback on your body’s response. Access is limited - Apply today."
         }
       />
       <meta
