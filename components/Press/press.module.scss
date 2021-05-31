@@ -85,6 +85,7 @@
     display: inline-block;
     &:link,
     &:visited {
+      color: var(--text-color-primary);
       font-size: 1rem;
       text-decoration: none;
       opacity: 1;

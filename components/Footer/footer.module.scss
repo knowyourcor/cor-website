@@ -14,7 +14,10 @@
     margin: 0;
   }
 
-  a {
+  a,
+  p a,
+  ul a,
+  ol a {
     padding: 2px 4px;
     border-radius: 50px;
     font-size: 1rem;
@@ -22,6 +25,7 @@
     cursor: pointer;
     &:link,
     &:visited {
+      color: var(--text-color-primary);
       text-decoration: none;
     }
   }
@@ -66,11 +70,17 @@
   margin: 1rem 0;
   opacity: 0.5;
 
-  p,
+  p {
+    margin: 1rem 0 0;
+  }
+
   a {
     margin: 1rem 0 0;
-    font-size: 0.75rem;
-    line-height: 1;
+    &:link,
+    &:visited {
+      font-size: 0.75rem;
+      line-height: 1;
+    }
   }
 
   ul {
