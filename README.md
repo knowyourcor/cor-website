@@ -4,20 +4,26 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Local development
 
-First, run the development server:
+First, install package dependencies:
+
+```bash
+yarn
+```
+
+Then, run the development server:
 
 ```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
 ## Publishing changes
 
 All development should be done within the `dev` branch. Once updates are committed to `dev`, deployed and verified on [Dev](https://cor-website-dev.vercel.app/) you can do a pull request into the Main branch. Performing a pull request into the Main branch will deploy changes from dev to the live site.
 
-- Dev: https://cor-website-dev.vercel.app/
-- Live: https://cor-website.vercel.app/ or https://thecor.com
+- Dev: https://cor-website-dev.vercel.app/ - automatically updated when a commit is made to the `dev` branch
+- Live: https://cor-website.vercel.app/ or https://thecor.com - updated when a pull request or commit is made to the `main` branch
 
 The dev and live sites are hosted and managed on [Vercel](https://vercel.com/knowyourcor).
 
