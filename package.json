@@ -16,7 +16,6 @@
     "framer-motion": "4.1.17",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4",
-    "js-cookie": "^2.2.1",
     "mixpanel-browser": "^2.41.0",
     "moment": "^2.29.1",
     "next": "10.2.3",
