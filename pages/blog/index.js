@@ -1,18 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
+import { useQuery, NetworkStatus } from "@apollo/client";
 import slugify from "slugify";
 import { getLayout } from "../../components/Layout/PageLayout";
+import { useFilterContext } from "../../lib/filterContext";
 import { Container, Row, Column } from "../../components/Grid";
 import Head from "../../components/Head";
 import PostPinned from "../../components/Blog/PostPinned";
 import PostPreview from "../../components/Blog/PostPreview";
-import PostTags from "../../components/Blog/PostTags";
-import LoadMorePosts from "../../components/Blog/LoadMorePosts";
+import FilterMenu from "../../components/Blog/FilterMenu";
 
 // Apollo for dynamic data, filtering, pagination
 import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
-import client from "../../lib/ApolloClient";
-import ClientOnly from "../../lib/ClientOnly";
 
 // Prismic data for getStaticProps
 import { getBlogData, getMenuData, getBlogPostTags } from "../../lib/api";
@@ -20,25 +19,14 @@ import { getBlogData, getMenuData, getBlogPostTags } from "../../lib/api";
 // Styles
 import styles from "../../styles/Blog.module.scss";
 
-export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
-  const router = useRouter();
+export default function Blog({ pageData, allPostsTags }) {
   const { meta_title, meta_description, pinned_blog_post } = pageData[0].node;
-
-  // Tags menu toggle
-  const [tagsMenuActive, setTagsMenuActive] = useState(null);
+  const router = useRouter();
+  const { filterContext, setFilterContext } = useFilterContext();
+  const [filterMenuActive, setFilterMenuActive] = useState(null);
 
   // Used to set focus on menu close
   const categoryButtonRef = useRef();
-
-  // Check if a filter is being passed on initial load
-  const [queryFilter, setQueryFilter] = useState(null);
-  useEffect(() => {
-    setQueryFilter(router.query?.filter);
-    const matchTag = allPostsTags.find(
-      (obj) => obj.slug === router.query?.filter
-    );
-    router.query?.filter && setCurrentFilter(matchTag.name);
-  }, [router.query]);
 
   // Pinned post data
   const pinnedPostUID = pinned_blog_post?._meta.uid;
@@ -46,43 +34,85 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
     node: { ...pinned_blog_post },
   };
 
-  // All posts data
-  const [allPosts, setAllPosts] = useState(allBlogPosts);
+  const {
+    loading,
+    error,
+    data: allPosts,
+    fetchMore,
+    networkStatus,
+  } = useQuery(ALL_BLOG_POSTS_QUERY, {
+    variables: {
+      after: null,
+      tag: filterContext,
+      first: 3,
+    },
+    notifyOnNetworkStatusChange: true,
+  });
 
-  // Handel data updates when filtered by tag
-  const handlePostsDataUpdate = (postsByTagData) => {
-    postsByTagData && setResetFilter(false);
-    postsByTagData && setAllPosts(postsByTagData);
+  const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
+
+  const loadMorePosts = () => {
+    fetchMore({
+      variables: {
+        after: allPosts?.allBlog_posts?.pageInfo?.endCursor || null,
+        tag: filterContext,
+        first: 3,
+      },
+    });
   };
 
-  // Handel data updates when paginating
-  const handelPostsDataMerge = (postsData) => {
-    postsData && setAllPosts(postsData);
+  const filterPosts = (filterBy) => {
+    fetchMore({
+      variables: {
+        tag: filterBy,
+      },
+    });
   };
 
-  // Filtering
-  const [currentFilter, setCurrentFilter] = useState(null);
-  const handleCurrentFilter = (tag) => {
-    if (tag.name === "reset") {
-      setCurrentFilter(null);
-    } else {
-      setCurrentFilter(tag.name);
+  const hasNextPage = allPosts?.allBlog_posts?.pageInfo.hasNextPage;
+
+  const handleFilterReset = () => {
+    setFilterContext(null);
+    filterPosts(null);
+    // Remove filter query from URL
+    router.push(`/blog`, undefined, {
+      shallow: true,
+    });
+  };
+
+  const handleFilter = (filter) => {
+    setFilterContext(filter);
+    filterPosts(filter);
+  };
+
+  // Check if a filter is being passed on initial load
+  useEffect(() => {
+    const matchTag = allPostsTags.find(
+      (obj) => obj.slug === router.query?.filter
+    );
+    router.query?.filter && handleFilter(matchTag.name);
+  }, [router.query]);
+
+  useEffect(() => {
+    // Shallow update of URL
+    {
+      filterContext &&
+        router.push(
+          `/blog`,
+          `/blog?filter=${slugify(filterContext, { lower: true })}`,
+          {
+            shallow: true,
+          }
+        );
     }
-  };
-
-  // Filter reset
-  const [resetFilter, setResetFilter] = useState(false);
-  const onFilterReset = () => {
-    setCurrentFilter(null);
-    setResetFilter(true);
-  };
+  }, [filterContext]);
 
   // Handle focus of categoryButtonRef on close of tagMenu
   useEffect(() => {
-    !tagsMenuActive &&
-      tagsMenuActive !== null &&
+    !filterMenuActive &&
+      filterMenuActive !== null &&
       categoryButtonRef.current.focus();
-  }, [tagsMenuActive]);
+  }, [filterMenuActive]);
 
   return (
     <>
@@ -101,15 +131,15 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
           <Row>
             <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
               <div className={styles.categories}>
-                {currentFilter && (
+                {filterContext && (
                   <div className={[styles.button, styles.colorGray].join(" ")}>
-                    <span>{currentFilter}</span>
+                    <span>{filterContext}</span>
 
                     <button
-                      onClick={onFilterReset}
+                      onClick={handleFilterReset}
                       title="remove filter"
                       className={styles.removeFilter}
-                      aria-label={`Remove ${currentFilter} filter`}
+                      aria-label={`Remove ${filterContext} filter`}
                     >
                       <svg
                         width="100%"
@@ -128,7 +158,7 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
                 <button
                   className={[styles.button, styles.buttonDark].join(" ")}
                   onClick={() => {
-                    setTagsMenuActive(!tagsMenuActive);
+                    setFilterMenuActive(!filterMenuActive);
                   }}
                   role="button"
                   tabIndex="0"
@@ -143,49 +173,40 @@ export default function Blog({ pageData, allPostsTags, allBlogPosts }) {
           <Row>
             <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
               <div className={styles.blogPosts}>
-                {allPosts &&
-                  allPosts?.allBlog_posts?.edges
-                    .filter((post) => post.node._meta.uid !== pinnedPostUID)
-                    .map((post) => (
-                      <PostPreview {...post} key={post.node._meta.uid} />
-                    ))}
+                {allPosts?.allBlog_posts?.edges
+                  .filter((post) => post.node._meta.uid !== pinnedPostUID)
+                  .map((post) => (
+                    <PostPreview {...post} key={post.node._meta.uid} />
+                  ))}
+              </div>
+              <div className={styles.pagination}>
+                <button
+                  onClick={() => loadMorePosts()}
+                  disabled={loadingMorePosts || !hasNextPage}
+                  className={[
+                    styles.button,
+                    !hasNextPage ? styles.disabled : "",
+                  ].join(" ")}
+                >
+                  {loadingMorePosts ? "Loading..." : "Show More"}
+                </button>
               </div>
             </Column>
           </Row>
         </Container>
       </div>
 
-      <ClientOnly>
-        <div className={styles.pagination}>
-          <LoadMorePosts
-            allPostsData={allPosts}
-            paginatedPostsData={handelPostsDataMerge}
-            filterBy={currentFilter}
-          />
-        </div>
-      </ClientOnly>
-
-      <ClientOnly>
-        <PostTags
-          isOpen={tagsMenuActive}
-          toggleTagsMenu={() => setTagsMenuActive(!tagsMenuActive)}
-          allPostsTags={allPostsTags}
-          filterByData={handlePostsDataUpdate}
-          filterByQuery={queryFilter}
-          selectedFilter={handleCurrentFilter}
-          resetFilter={resetFilter}
-        />
-      </ClientOnly>
+      <FilterMenu
+        allPostsTags={allPostsTags}
+        filterBy={(filterBy) => filterPosts(filterBy)}
+        toggleTagsMenu={() => setFilterMenuActive(!filterMenuActive)}
+        isOpen={filterMenuActive}
+      />
     </>
   );
 }
 
 export async function getStaticProps({ preview = false, previewData }) {
-  const { data: allBlogPosts } = await client.query({
-    query: ALL_BLOG_POSTS_QUERY,
-    variables: null,
-  });
-
   const pageData = await getBlogData(previewData);
   const allPostsTagsData = await getBlogPostTags();
   const mainMenuData = await getMenuData("main-menu");
@@ -206,7 +227,6 @@ export async function getStaticProps({ preview = false, previewData }) {
       preview,
       pageData,
       allPostsTags,
-      allBlogPosts,
       mainMenuData,
       footerMenuData,
       tertiaryMenuData,

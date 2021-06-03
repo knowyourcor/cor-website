@@ -5,7 +5,7 @@ import Head from "../../components/Head";
 import Post from "../../components/Blog/Post.js";
 
 // Apollo
-import client from "../../lib/ApolloClient";
+import { staticClient } from "../../lib/ApolloClient";
 import { ALL_BLOG_POSTS_UID } from "../../lib/ApolloQueries";
 
 //  Prismic
@@ -43,7 +43,7 @@ export default function BlogPost({ blogPostData }) {
 }
 
 export const getStaticPaths = async () => {
-  const { data } = await client.query({
+  const { data } = await staticClient.query({
     query: ALL_BLOG_POSTS_UID,
   });
 
