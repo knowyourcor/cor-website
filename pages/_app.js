@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+
 import { ApolloProvider } from "@apollo/client";
-import client from "../lib/ApolloClient";
+import { useApollo } from "../lib/ApolloClient";
+
 import "focus-visible";
 import TagManager from "react-gtm-module";
 import Layout from "../components/Layout";
@@ -16,8 +18,9 @@ export default function CorWebsite({ Component, pageProps, router }) {
   }, []);
   const getLayout =
     Component.getLayout || ((page) => <Layout children={page} />);
+  const apolloClient = useApollo(pageProps);
   return getLayout(
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <Component {...pageProps} key={router.route} />
     </ApolloProvider>
   );

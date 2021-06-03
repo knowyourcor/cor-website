@@ -1,53 +1,21 @@
-import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import { useQuery, gql } from "@apollo/client";
-import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
 import { motion } from "framer-motion";
 import { FocusOn } from "react-focus-on";
+import { useFilterContext } from "../../lib/filterContext";
 import styles from "./blog.module.scss";
 
-export default function PostTags({
+export default function FilterMenu({
   allPostsTags,
-  filterByData,
-  filterByQuery,
-  isOpen,
+  filterBy,
   toggleTagsMenu,
-  selectedFilter,
-  resetFilter,
+  isOpen,
 }) {
   const router = useRouter();
-  const [activeFilter, setActiveFilter] = useState(null);
-  const ref = useRef();
-
-  const {
-    data: postsByTagData,
-    loading: postsByTagLoading,
-    error: postsByTagError,
-  } = useQuery(ALL_BLOG_POSTS_QUERY, {
-    fetchPolicy: "cache-and-network",
-    variables: {
-      tag: activeFilter === "reset" ? null : activeFilter,
-      after: null,
-    },
-  });
-
-  // Filter by page query on initial load
-  useEffect(() => {
-    const matchTag = allPostsTags.find((obj) => obj.slug === filterByQuery);
-    filterByQuery && setActiveFilter(matchTag.name);
-  }, [filterByQuery]);
-
-  useEffect(() => {
-    activeFilter && filterByData(postsByTagData);
-  }, [postsByTagData, activeFilter]);
-
-  useEffect(() => {
-    resetFilter && handelTagUpdate({ name: "reset" });
-  }, [resetFilter]);
+  const { filterContext, setFilterContext } = useFilterContext();
 
   const handelTagUpdate = (tag) => {
-    setActiveFilter(tag.name);
-    selectedFilter(tag);
+    setFilterContext(tag.name);
+    filterBy(tag.name);
     if (tag.name === "reset") {
       // Shallow update of URL
       router.push(`/blog`, undefined, {
@@ -59,7 +27,6 @@ export default function PostTags({
         shallow: true,
       });
     }
-
     isOpen && toggleTagsMenu();
   };
 
@@ -101,12 +68,10 @@ export default function PostTags({
     <FocusOn enabled={isOpen}>
       <motion.nav
         className={styles.postTags}
-        ref={ref}
         style={{ transform: "translateX(100%)" }}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={navVariant}
-        // tabIndex="-1"
         aria-hidden={isOpen ? "false" : "true"}
       >
         <div>
@@ -114,7 +79,7 @@ export default function PostTags({
           <ul>
             <li>
               <button
-                onClick={() => handelTagUpdate({ name: "reset" })}
+                onClick={() => handelTagUpdate({ name: null })}
                 className={styles.tagName}
                 tabIndex={isOpen ? "0" : "-1"}
               >
@@ -128,7 +93,7 @@ export default function PostTags({
                     onClick={() => handelTagUpdate(tag)}
                     className={[
                       styles.tagName,
-                      activeFilter === tag.name && styles.activeFilter,
+                      filterContext === tag.name && styles.activeFilter,
                     ].join(" ")}
                     tabIndex={isOpen ? "0" : "-1"}
                   >

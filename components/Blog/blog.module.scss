@@ -51,6 +51,23 @@
   }
 }
 
+// posts
+.blogPosts {
+  margin-top: 3rem;
+  min-height: 50vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 1.5em;
+  @media (min-width: $sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: $lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 // post preview
 
 .postPreview {
@@ -230,7 +247,6 @@
   font-family: var(--font-sans);
   border-radius: 50px 50px;
   transition: background-color 300ms ease-in-out;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
   margin: 1rem auto;
   cursor: pointer;
 

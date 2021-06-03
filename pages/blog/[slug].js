@@ -5,7 +5,7 @@ import Head from "../../components/Head";
 import Post from "../../components/Blog/Post.js";
 
 // Apollo
-import client from "../../lib/ApolloClient";
+import { staticClient } from "../../lib/ApolloClient";
 import { ALL_BLOG_POSTS_UID } from "../../lib/ApolloQueries";
 
 //  Prismic
@@ -22,8 +22,6 @@ export default function BlogPost({ blogPostData }) {
     return <Loading />;
   }
 
-  const { title } = blogPostData;
-
   const postTheme =
     styles[`theme-${blogPostData?.theme}`] || styles["theme-default"];
 
@@ -31,19 +29,21 @@ export default function BlogPost({ blogPostData }) {
     <>
       <Head
         title={
-          blogPostData.meta_title ? blogPostData.meta_title : title[0].text
+          blogPostData?.meta_title
+            ? blogPostData?.meta_title
+            : blogPostData?.title[0].text
         }
-        description={blogPostData.meta_description}
+        description={blogPostData?.meta_description}
       />
       <div className={[styles.container, postTheme].join(" ")}>
-        <Post data={blogPostData} />
+        {blogPostData && <Post data={blogPostData} />}
       </div>
     </>
   );
 }
 
 export const getStaticPaths = async () => {
-  const { data } = await client.query({
+  const { data } = await staticClient.query({
     query: ALL_BLOG_POSTS_UID,
   });
 
