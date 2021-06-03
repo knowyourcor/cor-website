@@ -9,6 +9,7 @@ import Head from "../../components/Head";
 import PostPinned from "../../components/Blog/PostPinned";
 import PostPreview from "../../components/Blog/PostPreview";
 import FilterMenu from "../../components/Blog/FilterMenu";
+import isEmpty from "lodash/isEmpty";
 
 // Apollo for dynamic data, filtering, pagination
 import { ALL_BLOG_POSTS_QUERY } from "../../lib/ApolloQueries";
@@ -20,7 +21,7 @@ import { getBlogData, getMenuData, getBlogPostTags } from "../../lib/api";
 import styles from "../../styles/Blog.module.scss";
 
 export default function Blog({ pageData, allPostsTags }) {
-  const blogData = pageData[0]?.node;
+  const blogData = isEmpty(pageData) ? null : pageData[0]?.node;
   const router = useRouter();
   const { filterContext, setFilterContext } = useFilterContext();
   const [filterMenuActive, setFilterMenuActive] = useState(null);
