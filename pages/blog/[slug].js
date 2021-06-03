@@ -22,8 +22,6 @@ export default function BlogPost({ blogPostData }) {
     return <Loading />;
   }
 
-  const { title } = blogPostData;
-
   const postTheme =
     styles[`theme-${blogPostData?.theme}`] || styles["theme-default"];
 
@@ -31,12 +29,14 @@ export default function BlogPost({ blogPostData }) {
     <>
       <Head
         title={
-          blogPostData.meta_title ? blogPostData.meta_title : title[0].text
+          blogPostData?.meta_title
+            ? blogPostData?.meta_title
+            : blogPostData?.title[0].text
         }
-        description={blogPostData.meta_description}
+        description={blogPostData?.meta_description}
       />
       <div className={[styles.container, postTheme].join(" ")}>
-        <Post data={blogPostData} />
+        {blogPostData && <Post data={blogPostData} />}
       </div>
     </>
   );

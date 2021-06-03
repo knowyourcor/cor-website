@@ -37,7 +37,7 @@ export default function Post({ data }) {
               {date && <p className={styles.date}>{formattedDate}</p>}
             </div>
             {/* Post title */}
-            <RichText render={title} />
+            {title && <RichText render={title} />}
           </Column>
         </Row>
       </Container>

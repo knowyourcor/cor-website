@@ -20,7 +20,7 @@ import { getBlogData, getMenuData, getBlogPostTags } from "../../lib/api";
 import styles from "../../styles/Blog.module.scss";
 
 export default function Blog({ pageData, allPostsTags }) {
-  const { meta_title, meta_description, pinned_blog_post } = pageData[0].node;
+  const blogData = pageData[0]?.node;
   const router = useRouter();
   const { filterContext, setFilterContext } = useFilterContext();
   const [filterMenuActive, setFilterMenuActive] = useState(null);
@@ -29,9 +29,9 @@ export default function Blog({ pageData, allPostsTags }) {
   const categoryButtonRef = useRef();
 
   // Pinned post data
-  const pinnedPostUID = pinned_blog_post?._meta.uid;
+  const pinnedPostUID = blogData?.pinned_blog_post?._meta.uid;
   const pinnedPostData = {
-    node: { ...pinned_blog_post },
+    node: { ...blogData?.pinned_blog_post },
   };
 
   const {
@@ -44,7 +44,7 @@ export default function Blog({ pageData, allPostsTags }) {
     variables: {
       after: null,
       tag: filterContext,
-      first: 3,
+      first: 6,
     },
     notifyOnNetworkStatusChange: true,
   });
@@ -56,7 +56,7 @@ export default function Blog({ pageData, allPostsTags }) {
       variables: {
         after: allPosts?.allBlog_posts?.pageInfo?.endCursor || null,
         tag: filterContext,
-        first: 3,
+        first: 6,
       },
     });
   };
@@ -116,7 +116,10 @@ export default function Blog({ pageData, allPostsTags }) {
 
   return (
     <>
-      <Head title={meta_title} description={meta_description} />
+      <Head
+        title={blogData?.meta_title}
+        description={blogData?.meta_description}
+      />
       <div className={styles.blog}>
         {pinnedPostData.node !== undefined && (
           <Container>
