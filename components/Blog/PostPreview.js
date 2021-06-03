@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { RichText, Date } from "prismic-reactjs";
-import slugify from "slugify";
 import Picture from "../Picture";
 import styles from "./blog.module.scss";
 
@@ -31,7 +30,7 @@ export default function PostPreview({ node }) {
                 {date && <p className={styles.date}>{formattedDate}</p>}
               </div>
               <h2>{title[0]?.text}</h2>
-              <RichText render={excerpt} />
+              {excerpt && <RichText render={excerpt} />}
             </div>
           </div>
         </div>

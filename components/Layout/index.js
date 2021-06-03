@@ -1,5 +1,6 @@
 import React from "react";
 import Alert from "../Alert";
+import { FilterProvider } from "../../lib/filterContext";
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 
@@ -17,7 +18,7 @@ export default function Layout({ children, preview }) {
   );
 
   return (
-    <>
+    <FilterProvider>
       <Alert preview={preview} />
       {childProps && <Navigation mainMenuData={childProps[0].mainMenuData} />}
       {children}
@@ -33,7 +34,7 @@ export default function Layout({ children, preview }) {
         <span id="new-window-1">Opens an external site</span>
         <span id="new-window-2">Opens an external site in a new window</span>
       </div>
-    </>
+    </FilterProvider>
   );
 }
 
