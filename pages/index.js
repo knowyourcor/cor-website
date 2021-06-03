@@ -7,7 +7,7 @@ import { getHomepageData, getMenuData } from "../lib/api";
 export default function Homepage({ pageData }) {
   return (
     <>
-      <Head title={pageData.meta_title} />
+      <Head title={pageData?.meta_title} />
       <Modules pageData={pageData} />
     </>
   );
