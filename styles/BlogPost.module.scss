@@ -7,29 +7,103 @@
   @media (min-width: $md) {
     padding: 10rem 0;
   }
+
+  a {
+    &:link,
+    &:visited {
+      font-family: var(--font-sans-bold);
+      opacity: 1;
+      transition: opacity 250ms ease-in-out;
+    }
+    &:active,
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 }
 
 .theme-default {
   background-color: var(--background);
   color: var(--text-color-primary);
+
+  a {
+    &:link,
+    &:visited {
+      color: var(--text-color-primary);
+    }
+    &:active,
+    &:hover {
+      color: var(--text-color-primary);
+    }
+  }
 }
 .theme-taupe {
   background-color: var(--taupe-background);
   color: var(--taupe-text);
+  a {
+    &:link,
+    &:visited {
+      color: var(--taupe-text);
+    }
+    &:active,
+    &:hover {
+      color: var(--taupe-text);
+    }
+  }
 }
 .theme-blue {
   background-color: var(--blue-background);
   color: var(--blue-text);
+  a {
+    &:link,
+    &:visited {
+      color: var(--blue-text);
+    }
+    &:active,
+    &:hover {
+      color: var(--blue-text);
+    }
+  }
 }
 .theme-green {
   background-color: var(--green-background);
   color: var(--green-text);
+  a {
+    &:link,
+    &:visited {
+      color: var(--green-text);
+    }
+    &:active,
+    &:hover {
+      color: var(--green-text);
+    }
+  }
 }
 .theme-orange {
   background-color: var(--orange-background);
   color: var(--orange-text);
+  a {
+    &:link,
+    &:visited {
+      color: var(--orange-text);
+    }
+    &:active,
+    &:hover {
+      color: var(--orange-text);
+    }
+  }
 }
 .theme-cyan {
   background-color: var(--cyan-background);
   color: var(--cyan-text);
+  a {
+    &:link,
+    &:visited {
+      color: var(--cyan-text);
+    }
+    &:active,
+    &:hover {
+      color: var(--cyan-text);
+    }
+  }
 }
