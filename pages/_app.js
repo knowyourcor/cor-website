@@ -1,8 +1,6 @@
 import { useEffect } from "react";
-
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "../lib/ApolloClient";
-
 import "focus-visible";
 import TagManager from "react-gtm-module";
 import Layout from "../components/Layout";
@@ -14,7 +12,7 @@ import "../styles/swiper.scss";
 export default function CorWebsite({ Component, pageProps, router }) {
   // Google Tag Manager
   useEffect(() => {
-    TagManager.initialize({ gtmId: "UA-177620776-1" });
+    TagManager.initialize({ gtmId: "GTM-NPTLBNX" });
   }, []);
   const getLayout =
     Component.getLayout || ((page) => <Layout children={page} />);
