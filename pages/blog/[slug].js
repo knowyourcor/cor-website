@@ -26,7 +26,6 @@ export default function BlogPost({ blogPostData }) {
   const postTheme =
     styles[`theme-${blogPostData?.theme}`] || styles["theme-default"];
 
-  console.log(blogPostData);
   return (
     <>
       {!isEmpty(blogPostData) && (
