@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Loading from "../../components/Loading";
 import Head from "../../components/Head";
 import Post from "../../components/Blog/Post.js";
+import isEmpty from "lodash/isEmpty";
 
 // Apollo
 import { staticClient } from "../../lib/ApolloClient";
@@ -25,19 +26,24 @@ export default function BlogPost({ blogPostData }) {
   const postTheme =
     styles[`theme-${blogPostData?.theme}`] || styles["theme-default"];
 
+  console.log(blogPostData);
   return (
     <>
-      <Head
-        title={
-          blogPostData?.meta_title
-            ? blogPostData?.meta_title
-            : blogPostData?.title[0].text
-        }
-        description={blogPostData?.meta_description}
-      />
-      <div className={[styles.container, postTheme].join(" ")}>
-        {blogPostData && <Post data={blogPostData} />}
-      </div>
+      {!isEmpty(blogPostData) && (
+        <>
+          <Head
+            title={
+              blogPostData.meta_title
+                ? blogPostData.meta_title
+                : blogPostData.title[0].text
+            }
+            description={blogPostData.meta_description}
+          />
+          <div className={[styles.container, postTheme].join(" ")}>
+            {blogPostData && <Post data={blogPostData} />}
+          </div>
+        </>
+      )}
     </>
   );
 }
@@ -47,7 +53,7 @@ export const getStaticPaths = async () => {
     query: ALL_BLOG_POSTS_UID,
   });
 
-  const paths = data?.allBlog_posts?.edges.map((id) => {
+  const paths = data?.allBlog_posts?.edges?.map((id) => {
     return {
       params: { slug: id.node._meta.uid },
     };
