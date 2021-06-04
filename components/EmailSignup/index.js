@@ -18,6 +18,7 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
       setIsValid(true);
       onValidated({
         EMAIL: email.value,
+        "group[38701]": "1",
       });
     } else {
       setIsValid("invalid");
