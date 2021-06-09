@@ -162,35 +162,6 @@
   }
 }
 
-.howItWorks {
-  .item-0 {
-    picture {
-      transform: translate(0, 0) scale(1.2);
-    }
-  }
-  @media (min-width: $md) {
-    .item-0 {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      width: 50%;
-      transform: translate(0, -25%) scale(1);
-      @media (min-width: $lg) {
-        width: 50%;
-      }
-      @media (min-width: $xl) {
-        width: 50%;
-      }
-      picture {
-        overflow: visible;
-      }
-      img {
-        margin-bottom: 4rem;
-      }
-    }
-  }
-}
-
 .image {
   display: block;
   width: 100%;
