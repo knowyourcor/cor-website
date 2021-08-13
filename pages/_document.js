@@ -18,6 +18,7 @@ export default class CorDocument extends Document {
                 s.parentNode.insertBefore(t,s)}(window, document,'script',
                 'https://connect.facebook.net/en_US/fbevents.js');
                 fbq('init', '791687191509551');
+                fbq('track', 'PageView');
               `,
             }}
           />
