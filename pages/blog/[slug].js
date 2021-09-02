@@ -37,7 +37,7 @@ export default function BlogPost({ blogPostData }) {
                 : blogPostData.title[0].text
             }
             description={blogPostData.meta_description}
-            image={blogPostData.meta_image}
+            image={blogPostData.meta_image || blogPostData.cover_image}
           />
           <div className={[styles.container, postTheme].join(" ")}>
             {blogPostData && <Post data={blogPostData} />}
