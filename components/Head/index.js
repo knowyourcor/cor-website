@@ -46,7 +46,7 @@ const Title = ({ title, description, image }) => {
             : "COR helps you discover and do functional lifestyle programs with never-before-possible feedback on your body’s response. Access is limited - Apply today."
         }
       />
-      <meta property="og:image" content={image || '//thecor.com/images/preview.png'} />
+      <meta property="og:image" content={image || '//thecor.com/images/preview.jpg'} />
 
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -70,7 +70,7 @@ const Title = ({ title, description, image }) => {
       />
       <meta
         name="twitter:image"
-        content={image || '//thecor.com/images/preview.png'}
+        content={image || '//thecor.com/images/preview.jpg'}
       />
       {/* Search results preview image */}
       <meta
