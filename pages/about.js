@@ -10,6 +10,7 @@ export default function About({ pageData, pressData }) {
       <Head
         title={pageData?.meta_title}
         description={pageData?.meta_description}
+        image={pageData?.meta_image}
       />
       <Modules pageData={pageData} />
       <Press pressData={pressData} />
