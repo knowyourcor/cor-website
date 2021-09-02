@@ -75,7 +75,7 @@ const Title = ({ title, description, image }) => {
       {/* Search results preview image */}
       <meta
         name="thumbnail"
-        content="https://thecor.com/images/thumbnail.jpg"
+        content={image || '//thecor.com/images/thumbnail.jpg'}
       />
     </Head>
   );
