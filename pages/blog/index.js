@@ -120,6 +120,7 @@ export default function Blog({ pageData, allPostsTags }) {
       <Head
         title={blogData?.meta_title}
         description={blogData?.meta_description}
+        image={blogData?.meta_image?.url}
       />
       <div className={styles.blog}>
         {pinnedPostData.node !== undefined && (

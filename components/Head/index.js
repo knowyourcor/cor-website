@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const Title = ({ title, description }) => {
+const Title = ({ title, description, image }) => {
   return (
     <Head>
       {/* General Meta Tags */}
@@ -46,7 +46,7 @@ const Title = ({ title, description }) => {
             : "COR helps you discover and do functional lifestyle programs with never-before-possible feedback on your body’s response. Access is limited - Apply today."
         }
       />
-      <meta property="og:image" content="//thecor.com/images/preview.png" />
+      <meta property="og:image" content={image || '//thecor.com/images/preview.jpg'} />
 
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -70,12 +70,12 @@ const Title = ({ title, description }) => {
       />
       <meta
         name="twitter:image"
-        content="https://thecor.com/images/preview.jpg"
+        content={image || '//thecor.com/images/preview.jpg'}
       />
       {/* Search results preview image */}
       <meta
         name="thumbnail"
-        content="https://thecor.com/images/thumbnail.jpg"
+        content={image || '//thecor.com/images/thumbnail.jpg'}
       />
     </Head>
   );

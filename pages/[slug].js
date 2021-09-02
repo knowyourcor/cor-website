@@ -18,6 +18,7 @@ export default function Page({ pageData }) {
       <Head
         title={pageData?.meta_title}
         description={pageData?.meta_description}
+        image={pageData?.meta_image?.url}
       />
       <Modules pageData={pageData} />
     </>
