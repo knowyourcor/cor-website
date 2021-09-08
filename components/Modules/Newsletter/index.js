@@ -23,7 +23,7 @@ export default function Newsletter({ primary }) {
             <EmailSignup
               className={styles.newsletterForm}
               inputPlaceholder={primary.input_placeholder[0].text}
-              mailchimpUrl={primary.mailchimpUrl[0].text}
+              mailchimpUrl={primary.mailchimpUrl && primary.mailchimpUrl[0].text}
               buttonLabel={primary.button_label[0].text}
             />
           </Column>
