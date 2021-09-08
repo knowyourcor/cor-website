@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import styles from "./emailSignup.module.scss";
 
-const url =
+const defaultMailChimpUrl =
   "//knowyourcor.us12.list-manage.com/subscribe/post?u=dae943d68d00c841aef8185af&amp;id=6de65e742b";
 
 const CustomForm = ({
@@ -123,13 +123,19 @@ const CustomForm = ({
   );
 };
 
-const EmailSignup = ({ theme, onSuccess, inputPlaceholder, buttonLabel }) => {
+const EmailSignup = ({
+  theme,
+  onSuccess,
+  inputPlaceholder,
+  buttonLabel,
+  mailchimpUrl,
+}) => {
   const router = useRouter();
   // Use router.route as a key to reset form on route change
   return (
     <Fragment key={router.route}>
       <MailchimpSubscribe
-        url={url}
+        url={mailchimpUrl || defaultMailChimpUrl}
         render={({ subscribe, status, message }) => (
           <CustomForm
             status={status}

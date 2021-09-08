@@ -60,10 +60,10 @@ const Menu = ({ active, toggle, mainMenuData }) => {
           {mainMenuData?.menu_links.map((item, index) => {
             if (item.link) {
               return (
-                <li key={`${item.link._meta.uid}_${index}`}>
+                <li key={`${item.link._meta?.uid}_${index}`}>
                   <Link
                     activeClassName={styles.active}
-                    href={`/${item.link._meta.uid}`}
+                    href={`/${item.link._meta?.uid}`}
                   >
                     <a>{item.label[0].text}</a>
                   </Link>
@@ -95,12 +95,12 @@ const Menu = ({ active, toggle, mainMenuData }) => {
               if (item.link) {
                 return (
                   <motion.li
-                    key={`${item.link._meta.uid}_${index}`}
+                    key={`${item.link._meta?.uid}_${index}`}
                     variants={navItemVariants}
                   >
                     <Link
                       activeClassName={styles.active}
-                      href={`/${item.link._meta.uid}`}
+                      href={`/${item.link._meta?.uid}`}
                     >
                       <a
                         onClick={() => toggle()}
