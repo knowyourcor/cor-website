@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { RichText } from "prismic-reactjs";
