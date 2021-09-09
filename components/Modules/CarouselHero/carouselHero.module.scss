@@ -97,7 +97,10 @@
     .headline {
       max-width: 840px;
       justify-self: flex-end;
-      padding: 0 4rem;
+      padding: 2rem 2rem;
+      @media (min-width: $xs) {
+        padding: 2rem 4rem;
+      }
     }
   }
 
