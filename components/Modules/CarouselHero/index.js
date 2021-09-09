@@ -6,8 +6,17 @@ import Section from "../../Section";
 import Picture from "../../Picture";
 import PlayPauseToggle from "../../PlayPauseToggle";
 import styles from "./carouselHero.module.scss";
+import Button from "../../Button";
 
-const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
+const Slide = ({
+  currentSlide,
+  variant,
+  image,
+  headline,
+  video_source,
+  link_label,
+  link,
+}) => {
   const [playVideo, setPlayVideo] = useState(true);
 
   const slideVariant = {
@@ -136,6 +145,9 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
         >
           <motion.div variants={textVariants} className={styles.headline}>
             <RichText render={headline} />
+            {link_label && link && (
+              <Button linkData={link} labelData={link_label}></Button>
+            )}
           </motion.div>
         </div>
       </>
@@ -153,6 +165,9 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
           />
           <motion.div variants={textVariants} className={styles.content}>
             <RichText render={headline} />
+            {link_label && link && (
+              <Button linkData={link} labelData={link_label}></Button>
+            )}
           </motion.div>
         </div>
       </>
@@ -167,6 +182,9 @@ const Slide = ({ currentSlide, variant, image, headline, video_source }) => {
         >
           <motion.div variants={textVariants} className={styles.headline}>
             <RichText render={headline} />
+            {link_label && link && (
+              <Button linkData={link} labelData={link_label}></Button>
+            )}
           </motion.div>
         </div>
         <div className={[styles.slidePanel, styles.background].join(" ")}>
