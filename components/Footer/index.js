@@ -98,9 +98,9 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
           </Column>
           <Column columns={{ xs: 14, sm: 6, md: 6, lg: 4 }}>
             <EmailSignup
-              buttonLabel="Join Waitlist"
-              inputPlaceholder="email"
-              mailchimpUrl="https://knowyourcor.us12.list-manage.com/subscribe/post?u=dae943d68d00c841aef8185af&amp;id=2734a56df9"
+              buttonLabel="Subscribe"
+              inputPlaceholder="Get the Research Readout"
+              mailchimpUrl="https://knowyourcor.us12.list-manage.com/subscribe/post?u=dae943d68d00c841aef8185af&amp;id=6de65e742b"
             />
           </Column>
         </Row>
