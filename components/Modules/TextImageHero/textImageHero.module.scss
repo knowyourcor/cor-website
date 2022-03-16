@@ -1,0 +1,24 @@
+@import "../../../styles/variables";
+.textImageHero {
+  // background-color: var(--cyan-primary);
+  max-width: 100%;
+  padding: 4rem 0 3rem;
+
+  .image {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+
+  @media (min-width: $md) {
+    padding: 4rem 0 3rem;
+  }
+
+  h3 {
+    font-size: 1.875rem;
+    margin: 0;
+    font-family: var(--font-sans);
+  }
+  p {
+    font-size: 0.95rem;
+  }
+}

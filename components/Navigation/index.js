@@ -61,10 +61,9 @@ const Navigation = ({ mainMenuData }) => {
             </a>
           </Link>
           <div className={styles.callToAction}>
-            <Button
-              linkData={mainMenuData?.call_to_action_link}
-              labelData={mainMenuData?.call_to_action_label}
-            ></Button>
+            {mainMenuData?.call_to_actions_menu_links.map((item) => (
+              <Button linkData={item.link} labelData={item.label}></Button>
+            ))}
           </div>
           <MenuToggle
             toggle={() => setMenuOpen(!isMenuOpen)}
