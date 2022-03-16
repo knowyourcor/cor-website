@@ -72,7 +72,7 @@ export default function ShopAccordionVideo({ primary, fields }) {
           <Column
             columns={{ xs: 14, md: 5, xl: 4 }}
             offsets={{ md: 1 }}
-            ordering={{ xs: 2, md: 1 }}
+            // ordering={{ xs: 2, md: 1 }}
           >
             <div className={styles.contentOffset}>
               <RichText render={primary.headline} />
@@ -106,7 +106,7 @@ export default function ShopAccordionVideo({ primary, fields }) {
           <Column
             columns={{ xs: 14, md: 7, xl: 8 }}
             offsets={{ md: 1 }}
-            ordering={{ xs: 1, md: 2 }}
+            // ordering={{ xs: 1, md: 2 }}
             className={styles.columnPaddingRight}
           >
             <div
@@ -127,7 +127,6 @@ export default function ShopAccordionVideo({ primary, fields }) {
                 <video ref={videoRef} className={styles.video} autoPlay muted loop playsInline>
                   <source src={imageData} type="video/mp4" />
                 </video>
-                    {/* <Picture image={imageData} className={styles.image} /> */}
                   </motion.div>
                 </AnimatePresence>
               )}
