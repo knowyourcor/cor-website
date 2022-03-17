@@ -19,7 +19,7 @@ const TextMultiPlainImage = ({ primary, fields }) => {
           </Row>
           <Row>
             {fields.map((field) => (
-              <Column columns={{ xs: 2, sm: 2 }} offsets={{ sm: 1 }}>
+              <Column columns={{ xs: 7, sm: 2 }} offsets={{ sm: 2 }}>
                 <div className={styles.container}>
                   <Picture image={field.image} />
                 </div>
