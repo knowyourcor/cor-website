@@ -8,7 +8,7 @@ import CarouselHero from "./CarouselHero";
 import FullWidthImage from "./FullWidthImage";
 import Newsletter from "./Newsletter";
 import ShopAccordion from "./ShopAccordion";
-import ShopAccordionVideo from "./ShopAccordionVideo";
+import AccordionVideo from "./AccordionVideo";
 import ShopTextImage from "./ShopTextImage";
 import TextAccordion from "./TextAccordion";
 import TextDescriptionImage from "./TextDescriptionImage";
@@ -39,7 +39,7 @@ const moduleDefs = {
   ["product"]: Product,
   ["quadcarousel"]: QuadCarousel,
   ["shop_accordion"]: ShopAccordion,
-  ["video_accordion"]: ShopAccordionVideo,
+  ["video_accordion"]: AccordionVideo,
   ["shop_checklist"]: ShopChecklist,
   ["shop_text_image"]: ShopTextImage,
   ["team"]: Team,

@@ -1,7 +1,7 @@
 import { RichText } from "prismic-reactjs";
 import { motion } from "framer-motion";
 
-import styles from "./shopAccordionVideo.module.scss";
+import styles from "./accordionVideo.module.scss";
 
 export default function Content({ text }) {
   const contentTransition = {

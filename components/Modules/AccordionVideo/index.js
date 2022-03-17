@@ -8,9 +8,9 @@ import Picture from "../../Picture";
 import Item from "./Item";
 import { fadeIn } from "../../../lib/variants";
 
-import styles from "./shopAccordionVideo.module.scss";
+import styles from "./accordionVideo.module.scss";
 
-export default function ShopAccordionVideo({ primary, fields }) {
+export default function AccordionVideo({ primary, fields }) {
   const videoRef = useRef();
   const [playVideo, setPlayVideo] = useState(true);
 
@@ -26,7 +26,6 @@ export default function ShopAccordionVideo({ primary, fields }) {
     : "transparent";
 
   const handleImageChange = (data) => {
-    console.log(data);
     setImageData(data);
   };
 

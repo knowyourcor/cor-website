@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Content from "./Content";
 
-import styles from "./shopAccordionVideo.module.scss";
+import styles from "./accordionVideo.module.scss";
 
 export default function Item({
   data,
