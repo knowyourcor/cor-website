@@ -1,7 +1,7 @@
 import { RichText } from "prismic-reactjs";
 import Picture from "../../Picture";
 import { Container, Row, Column } from "../../Grid";
-import styles from "./TextMultiPlainImage.module.scss";
+import styles from "./textMultiPlainImage.module.scss";
 import Section from "../../Section";
 
 
