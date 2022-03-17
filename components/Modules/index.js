@@ -23,6 +23,7 @@ import Product from "./Product";
 import TextDownloader from "./TextDownloader";
 import PdfViewer from "./PdfViewer";
 import TextImageHero from "./TextImageHero";
+import TextMultiPlainImage from "./TextMultiPlainImage";
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -50,6 +51,7 @@ const moduleDefs = {
   ["text_description_image"]: TextDescriptionImage,
   ["text_image"]: TextImage,
   ["text_image_hero"]: TextImageHero,
+  ["text_multi_plain_image"]: TextMultiPlainImage,
 };
 
 const Modules = ({ pageData }) => {
