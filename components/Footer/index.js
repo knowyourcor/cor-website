@@ -134,7 +134,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
           <Column columns={{ xs: 8 }}>
               <ul className={styles.socialLinks}>
                   <SocialMediaButtons
-                    links={['https://twitter.com/knowyourcor', 'https://www.linkedin.com/company/nueon-inc./']}
+                    links={['https://www.instagram.com/knowyourcor/', 'https://twitter.com/knowyourcor', 'https://www.linkedin.com/company/nueon-inc./']}
                     buttonStyle={{ width: '36px', height: '36px', margin: '0px 2px', backgroundColor: 'transparent' }}
                     iconStyle={{ color: 'black' }}
                     openNewTab={false}
