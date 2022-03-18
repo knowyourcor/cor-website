@@ -137,7 +137,7 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                     links={['https://www.instagram.com/knowyourcor/', 'https://twitter.com/knowyourcor', 'https://www.linkedin.com/company/nueon-inc./']}
                     buttonStyle={{ width: '36px', height: '36px', margin: '0px 2px', backgroundColor: 'transparent' }}
                     iconStyle={{ color: 'black' }}
-                    openNewTab={false}
+                    openNewTab={true}
                   />
               </ul>
           </Column>
