@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { Container, Row, Column } from "../Grid";
 import EmailSignup from "../EmailSignup";
+import SocialMediaButtons from 'react-social-media-buttons';
 
 import styles from "./footer.module.scss";
 
@@ -105,8 +106,8 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
           </Column>
         </Row>
 
-        <Row>
-          <Column columns={{ xs: 14 }}>
+        <Row align={{ xs: "end" }}>
+          <Column columns={{ xs: 6 }}>
             <div className={styles.tertiary}>
               <p>©{new Date().getFullYear()} Nueon Inc.</p>
               <ul className={styles.tertiaryMenu}>
@@ -128,6 +129,17 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                 )}
               </ul>
             </div>
+          </Column>
+
+          <Column columns={{ xs: 8 }}>
+              <ul className={styles.socialLinks}>
+                  <SocialMediaButtons
+                    links={['https://twitter.com/knowyourcor', 'https://www.linkedin.com/company/nueon-inc./']}
+                    buttonStyle={{ width: '36px', height: '36px', margin: '0px 2px', backgroundColor: 'transparent' }}
+                    iconStyle={{ color: 'black' }}
+                    openNewTab={false}
+                  />
+              </ul>
           </Column>
         </Row>
       </Container>

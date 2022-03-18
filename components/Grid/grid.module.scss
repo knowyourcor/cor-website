@@ -37,6 +37,9 @@ $grid-column-width: math.div(100, $grid-columns);
       &.align-end\@#{$breakpoint} {
         align-items: flex-end;
       }
+      &.align-stretch\@#{$breakpoint} {
+        align-items: stretch;
+      }
       &.spacing-0\@#{$breakpoint} {
         margin-right: 0;
         margin-left: 0;
