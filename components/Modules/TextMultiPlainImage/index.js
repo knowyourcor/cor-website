@@ -13,13 +13,13 @@ const TextMultiPlainImage = ({ primary, fields }) => {
       >
         <Container>
           <Row>
-            <Column  offsets={{ sm: 1 }}>
+            <Column  offsets={{ md: 1 }}>
               <RichText render={primary.text} />
             </Column>
           </Row>
           <Row>
             {fields.map((field) => (
-              <Column columns={{ xs: 7, sm: 2 }} offsets={{ sm: 1 }}>
+              <Column columns={{ xs: 7, sm: 2 }} offsets={{ md: 1 }}>
                 <div className={styles.container}>
                   <Picture image={field.image} />
                 </div>

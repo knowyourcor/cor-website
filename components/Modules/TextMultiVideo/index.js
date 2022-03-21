@@ -12,7 +12,7 @@ const TextMultiVideo = ({ primary, fields }) => {
       <Section backgroundColor={primary.background_color}>
         <Container>
           <Row>
-            <Column offsets={{ sm: 1 }}>
+            <Column offsets={{ md: 1 }}>
               <RichText render={primary.text} />
             </Column>
           </Row>

@@ -19,6 +19,7 @@
   }
 }
 
+
 .swiper {
   > div {
     width: 100%;
@@ -34,6 +35,7 @@
 }
 
 .slide {
+  height: auto;
   position: relative;
   overflow: hidden;
   margin: 1rem 0 3rem;
