@@ -18,8 +18,8 @@ const TextMultiVideo = ({ primary, fields }) => {
           </Row>
           <Row>
             {fields.map((field, index) => (
-              <Column columns={{ xs: 14, md: 6 }} offsets={{ md: index == 0 ? 1 : 0 }}>
-                <Video primary={field} key={index} />
+              <Column key={index} columns={{ xs: 14, md: 6 }} offsets={{ md: index == 0 ? 1 : 0 }}>
+                <Video primary={field} />
               </Column>
             ))}
           </Row>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, createRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
 import { RichText } from "prismic-reactjs";
@@ -14,7 +14,7 @@ export default function AccordionVideo({ primary, fields }) {
   const videoRef = useRef();
   const [playVideo, setPlayVideo] = useState(true);
 
-  const [expanded, setExpanded] = useState("item-0");
+  const [expanded, setExpanded] = useState(0);
   const [imageData, setImageData] = useState();
   const { ref, inView } = useInView({
     threshold: 0.05,
@@ -32,6 +32,32 @@ export default function AccordionVideo({ primary, fields }) {
   useEffect(() => {
     setImageData(fields[0]?.video_source);
   }, []);
+
+  const handleProgress = (e) => {
+    if (isNaN(e.target.duration))
+      return;
+    const progress = (e.target.currentTime / e.target.duration) * 100;
+  };
+
+  const handleCanPlayThrough = (e) => {
+    videoRef.current.play();
+  };
+
+  const handleEnded = (e) => {
+    const currentIndex = expanded;
+    const newIndex = (expanded + 1) % fields.length;
+
+    // Delay moving into the next video
+    setTimeout(() => {
+      if (currentIndex !== expanded) {
+        return;
+      }
+
+      setExpanded(newIndex);
+      handleImageChange(fields[newIndex].video_source);
+    }, 2000);
+  };
+
 
   const imageTransition = {
     duration: 0.5,
@@ -86,9 +112,9 @@ export default function AccordionVideo({ primary, fields }) {
                     {fields.map((data, index) => (
                       <Item
                         key={`item-${index}`}
-                        isExpanded={`item-${index}` === expanded}
+                        isExpanded={index === expanded}
                         expandItem={() => {
-                          setExpanded(`item-${index}`);
+                          setExpanded(index);
                           handleImageChange(data.video_source);
                         }}
                         data={data}
@@ -108,13 +134,12 @@ export default function AccordionVideo({ primary, fields }) {
             ordering={{ xs: 1, md: 2 }}
             className={styles.columnPaddingRight}
           >
-            
             <div
               className={[styles.imageContainer, styles[`${expanded}`]].join(
                 " "
               )}
             >
-                {/* <AnimatePresence>
+              {/* <AnimatePresence>
                   <motion.div
                     initial="hidden"
                     animate="visible"
@@ -122,10 +147,24 @@ export default function AccordionVideo({ primary, fields }) {
                     variants={imageVariant}
                     key={imageData}
                   > */}
-                <video ref={videoRef} key={imageData} className={styles.video} autoPlay muted loop playsInline>
+
+              {imageData ? (
+                <video
+                  ref={videoRef}
+                  onTimeUpdate={handleProgress}
+                  onCanPlayThrough={handleCanPlayThrough}
+                  onEnded={handleEnded}
+                  key={imageData}
+                  className={styles.video}
+                  autoPlay
+                  muted
+                  playsInline
+                >
                   <source src={imageData} type="video/mp4" />
                 </video>
-                   {/* </motion.div>
+              ) : null}
+
+              {/* </motion.div>
                  </AnimatePresence> */}
             </div>
           </Column>
