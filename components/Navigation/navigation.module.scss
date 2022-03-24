@@ -92,6 +92,13 @@
       left: 50%;
       transform: translate(-51%, 1px);
     }
+
+    // Workaround: hide the COR logo when buttons overlap
+    // we should find a better way to do this
+    @media (max-width: 24rem) {
+      display: none;
+    }
+
     svg {
       height: 18px;
       fill: var(--text-color-primary);
