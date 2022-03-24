@@ -29,7 +29,7 @@ export default function Team({ primary, fields }) {
         <button
           ref={ref}
           className={styles.card}
-          onClick={() => setModalActive(true)}
+          onClick={() => setModalActive(false)} // Disable opening modals for now
         >
           <div className={styles.borderRadius}>
             <Picture image={image} />
@@ -71,9 +71,12 @@ export default function Team({ primary, fields }) {
       style={{ backgroundColor: primary.background_color }}
       className={styles.textCarousel}
     >
+      
       <Container ref={ref}>
+        
         <Row>
-          <Column columns={{ xs: 14, sm: 14, md: 4 }} offsets={{ md: 1 }}>
+
+          <Column columns={{ xs: 14, sm: 14, md: 12 }} offsets={{ md: 1 }}>
             <motion.div
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -94,7 +97,7 @@ export default function Team({ primary, fields }) {
         </Row>
 
         <Row>
-          <Column columns={{ xs: 14, md: 12 }} offsets={{ md: 1 }}>
+          <Column columns={{ xs: 14, md: 12 }} offsets={{ md:  1}}>
             <div className={styles.teamProfiles}>
               {fields.map((field, index) => (
                 <motion.div

@@ -20,4 +20,13 @@ module.exports = {
 
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: "/homepage",
+        destination: "/",
+        permanent: false,
+      },
+    ];
+  },
 };

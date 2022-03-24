@@ -3,10 +3,18 @@ import { useRouter } from "next/router";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import styles from "./emailSignup.module.scss";
 
-const url =
+const defaultMailChimpUrl =
   "//knowyourcor.us12.list-manage.com/subscribe/post?u=dae943d68d00c841aef8185af&amp;id=6de65e742b";
 
-const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
+const CustomForm = ({
+  status,
+  message,
+  inputPlaceholder,
+  buttonLabel,
+  onValidated,
+  onSuccess,
+  theme,
+}) => {
   const emailRef = useRef();
   const [isValid, setIsValid] = useState(true);
   const [inputValue, setInputValue] = useState("");
@@ -87,7 +95,7 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
             ref={emailRef}
             type="email"
             className={[styles.inputEmail, "focus-input"].join(" ")}
-            placeholder="Stay in the loop"
+            placeholder={inputPlaceholder || "Stay in the loop"}
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
             aria-label="Enter email address"
@@ -97,9 +105,9 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
           <button
             onClick={handleSubmit}
             className={styles.button}
-            aria-label="Sign up"
+            aria-label={buttonLabel || "Sign up"}
           >
-            <span>Sign Up</span>
+            <span>{buttonLabel || "Sign Up"}</span>
           </button>
         </div>
         {statusMessage && (
@@ -115,17 +123,25 @@ const CustomForm = ({ status, message, onValidated, onSuccess, theme }) => {
   );
 };
 
-const EmailSignup = ({ theme, onSuccess }) => {
+const EmailSignup = ({
+  theme,
+  onSuccess,
+  inputPlaceholder,
+  buttonLabel,
+  mailchimpUrl,
+}) => {
   const router = useRouter();
   // Use router.route as a key to reset form on route change
   return (
     <Fragment key={router.route}>
       <MailchimpSubscribe
-        url={url}
+        url={mailchimpUrl || defaultMailChimpUrl}
         render={({ subscribe, status, message }) => (
           <CustomForm
             status={status}
             message={message}
+            inputPlaceholder={inputPlaceholder}
+            buttonLabel={buttonLabel}
             onSuccess={(status) =>
               typeof onSuccess === "function" && onSuccess(status)
             }

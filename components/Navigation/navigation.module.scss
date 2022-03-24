@@ -92,6 +92,13 @@
       left: 50%;
       transform: translate(-51%, 1px);
     }
+
+    // Workaround: hide the COR logo when buttons overlap
+    // we should find a better way to do this
+    @media (max-width: 24rem) {
+      display: none;
+    }
+
     svg {
       height: 18px;
       fill: var(--text-color-primary);
@@ -106,7 +113,7 @@
 .callToAction {
   position: absolute;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 
   // Handle iPhone notch
@@ -128,6 +135,7 @@
       border-radius: 50px;
       text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
       text-decoration: none;
+      margin: 0.2rem;
       @media (min-width: $sm) {
         font-size: 0.85rem;
         padding: 0.6rem 1.25rem 0.65rem;

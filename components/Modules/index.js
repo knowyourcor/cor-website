@@ -8,6 +8,7 @@ import CarouselHero from "./CarouselHero";
 import FullWidthImage from "./FullWidthImage";
 import Newsletter from "./Newsletter";
 import ShopAccordion from "./ShopAccordion";
+import AccordionVideo from "./AccordionVideo";
 import ShopTextImage from "./ShopTextImage";
 import TextAccordion from "./TextAccordion";
 import TextDescriptionImage from "./TextDescriptionImage";
@@ -21,6 +22,8 @@ import ShopDataProgress from "./ShopDataProgress";
 import Product from "./Product";
 import TextDownloader from "./TextDownloader";
 import PdfViewer from "./PdfViewer";
+import TextImageHero from "./TextImageHero";
+import TextMultiPlainImage from "./TextMultiPlainImage";
 
 const moduleDefs = {
   ["accordion"]: Accordion,
@@ -37,6 +40,7 @@ const moduleDefs = {
   ["product"]: Product,
   ["quadcarousel"]: QuadCarousel,
   ["shop_accordion"]: ShopAccordion,
+  ["video_accordion"]: AccordionVideo,
   ["shop_checklist"]: ShopChecklist,
   ["shop_text_image"]: ShopTextImage,
   ["team"]: Team,
@@ -46,6 +50,8 @@ const moduleDefs = {
   ["text___downloader"]: TextDownloader,
   ["text_description_image"]: TextDescriptionImage,
   ["text_image"]: TextImage,
+  ["text_image_hero"]: TextImageHero,
+  ["text_multi_plain_image"]: TextMultiPlainImage,
 };
 
 const Modules = ({ pageData }) => {

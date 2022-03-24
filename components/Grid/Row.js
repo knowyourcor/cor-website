@@ -7,7 +7,7 @@ import styles from "./grid.module.scss";
 //     [key: string]: 'normal' | 'start' | 'center' | 'end';
 //   };
 //   align?: {
-//     [key: string]: 'normal' | 'start' | 'center' | 'end';
+//     [key: string]: 'normal' | 'start' | 'center' | 'end' | 'stretch';
 //   };
 //   spacing?: {
 //     [key: string]: 0 | 1 | 2 | 3 | 4;

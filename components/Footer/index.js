@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { Container, Row, Column } from "../Grid";
 import EmailSignup from "../EmailSignup";
+import SocialMediaButtons from 'react-social-media-buttons';
 
 import styles from "./footer.module.scss";
 
@@ -97,12 +98,16 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
             </div>
           </Column>
           <Column columns={{ xs: 14, sm: 6, md: 6, lg: 4 }}>
-            <EmailSignup />
+            <EmailSignup
+              buttonLabel="Subscribe"
+              inputPlaceholder="Get the Research Readout"
+              mailchimpUrl="https://knowyourcor.us12.list-manage.com/subscribe/post?u=dae943d68d00c841aef8185af&amp;id=6de65e742b"
+            />
           </Column>
         </Row>
 
-        <Row>
-          <Column columns={{ xs: 14 }}>
+        <Row align={{ xs: "end" }}>
+          <Column columns={{ xs: 6 }}>
             <div className={styles.tertiary}>
               <p>©{new Date().getFullYear()} Nueon Inc.</p>
               <ul className={styles.tertiaryMenu}>
@@ -124,6 +129,17 @@ const Footer = ({ footerMenuData, tertiaryMenuData }) => {
                 )}
               </ul>
             </div>
+          </Column>
+
+          <Column columns={{ xs: 8 }}>
+              <ul className={styles.socialLinks}>
+                  <SocialMediaButtons
+                    links={['https://www.instagram.com/knowyourcor/', 'https://twitter.com/knowyourcor', 'https://www.linkedin.com/company/nueon-inc./']}
+                    buttonStyle={{ width: '36px', height: '36px', margin: '0px 2px', backgroundColor: 'transparent' }}
+                    iconStyle={{ color: 'black' }}
+                    openNewTab={true}
+                  />
+              </ul>
           </Column>
         </Row>
       </Container>

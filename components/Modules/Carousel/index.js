@@ -60,13 +60,13 @@ export default function Carousel({ primary, fields }) {
     >
       <div className={styles.contentContainer}>
         <Container>
-          <Row justify={{ xs: "center" }}>
-            <Column columns={{ xs: 14, sm: 12 }}>
+          <Row>
+          <Column offsets={{ md: 1 }}>
               <RichText render={primary.headline} />
             </Column>
           </Row>
           <Row justify={{ xs: "center" }}>
-            <Column columns={{ xs: 14, sm: 12, md: 8 }}>
+          <Column offsets={{ md: 1 }}>
               <RichText render={primary.text} />
               <Button labelData={primary.link_label} linkData={primary.link} />
             </Column>
