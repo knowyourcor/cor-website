@@ -1,28 +1,25 @@
 import Link from "next/link";
 import styles from "./button.module.scss";
-import { Elements, RichTextBlock } from "prismic-reactjs";
+import { Elements, RichText, RichTextBlock } from "prismic-reactjs";
 
 const Button = ({ linkData, labelData }: {
   linkData: any;
   labelData: RichTextBlock[];
 }) => {
-
-  if (!Array.isArray(labelData) || labelData.length == 0) {
-    return null
-  }
-
-  const text = labelData[0].text;
-  var processedText = text;
-
-  if (labelData[0].spans?.length > 0) {
-    const span = labelData[0].spans[0];
-    if (span.type == Elements.label && span.data && span.data.label) {
-      const label = span.data.label;
-      const textToApplySpan = text.substring(span.start, span.end);
-      
-      processedText = "<span>" + text.substring(0, span.start) + `<span class=${label}>${textToApplySpan}</span>` + text.substring(span.end) + "</span>"
+  const serializer = (
+    type,
+    element,
+    content,
+    children,
+    index
+  ): React.ReactNode => {
+    if (type === Elements.label) {
+      return <span className="linethrough">{content}</span>;
     }
-  }
+    if (type === Elements.paragraph) {
+      return <span>{children}</span>;
+    }
+  };
   
   const WebLink = (link, label: RichTextBlock[]) => {
     return (
@@ -32,8 +29,8 @@ const Button = ({ linkData, labelData }: {
         target={link?.target}
         rel="noopener noreferrer"
         className={styles.button}
-        dangerouslySetInnerHTML={{ __html: processedText }}
-      >    
+      >
+        <RichText render={labelData} htmlSerializer={serializer} />
       </a>
     );
   };
@@ -42,8 +39,9 @@ const Button = ({ linkData, labelData }: {
     // replace all occurences from uid _ to / to suuport nested paths
     return (
       <Link href={`/${link?._meta?.uid?.replace(new RegExp("_", "g"), "/")}`}>
-        <a className={styles.button}
-           dangerouslySetInnerHTML={{ __html: processedText }}></a>
+        <a className={styles.button}>
+             <RichText render={labelData} htmlSerializer={ serializer }/>
+           </a>
       </Link>
     );
   };
