@@ -51,7 +51,7 @@ const Title = ({ title, description, image }) => {
       {/* Facebook Ads Domain verification */}
       <meta 
         name="facebook-domain-verification"
-        content="ggpb0d09qc4ag8x835u7yoz1v05xxq"
+        content="879fpli61zorxkjoto7llo9d8pozss"
       />
 
       {/* Twitter Meta Tags */}
