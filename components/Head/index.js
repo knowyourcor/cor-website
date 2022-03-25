@@ -48,6 +48,12 @@ const Title = ({ title, description, image }) => {
       />
       <meta property="og:image" content={image || '//thecor.com/images/preview.jpg'} />
 
+      {/* Facebook Ads Domain verification */}
+      <meta 
+        name="facebook-domain-verification"
+        content="ggpb0d09qc4ag8x835u7yoz1v05xxq"
+      />
+
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="thecor.com" />
