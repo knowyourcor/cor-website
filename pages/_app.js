@@ -12,7 +12,8 @@ import "../styles/swiper.scss";
 export default function CorWebsite({ Component, pageProps, router }) {
   // Google Tag Manager
   useEffect(() => {
-    TagManager.initialize({ gtmId: "GTM-NPTLBNX" });
+    // TagManager.initialize({ gtmId: "GTM-NPTLBNX" });
+    TagManager.initialize({ gtmId: "GTM-KVLRT2S" });
   }, []);
   const getLayout =
     Component.getLayout || ((page) => <Layout children={page} />);
