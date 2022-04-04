@@ -29,7 +29,7 @@ module.exports = {
       },
       {
         source: "/shop",
-        destination: "https://shop.thecor.com/products/cor-pioneer?_ga=2.118826441.1364353575.1649026903-1546752094.1648774141",
+        destination: "https://shop.thecor.com/products/cor-pioneer",
         permanent: false,
       },
       {
