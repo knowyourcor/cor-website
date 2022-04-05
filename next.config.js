@@ -27,6 +27,16 @@ module.exports = {
         destination: "/",
         permanent: false,
       },
+      {
+        source: "/shop",
+        destination: "https://shop.thecor.com/products/cor-pioneer",
+        permanent: false,
+      },
+      {
+        source: "/invest",
+        destination: "https://wefunder.com/cor",
+        permanent: true,
+      },
     ];
   },
 };
