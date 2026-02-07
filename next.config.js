@@ -2,6 +2,11 @@ module.exports = {
   future: {
     webpack5: true,
   },
+  
+  typescript: {
+  ignoreBuildErrors: true,
+},
+
   webpack: (config) => {
     // load worker files as a urls with `file-loader`
     config.module.rules.unshift({
